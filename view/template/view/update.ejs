@@ -1,0 +1,94 @@
+<% block('title', model.getTitle()); %>
+<% block('titleTranslation', 'none'); %>
+<% block('commands', {
+    template: _view.get('_part/tool/modelExport'),
+    url: _url('export/view', model)
+}); %>
+
+<%- include('./_form') %>
+
+<%- include(_view.get('_part/group/tabs'), {
+    items: [{
+        id: 'Main',
+        active: true,
+        content: _view.getInternalTemplate('_tabMain')
+    },{
+        id: 'Attributes',
+        content: _view.getInternalTemplate('_tabAttributes')
+    },{
+        id: 'Groups',
+        content: _view.getInternalTemplate('_tabGroups')
+    },{
+        id: 'Behaviors',
+        content: {
+            template: _view.get('_part/attr/relation'),
+            attr: 'behaviors',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'type',
+                    translate: ''
+                }, {
+                    name: 'param'
+                }, {
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                modalSort: true
+            }
+        }
+    },{
+        id: 'Validation',
+        content: {
+            template: _view.get('_part/attr/relation'),
+            attr: 'rules',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'attrs',
+                    format: 'relation'
+                },{
+                    name: 'type',
+                    format: 'label'
+                },{
+                    name: 'param'
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                modalSort: true
+            }
+        }
+    },{
+        id: 'Tree view',
+        content: [{
+            template: _view.get('_part/attr/checkbox'),
+            attr: 'disableTreeView'
+        },{
+            template: _view.get('_part/attr/relation'),
+            attr: 'treeViewLevels',
+            data: {
+                columns: [{
+                    name: 'refAttr',
+                    format: {
+                        name: 'relation',
+                        url: _url('class-attr/update')
+                    }
+                },{
+                    name: 'refClass'
+                },{
+                    name: 'recursive',
+                    format: 'boolean'
+                }],
+                order: {[model.PK]: 1},
+                create: 'tree-view-level/create-by-view',
+                link: null,
+                unlink: null
+            }
+        }]
+    }]
+}) %>

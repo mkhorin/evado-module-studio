@@ -1,0 +1,31 @@
+
+.form-override {
+    position: relative;
+    margin-bottom: 20px;
+}
+.form-override:last-child,
+.form-override .form-group {
+    margin-bottom: 0;
+}
+.form-override .form-override-target > div {
+    padding-right: 40px;
+}
+.form-override-toggle {
+    position: absolute;
+    margin: 0;
+    right: 7px;
+    top: 0;
+}
+.form-override-toggle > div {
+    width:auto;
+    margin:0;
+    padding: 0;
+}
+.form-override-toggle .checkbox {
+    padding-top: 4px;
+}
+
+.message .error-message {
+    color: #a20;
+    margin-top: 5px;
+}

@@ -1,0 +1,38 @@
+<% layout(_view.get('_layout/list')); %>
+
+<% block('title', 'Classes'); %>
+
+<%- include(_view.get('_part/list/grid'), {
+    data: {
+        columns: [{
+            name: 'name',
+            searchable: true,
+            sortable: true
+        },{
+            name: 'label',
+            searchable: true,
+            sortable: true
+        },{
+            name: 'description',
+            searchable: true
+        },{
+            name: 'parent',
+            format: {
+                name: 'relation',
+                url: _url('class/update')
+            }
+        },{
+            name: 'abstract',
+            format: 'boolean'
+        }],
+        order: {name: 1},
+        filter: {}
+    },
+    tools: [{
+        template: _view.get('_part/tool/clone'),
+        url: ['class/clone']
+    },{
+        template: _view.get('_part/tool/inherit'),
+        url: ['class/inherit']
+    }]
+}) %>

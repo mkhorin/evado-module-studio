@@ -1,0 +1,52 @@
+<% layout(_view.get('_layout/main')) %>
+
+<div class="wrapper">
+
+    <header class="main-header">
+
+        <%- include(_view.get('_part/nav/logo')) %>
+
+        <nav id="main-navbar" class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"></a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <%- _view.placeWidget('notifications') %>
+                    <%- include(_view.get('_part/nav/userToggle')) %>
+                </ul>
+            </div>
+            <%- include(_view.get('_part/nav/commonMenuToggle')) %>
+            <%- include(_view.get('_part/nav/meta')) %>
+            <%- include(_view.get('_part/tool/modalBack')) %>
+        </nav>
+    </header>
+
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div>
+                <%- _view.placeWidget('sideMenu') %>
+            </div>
+        </section>
+    </aside>
+
+    <div class="content-wrapper">
+        <section class="content-header">
+
+            <%- include(_view.get('_part/other/flashAlert')) %>
+
+            <h1 data-t=""><%- blocks.title %></h1>
+        </section>
+
+        <section id="content" class="content">
+            <%- body %>
+        </section>
+    </div>
+
+    <%- include(_view.get('_part/other/footer')) %>
+</div>
+
+<%- include(_view.get('_part/other/dialog')) %>
+<%- include(_view.get('_part/other/notice')) %>
+
+<div class="global-loader overlay">
+    <span class="fa fa-spinner fa-spin"></span>
+</div>

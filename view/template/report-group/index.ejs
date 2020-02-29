@@ -1,0 +1,20 @@
+<% layout(_view.get('_layout/list')) %>
+
+<% block('title', 'Groups') %>
+
+<%- include(_view.get('_part/list/grid'), {
+    data: {
+        columns: [{
+            name: 'report'
+        },{
+            name: 'name',
+            sortable: true,
+            searchable: true
+        },{
+            name: 'label',
+            sortable: true,
+            searchable: true
+        }],
+        create: null
+    }
+}) %>

@@ -1,0 +1,63 @@
+<% layout(_view.get(_layout)) %>
+<% block('tab', 'Enum') %>
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'items',
+    data: {
+        columns: [{
+            name: 'value'
+        }, {
+            name: 'text'
+        }, {
+            name: 'hint'
+        }, {
+            name: 'orderNumber'
+        }],
+        link: null,
+        unlink: null,
+        order: {orderNumber: 1},
+        modalSort: true
+    }
+}) %>
+
+<%- include(_view.get('_part/attr/json'), {
+    attr: 'condition'
+}) %>
+
+<%- include(_view.get('_part/group/columns'), {
+    items: [{
+        template: _view.get('_part/attr/select'),
+        params: {
+            attr: 'class',
+            items: null,
+            displayValue: model.getRelatedTitle('class'),
+            select2: {ajax: {url: _url('class/list-select')}},
+            update: _url('class/update')
+        }
+    }, {
+        template: _view.get('_part/attr/select'),
+        params: {
+            attr: 'view',
+            items: null,
+            displayValue: model.getRelatedTitle('view'),
+            select2: {ajax: {url: _url('view/list-select')}},
+            depends: [{attr: 'class', param: 'pid'}],
+            actionBinder: {enable: ['NOT EMPTY', 'class']},
+            update: _url('view/update')
+        }
+    }]
+}) %>
+
+<%- include(_view.get('_part/attr/select'), {
+    attr: 'attr',
+    items: null,
+    displayValue: model.getRelatedTitle('attr'),
+    select2: {ajax: {url: _url('class-attr/list-select')}},
+    depends: [{attr: 'class', param: 'pid'}],
+    actionBinder: {enable: ['NOT EMPTY', 'class']},
+    update: _url('class-attr/update')
+}) %>
+
+<%- include(_view.get('_part/attr/json'), {
+    attr: 'objectFilter'
+}) %>

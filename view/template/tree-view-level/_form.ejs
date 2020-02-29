@@ -1,0 +1,38 @@
+<% layout(_view.get(_layout)) %>
+
+<%- include(_view.get('_part/attr/static'), {
+    attr: 'sourceClass',
+    displayValue: sourceClass ? sourceClass.getTitle() : null,
+    value: sourceClass ? sourceClass.getId() : null,
+    url: ['class/update', sourceClass]
+}) %>
+
+<%- include(_view.get('_part/group/columns'), {
+    items: [{
+        template: _view.get('_part/attr/select'),
+        params: {
+            attr: 'refAttr',
+            items: refAttrs,
+            update: _url('class-attr/update'),
+        }
+    },{
+        template: _view.get('_part/attr/select'),
+        params: {
+            attr: 'view',
+            items: null,
+            displayValue: model.getRelatedTitle('view'),
+            select2: {ajax: {url: _url('list-select-view')}},
+            update: _url('view/update'),
+            depends: [{attr: 'refAttr', param: 'id'}],
+            actionBinder: {enable: ['NOT EMPTY', 'refAttr']}
+        }
+    }]
+}) %>
+
+<%- include(_view.get('_part/attr/checkbox'), {
+    attr: 'recursive'
+}) %>
+
+<%- include(_view.get('_part/attr/json'), {
+    attr: 'options'
+}) %>

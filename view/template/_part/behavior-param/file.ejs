@@ -1,0 +1,45 @@
+<%
+const stringTemplate = _view.get('_part/attr/string');
+%>
+<%- include(_view.get('_part/attr/checkbox'), {
+    attr: 'imageOnly'
+}) %>
+
+<%- include(_view.get('_part/group/columns'), {
+    items: [{
+        template: stringTemplate,
+        params: {
+            attr: 'maxSize',
+            hint: 'In bytes'
+
+        }
+    }, {
+        template: stringTemplate,
+        params: {
+            attr: 'minSize',
+            hint: 'In bytes'
+        }
+    }]
+}) %>
+
+<%- include(_view.get('_part/attr/select'), {
+    attr: 'nameAttr',
+    items: attrItems,
+    update: _url('class-attr/update')
+}) %>
+
+<%- include(stringTemplate, {
+    attr: 'extensions',
+    hint: 'Separate with comma'
+}) %>
+
+<%- include(stringTemplate, {
+    attr: 'mimeTypes',
+    hint: 'Separate with comma'
+}) %>
+
+<%- include(stringTemplate, {
+    attr: 'accept',
+    extHint: 'Filter selected files by type (e.g. image/*)'
+}) %>
+

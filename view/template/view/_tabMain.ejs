@@ -1,0 +1,44 @@
+<%
+const columnTemplate = _view.get('_part/group/columns');
+const jsonTemplate = _view.get('_part/attr/json');
+%>
+<%- include(_view.get('_part/attr/text'), {
+    attr: 'description'
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'header',
+    extHint: 'String view template of object'
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'filter',
+    extHint: 'Object selection condition'
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: jsonTemplate,
+        params: {
+            attr: 'order'
+        }
+    },{
+        template: jsonTemplate,
+        params: {
+            attr: 'grouping'
+        }
+    }]
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: _view.get('_part/attr/string'),
+        params: {
+            attr: 'templateRoot'
+        }
+    }]
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'options'
+}) %>

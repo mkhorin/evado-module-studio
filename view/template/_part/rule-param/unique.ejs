@@ -1,0 +1,10 @@
+
+<%- include(_view.get('_part/attr/json'), {
+    attr: 'filter',
+    extHint: 'Filter condition to search for unique values.\nInput attribute name to create a filter by value of this attribute'
+}) %>
+
+<%- include(_view.get('_part/attr/checkbox'), {
+    attr: 'ignoreCase',
+    label: 'Ignore value case'
+}) %>

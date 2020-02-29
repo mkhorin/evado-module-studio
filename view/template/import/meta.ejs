@@ -1,0 +1,21 @@
+<% block('title', title) %>
+
+<% layout(_view.get('_layout/modal/form'), {
+    params: {closeConfirmation: false}
+}) %>
+
+<% if (typeof alert !== 'undefined') { %>
+<div class="alert-warning alert light" data-t=""><%- alert %></div>
+<% } %>
+
+<%- include(_view.get('_part/attr/stringAddon'), {
+    attr: 'source',
+    label: 'Location',
+    extHint: 'Metadata directory relative to application root',
+    before: 'meta/',
+    beforeCss: 'cursor-default',
+    behaviors: [{
+        name: 'StoreLastSavedValueBehavior',
+        defaultValueSelector: '.cursor-default'
+    }]
+}) %>

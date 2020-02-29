@@ -1,0 +1,39 @@
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'attrs',
+    css: 'no-label',
+    data: {
+        columns: [{
+            name: 'classAttr',
+            format: {
+                name: 'relation',
+                url: _url('class-attr/update')
+            }
+        }, {
+            name: 'label',
+            escape: false
+        }, {
+            name: 'group',
+            escape: false
+        }, {
+            name: 'viewType',
+            escape: false,
+            translate: ''
+        }, {
+            name: 'orderNumber'
+        }],
+        order: {orderNumber: 1},
+        link: null,
+        unlink: null,
+        create: null,
+        modalSort: true,
+        confirmDeletion: false
+    },
+    tools: {
+        template: _view.get('_part/tool/createByUrl'),
+        url: ['view-attr/create-by-class-attrs', model],
+        title: 'Create by class attributes'
+    }
+}) %>
+
+

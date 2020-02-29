@@ -1,0 +1,43 @@
+<!-- studio/view/_part/nav/meta -->
+<div class="navbar-tools pull-left">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          <span data-t="">Meta</span>
+          <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+          <li>
+              <a href="#" data-jam="ModalUserAction" data-url="studio/export/meta">
+                  <span class="glyphicon glyphicon-export"></span>
+                  <span data-t="">Export</span>
+              </a>
+          </li>
+          <li>
+              <a href="#" data-jam="PostUserAction" data-url="studio/default/reload">
+                  <span class="fa fa-redo"></span>
+                  <span data-t="">Reload</span>
+              </a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+              <a href="#" data-jam="ModalUserAction"
+                 data-url="studio/import/meta"
+                 data-reload="true">
+                  <span class="glyphicon glyphicon-import"></span>
+                  <span data-t="">Import</span>
+              </a>
+          </li>
+          <li>
+              <a href="#" class="text-danger" data-jam="PostUserAction"
+                 data-url="studio/default/drop-all"
+                 data-confirm="Delete absolutely all studio data?"
+                 data-confirm-method="confirmDeletion"
+                 data-reload="true">
+                  <span class="glyphicon glyphicon-trash"></span>
+                  <span data-t="">Clear</span>
+              </a>
+          </li>
+      </ul>
+    </div>
+
+</div>

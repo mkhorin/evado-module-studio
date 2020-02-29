@@ -1,0 +1,47 @@
+<% block('title', model.getTitle()); %>
+<% block('titleTranslation', 'none'); %>
+<% block('commands', {
+    template: _view.get('_part/tool/modelExport'),
+    url: _url('export/nav-section', model)
+});%>
+
+<%- include('./_form') %>
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'nodes',
+    data: {
+        columns: [{
+            name: 'name'
+        },{
+            name: 'label'
+        },{
+            name: 'class',
+            format: {
+                name: 'relation',
+                url: _url('class/update')
+            }
+        },{
+            name: 'view',
+            format: {
+                name: 'relation',
+                url: _url('view/update')
+            }
+        },{
+            name: 'report',
+            format: {
+                name: 'relation',
+                url: _url('repor/updatet')
+            }
+        },{
+            name: 'url'
+        },{
+            name: 'orderNumber',
+            sortable: true
+        }],
+        order: {orderNumber: 1},
+        link: null,
+        unlink: null,
+        create: ['nav-node/create-by-section', model],
+        modalSort: true
+    }
+}) %>

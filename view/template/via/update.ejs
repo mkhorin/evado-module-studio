@@ -1,0 +1,32 @@
+<% block('title', model.getTitle()); %>
+<% block('titleTranslation', 'none'); %>
+
+<%- include('./_form') %>
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'via',
+    data: {
+        columns: [{
+            name: 'refClass',
+            format: {
+                name: 'relation',
+                url: _url('class-attr/update')
+            }
+        },{
+            name: 'refAttr',
+            format: {
+                name: 'relation',
+                url: _url('class-attr/update')
+            }
+        },{
+            name: 'linkAttr',
+            format: {
+                name: 'relation',
+                url: _url('class-attr/update')
+            }
+        }],
+        link: null,
+        unlink: null,
+        create: ['create-by-via', model]
+    }
+}) %>

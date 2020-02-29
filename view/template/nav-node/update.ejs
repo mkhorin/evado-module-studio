@@ -1,0 +1,37 @@
+<% block('tab', 'Node') %>
+<% block('title', model.getTitle()); %>
+<% block('titleTranslation', 'none'); %>
+
+<%- include('./_form') %>
+
+<%- include(_view.get('_part/group/tabs'), {
+    items: [{
+        id: 'Main',
+        active: true,
+        content: _view.getInternalTemplate('_tabMain')
+    }, {
+        id: 'Children',
+        content: {
+            template: _view.get('_part/attr/relation'),
+            attr: 'children',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'name',
+                    sortable: true
+                },{
+                    name: 'label',
+                    sortable: true
+                },{
+                    name: 'orderNumber',
+                    sortable: true
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                create: ['create-by-node', model],
+                modalSort: true
+            }
+        }
+    }]
+}) %>

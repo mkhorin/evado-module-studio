@@ -1,0 +1,23 @@
+<% layout(_view.get(_layout)) %>
+<% block('tab', `Attribute`) %>
+
+<%- include(_view.get('_part/attr/hidden'), {
+    attr: 'index'
+}) %>
+
+<%- include(_view.get('_part/attr/select'), {
+    attr: 'attr',
+    items: attrs,
+    update: _url('class-attr/update')
+}) %>
+
+<%- include(_view.get('_part/attr/radioList'), {
+    attr: 'direction',
+    items: [{
+        value: '1',
+        text: 'Ascending'
+    },{
+        value: '-1',
+        text: 'Descending'
+    }]
+}) %>

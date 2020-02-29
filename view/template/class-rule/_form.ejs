@@ -1,0 +1,33 @@
+<% layout(_view.get(_layout)) %>
+<% block('tab', 'Rule') %>
+
+<%- include(_view.get('_part/attr/static'), {
+    attr: 'owner',
+    displayValue: model.getRelatedTitle('owner'),
+    url: ['class/update', model.rel('owner')]
+}) %>
+
+<%- include(_view.get('_part/attr/select'), {
+    attr: 'type',
+    items: 'labels'
+}) %>
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'attrs',
+    data: {
+        columns: [{
+            name: 'name'
+        },{
+            name: 'label'
+        },{
+            name: 'type',
+            format: 'label'
+        }],
+        order: {name: 1},
+        link: ['class-attr/select', {list: _url('class-attr/list-by-class', {pid: model.get('owner')})}],
+        create: null,
+        delete: null
+    }
+}) %>
+
+<%- include(_view.get('_part/rule-param/index')) %>

@@ -1,0 +1,22 @@
+<% layout(_view.get(_layout)) %>
+<% block('tab', `Index`) %>
+
+<%- include(_view.get('_part/attr/hidden'), {
+    attr: 'class'
+}) %>
+
+<%- include(_view.get('_part/attr/string'), {
+    attr: 'name'
+}) %>
+
+<%- include(_view.get('_part/attr/checkbox'), {
+    attr: 'unique'
+}) %>
+
+<%- include(_view.get('_part/attr/checkbox'), {
+    attr: 'background'
+}) %>
+
+<%- include(_view.get('_part/attr/json'), {
+    attr: 'options'
+}) %>

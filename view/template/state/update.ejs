@@ -1,0 +1,46 @@
+<% block('title', model.getTitle()); %>
+<% block('titleTranslation', 'none'); %>
+
+<%- include('./_form') %>
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'startingTransitions',
+    data: {
+        columns: [{
+            name: 'name'
+        },{
+            name: 'label'
+        },{
+            name: 'startStates',
+            format: 'relation'
+        },{
+            name: 'finalState',
+            format: 'relation'
+        }],
+        link: null,
+        unlink: null,
+        create: null,
+        delete: null
+    }
+}) %>
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'finishingTransitions',
+    data: {
+        columns: [{
+            name: 'name'
+        },{
+            name: 'label'
+        },{
+            name: 'startStates',
+            format: 'relation'
+        },{
+            name: 'finalState',
+            format: 'relation'
+        }],
+        link: null,
+        unlink: null,
+        create: null,
+        delete: null
+    }
+}) %>

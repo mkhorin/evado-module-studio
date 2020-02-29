@@ -1,0 +1,110 @@
+<% block('title', model.getTitle()); %>
+<% block('titleTranslation', 'none'); %>
+<%
+const relationTemplate = _view.get('_part/attr/relation');
+%>
+<%- include('./_form') %>
+
+<%- include(_view.get('_part/group/tabs'), {
+    items: [{
+        id: 'Main',
+        active: true,
+        content: _view.getInternalTemplate('_tabMain')
+    },{
+        id: 'Relation',
+        content: _view.getInternalTemplate('_tabRelation')
+    },{
+        id: 'Enums',
+        hint: 'Predefined sets of named values',
+        content: {
+            template: relationTemplate,
+            attr: 'enums',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'items',
+                    format: 'relation',
+                }, {
+                    name: 'condition'
+                }, {
+                    name: 'class',
+                    format: {
+                        name: 'relation',
+                        url: _url('class/update')
+                    }
+                }],
+                link: null,
+                unlink: null,
+                create: {c: model.get('class')},
+                update: {c: model.get('class')}
+            }
+        }
+    },{
+        id: 'Search',
+        content: _view.getInternalTemplate('_tabSearch')
+    }, {
+        id: 'Behaviors',
+        hint: 'Additional attribute functionality',
+        content: {
+            template: relationTemplate,
+            attr: 'behaviors',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'type',
+                    format: 'label'
+                }, {
+                    name: 'param'
+                }, {
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                modalSort: true
+            }
+        }
+    },{
+        id: 'Validation',
+        content: {
+            template: relationTemplate,
+            attr: 'rules',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'type',
+                    format: 'label'
+                },{
+                    name: 'param'
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                modalSort: true
+            }
+        }
+    },{
+        id: 'Action binder',
+        hint: 'Actions with attribute depending on the current object values',
+        content: {
+            template: relationTemplate,
+            attr: 'actionBinder',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'show'
+                },{
+                    name: 'require'
+                },{
+                    name: 'enable'
+                },{
+                    name: 'value'
+                }],
+                link: null,
+                unlink: null
+            }
+        }
+    }]
+}) %>

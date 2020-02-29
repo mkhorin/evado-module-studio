@@ -1,0 +1,47 @@
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'states',
+    data: {
+        columns: [{
+            name: 'name'
+        }, {
+            name: 'label'
+        }, {
+            name: 'view',
+            format: {
+                name: 'relation',
+                url: _url('view/update')
+            }
+        }, {
+            name: 'defaults',
+            format: 'boolean'
+        }],
+        order: {name: 1},
+        link: null,
+        unlink: null
+    }
+}) %>
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'transitions',
+    data: {
+        columns: [{
+            name: 'name'
+        }, {
+            name: 'label'
+        }, {
+            name: 'startStates',
+            format: 'relation'
+        }, {
+            name: 'finalState',
+            format: 'relation'
+        }, {
+            name: 'orderNumber'
+        }],
+        order: {orderNumber: 1},
+        modalSort: true,
+        link: null,
+        unlink: null
+    }
+}) %>
+

@@ -1,0 +1,13 @@
+<%- include(_view.get('_part/list/filter'), {
+    data: {
+        columns: [{
+            name: 'class',
+            type: 'selector',
+            url: _url('class/list-select')
+        },{
+            name: 'label'
+        },{
+            name: 'name'
+        }]
+    }
+}) %>

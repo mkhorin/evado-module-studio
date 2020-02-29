@@ -1,0 +1,87 @@
+<% layout(_view.get(_layout)) %>
+<% block('tab', 'Transition') %>
+<%
+const jsonTemplate = _view.get('_part/attr/json');
+const stringTemplate = _view.get('_part/attr/string');
+%>
+<%- include(_view.get('_part/group/columns'), {
+    items: [{
+        items: [{
+            template: stringTemplate,
+            params: {
+                attr: 'name'
+            }
+        }, {
+            template: stringTemplate,
+            params: {
+                attr: 'label'
+            }
+        }]
+    },{
+        items: [{
+            template: _view.get('_part/attr/static'),
+            params: {
+                attr: 'class',
+                displayValue: model.getRelatedTitle('class'),
+                url: ['class/update', model.rel('class')]
+            }
+        }, {
+            template: stringTemplate,
+            params: {
+                attr: 'orderNumber'
+            }
+        }]
+    }]
+}) %>
+
+<%- include(_view.get('_part/attr/text'), {
+    attr: 'description'
+}) %>
+
+<%- include(stringTemplate, {
+    attr: 'hint'
+}) %>
+
+<%- include(_view.get('_part/attr/checkbox'), {
+    attr: 'nullStartState'
+}) %>
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'startStates',
+    data: {
+        columns: [{
+            name: 'name'
+        },{
+            name: 'label'
+        },{
+            name: 'description'
+        }],
+        link: ['state/select', {list: _url('state/list', {pid: model.rel('class').getId()})}],
+        create: null,
+        delete: null
+    }
+}) %>
+
+<%- include(_view.get('_part/attr/select'), {
+    attr: 'finalState',
+    displayValue: model.getRelatedTitle('finalState'),
+    items: null,
+    select2: {
+        ajax: {url: _url('state/list-select')},
+        queryData: {pid: model.get('class')}
+    },
+    update: _url('state/update')
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'condition',
+    extHint: 'Transition is available if condition is true'
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'config'
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'options'
+}) %>

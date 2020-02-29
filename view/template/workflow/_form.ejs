@@ -1,0 +1,61 @@
+<% layout(_view.get(_layout)) %>
+<% block('tab', 'Workflow') %>
+
+<%- include(_view.get('_part/group/columns'), {
+    items: [{
+        template: _view.get('_part/attr/string'),
+        params: {
+            attr: 'name'
+        }
+    }, {
+        template: _view.get('_part/attr/string'),
+        params: {
+            attr: 'label'
+        }
+    }]
+}) %>
+
+<%- include(_view.get('_part/attr/text'), {
+    attr: 'description'
+}) %>
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'states',
+    data: {
+        columns: [{
+            name: 'name',
+            sortable: true
+        },{
+            name: 'label',
+            sortable: true
+        },{
+            name: 'view'
+        }],
+        order: {name: 1},
+        link: null,
+        unlink: null
+    }
+}) %>
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'transitions',
+    data: {
+        columns: [{
+            name: 'name',
+            sortable: true
+        },{
+            name: 'label',
+            sortable: true
+        },{
+            name: 'startStates'
+        },{
+            name: 'finalState'
+        },{
+            name: 'orderNumber',
+            sortable: true
+        }],
+        order: {orderNumber: 1},
+        link: null,
+        unlink: null
+    }
+}) %>

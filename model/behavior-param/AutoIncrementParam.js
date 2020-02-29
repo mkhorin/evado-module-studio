@@ -1,0 +1,27 @@
+/**
+ * @copyright Copyright (c) 2020 Maxim Khorin <maksimovichu@gmail.com>
+ */
+'use strict';
+
+const Base = require('../../component/param/Param');
+
+module.exports = class AutoIncrementParam extends Base {
+
+    static getConstants () {
+        return {
+            ATTRS: super.ATTRS.concat([
+                'start',
+                'step',
+                'method'
+            ]),
+            RULES: [
+                [['start', 'step'], 'number', {integerOnly: true}],
+                [['start', 'step'], 'default', {value: 1}]
+            ],
+            ATTR_LABELS: {
+                'start': 'Start value'
+            }
+        };
+    }
+};
+module.exports.init(module);

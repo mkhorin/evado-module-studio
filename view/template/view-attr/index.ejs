@@ -1,0 +1,46 @@
+<% layout(_view.get('_layout/list')) %>
+
+<% block('title', 'View attributes') %>
+
+<%- include(_view.get('_part/list/grid'), {
+    data: {
+        columns: [{
+            name: 'classAttr',
+            label: 'Code name',
+            format: 'relation',
+            sortable: true
+        },{
+            name: 'label',
+            escape: false,
+            sortable: true,
+            searchable: true
+        },{
+            name: 'viewType',
+            escape: false,
+            translate: ''
+        },{
+            name: 'header',
+            escape: false
+        }, {
+            name: 'view',
+            format: {
+                name: 'relation',
+                url: _url('view/update')
+            },
+            sortable: true
+        },{
+            name: 'class',
+            format: {
+                name: 'relation',
+                url: _url('class/update')
+            },
+            sortable: true
+        },{
+            name: 'orderNumber',
+            type: 'integer',
+            sortable: true
+        }],
+        create: null,
+        filter: {}
+    }
+}) %>

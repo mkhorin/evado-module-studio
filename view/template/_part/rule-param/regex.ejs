@@ -1,0 +1,17 @@
+
+<%- include(_view.get('_part/attr/string'), {
+    attr: 'pattern'
+}) %>
+
+<%- include(_view.get('_part/attr/string'), {
+    attr: 'flags'
+}) %>
+
+<%- include(_view.get('_part/attr/checkbox'), {
+    attr: 'mismatch',
+    label: 'Mismatch (valid if pattern does not match)'
+}) %>
+
+<%- include(_view.get('_part/attr/string'), {
+    attr: 'message'
+}) %>

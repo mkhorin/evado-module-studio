@@ -1,0 +1,190 @@
+<% layout(_view.get(_layout)) %>
+<% block('title', 'Class group') %>
+<%
+const columnTemplate = _view.get('_part/group/columns');
+const overriddenTemplate = _view.get('_part/attr/overridden');
+const relationTemplate = _view.get('_part/attr/relation');
+const selectTemplate = _view.get('_part/attr/select');
+const stringTemplate = _view.get('_part/attr/string');
+%>
+<%- include(columnTemplate, {
+    items: [{
+        template: _view.get('_part/attr/static'),
+        params: {
+            attr: 'original',
+            displayValue: model.getRelatedTitle('original'),
+            url: ['update', model.rel('original')]
+        }
+    }, {
+        template: _view.get('_part/attr/static'),
+        params: {
+            attr: 'class',
+            displayValue: model.getRelatedTitle('class'),
+            url: ['class/update', model.rel('class')]
+        }
+    }]
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: overriddenTemplate,
+        params: {
+            attr: 'label',
+            template: stringTemplate
+        }
+    },{
+        template: overriddenTemplate,
+        params: {
+            attr: 'type',
+            template: selectTemplate,
+            params: {
+                items: 'labels'
+            }
+        }
+    }]
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: overriddenTemplate,
+        params: {
+            attr: 'parent',
+            template: selectTemplate,
+            params: {
+                items: validParents,
+                update: _url('class-group/update')
+            }
+        }
+    }, {
+        template: overriddenTemplate,
+        params: {
+            attr: 'orderNumber',
+            template: stringTemplate
+        }
+    }]
+}) %>
+
+<%- include(_view.get('_part/group/tabs'), {
+    items: [{
+        id: 'Main',
+        active: true,
+        content: _view.getInternalTemplate('_tabInheritedMain')
+    }, {
+        id: 'actionBinder',
+        label: 'Action binder',
+        content: {
+            template: relationTemplate,
+            attr: 'actionBinder',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'visible'
+                }, {
+                    name: 'required'
+                }, {
+                    name: 'enabled'
+                }, {
+                    name: 'value'
+                }],
+                link: null,
+                unlink: null
+            }
+        }
+    },{
+        id: 'children',
+        label: 'Children',
+        content: {
+            template: relationTemplate,
+            attr: 'children',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'name'
+                },{
+                    name: 'label'
+                },{
+                    name: 'type'
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                unlink: null,
+                link: null,
+                create: ['create-by-group', model],
+                modalSort:true
+            }
+        }
+    },{
+        id: 'classAttrs',
+        label: 'Class attributes',
+        content: {
+            template: relationTemplate,
+            attr: 'classAttrs',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'class',
+                    format: 'relation'
+                },{
+                    name: 'name'
+                },{
+                    name: 'label'
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                create: null,
+                delete: null,
+                modalSort: true
+            }
+        }
+    },{
+        id: 'viewAttrs',
+        label: 'View attributes',
+        content: {
+            template: relationTemplate,
+            attr: 'viewAttrs',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'classAttr'
+                },{
+                    name: 'label'
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                create: null,
+                delete: null
+            }
+        }
+    },{
+        id: 'viewGroups',
+        label: 'View groups',
+        content: {
+            template: relationTemplate,
+            attr: 'viewGroups',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'label'
+                },{
+                    name: 'parent'
+                },{
+                    name: 'type'
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                create: null,
+                delete: null
+            }
+        }
+    }]
+}) %>

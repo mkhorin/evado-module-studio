@@ -1,0 +1,40 @@
+<%
+const columns = [{
+    name: 'name'
+},{
+    name: 'label',
+    escape: false
+},{
+    name: 'parent',
+    format: {
+        name: 'relation',
+        url: _url('class-group/update')
+    }
+},{
+    name: 'type',
+    format: 'label'
+},{
+    name: 'active',
+    escape: false
+},{
+    name: 'orderNumber',
+    escape: false
+}];
+if (model.get('parent')) {
+    columns.unshift({
+        name: 'inherited',
+        translate: ''
+    });
+}
+%>
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'groups',
+    css: 'no-label',
+    data: {
+        columns,
+        order: {orderNumber: 1},
+        link: null,
+        unlink: null,
+        modalSort: true
+    }
+}) %>

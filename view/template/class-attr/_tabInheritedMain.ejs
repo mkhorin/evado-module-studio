@@ -1,0 +1,104 @@
+<%
+const checkboxTemplate = _view.get('_part/attr/checkbox');
+const columnTemplate = _view.get('_part/group/columns');
+const jsonTemplate = _view.get('_part/attr/json');
+const overriddenTemplate = _view.get('_part/attr/overridden');
+const stringTemplate = _view.get('_part/attr/string');
+const textTemplate = _view.get('_part/attr/text');
+%>
+
+<%- include(overriddenTemplate, {
+    attr: 'description',
+    template: textTemplate
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'header',
+    template: jsonTemplate
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: overriddenTemplate,
+        params: {
+            attr: 'group',
+            template: _view.get('_part/attr/select'),
+            params: {
+                items: null,
+                select2: {ajax: {url: _url('class-group/list-set-select', model.rel('class'))}},
+                displayValue: model.getRelatedTitle('group'),
+                update: _url('class-group/update')
+            }
+        }
+    }, {
+        template: overriddenTemplate,
+        params: {
+            attr: 'orderNumber',
+            template: stringTemplate
+        }
+    }]
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'defaultValue',
+    template: jsonTemplate
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        items: [{
+            template: overriddenTemplate,
+            params: {
+                attr: 'required',
+                template: checkboxTemplate
+            }
+        }, {
+            template: overriddenTemplate,
+            params: {
+                attr: 'readOnly',
+                template: checkboxTemplate
+            }
+        }, {
+            template: overriddenTemplate,
+            params: {
+                attr: 'unique',
+                template: checkboxTemplate
+            }
+        }]
+    }, {
+        items: [{
+            template: overriddenTemplate,
+            params: {
+                attr: 'escape',
+                template: checkboxTemplate
+            }
+        }, {
+            template: overriddenTemplate,
+            params: {
+                attr: 'hidden',
+                template: checkboxTemplate
+            }
+        }, {
+            template: overriddenTemplate,
+            params: {
+                attr: 'sortable',
+                template: checkboxTemplate
+            }
+        }]
+    }]
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'hint',
+    template: stringTemplate
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'extHint',
+    template: textTemplate
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'options',
+    template: jsonTemplate
+}) %>

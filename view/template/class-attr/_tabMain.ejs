@@ -1,0 +1,57 @@
+<%
+const jsonTemplate = _view.get('_part/attr/json');
+const stringTemplate = _view.get('_part/attr/string');
+%>
+
+<%- include(_view.getInternalTemplate('_tabMainBase')) %>
+
+<%- include(jsonTemplate, {
+    attr: 'header',
+    extHint: 'String view template'
+}) %>
+
+<%- include(_view.get('_part/group/columns'), {
+    items: [{
+        template: _view.get('_part/attr/select'),
+        params: {
+            attr: 'group',
+            displayValue: model.getRelatedTitle('group'),
+            items: null,
+            select2: {ajax: {url: _url('class-group/list-set-select', model.rel('class'))}},
+            update: _url('class-group/update')
+        }
+    },{
+        template: stringTemplate,
+        params: {attr: 'orderNumber'}
+    }]
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'defaultValue'
+}) %>
+
+<%- include(_view.get('_part/attr/radioList'), {
+    attr: 'indexing',
+    items: [{
+        value: '',
+        text: 'None'
+    },{
+        value: '1',
+        text: 'Ascending'
+    },{
+        value: '-1',
+        text: 'Descending'
+    }]
+}) %>
+
+<%- include(stringTemplate, {
+    attr: 'hint'
+}) %>
+
+<%- include(_view.get('_part/attr/text'), {
+    attr: 'extHint'
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'options'
+}) %>

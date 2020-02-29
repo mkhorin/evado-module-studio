@@ -1,0 +1,57 @@
+<% block('title', model.getTitle()); %>
+<% block('titleTranslation', 'none'); %>
+
+<%- include('./_form') %>
+
+<%- include(_view.get('_part/group/tabs'), {
+    items: [{
+        id: 'children',
+        label: 'Children',
+        active: true,
+        content: {
+            template: _view.get('_part/attr/relation'),
+            attr: 'children',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'name'
+                },{
+                    name: 'label'
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                unlink: null,
+                link: null,
+                create: ['create-by-group', model],
+                modalSort: true
+            }
+        }
+    },{
+        id: 'reportAttrs',
+        label: 'Attributes',
+        content: {
+            template: _view.get('_part/attr/relation'),
+            attr: 'reportAttrs',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'report',
+                    format: 'relation'
+                },{
+                    name: 'name'
+                },{
+                    name: 'label'
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                create: null,
+                delete: null,
+                modalSort: true
+            }
+        }
+    }]
+}) %>

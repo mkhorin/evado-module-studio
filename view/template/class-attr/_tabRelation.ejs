@@ -1,0 +1,114 @@
+<%
+const viewSelect2 = {ajax: {url: _url('view/list-select')}};
+const attrUpdate = _url('class-attr/update');
+const classUpdate = _url('class/update');
+const viewUpdate = _url('view/update');
+const refClassExists = {enable: ['NOT EMPTY', 'refClass']};
+const refClassMaster = [{attr: 'refClass', param: 'pid'}];
+const checkboxTemplate = _view.get('_part/attr/checkbox');
+const columnTemplate = _view.get('_part/group/columns');
+const selectTemplate = _view.get('_part/attr/select');
+const typeTrigger = ['START TRIGGER', 'type'];
+%>
+
+<%- include(_view.getInternalTemplate('_tabRelationBase')) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: selectTemplate,
+        params: {
+            attr: 'listView',
+            displayValue: model.getRelatedTitle('listView'),
+            extHint: 'View to display related objects in a list',
+            items: null,
+            select2: viewSelect2,
+            depends: refClassMaster,
+            update: viewUpdate,
+            actionBinder: refClassExists
+        }
+    }, {
+        template: selectTemplate,
+        params: {
+            attr: 'selectListView',
+            displayValue: model.getRelatedTitle('selectListView'),
+            extHint: 'View to display objects in selection list',
+            items: null,
+            select2: viewSelect2,
+            depends: refClassMaster,
+            update: viewUpdate,
+            actionBinder: refClassExists
+        }
+    }]
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: checkboxTemplate,
+        params: {
+            attr: 'eagerLoading',
+            hint: 'Load related objects along with the main'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'sortableRelation',
+            label: 'Sortable by owner (non-indexable sorting)'
+        }
+    }]
+}) %>
+
+<%- include(columnTemplate, {
+    actionBinder: {show: {eagerLoading: true}},
+    items: [{
+        template: selectTemplate,
+        params: {
+            attr: 'eagerView',
+            displayValue: model.getRelatedTitle('eagerView'),
+            items: null,
+            select2: viewSelect2,
+            depends: refClassMaster,
+            update: viewUpdate,
+            actionBinder: refClassExists
+        }
+    },{
+        template: _view.get('_part/attr/number'),
+        params: {
+            attr: 'eagerDepth',
+            extHint: 'Limiting loading depth of related objects'
+        }
+    }]
+}) %>
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'via',
+    extHint: 'Mediation to select related objects',
+    data: {
+        columns: [{
+            name: 'refClass',
+            format: {
+                name: 'relation',
+                url: classUpdate
+            }
+        }, {
+            name: 'refAttr',
+            format: {
+                name: 'relation',
+                url: attrUpdate
+            }
+        }, {
+            name: 'linkAttr',
+            format: {
+                name: 'relation',
+                url: attrUpdate
+            }
+        }],
+        link: null,
+        unlink: null,
+        create: ['via/create-by-attr', model]
+    }
+}) %>
+
+<%- include(_view.get('_part/attr/json'), {
+    attr: 'finder',
+    extHint: 'Configuration of custom class for selecting related objects'
+}) %>

@@ -1,0 +1,41 @@
+
+<%- include(_view.get('_part/attr/checkbox'), {
+    attr: 'disableGroups'
+}) %>
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'groups',
+    data: {
+        columns: [{
+            name: 'classGroup',
+            format: {
+                name: 'relation',
+                url: _url('class-group/update')
+            }
+        }, {
+            name: 'label',
+            escape: false
+        }, {
+            name: 'parent',
+            escape: false
+        }, {
+            name: 'type',
+            escape: false,
+            translate: ''
+        }, {
+            name: 'orderNumber',
+            escape: false
+        }],
+        link: null,
+        unlink: null,
+        create: null,
+        confirmDeletion: false
+    },
+    tools: {
+        template: _view.get('_part/tool/createByUrl'),
+        url: ['view-group/create-by-groups', model],
+        title: 'Create by class groups'
+    }
+}) %>
+
+

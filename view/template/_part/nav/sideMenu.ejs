@@ -1,0 +1,56 @@
+<!-- studio/./_part/nav/sideMenu -->
+
+<ul class="sidebar-menu tree-menu" data-widget="true" data-jam="TreeMenu">
+    <li class="menu-item">
+        <a href="studio/class" class="menu-item-btn">
+            <i class="menu-item-icon fa fa-file"></i>
+            <span data-t="">Classes</span>
+        </a>
+    </li>
+
+    <li class="menu-item">
+        <a href="studio/class-attr" class="menu-item-btn">
+            <i class="menu-item-icon fa fa-tag"></i>
+            <span data-t="">Class attributes</span>
+        </a>
+    </li>
+
+    <li class="menu-item">
+        <a href="studio/view" class="menu-item-btn">
+            <i class="menu-item-icon fa fa-eye"></i>
+            <span data-t="">Views</span>
+        </a>
+    </li>
+
+    <li class="menu-item">
+        <a href="studio/view-attr" class="menu-item-btn">
+            <i class="menu-item-icon fa fa-tag"></i>
+            <span data-t="">View attributes</span>
+        </a>
+    </li>
+
+    <li class="separator"></li>
+
+    <li class="menu-item">
+        <a href="studio/nav-section" class="menu-item-btn">
+            <i class="menu-item-icon fa fa-layer-group"></i>
+            <span data-t="">Navigation sections</span>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a href="studio/nav-node" class="menu-item-btn">
+            <i class="menu-item-icon fa fa-bars"></i>
+            <span data-t="">Navigation nodes</span>
+        </a>
+    </li>
+
+    <% if (_module.app.getModule('report')) { %>
+    <li class="separator"></li>
+    <li class="menu-item">
+        <a href="studio/report" class="menu-item-btn">
+            <i class="menu-item-icon fa fa-flag"></i>
+            <span data-t="">Reports</span>
+        </a>
+    </li>
+    <% } %>
+</ul>

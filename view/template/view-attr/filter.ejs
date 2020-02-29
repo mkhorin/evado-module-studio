@@ -1,0 +1,56 @@
+<%- include(_view.get('_part/list/filter'), {
+    data: {
+        columns: [{
+            name: 'class',
+            type: 'selector',
+            url: _url('class/list-select'),
+            relation: 'viewAttrs'
+        },{
+            name: 'classAttr',
+            type: 'selector',
+            url: _url('class-attr/list-select-all'),
+            columns: [{
+                name: 'name'
+            }, {
+                name: 'label'
+            }]
+        },{
+            name: 'eagerLoading',
+            type: 'boolean'
+        },{
+            name: 'hidden',
+            type: 'boolean'
+        },{
+            name: 'history',
+            type: 'boolean'
+        },{
+            name: 'label'
+        },{
+            name: 'name'
+        },{
+            name: 'readOnly',
+            type: 'boolean'
+        },{
+            name: 'required',
+            type: 'boolean'
+        },{
+            name: 'sortable',
+            type: 'boolean'
+        },{
+            name: 'unique',
+            type: 'boolean'
+        },{
+            name: 'view',
+            type: 'selector',
+            columns: [{
+                name: 'name'
+            },{
+                name: 'label'
+            }]
+        },{
+            name: 'viewType',
+            type: 'selector',
+            items: viewTypes
+        }]
+    }
+}) %>

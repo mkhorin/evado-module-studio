@@ -1,0 +1,55 @@
+<% block('title', model.getTitle()); %>
+<% block('titleTranslation', 'none'); %>
+
+<%- include('./_form') %>
+
+<%- include(_view.get('_part/group/tabs'), {
+    items: [{
+        id: 'Main',
+        content: _view.getInternalTemplate('_tabMain')
+    },{
+        id: 'Attributes',
+        content: {
+            template: _view.get('_part/attr/relation'),
+            attr: 'attrs',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'classAttr'
+                }, {
+                    name: 'label'
+                }, {
+                    name: 'viewType'
+                }, {
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                list: 'list-attrs',
+                link: null,
+                unlink: null,
+                create: null,
+                modalSort: true
+            }
+        }
+    }, {
+        id: 'Action binder',
+        content: {
+            template: _view.get('_part/attr/relation'),
+            attr: 'actionBinder',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'show'
+                }, {
+                    name: 'require'
+                }, {
+                    name: 'enable'
+                }, {
+                    name: 'value'
+                }],
+                link: null,
+                unlink: null
+            }
+        }
+    }]
+}) %>

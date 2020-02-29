@@ -1,0 +1,63 @@
+<% layout(_view.get(_layout)) %>
+<% block('tab', `View group`) %>
+<%
+const columnTemplate = _view.get('_part/group/columns');
+const overriddenTemplate = _view.get('_part/attr/overridden');
+const selectTemplate = _view.get('_part/attr/select');
+const stringTemplate = _view.get('_part/attr/string');
+%>
+<%- include(columnTemplate, {
+    items: [{
+        template: _view.get('_part/attr/static'),
+        params: {
+            attr: 'classGroup',
+            displayValue: model.getRelatedTitle('classGroup'),
+            url: ['class-group/update', model.rel('classGroup')]
+        }
+    }, {
+        template: _view.get('_part/attr/static'),
+        params: {
+            attr: 'view',
+            displayValue: model.getRelatedTitle('view'),
+            url: ['view/update', model.rel('view')]
+        }
+    }]
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: overriddenTemplate,
+        params: {
+            attr: 'label',
+            template: stringTemplate
+        }
+    },{
+        template: overriddenTemplate,
+        params: {
+            attr: 'type',
+            template: selectTemplate,
+            params: {
+                items: 'labels'
+            }
+        }
+    }]
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: overriddenTemplate,
+        params: {
+            attr: 'parent',
+            template: selectTemplate,
+            params: {
+                items: validParents
+            }
+        }
+    },{
+        template: overriddenTemplate,
+        params: {
+            attr: 'orderNumber',
+            template: stringTemplate
+        }
+    }]
+}) %>

@@ -1,0 +1,80 @@
+<% block('title', model.getTitle()); %>
+<% block('titleTranslation', 'none'); %>
+<%
+const items = [{
+    id: 'Main',
+    active: true,
+    content: _view.getInternalTemplate('_tabMain')
+}];
+if (model.rel('classAttr').isRelation()) {
+    items.push({
+        id: 'Relation',
+        content: _view.getInternalTemplate('_tabRelation')
+    });
+}
+items.push({
+    id: 'Behaviors',
+    content: {
+        template: _view.get('_part/attr/relation'),
+        attr: 'behaviors',
+        css: 'no-label',
+        data: {
+            columns: [{
+                name: 'type',
+                format: 'label'
+            }, {
+                name: 'param'
+            }, {
+                name: 'orderNumber'
+            }],
+            order: {orderNumber: 1},
+            link: null,
+            unlink: null,
+            modalSort: true
+        }
+    }
+},{
+    id: 'Validation',
+    content: {
+        template: _view.get('_part/attr/relation'),
+        attr: 'rules',
+        css: 'no-label',
+        data: {
+            columns: [{
+                name: 'type',
+                format: 'label'
+            },{
+                name: 'param'
+            },{
+                name: 'orderNumber'
+            }],
+            order: {orderNumber: 1},
+            link: null,
+            unlink: null,
+            modalSort: true
+        }
+    }
+},{
+    id: 'Action binder',
+    content: {
+        template: _view.get('_part/attr/relation'),
+        attr: 'actionBinder',
+        css: 'no-label',
+        data: {
+            columns: [{
+                name: 'show'
+            },{
+                name: 'require'
+            },{
+                name: 'enable'
+            },{
+                name: 'value'
+            }],
+            link: null,
+            unlink: null
+        }
+    }
+});
+%>
+<%- include('./_form') %>
+<%- include(_view.get('_part/group/tabs'), {items}) %>

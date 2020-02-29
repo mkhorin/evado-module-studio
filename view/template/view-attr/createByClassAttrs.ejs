@@ -1,0 +1,22 @@
+<% layout(_view.get('_layout/modal/select')) %>
+
+<%- include(_view.get('_part/list/select'), {
+    data: {
+        columns: [{
+            name: 'name',
+            searchable:true
+        },{
+            name: 'label',
+            searchable:true
+        },{
+            name: 'type',
+            format: 'label'
+        }],
+        order:{orderNumber: 1},
+        select: ['create-by-class-attrs', view],
+        list: ['class-attr/list-unused-by-view', view],
+        update: 'class-attr/update',
+        create: null,
+        paging: false
+    }
+}) %>

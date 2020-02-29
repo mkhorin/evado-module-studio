@@ -1,0 +1,25 @@
+
+<%- include(_view.get('_part/group/inline'), {
+    items: [{
+        template: _view.get('_part/attr/checkbox'),
+        params: {
+            attr: 'commonSearchable',
+            hint: 'List input search'
+        }
+    },{
+        template: _view.get('_part/attr/checkbox'),
+        params: {
+            attr: 'selectSearchable',
+            hint: 'Dropdown selector search'
+        }
+    }]
+}) %>
+
+<%- include(_view.get('_part/group/columns'), {
+    items: [{
+        template: _view.get('_part/attr/string'),
+        params: {
+            attr: 'searchDepth'
+        }
+    }]
+}) %>

@@ -1,0 +1,59 @@
+<%
+const jsonTemplate = _view.get('_part/attr/json');
+const columnTemplate = _view.get('_part/group/columns');
+const stringTemplate = _view.get('_part/attr/string');
+%>
+<%- include(_view.get('_part/attr/text'), {
+    attr: 'description'
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'header',
+    extHint: 'String view template of object'
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: jsonTemplate,
+        params: {
+            attr: 'order',
+            extHint: 'Object list order'
+        }
+    },{
+        template: jsonTemplate,
+        params: {
+            attr: 'grouping',
+            extHint: 'Object list grouping'
+        }
+    }]
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: stringTemplate,
+        params: {
+            attr: 'templateRoot'
+        }
+    },{
+        template: _view.get(model.rel('parent') ? null : '_part/attr/select'),
+        params: {
+            attr: 'key',
+            displayValue: model.getRelatedTitle('key'),
+            extHint: 'Auto-generated key is used for empty value',
+            items: null,
+            select2: {
+                ajax: {url: _url('class-attr/list-select')},
+                queryData: {pid: model.getId()}
+            },
+            update: _url('class-attr/update')
+        }
+    }]
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'options'
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'modelConfig'
+}) %>

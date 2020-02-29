@@ -1,0 +1,54 @@
+<%
+const checkboxTemplate = _view.get('_part/attr/checkbox');
+%>
+
+<%- include(_view.get('_part/attr/text'), {
+    attr: 'description'
+}) %>
+
+<%- include(_view.get('_part/group/inline'), {
+    items: [{
+        template: checkboxTemplate,
+        params: {
+            attr: 'required'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'readOnly'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'unique'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'escape',
+            hint: 'Escape HTML data output'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'hidden'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'sortable'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'trim',
+            hint: 'Remove whitespace from both string ends'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'history',
+            hint: 'Save data change history'
+        }
+    }]
+}) %>

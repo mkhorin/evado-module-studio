@@ -1,0 +1,80 @@
+<%
+const viewSelect2 = {
+    ajax: {url: _url('view/list-select')},
+    queryData: {pid: model.get('classAttr.refClass')}
+};
+const viewUpdate = _url('view/update');
+const columnTemplate = _view.get('_part/group/columns');
+const overriddenTemplate = _view.get('_part/attr/overridden');
+const selectTemplate = _view.get('_part/attr/select');
+const stringTemplate = _view.get('_part/attr/string');
+%>
+
+<%- include(overriddenTemplate, {
+    attr: 'commands',
+    template: _view.get('_part/attr/checkList'),
+    params: {
+        items: model.rel('classAttr').COMMAND_VALUE_LABELS
+    }
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: overriddenTemplate,
+        params: {
+            attr: 'listView',
+            template: selectTemplate,
+            params: {
+                displayValue: model.getRelatedTitle('listView'),
+                items: null,
+                select2: viewSelect2,
+                update: viewUpdate
+            }
+        }
+    },{
+        template: overriddenTemplate,
+        params: {
+            attr: 'selectListView',
+            template: selectTemplate,
+            params: {
+                displayValue: model.getRelatedTitle('selectListView'),
+                items: null,
+                select2: viewSelect2,
+                update: viewUpdate
+            }
+        }
+    }]
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: overriddenTemplate,
+        params: {
+            attr: 'eagerLoading',
+            template: _view.get('_part/attr/checkbox')
+        }
+    }]
+}) %>
+
+<%- include(columnTemplate, {
+    actionBinder: {show: {eagerLoading: true}},
+    items: [{
+        template: overriddenTemplate,
+        params: {
+            attr: 'eagerView',
+            template: selectTemplate,
+            params: {
+                displayValue: model.getRelatedTitle('eagerView'),
+                items: null,
+                select2: viewSelect2,
+                update: viewUpdate
+            }
+        }
+    },{
+        template: overriddenTemplate,
+        params: {
+            attr: 'eagerDepth',
+            template: stringTemplate
+        }
+    }]
+}) %>

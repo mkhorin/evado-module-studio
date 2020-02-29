@@ -1,0 +1,19 @@
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'activeDescendants',
+    extHint: 'Featured classes for creating objects',
+    data: {
+        columns: [{
+            name: 'name'
+        },{
+            name: 'label'
+        },{
+            name: 'description'
+        }],
+        order: {name: 1},
+        link: ['select', {list: _url('list-real-descendants', model)}],
+        create: null,
+        delete: null
+    }
+}) %>
+

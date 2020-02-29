@@ -1,0 +1,146 @@
+<% block('title', model.getTitle()); %>
+<% block('titleTranslation', 'none'); %>
+<%
+const relationTemplate = _view.get('_part/attr/relation');
+%>
+<%- include('./_form') %>
+
+<%- include(_view.get('_part/group/tabs'), {
+    items: [{
+        id: 'Main',
+        active: true,
+        content: _view.getInternalTemplate('_tabMain')
+    },{
+        id: 'children',
+        label: 'Child groups',
+        content: {
+            template: relationTemplate,
+            attr: 'children',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'name'
+                }, {
+                    name: 'label'
+                }, {
+                    name: 'type',
+                    format: 'label'
+                }, {
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                unlink: null,
+                link: null,
+                create: ['create-by-group', model],
+                modalSort: true
+            }
+        }
+    },{
+        id: 'actionBinder',
+        label: 'Action binder',
+        content: {
+            template: relationTemplate,
+            attr: 'actionBinder',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'show'
+                },{
+                    name: 'require'
+                },{
+                    name: 'enable'
+                },{
+                    name: 'value'
+                }],
+                link: null,
+                unlink: null
+            }
+        }
+    },{
+        id: 'classAttrs',
+        label: 'Class attributes',
+        content: {
+            template: relationTemplate,
+            attr: 'classAttrs',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'class',
+                    format: 'relation'
+                },{
+                    name: 'name'
+                },{
+                    name: 'label'
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                create: null,
+                delete: null,
+                modalSort: true
+            }
+        }
+    },{
+        id: 'viewAttrs',
+        label: 'View attributes',
+        content: {
+            template: relationTemplate,
+            attr: 'viewAttrs',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'classAttr',
+                    format: 'relation'
+                },{
+                    name: 'label'
+                },{
+                    name: 'view',
+                    format: {
+                        name: 'relation',
+                        url: _url('view/update')
+                    }
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                create: null,
+                delete: null
+            }
+        }
+    },{
+        id: 'viewGroups',
+        label: 'View groups',
+        content: {
+            template: relationTemplate,
+            attr: 'viewGroups',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'label'
+                },{
+                    name: 'parent',
+                    format: 'relation'
+                },{
+                    name: 'type'
+                },{
+                    name: 'view',
+                    format: {
+                        name: 'relation',
+                        url: _url('view/update')
+                    }
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                create: null,
+                delete: null
+            }
+        }
+    }]
+}) %>

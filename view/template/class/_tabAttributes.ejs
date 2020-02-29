@@ -1,0 +1,44 @@
+<%
+const columns = [{
+    name: 'name',
+    searchable: true,
+    sortable: true
+}, {
+    name: 'label',
+    searchable: true,
+    escape: false
+}, {
+    name: 'type',
+    format: 'label'
+}, {
+    name: 'group',
+    format: {
+        name: 'relation',
+        url: _url('class-group/update')
+    }
+}, {
+    name: 'orderNumber',
+    sortable: true,
+    escape: false
+}];
+if (model.get('parent')) {
+    columns.unshift({
+        name: 'inherited',
+        translate: ''
+    });
+}
+%>
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'attrs',
+    css: 'no-label',
+    data: {
+        columns,
+        order: {orderNumber: 1},
+        link: null,
+        unlink: null,
+        clone: true,
+        modalSort: true,
+        showTop: true,
+        filter: {}
+    }
+}) %>

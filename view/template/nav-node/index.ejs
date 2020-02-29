@@ -1,0 +1,33 @@
+<% layout(_view.get('_layout/list')) %>
+
+<% block('title', 'Navigation nodes') %>
+
+<%- include(_view.get('_part/list/grid'), {
+    data: {
+        columns: [{
+            name: 'name',
+            searchable: true,
+            sortable: true
+        },{
+            name: 'label',
+            searchable: true,
+            sortable: true
+        },{
+            name: 'parent',
+            format: {
+                name: 'relation',
+                url: _url('update')
+            },
+            sortable: true
+        },{
+            name: 'section',
+            format: {
+                name: 'relation',
+                url: _url('nav-section/update')
+            },
+            sortable: true
+        }],
+        create: null,
+        filter: {}
+    }
+}) %>

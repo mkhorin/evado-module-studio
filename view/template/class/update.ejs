@@ -1,0 +1,127 @@
+<% block('title', model.getTitle()); %>
+<% block('titleTranslation', 'none'); %>
+<% block('commands', {
+    template: _view.get('_part/tool/modelExport'),
+    url: _url('export/class', model)
+}); %>
+<%
+const relationTemplate = _view.get('_part/attr/relation');
+%>
+<%- include('./_form') %>
+
+<%- include(_view.get('_part/group/tabs'), {
+    items: [{
+        id: 'Main',
+        active: true,
+        content: _view.getInternalTemplate('_tabMain')
+    },{
+        id: 'Attributes',
+        content: _view.getInternalTemplate('_tabAttributes')
+    },{
+        id: 'Views',
+        content: _view.getInternalTemplate('_tabViews')
+    },{
+        id: 'Groups',
+        content: _view.getInternalTemplate('_tabGroups')
+    }, {
+        id: 'Behaviors',
+        hint: 'Additional class functionality',
+        content: {
+            template: relationTemplate,
+            attr: 'behaviors',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'type',
+                    translate: ''
+                }, {
+                    name: 'param'
+                }, {
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                modalSort: true
+            }
+        }
+    },{
+        id: 'Validation',
+        content: {
+            template: relationTemplate,
+            attr: 'rules',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'attrs',
+                    format: 'relation'
+                },{
+                    name: 'type',
+                    translate: ''
+                },{
+                    name: 'param'
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                modalSort: true
+            }
+        }
+    },{
+        id: 'Indexes',
+        content: {
+            template: relationTemplate,
+            attr: 'indexes',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'attrs'
+                },{
+                    name: 'name'
+                },{
+                    name: 'unique'
+                },{
+                    name: 'background'
+                }],
+                link: null,
+                unlink: null
+            }
+        }
+    },{
+        id: 'Workflow',
+        content: _view.getInternalTemplate('_tabWorkflow')
+    },{
+        id: 'Tree view',
+        content: [{
+            template: _view.get('_part/attr/checkbox'),
+            attr: 'disableTreeView'
+        },{
+            template: relationTemplate,
+            attr: 'treeViewLevels',
+            data: {
+                columns: [{
+                    name: 'refAttr',
+                    format: {
+                        name: 'relation',
+                        url: _url('class-attr/update')
+                    }
+                },{
+                    name: 'refClass',
+                    escape: false
+                },{
+                    name: 'recursive',
+                    format: 'boolean'
+                }],
+                order: {[model.PK]: 1},
+                create: 'tree-view-level/create-by-class',
+                link: null,
+                unlink: null
+            }
+        }]
+    },{
+        id: 'Hierarchy',
+        content: _view.getInternalTemplate('_tabHierarchy')
+    }]
+}) %>

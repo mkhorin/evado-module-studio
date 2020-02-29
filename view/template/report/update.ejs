@@ -1,0 +1,65 @@
+<% block('title', model.getTitle()); %>
+<% block('titleTranslation', 'none'); %>
+<% block('commands').append({
+    template: _view.get('_part/tool/modelExport'),
+    url: _url('export/report', model)
+}, {
+    template: _view.get('_part/tool/updateReportIndexes')
+}); %>
+
+<%- include('./_form') %>
+
+<%- include(_view.get('_part/group/tabs'), {
+    items: [{
+        id: 'Attributes',
+        active: true,
+        content: {
+            template: _view.get('_part/attr/relation'),
+            attr: 'attrs',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'name'
+                },{
+                    name: 'label'
+                },{
+                    name: 'type',
+                    format: 'label'
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                clone: true,
+                modalSort: true
+            }
+        }
+    },{
+        id: 'Groups',
+        content: {
+            template: _view.get('_part/attr/relation'),
+            attr: 'groups',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'name'
+                },{
+                    name: 'label'
+                },{
+                    name: 'parent',
+                    format: {
+                        name: 'relation',
+                        url: _url('report-group/update')
+                    }
+                },{
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                modalSort: true
+            }
+        }
+    }]
+}) %>

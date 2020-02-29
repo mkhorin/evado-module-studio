@@ -1,0 +1,26 @@
+<%- include(_view.get('_part/list/filter'), {
+    data: {
+        columns: [{
+            name: 'abstract',
+            type: 'boolean'
+        },{
+            name: 'description'
+        },{
+            name: 'label'
+        },{
+            name: 'name'
+        },{
+            name: 'parent',
+            type: 'selector',
+            url: _url('class/list-select')
+        },{
+            name: 'views',
+            type: 'selector',
+            columns: [{
+                name: 'name'
+            },{
+                name: 'label'
+            }]
+        }]
+    }
+}) %>

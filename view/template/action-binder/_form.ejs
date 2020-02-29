@@ -1,0 +1,22 @@
+<% layout(_view.get(_layout)) %>
+<% block('tab', 'Action binder') %>
+
+<%- include(_view.get('_part/attr/json'), {
+    attr: 'show',
+    extHint: 'Attribute visibility condition'
+}) %>
+
+<%- include(_view.get('_part/attr/json'), {
+    attr: 'require',
+    extHint: 'Attribute requirement condition'
+}) %>
+
+<%- include(_view.get('_part/attr/json'), {
+    attr: 'enable',
+    extHint: 'Attribute availability condition'
+}) %>
+
+<%- include(_view.get('_part/attr/json'), {
+    attr: 'value',
+    extHint: 'Condition of setting a specific value to attribute'
+}) %>

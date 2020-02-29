@@ -1,0 +1,22 @@
+<% layout(_view.get('_layout/modal/list')) %>
+
+<%- include(_view.get('_part/list/sort'), {
+    data: {
+        columns: [{
+            name: 'name',
+            sortable: true
+        },{
+            name: 'label',
+            sortable: true
+        },{
+            name: 'parent',
+            sortable: true,
+            format: 'relation'
+        },{
+            name: 'type'
+        },{
+            name: 'orderNumber',
+            sortable: true
+        }]
+    }
+}) %>

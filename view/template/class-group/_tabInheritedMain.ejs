@@ -1,0 +1,23 @@
+<%
+const columnTemplate = _view.get('_part/group/columns');
+const overriddenTemplate = _view.get('_part/attr/overridden');
+%>
+<%- include(columnTemplate, {
+    items: [{
+        template: overriddenTemplate,
+        params: {
+            attr: 'active',
+            template: _view.get('_part/attr/checkbox')
+        }
+    }]
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'hint',
+    template: _view.get('_part/attr/string')
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'options',
+    template: _view.get('_part/attr/json')
+}) %>

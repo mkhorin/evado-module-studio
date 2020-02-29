@@ -1,0 +1,26 @@
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'views',
+    css: 'no-label',
+    data: {
+        columns: [{
+            name: 'name'
+        },{
+            name: 'label'
+        },{
+            name: 'description'
+        }],
+        order: {name: 1},
+        link: null,
+        unlink: null,
+        create: ['view/create-by-class', model],
+        clone: true
+    },
+    tools: [{
+        template: _view.get('_part/tool/cloneFromParent'),
+        select: ['view/select-from-parent', model],
+        clone: ['view/clone-from-parent', model],
+        title: 'Clone from parent class'
+    }]
+}) %>
+

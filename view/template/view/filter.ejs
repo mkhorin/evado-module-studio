@@ -1,0 +1,26 @@
+<%- include(_view.get('_part/list/filter'), {
+    data: {
+        columns: [{
+            name: 'class',
+            type: 'selector',
+            url: _url('class/list-select')
+        },{
+            name: 'classAttrs',
+            type: 'selector',
+            url: _url('class-attr/list-select-all'),
+            columns: [{
+                name: 'name'
+            },{
+                name: 'label'
+            }],
+            relation: 'views'
+        },{
+            name: 'description'
+        },{
+            name: 'disableGroups',
+            type: 'boolean'
+        },{
+            name: 'label'
+        }]
+    }
+}) %>

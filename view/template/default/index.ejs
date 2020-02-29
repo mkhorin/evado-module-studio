@@ -1,0 +1,94 @@
+<% layout(_view.get('_layout/content')) %>
+<% block('title', 'Create application') %>
+
+<div class="folder panel-default panel">
+    <div class="panel-heading">
+        <h4 class="panel-title">Overview</h4>
+    </div>
+    <div class="panel-body">
+        <p>
+            Studio creates metadata describing the structure of application.
+            <br>
+            For example, the <b>Blog</b> application consists
+            of the <b>Article</b>, <b>Category</b>, <b>Comment</b> and other classes.
+        </p>
+        <p>
+            Created metadata is stored in a separate storage.
+            Export data to the <b>meta/app</b> folder to create application.
+            <br>
+            You can export to other place,
+            but application is launched from the <b>meta/app</b> folder only.
+        </p>
+    </div>
+</div>
+
+<div class="folder panel-default panel">
+    <div class="panel-heading">
+        <h4 class="panel-title">Class attribute</h4>
+    </div>
+    <div class="panel-body">
+        <p>
+            Attribute describes a single class element.<br>
+            For example, the <b>Article</b> class consists
+            of the <b>Title</b>, <b>Content</b>, <b>Date</b> and other attributes.
+        </p>
+        <p>
+            Each attribute has a specific type depending on stored data.<br>
+            For example, the <b>Title</b> attribute is of type <b>String</b>,
+            the <b>CreatedAt</b> attribute is of type <b>Date</b>.
+        </p>
+    </div>
+</div>
+
+<div class="folder panel-default panel">
+    <div class="panel-heading">
+        <h4 class="panel-title">Class relation</h4>
+    </div>
+    <div class="panel-body">
+        <p>
+            Attribute types <b>Reference</b> and <b>Back reference</b> define relationship between classes.
+            Link settings are on the <b>Relation</b> tab.<br>
+            For example, the <b>Article</b> class is associated with the <b>Category</b> class,
+            since each article can be placed in any category.
+        </p>
+        <p>
+            Type <b>Reference</b> stores link data directly in a class object.<br>
+            Type <b>Back reference</b> retrieves link data from an object of reference class.<br>
+            For example, comments for article are retrieved via a back reference,
+            since each comment contains an article identifier.
+        </p>
+        <p>
+            Relation can be multiple or single.<br>
+            Comments in the <b>Article</b> class is an example of a multiple relation.
+            Article in the <b>Comment</b> class is an example of a single relation.
+        </p>
+    </div>
+</div>
+
+<div class="folder panel-default panel">
+    <div class="panel-heading">
+        <h4 class="panel-title">Class view</h4>
+    </div>
+    <div class="panel-body">
+        <p>
+            View overrides class parameters for specific use cases.<br>
+            For example, when displaying class objects in a list, only selected attributes can be shown.
+        </p>
+        <p>
+            The <b>create</b> codename is used to represent a object when created.<br>
+            The <b>edit</b> codename is used to represent a object when edited.
+            The <b>list</b> codename is used to represent objects in a list.<br>
+        </p>
+    </div>
+</div>
+
+<div class="folder panel-default panel">
+    <div class="panel-heading">
+        <h4 class="panel-title">Navigation</h4>
+    </div>
+    <div class="panel-body">
+        <p>
+            The Office sidebar menu is created by the navigation section named <b>main</b>.
+        </p>
+    </div>
+</div>
