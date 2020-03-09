@@ -244,7 +244,7 @@ Object.assign(Jam.I18n.defaults, {
 
     'Read-only object mode': 'Режим объекта только для чтения',
     'Read only': 'Только чтение',
-    'Reference': 'Ссылка на объект',
+    'Reference': 'Ссылочный',
     'Reference attribute': 'Ссылочный атирбут',
     'Reference class': 'Ссылочный класс',
     'Regular expression': 'Регулярное выражение',
