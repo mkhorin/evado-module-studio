@@ -9,7 +9,7 @@ module.exports = class CodeNameValidator extends Base {
 
     constructor (config) {
         super({
-            pattern: /^[0-9a-zA-Z-]{2,40}$/,
+            pattern: /^[0-9a-zA-Z-]{1,40}$/,
             validFilename: false,
             ...config
         });

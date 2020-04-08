@@ -57,7 +57,7 @@ module.exports = class ParamContainer extends Base {
         const model = this.spawnSelf();
         model.setAttrs(this, this.PK);
         model.set('owner', owner.getId());
-        model.detachRelationChange();
+        model.detachRelationChangeBehavior();
         await model.forceSave();
         const param = await this.resolveRelation('param');
         if (param) {

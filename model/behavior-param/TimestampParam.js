@@ -35,8 +35,12 @@ module.exports = class TimestampParam extends Base {
     }
 
     relinkClassAttrs (data) {
-        this.set('createdAttr', data[this.get('createdAttr')]);
-        this.set('updatedAttr', data[this.get('updatedAttr')]);
+        if (data.hasOwnProperty(this.get('createdAttr'))) {
+            this.set('createdAttr', data[this.get('createdAttr')]);
+        }
+        if (data.hasOwnProperty(this.get('updatedAttr'))) {
+            this.set('updatedAttr', data[this.get('updatedAttr')]);
+        }
         return this.forceSave();
     }
 

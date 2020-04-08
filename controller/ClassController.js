@@ -7,6 +7,17 @@ const Base = require('../component/base/CrudController');
 
 module.exports = class ClassController extends Base {
 
+    static getConstants () {
+        return {
+            ACTIONS: {
+                'sort-related': {
+                    Class: require('evado/component/action/SortRelatedAction'),
+                    with: {groups: 'parent'}
+                }
+            }
+        };
+    }
+
     getModelClass () {
         return this.getClass('model/Class');
     }

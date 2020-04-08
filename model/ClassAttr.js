@@ -239,15 +239,14 @@ module.exports = class ClassAttr extends Base {
                     ['thumbnail', 'Thumbnail']
                 ],
                 condition: {type: ['ref', 'backref']}
-            }, {
+            },{
                 items: [
-                    ['state', 'Workflow state']
+                    ['state', 'Workflow state'],
+                    ['class', 'Metadata class']
                 ],
                 condition: {type: ['string']}
             },{
-                items: [
-                    ['time', 'Time']
-                ],
+                items: [['time', 'Time']],
                 condition: {type: 'integer'}
             }],
             COMMAND_VALUE_LABELS: {

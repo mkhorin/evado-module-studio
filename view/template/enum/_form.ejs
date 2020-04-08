@@ -21,7 +21,8 @@
 }) %>
 
 <%- include(_view.get('_part/attr/json'), {
-    attr: 'condition'
+    attr: 'condition',
+    extHint: 'Form values condition ​​activating this enumeration'
 }) %>
 
 <%- include(_view.get('_part/group/columns'), {
@@ -29,6 +30,7 @@
         template: _view.get('_part/attr/select'),
         params: {
             attr: 'class',
+            extHint: 'Enum source',
             items: null,
             displayValue: model.getRelatedTitle('class'),
             select2: {ajax: {url: _url('class/list-select')}},
@@ -50,6 +52,7 @@
 
 <%- include(_view.get('_part/attr/select'), {
     attr: 'attr',
+    extHint: 'Enum source',
     items: null,
     displayValue: model.getRelatedTitle('attr'),
     select2: {ajax: {url: _url('class-attr/list-select')}},
@@ -59,5 +62,5 @@
 }) %>
 
 <%- include(_view.get('_part/attr/json'), {
-    attr: 'objectFilter'
+    attr: 'queryFilter'
 }) %>

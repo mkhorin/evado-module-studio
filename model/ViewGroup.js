@@ -15,6 +15,7 @@ module.exports = class ViewGroup extends Base {
                 'label',
                 'type',
                 'active',
+                'description',
                 'hint',
                 'orderNumber',
                 'parent',
@@ -27,7 +28,7 @@ module.exports = class ViewGroup extends Base {
                 [['view', 'classGroup'], 'required'],
                 [['view', 'classGroup', 'parent'], 'id'],
                 ['type', 'range', {range: ['tabs']}],
-                [['hint', 'label'], 'string'],
+                [['hint', 'label', 'description'], 'string'],
                 ['orderNumber', 'number', {integerOnly: true}],
                 ['active', 'checkbox'],
                 ['options', 'json'],
@@ -47,6 +48,7 @@ module.exports = class ViewGroup extends Base {
                         'active',
                         'hint',
                         'label',
+                        'description',
                         'orderNumber',
                         'options',
                         'parent',
@@ -97,8 +99,10 @@ module.exports = class ViewGroup extends Base {
     }
 
     relinkClassGroups (data) {
-        this.set('classGroup', data[this.get('classGroup')]);
-        return this.forceSave();
+        if (data.hasOwnProperty(this.get('classGroup'))) {
+            this.set('classGroup', data[this.get('classGroup')]);
+            return this.forceSave();
+        }
     }
 
     // RELATIONS

@@ -16,20 +16,20 @@ module.exports = class ViewAttrList extends Base {
             if (!attr) {
                 continue;
             }
-            const overridden = model.getBehavior('overridden').getStates();
-            if (overridden.label !== true) {
+            const states = model.getBehavior('overridden').getStates();
+            if (states.label !== true) {
                 model.setViewAttr('label', this.format(attr.get('label'), 'inherited'));
             }
-            if (overridden.header !== true) {
+            if (states.header !== true) {
                 model.setViewAttr('header', this.format(attr.get('header'), 'inherited'));
             }
-            if (overridden.viewType === true) {
+            if (states.viewType === true) {
                 model.setAttrValueLabel('viewType', viewTypeMap);
             } else {
                 const value = attr.getAttrValueLabel('viewType');
                 model.setViewAttr('viewType', this.format(value, 'inherited', translate));
             }
-            overridden.group === true
+            states.group === true
                 ? model.setRelatedViewAttr('group')
                 : model.setViewAttr('group', this.format(attr.getRelatedTitle('group'), 'inherited'));
         }

@@ -4,9 +4,11 @@
     data: {
         columns: [{
             name: 'name',
+            sortable: true,
             searchable: true
         },{
             name: 'label',
+            sortable: true,
             searchable: true
         },{
             name: 'parent',
@@ -15,7 +17,7 @@
             name: 'type',
             format: 'label'
         }],
-        order: {orderNumber: 1},
+        order: {name: 1},
         select: ['create-by-groups', view],
         list: ['class-group/list-unused-by-view', view],
         update: 'class-group/update',

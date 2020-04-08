@@ -7,6 +7,17 @@ const Base = require('../component/base/CrudController');
 
 module.exports = class ViewController extends Base {
 
+    static getConstants () {
+        return {
+            ACTIONS: {
+                'sort-related': {
+                    Class: require('evado/component/action/SortRelatedAction'),
+                    with: {attrs: 'group'}
+                }
+            }
+        };
+    }
+
     getModelClass () {
         return this.getClass('model/View');
     }
@@ -33,6 +44,7 @@ module.exports = class ViewController extends Base {
             id: this.getQueryParam('sample')
         });
         const model = this.createModel();
+        model.originalClassId = sample.get('class');
         sample.set('class', classModel.getId());
         model.getBehavior('clone').setOriginal(sample);
         return this.actionCreate({scenario: 'clone', model});

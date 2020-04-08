@@ -143,13 +143,17 @@ module.exports = class ViewAttr extends Base {
     }
 
     relinkClassAttrs (data) {
-        this.set('classAttr', data[this.get('classAttr')]);
-        return this.forceSave();
+        if (data.hasOwnProperty(this.get('classAttr'))) {
+            this.set('classAttr', data[this.get('classAttr')]);
+            return this.forceSave();
+        }
     }
 
     relinkClassGroups (data) {
-        this.set('group', data[this.get('group')]);
-        return this.forceSave();
+        if (data.hasOwnProperty(this.get('group'))) {
+            this.set('group', data[this.get('group')]);
+            return this.forceSave();
+        }
     }
 
     // RELATIONS

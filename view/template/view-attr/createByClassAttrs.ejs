@@ -3,16 +3,21 @@
 <%- include(_view.get('_part/list/select'), {
     data: {
         columns: [{
+            name: 'inherited',
+            format: 'boolean'
+        },{
             name: 'name',
+            sortable: true,
             searchable:true
         },{
             name: 'label',
+            sortable: true,
             searchable:true
         },{
             name: 'type',
             format: 'label'
         }],
-        order:{orderNumber: 1},
+        order:{original: 1, name: 1},
         select: ['create-by-class-attrs', view],
         list: ['class-attr/list-unused-by-view', view],
         update: 'class-attr/update',

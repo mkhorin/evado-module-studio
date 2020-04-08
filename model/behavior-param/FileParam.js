@@ -38,8 +38,10 @@ module.exports = class FileParam extends Base {
     }
 
     relinkClassAttrs (data) {
-        this.set('nameAttr', data[this.get('nameAttr')]);
-        return this.forceSave();
+        if (data.hasOwnProperty(this.get('nameAttr'))) {
+            this.set('nameAttr', data[this.get('nameAttr')]);
+            return this.forceSave();
+        }
     }
 
     relNameAttr () {

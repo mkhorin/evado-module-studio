@@ -13,6 +13,11 @@ const overriddenTemplate = _view.get('_part/attr/overridden');
 }) %>
 
 <%- include(overriddenTemplate, {
+    attr: 'description',
+    template: _view.get('_part/attr/text')
+}) %>
+
+<%- include(overriddenTemplate, {
     attr: 'hint',
     template: _view.get('_part/attr/string')
 }) %>

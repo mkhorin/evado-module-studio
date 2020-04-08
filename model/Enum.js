@@ -16,11 +16,11 @@ module.exports = class Enum extends Base {
                 'attr',
                 'class',
                 'view',
-                'objectFilter'
+                'queryFilter'
             ],
             RULES: [
                 [['owner', 'attr', 'class', 'view'], 'id'],
-                [['condition', 'objectFilter'], 'json'],
+                [['condition', 'queryFilter'], 'json'],
                 ['items', 'relation']
             ],
             UNLINK_ON_DELETE: [

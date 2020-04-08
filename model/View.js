@@ -87,11 +87,25 @@ module.exports = class View extends Base {
 
     // CLONE
 
+    afterClone () {
+        return this.relinkAttrs();
+    }
+
     cloneFor (owner) {
         const model = this.spawnSelf();
         model.getBehavior('clone').setOriginal(this);
         model.set('class', owner.getId());
         return model.forceSave();
+    }
+
+    async relinkAttrs () {
+        const oid = this.originalClassId;
+        const cid = this.get('class');
+        if (oid && !CommonHelper.isEqual(oid, cid)) {
+            const data = await this.spawn('model/ClassAttr').getRelinkMap(oid, cid);
+            await this.relinkClassAttrs(data);
+            await this.relinkClassGroups(data);
+        }
     }
 
     relinkClassAttrs (data) {
@@ -172,3 +186,4 @@ module.exports = class View extends Base {
 };
 module.exports.init(module);
 
+const CommonHelper = require('areto/helper/CommonHelper');
