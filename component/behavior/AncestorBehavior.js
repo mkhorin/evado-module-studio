@@ -30,6 +30,9 @@ module.exports = class AncestorBehavior extends Base {
         for (const id of children) {
             await this.owner.inherit(id);
         }
+        for (const {name, unchangeableAttrs} of this.relations) {
+            await this.setInheritedValues(name, unchangeableAttrs);
+        }
     }
 
     async afterUpdate () {

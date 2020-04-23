@@ -10,6 +10,9 @@ module.exports = class ViewBehavior extends Base {
     static getConstants () {
         return {
             TABLE: 'studio_viewBehavior',
+            BEHAVIORS: {
+                'sortOrder': {...super.BEHAVIORS.sortOrder, start: 100}
+            },
             PARAM_MAP: {
                 'custom': require('./behavior-param/CustomParam')
             },

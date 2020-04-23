@@ -5,13 +5,6 @@
 <%- include(_view.get('_part/list/grid'), {
     data: {
         columns: [{
-            name: 'class',
-            format: {
-                name: 'relation',
-                url: _url('class/update')
-            },
-            sortable: true
-        },{
             name: 'name',
             searchable: true,
             sortable: true
@@ -19,6 +12,12 @@
             name: 'label',
             searchable: true,
             sortable: true
+        },{
+            name: 'class',
+            format: {
+                name: 'relation',
+                url: _url('class/update')
+            }
         },{
             name: 'description',
             searchable: true

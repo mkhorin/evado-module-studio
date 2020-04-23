@@ -24,6 +24,18 @@ module.exports = class ClassAttrController extends Base {
         return super.actionCreate({model});
     }
 
+    async actionCreateByGroup () {
+        const group = await this.getModel({
+            Class: this.getClass('model/ClassGroup'),
+            id: this.getQueryParam('id')
+        });
+        const model = this.createModel();
+        model.set('class', group.get('class'));
+        model.set('group', group.getId());
+        model.populateRelation('group', group);
+        return super.actionCreate({model});
+    }
+
     actionClone () {
         return super.actionClone({excepts: ['original']});
     }

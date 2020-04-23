@@ -9,7 +9,10 @@ module.exports = class ViewAttrBehavior extends Base {
 
     static getConstants () {
         return {
-            TABLE: 'studio_viewAttrBehavior'
+            TABLE: 'studio_viewAttrBehavior',
+            BEHAVIORS: {
+                'sortOrder': {...super.BEHAVIORS.sortOrder, start: 100}
+            }
         };
     }
 

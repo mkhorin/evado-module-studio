@@ -11,10 +11,14 @@
             format: {
                 name: 'relation',
                 url: _url('class-group/update')
-            }
+            },
+            searchable: true,
+            type: 'title',
+            relation: true
         }, {
             name: 'label',
-            escape: false
+            escape: false,
+            searchable: true
         }, {
             name: 'parent',
             escape: false
@@ -24,11 +28,13 @@
             translate: ''
         }, {
             name: 'orderNumber',
+            sortable: true,
             escape: false
         }],
         link: null,
         unlink: null,
         create: null,
+        showTop: true,
         confirmDeletion: false
     },
     tools: {

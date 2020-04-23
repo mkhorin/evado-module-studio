@@ -12,17 +12,18 @@ module.exports = class ViewAttrController extends Base {
     }
     
     async actionCreateByClassAttrs () {
-        const view = await this.getModel({Class: this.getClass('model/View')});
+        const viewModel = await this.getModel({Class: this.getClass('model/View')});
+        const classModel = await viewModel.resolveRelation('class');
         const model = this.spawn('model/ClassAttr');
         if (this.isGet()) {
-            return this.render('createByClassAttrs', {model, view});
+            return this.render('createByClassAttrs', {model, viewModel, classModel});
         }
         const ids = RequestHelper.getNotEmptyArrayParam(this.getPostParam('ids'));
         if (!ids) {
             throw new BadRequest('Invalid IDs');
         }
         let models = await model.findById(ids).all();
-        models = await this.createModel().createByClassAttrs(models, view);
+        models = await this.createModel().createByClassAttrs(models, viewModel);
         return this.send(models.map(model => model.getId()).join());
     }
 

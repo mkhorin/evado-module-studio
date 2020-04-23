@@ -44,7 +44,6 @@ module.exports = class ClassGroupController extends Base {
     actionListRelated (params = {}) {
         let relations;
         switch (this.getQueryParam('rel')) {
-            case 'classAttrs': relations = 'class'; break;
             case 'viewAttrs': relations = ['classAttr', 'view']; break;
             case 'viewGroups': relations = ['parent', 'view']; break;
         }

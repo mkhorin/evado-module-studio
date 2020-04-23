@@ -1,8 +1,12 @@
 <%
 const columns = [{
-    name: 'name'
+    name: 'name',
+    searchable: true,
+    sortable: true
 },{
     name: 'label',
+    searchable: true,
+    sortable: true,
     escape: false
 },{
     name: 'parent',
@@ -18,6 +22,7 @@ const columns = [{
     escape: false
 },{
     name: 'orderNumber',
+    sortable: true,
     escape: false
 }];
 if (model.get('parent')) {
@@ -35,6 +40,7 @@ if (model.get('parent')) {
         order: {orderNumber: 1},
         link: null,
         unlink: null,
-        modalSort: true
+        modalSort: true,
+        showTop: true
     }
 }) %>

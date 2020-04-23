@@ -8,7 +8,7 @@ module.exports = class ImportHelper {
     static assignAttrs (data, model) {
         if (data) {
             this.stringifyJson(data, model);
-            model.assignAttrs(data);
+            model.assign(data);
         }
     }
 

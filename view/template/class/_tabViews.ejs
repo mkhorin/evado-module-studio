@@ -4,9 +4,13 @@
     css: 'no-label',
     data: {
         columns: [{
-            name: 'name'
+            name: 'name',
+            searchable: true,
+            sortable: true
         },{
-            name: 'label'
+            name: 'label',
+            searchable: true,
+            sortable: true
         },{
             name: 'description'
         }],
@@ -14,7 +18,8 @@
         link: null,
         unlink: null,
         create: ['view/create-by-class', model],
-        clone: true
+        clone: true,
+        showTop: false
     },
     tools: [{
         template: _view.get('_part/tool/cloneFromParent'),

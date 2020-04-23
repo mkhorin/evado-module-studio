@@ -173,7 +173,7 @@ module.exports = class ClassGroup extends Base {
 
     relClassAttrs () {
         const Class = this.getClass('model/ClassAttr');
-        return this.hasMany(Class, 'group', this.PK);
+        return this.hasMany(Class, 'group', this.PK);//.and({'class': this.get('class')});
     }
 
     relDescendants () {

@@ -13,7 +13,7 @@ module.exports = class ParamContainerExport extends Base {
         if (param) {
             Object.assign(data, await this.getParamData(param));
         }
-        ObjectHelper.deleteProperties([this.model.PK, 'owner', 'orderNumber'], data);
+        ObjectHelper.deleteProperties([this.model.PK, 'owner'], data);
         ObjectHelper.deleteEmptyProperties(data);
         return data;
     }

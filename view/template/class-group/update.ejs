@@ -65,20 +65,21 @@ const relationTemplate = _view.get('_part/attr/relation');
             css: 'no-label',
             data: {
                 columns: [{
-                    name: 'class',
-                    format: 'relation'
-                },{
                     name: 'name'
                 },{
                     name: 'label'
+                },{
+                    name: 'type',
+                    format: 'label'
                 },{
                     name: 'orderNumber'
                 }],
                 order: {orderNumber: 1},
                 link: null,
                 unlink: null,
-                create: null,
+                create: ['class/create-by-group', model],
                 delete: null,
+                showTop: true,
                 modalSort: true
             }
         }

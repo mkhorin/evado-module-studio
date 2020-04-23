@@ -201,6 +201,7 @@ module.exports = class ClassAttr extends Base {
                     localDate: 'Local date',
                     localDatetime: 'Local date and time',
                     relationSelect: 'Object select box',
+                    class: 'Metaclass',
                     radioList: 'Radio list',
                     select: 'Select box',
                     state: 'Workflow state',
@@ -242,7 +243,7 @@ module.exports = class ClassAttr extends Base {
             },{
                 items: [
                     ['state', 'Workflow state'],
-                    ['class', 'Metadata class']
+                    ['class', 'Metaclass']
                 ],
                 condition: {type: ['string']}
             },{
@@ -261,7 +262,7 @@ module.exports = class ClassAttr extends Base {
     }
 
     static async getGroupOriginalValue (original, behavior) {
-        // find group among current class groups by name from ancestor class group
+        // find group among current class groups by name of ancestor class group
         const query = original.relGroup();
         const name = await query.scalar('name');
         const id = behavior.owner.get('class');

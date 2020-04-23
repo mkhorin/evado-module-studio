@@ -123,20 +123,27 @@ const stringTemplate = _view.get('_part/attr/string');
             css: 'no-label',
             data: {
                 columns: [{
-                    name: 'class',
-                    format: 'relation'
+                    name: 'inherited',
+                    translate: ''
                 },{
-                    name: 'name'
+                    name: 'name',
+                    searchable: true
                 },{
-                    name: 'label'
+                    name: 'label',
+                    searchable: true
                 },{
-                    name: 'orderNumber'
+                    name: 'type',
+                    format: 'label'
+                },{
+                    name: 'orderNumber',
+                    sortable: true
                 }],
                 order: {orderNumber: 1},
                 link: null,
                 unlink: null,
-                create: null,
+                create: ['class-attr/create-by-group', model],
                 delete: null,
+                showTop: true,
                 modalSort: true
             }
         }

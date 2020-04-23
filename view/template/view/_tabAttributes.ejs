@@ -8,9 +8,14 @@
             format: {
                 name: 'relation',
                 url: _url('class-attr/update')
-            }
+            },
+            searchable: true,
+            type: 'title',
+            relation: true
         }, {
             name: 'label',
+            searchable: true,
+            sortable: true,
             escape: false
         }, {
             name: 'group',
@@ -20,13 +25,15 @@
             escape: false,
             translate: ''
         }, {
-            name: 'orderNumber'
+            name: 'orderNumber',
+            sortable: true
         }],
         order: {orderNumber: 1},
         link: null,
         unlink: null,
         create: null,
         modalSort: true,
+        showTop: true,
         confirmDeletion: false
     },
     tools: {
