@@ -73,13 +73,13 @@ module.exports = class MetaImport extends Base {
     async resolveClassMap () {
         if (!this.classMap) {
             const model = this.spawn('model/Class');
-            this.classMap = await model.find().with('attrMap', 'viewMap').indexById().all();
+            this.classMap = await model.find().with('attrMap', 'viewMap').indexByKey().all();
             this.classMapByName = IndexHelper.indexModels(Object.values(this.classMap), 'name');
         }
     }
 
     async createClasses () {
-        const dir = path.join(this.basePath, 'document/class');
+        const dir = path.join(this.basePath, 'base/class');
         let files = await FileHelper.readDirectory(dir);
         files = FileHelper.filterJsonFiles(files);
         files = await this.sortClassFiles(files, dir); // sort classes for inheritance

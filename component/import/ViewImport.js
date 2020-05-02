@@ -11,7 +11,7 @@ module.exports = class ViewImport extends Base {
         return {
             RULES: super.RULES.concat([
                 ['source', 'default', {value: (attr, model) => {
-                    return `app/document/view/${model.classModel.get('name')}/_viewName_`;
+                    return `app/base/view/${model.classModel.get('name')}/_viewName_`;
                 }}]
             ])
         };

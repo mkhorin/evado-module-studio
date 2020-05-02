@@ -75,7 +75,7 @@ module.exports = class ClassAttr extends Base {
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()
                 }],
-                ['finder', 'spawn', {BaseClass: require('evado-meta-document/attr/RelationFinder')}],
+                ['finder', 'spawn', {BaseClass: require('evado-meta-base/attr/RelationFinder')}],
                 [['viewType', 'overriddenState'], 'safe'],
                 ['indexing', 'number'],
                 ['indexing', 'range', {range:[-1, 1]}],

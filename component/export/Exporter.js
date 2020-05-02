@@ -13,8 +13,8 @@ module.exports = class Exporter extends Base {
             jsonSpace: 2,
             jsonReplacer: null,
             jsonFileOptions: {},
-            classDirectory: 'document/class',
-            viewDirectory: 'document/view',
+            classDirectory: 'base/class',
+            viewDirectory: 'base/view',
             navigationDirectory: 'navigation',
             reportDirectory: 'report',
             ...config

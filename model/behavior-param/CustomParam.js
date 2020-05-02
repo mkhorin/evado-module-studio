@@ -15,7 +15,7 @@ module.exports = class CustomParam extends Base {
             RULES: [
                 ['config', 'required'],
                 ['config', 'spawn', {
-                    BaseClass: require('evado-meta-document/behavior/Behavior')
+                    BaseClass: require('evado-meta-base/behavior/Behavior')
                 }]
             ],
             ATTR_LABELS: {

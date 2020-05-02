@@ -41,7 +41,7 @@ module.exports = class Class extends Base {
                 [['header', 'order', 'grouping', 'options'], 'json'],
                 ['commands', 'filter', {filter: 'split'}],
                 ['commands', 'default', {value: DEFAULT_COMMANDS}],
-                ['modelConfig', 'spawn', {BaseClass: require('evado-meta-document/model/Model')}],
+                ['modelConfig', 'spawn', {BaseClass: require('evado-meta-base/model/Model')}],
                 [['abstract', 'disableTreeView'], 'checkbox'],
                 [['activeDescendants', 'behaviors', 'indexes', 'rules', 'states', 'transitions',
                   'treeViewLevels', 'views'], 'relation'],

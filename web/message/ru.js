@@ -232,9 +232,7 @@ Object.assign(Jam.I18n.defaults, {
     'Object selection condition': 'Условие выборки объектов',
     'On create': 'При создании',
     'On delete': 'При удалении',
-    'On delete reference class instance:\nCascade - delete relation owner instance\nNull - empty linked attribute value': 'При удалении объекта ссылочного класса:\nКаскад - удалять объект владельца данного отношения\nNull - обнулять атрибут связи',
     'On update': 'При обновлении',
-    'On update reference class instance:\nCascade - update linked attribute value\nNull - empty linked attribute value': 'При обновлении объекта ссылочного класса:\nКаскад - обновлять атрибут связи\nNull - обнулять атрибут связи',
     'Options': 'Опции',
     'Orderable': 'Упорядочиваемый',    
     'Original': 'Оригинал',
@@ -346,6 +344,8 @@ Object.assign(Jam.I18n.defaults, {
     'View type': 'Тип представления',
     'Views': 'Представления',
 
+    'When deleting an instance of a reference class:\nCascade - delete relation owner instance\nNull - empty linked attribute value': 'При удалении объекта ссылочного класса:\nКаскад - удалять объект владельца данного отношения\nNull - обнулять атрибут связи',
+    'When updating an instance of a reference class:\nCascade - update linked attribute value\nNull - empty linked attribute value': 'При обновлении объекта ссылочного класса:\nКаскад - обновлять атрибут связи\nNull - обнулять атрибут связи',
     'Workflow': 'Бизнес-процесс',
     'Workflow state': 'Состояние бизнес-процесса'
 });

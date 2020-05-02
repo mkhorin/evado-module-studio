@@ -31,7 +31,7 @@ module.exports = class Transition extends Base {
                 ['name', require('../component/validator/CodeNameValidator')],
                 [['name', 'label'], 'unique', {filter: 'class'}],
                 [['condition', 'options'], 'json'],
-                ['config', 'spawn', {BaseClass: require('evado-meta-document/workflow/Transit')}],
+                ['config', 'spawn', {BaseClass: require('evado-meta-base/workflow/Transit')}],
                 ['orderNumber', 'number', {integerOnly: true}],
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()

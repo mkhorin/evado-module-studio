@@ -80,7 +80,7 @@ module.exports = class View extends Base {
         if (value.Class) {
             const Class = require('areto/validator/SpawnValidator');
             return this.module.spawn(Class, {
-                BaseClass: require('evado-meta-document/base/ViewFilter')
+                BaseClass: require('evado-meta-base/base/ViewFilter')
             }).validateAttr(this, attr);
         }
     }

@@ -15,7 +15,7 @@ module.exports = class CustomParam extends Base {
             RULES: [
                 ['config', 'required'],
                 ['config', 'spawn', {
-                    BaseClass: require('evado-meta-document/validator/Validator')
+                    BaseClass: require('evado-meta-base/validator/Validator')
                 }]
             ],
             ATTR_LABELS: {

@@ -10,7 +10,7 @@ module.exports = class ClassImport extends Base {
     static getConstants () {
         return {
             RULES: super.RULES.concat([
-                ['source', 'default', {value: 'app/document/class/_className_'}]
+                ['source', 'default', {value: 'app/base/class/_className_'}]
             ])
         };
     }
