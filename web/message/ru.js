@@ -251,8 +251,8 @@ Object.assign(Jam.I18n.defaults, {
 
     'Query filter': 'Фильтр запроса',
 
-    'Read-only object mode': 'Режим объекта только для чтения',
     'Read only': 'Только чтение',
+    'Read-only mode': 'Режим только для чтения',
     'Reference': 'Ссылочный',
     'Reference attribute': 'Ссылочный атирбут',
     'Reference class': 'Ссылочный класс',

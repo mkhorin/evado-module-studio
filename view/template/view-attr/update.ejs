@@ -6,7 +6,8 @@ const items = [{
     active: true,
     content: _view.getInternalTemplate('_tabMain')
 }];
-if (model.rel('classAttr').isRelation()) {
+const classAttr = model.rel('classAttr');
+if (classAttr.isRelation() || classAttr.isUser()) {
     items.push({
         id: 'Relation',
         content: _view.getInternalTemplate('_tabRelation')

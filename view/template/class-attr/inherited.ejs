@@ -10,7 +10,7 @@ const tabs = [{
     id: 'Main',
     content: _view.getInternalTemplate('_tabInheritedMain')
 }];
-if (model.isRelation()) {
+if (model.isRelation() || model.isUser()) {
     tabs.push({
         id: 'Relation',
         content: _view.getInternalTemplate('_tabInheritedRelation')

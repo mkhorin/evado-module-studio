@@ -12,11 +12,12 @@ module.exports = class ParamContainer extends Base {
             ATTRS: [
                 'type',
                 'owner',
-                'orderNumber'
+                'orderNumber',
+                'description'
             ],
             RULES: [
                 ['type', 'required'],
-                ['type', 'string'],
+                [['type', 'description'], 'string'],
                 ['orderNumber', 'number', {integerOnly: true}],
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()

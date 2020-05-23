@@ -38,7 +38,7 @@ module.exports = class State extends Base {
             ],
             ATTR_LABELS: {
                 'name': 'Code name',
-                'readOnly': 'Read-only object mode'
+                'readOnly': 'Read-only mode'
             }
         };
     }

@@ -18,7 +18,6 @@ module.exports = class EnumItem extends Base {
                 'orderNumber'
             ],
             RULES: [
-                ['value', 'required'],
                 [['text', 'hint'], 'string'],
                 ['value', require('../component/validator/CodeNameValidator')],
                 ['value', 'unique', {filter: 'enum'}],

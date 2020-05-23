@@ -90,8 +90,60 @@ const relationTemplate = _view.get('_part/attr/relation');
             }
         }
     },{
-        id: 'Workflow',
-        content: _view.getInternalTemplate('_tabWorkflow')
+        id: 'States',
+        content: {
+            template: relationTemplate,
+            attr: 'states',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'name'
+                }, {
+                    name: 'label'
+                }, {
+                    name: 'view',
+                    format: {
+                        name: 'relation',
+                        url: _url('view/update')
+                    }
+                }, {
+                    name: 'defaults',
+                    format: 'boolean'
+                }, {
+                    name: 'readOnly',
+                    format: 'boolean'
+                }],
+                order: {name: 1},
+                link: null,
+                unlink: null
+            }
+        }
+    },{
+        id: 'Transitions',
+        content: {
+            template: relationTemplate,
+            attr: 'transitions',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'name'
+                }, {
+                    name: 'label'
+                }, {
+                    name: 'startStates',
+                    format: 'relation'
+                }, {
+                    name: 'finalState',
+                    format: 'relation'
+                }, {
+                    name: 'orderNumber'
+                }],
+                order: {orderNumber: 1},
+                modalSort: true,
+                link: null,
+                unlink: null
+            }
+        }
     },{
         id: 'Tree view',
         content: [{

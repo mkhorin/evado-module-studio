@@ -66,7 +66,6 @@ module.exports = class ClassAttr extends Base {
                 [['orderNumber', 'eagerDepth', 'searchDepth'], 'number', {integerOnly: true}],
                 ['name', require('../component/validator/AttrNameValidator')],
                 [['name', 'label'], 'unique', {filter: 'class'}],
-                ['name', 'validateSystemAttr'],
                 ['commands', 'filter', {filter: 'split'}],
                 ['commands', 'default', {value: DEFAULT_COMMANDS}],
                 [['escape', 'trim'], 'default', {value: true}],
@@ -81,6 +80,7 @@ module.exports = class ClassAttr extends Base {
                 ['indexing', 'range', {range:[-1, 1]}],
                 [['commonSearchable', 'eagerLoading', 'escape', 'hidden', 'history', 'multiple', 'readOnly',
                     'required', 'selectSearchable', 'sortable', 'sortableRelation', 'trim', 'unique'], 'checkbox'],
+                ['name', 'validateSystemAttr'], // after readOnly validation
                 [['defaultValue', 'expression', 'header', 'options'], 'json'],
                 [['actionBinder', 'behaviors', 'enums', 'rules', 'via'], 'relation']
             ],
@@ -204,7 +204,7 @@ module.exports = class ClassAttr extends Base {
                     class: 'Metaclass',
                     radioList: 'Radio list',
                     select: 'Select box',
-                    state: 'Workflow state',
+                    state: 'State',
                     string: 'String',
                     time: 'Time',
                     thumbnail: 'Thumbnail'
@@ -242,7 +242,7 @@ module.exports = class ClassAttr extends Base {
                 condition: {type: ['ref', 'backref']}
             },{
                 items: [
-                    ['state', 'Workflow state'],
+                    ['state', 'State'],
                     ['class', 'Metaclass']
                 ],
                 condition: {type: ['string']}
@@ -287,6 +287,10 @@ module.exports = class ClassAttr extends Base {
 
     isBackRef () {
         return this.get('type') === 'backref';
+    }
+
+    isUser () {
+        return this.get('type') === 'user';
     }
 
     canIndexing () {
