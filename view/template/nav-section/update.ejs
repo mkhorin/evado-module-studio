@@ -7,41 +7,46 @@
 
 <%- include('./_form') %>
 
-<%- include(_view.get('_part/attr/relation'), {
-    attr: 'nodes',
-    data: {
-        columns: [{
-            name: 'name'
-        },{
-            name: 'label'
-        },{
-            name: 'class',
-            format: {
-                name: 'relation',
-                url: _url('class/update')
+<%- include(_view.get('_part/group/tabs'), {
+    items: [{
+        id: 'Nodes',
+        content: {
+            template: _view.get('_part/attr/relation'),
+            attr: 'nodes',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'name'
+                }, {
+                    name: 'label'
+                }, {
+                    name: 'class',
+                    format: {
+                        name: 'relation',
+                        url: _url('class/update')
+                    }
+                }, {
+                    name: 'view',
+                    format: {
+                        name: 'relation',
+                        url: _url('view/update')
+                    }
+                }, {
+                    name: 'report',
+                    format: {
+                        name: 'relation',
+                        url: _url('report/updatet')
+                    }
+                }, {
+                    name: 'orderNumber',
+                    sortable: true
+                }],
+                order: {orderNumber: 1},
+                link: null,
+                unlink: null,
+                create: ['nav-node/create-by-section', model],
+                modalSort: true
             }
-        },{
-            name: 'view',
-            format: {
-                name: 'relation',
-                url: _url('view/update')
-            }
-        },{
-            name: 'report',
-            format: {
-                name: 'relation',
-                url: _url('repor/updatet')
-            }
-        },{
-            name: 'url'
-        },{
-            name: 'orderNumber',
-            sortable: true
-        }],
-        order: {orderNumber: 1},
-        link: null,
-        unlink: null,
-        create: ['nav-node/create-by-section', model],
-        modalSort: true
-    }
+        }
+    }]
 }) %>

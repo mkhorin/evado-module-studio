@@ -58,7 +58,6 @@ const typeTrigger = ['START TRIGGER', 'type'];
 }) %>
 
 <%- include(columnTemplate, {
-    actionBinder: {show: {eagerLoading: true}},
     items: [{
         template: selectTemplate,
         params: {
@@ -77,6 +76,11 @@ const typeTrigger = ['START TRIGGER', 'type'];
             extHint: 'Limit the loading depth of related objects'
         }
     }]
+}) %>
+
+<%- include(_view.get('_part/attr/json'), {
+    attr: 'filter',
+    extHint: 'Filter condition or configuration of custom class for querying related objects'
 }) %>
 
 <%- include(_view.get('_part/attr/relation'), {
@@ -106,9 +110,4 @@ const typeTrigger = ['START TRIGGER', 'type'];
         unlink: null,
         create: ['via/create-by-attr', model]
     }
-}) %>
-
-<%- include(_view.get('_part/attr/json'), {
-    attr: 'finder',
-    extHint: 'Configuration of custom class for selecting related objects'
 }) %>

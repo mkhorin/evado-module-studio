@@ -24,7 +24,7 @@ module.exports = class ClassAttr extends Base {
                 'eagerView',
                 'escape',
                 'expression',
-                'finder',
+                'filter',
                 'group',
                 'header',
                 'hidden',
@@ -74,14 +74,13 @@ module.exports = class ClassAttr extends Base {
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()
                 }],
-                ['finder', 'spawn', {BaseClass: require('evado-meta-base/attr/RelationFinder')}],
                 [['viewType', 'overriddenState'], 'safe'],
                 ['indexing', 'number'],
                 ['indexing', 'range', {range:[-1, 1]}],
                 [['commonSearchable', 'eagerLoading', 'escape', 'hidden', 'history', 'multiple', 'readOnly',
                     'required', 'selectSearchable', 'sortable', 'sortableRelation', 'trim', 'unique'], 'checkbox'],
                 ['name', 'validateSystemAttr'], // after readOnly validation
-                [['defaultValue', 'expression', 'header', 'options'], 'json'],
+                [['defaultValue', 'expression', 'filter', 'header', 'options'], 'json'],
                 [['actionBinder', 'behaviors', 'enums', 'rules', 'via'], 'relation']
             ],
             BEHAVIORS: {

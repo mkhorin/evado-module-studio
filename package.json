@@ -1,7 +1,7 @@
 {
   "name": "evado-module-studio",
-  "version": "1.4.0",
-  "description": "Evado module for creating business applications",
+  "version": "1.5.0",
+  "description": "Evado module for creating application metadata",
   "author": {
     "name": "Maxim Khorin",
     "email": "maksimovichu@gmail.com"

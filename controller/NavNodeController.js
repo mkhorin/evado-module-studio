@@ -27,5 +27,14 @@ module.exports = class NavNodeController extends Base {
     actionList () {
         return super.actionList(this.createModel().find().with('section', 'parent'));
     }
+
+    actionListRelated (params = {}) {
+        switch (this.getQueryParam('rel')) {
+            case 'children':
+                params.with = ['class', 'view', 'report'];
+                break;
+        }
+        return super.actionListRelated(params);
+    }
 };
 module.exports.init(module);

@@ -73,5 +73,4 @@ module.exports = class ImportModel extends Base {
 };
 module.exports.init();
 
-const path = require('path');
 const FileHelper = require('areto/helper/FileHelper');
