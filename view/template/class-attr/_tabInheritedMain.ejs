@@ -13,7 +13,7 @@ const textTemplate = _view.get('_part/attr/text');
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'header',
+    attr: 'defaultValue',
     template: jsonTemplate
 }) %>
 
@@ -40,7 +40,7 @@ const textTemplate = _view.get('_part/attr/text');
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'defaultValue',
+    attr: 'header',
     template: jsonTemplate
 }) %>
 
@@ -61,7 +61,7 @@ const textTemplate = _view.get('_part/attr/text');
         }, {
             template: overriddenTemplate,
             params: {
-                attr: 'unique',
+                attr: 'hidden',
                 template: checkboxTemplate
             }
         }]
@@ -75,7 +75,7 @@ const textTemplate = _view.get('_part/attr/text');
         }, {
             template: overriddenTemplate,
             params: {
-                attr: 'hidden',
+                attr: 'unique',
                 template: checkboxTemplate
             }
         }, {

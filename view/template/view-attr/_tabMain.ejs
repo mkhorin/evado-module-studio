@@ -6,7 +6,7 @@ const overriddenTemplate = _view.get('_part/attr/overridden');
 const stringTemplate = _view.get('_part/attr/string');
 %>
 <%- include(overriddenTemplate, {
-    attr: 'header',
+    attr: 'defaultValue',
     template: jsonTemplate
 }) %>
 
@@ -33,7 +33,7 @@ const stringTemplate = _view.get('_part/attr/string');
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'defaultValue',
+    attr: 'header',
     template: jsonTemplate
 }) %>
 
@@ -54,7 +54,7 @@ const stringTemplate = _view.get('_part/attr/string');
         },{
             template: overriddenTemplate,
             params: {
-                attr: 'unique',
+                attr: 'hidden',
                 template: checkboxTemplate
             }
         },{
@@ -68,7 +68,7 @@ const stringTemplate = _view.get('_part/attr/string');
         items: [{
             template: overriddenTemplate,
             params: {
-                attr: 'hidden',
+                attr: 'unique',
                 template: checkboxTemplate
             }
         },{

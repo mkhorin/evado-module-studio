@@ -4,6 +4,21 @@
 'use strict';
 
 const DEFAULT_COMMANDS = ['add', 'remove', 'create', 'edit'];
+const VIEW_TYPES = {
+    boolean: 'Boolean',
+    date: 'Date',
+    datetime: 'Date and time',
+    localDate: 'Local date',
+    localDatetime: 'Local date and time',
+    relationSelect: 'Object select box',
+    class: 'Metaclass',
+    radioList: 'Radio list',
+    select: 'Select box',
+    state: 'State',
+    string: 'String',
+    time: 'Time',
+    thumbnail: 'Thumbnail'
+};
 
 const Base = require('../component/base/BaseActiveRecord');
 
@@ -150,12 +165,12 @@ module.exports = class ClassAttr extends Base {
                     overriddenBehavior: 'overridden'
                 }
             },
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'actionBinder',
                 'behaviors',
+                'classIndexAttrs',
                 'descendants',
                 'enums',
-                'indexAttr',
                 'rules',
                 'treeViewLevels',
                 'via',
@@ -169,6 +184,7 @@ module.exports = class ClassAttr extends Base {
                 'name': 'Code name',
                 'refAttr': 'Reference attribute',
                 'refClass': 'Reference class',
+                'sortableRelation': 'Sortable by owner',
                 'via': 'Intermediate link'
             },
             ATTR_VALUE_LABELS: {
@@ -190,64 +206,61 @@ module.exports = class ClassAttr extends Base {
                     calc: 'Calculated',
                     file: 'File',
                     float: 'Float',
+                    json: 'JSON',
                     id: 'Identifier',
                     text: 'Text',
                     user: 'User'
                 },
-                'viewType': {
-                    date: 'Date',
-                    datetime: 'Date and time',
-                    localDate: 'Local date',
-                    localDatetime: 'Local date and time',
-                    relationSelect: 'Object select box',
-                    class: 'Metaclass',
-                    radioList: 'Radio list',
-                    select: 'Select box',
-                    state: 'State',
-                    string: 'String',
-                    time: 'Time',
-                    thumbnail: 'Thumbnail'
-                }
+                'viewType': VIEW_TYPES
             },
             RELATED_ACTION_ENUMS: [{
-                items: [['null', 'Null']],
-                condition: {type: 'ref'}
-            },{
-                items: [['cascade', 'Cascade']],
-                condition: {type: ['ref', 'backref']}
+                condition: {type: 'ref'},
+                items: [['null', 'Null']]
+            }, {
+                condition: {type: ['ref', 'backref']},
+                items: [['cascade', 'Cascade']]
             }],
             TYPE_ENUMS: [{
+                condition: {type: 'date'},
                 items: [
-                    ['date', 'Date'],
-                    ['datetime', 'Date and time'],
-                    ['localDate', 'Local date'],
-                    ['localDatetime', 'Local date and time'],
-                    ['string', 'String']
-                ],
-                condition: {type: 'date'}
-            },{
+                    ['date', VIEW_TYPES.date],
+                    ['datetime', VIEW_TYPES.datetime],
+                    ['localDate', VIEW_TYPES.localDate],
+                    ['localDatetime', VIEW_TYPES.localDatetime],
+                    ['string', VIEW_TYPES.string]
+                ]
+            }, {
+                condition: {type: ['boolean', 'float', 'id', 'integer', 'string']},
                 items: [
-                    ['radioList', 'Radio list'],
-                    ['select', 'Select box'],
-                    ['string', 'String']
-                ],
-                condition: {type: ['float', 'id', 'integer', 'string']}
-            },{
+                    ['radioList', VIEW_TYPES.radioList],
+                    ['select', VIEW_TYPES.select],
+                    ['string', VIEW_TYPES.string]
+                ]
+            }, {
+                condition: {type: ['ref', 'backref']},
                 items: [
-                    ['relationSelect', 'Object select box'],
-                    ['string', 'String'],
-                    ['thumbnail', 'Thumbnail']
-                ],
-                condition: {type: ['ref', 'backref']}
-            },{
+                    ['relationSelect', VIEW_TYPES.relationSelect],
+                    ['string', VIEW_TYPES.string],
+                    ['thumbnail', VIEW_TYPES.thumbnail]
+                ]
+            }, {
+                condition: {type: ['string']},
                 items: [
-                    ['state', 'State'],
-                    ['class', 'Metaclass']
-                ],
-                condition: {type: ['string']}
-            },{
-                items: [['time', 'Time']],
-                condition: {type: 'integer'}
+                    ['state', VIEW_TYPES.state],
+                    ['class', VIEW_TYPES.class]
+                ]
+            }, {
+                condition: {type: 'integer'},
+                items: [['time', VIEW_TYPES.time]]
+            }, {
+                condition: {type: 'calc'},
+                items: [
+                    ['boolean', VIEW_TYPES.boolean],
+                    ['date', VIEW_TYPES.date],
+                    ['datetime', VIEW_TYPES.datetime],
+                    ['localDate', VIEW_TYPES.localDate],
+                    ['localDatetime', VIEW_TYPES.localDatetime]
+                ]
             }],
             COMMAND_VALUE_LABELS: {
                 add: 'Add',
@@ -297,6 +310,10 @@ module.exports = class ClassAttr extends Base {
         return !(type === 'backref' || type === 'file' || (type === 'ref' && this.get('multiple')));
     }
 
+    findByClass (id) {
+        return super.findByClass(id);
+    }
+
     findByClassAndGroup (classId, groupId) {
         return this.find({
             class: classId,
@@ -323,7 +340,7 @@ module.exports = class ClassAttr extends Base {
     }
 
     getRelinkMap (key, value) {
-        return super.getRelinkMap(this.find({'class': key}), this.find({'class': value}), 'name');
+        return super.getRelinkMap(this.find({class: key}), this.find({class: value}), 'name');
     }
 
     relinkClassAttrs (data) {
@@ -364,12 +381,12 @@ module.exports = class ClassAttr extends Base {
 
     relActionBinder () {
         const Class = this.getClass('model/ActionBinder');
-        return this.hasOne(Class, Class.PK, 'actionBinder').deleteOnUnlink();
+        return this.hasOne(Class, Class.PK, 'actionBinder');
     }
 
     relBehaviors () {
         const Class = this.getClass('model/AttrBehavior');
-        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1}).deleteOnUnlink();
+        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1});
     }
 
     relClass () {
@@ -377,13 +394,13 @@ module.exports = class ClassAttr extends Base {
         return this.hasOne(Class, Class.PK, 'class');
     }
 
-    relClassIndexAttr () {
+    relClassIndexAttrs () {
         const Class = this.getClass('model/ClassIndexAttr');
-        return this.hasMany(Class, 'attr', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'attr', this.PK);
     }
 
     relDescendants () {
-        return this.hasMany(this.constructor, 'original', this.PK).deleteOnUnlink();
+        return this.hasMany(this.constructor, 'original', this.PK);
     }
 
     relEagerView () {
@@ -393,7 +410,7 @@ module.exports = class ClassAttr extends Base {
 
     relEnums () {
         const Class = this.getClass('model/Enum');
-        return this.hasMany(Class, 'owner', this.PK).with('attr', 'class', 'view').deleteOnUnlink();
+        return this.hasMany(Class, 'owner', this.PK).with('attr', 'class', 'view');
     }
 
     relGroup () {
@@ -427,7 +444,7 @@ module.exports = class ClassAttr extends Base {
 
     relRules () {
         const Class = this.getClass('model/AttrRule');
-        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1}).deleteOnUnlink();
+        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1});
     }
 
     relSelectListView () {
@@ -437,17 +454,17 @@ module.exports = class ClassAttr extends Base {
 
     relTreeViewLevels () {
         const Class = this.getClass('model/TreeViewLevel');
-        return this.hasMany(Class, 'refAttr', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'refAttr', this.PK);
     }
 
     relVia () {
         const Class = this.getClass('model/Via');
-        return this.hasOne(Class, 'attr', this.PK).deleteOnUnlink();
+        return this.hasOne(Class, 'attr', this.PK);
     }
 
     relViewAttrs () {
         const Class = this.getClass('model/ViewAttr');
-        return this.hasMany(Class, 'classAttr', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'classAttr', this.PK);
     }
 
     relViews () {

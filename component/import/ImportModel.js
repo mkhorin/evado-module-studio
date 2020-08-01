@@ -29,7 +29,7 @@ module.exports = class ImportModel extends Base {
     }
 
     getSourcePath () {
-        return this.module.app.getPath('meta/' + this.get('source'));
+        return this.module.app.getPath('metadata/' + this.get('source'));
     }
     
     assignError (message) {
@@ -44,6 +44,15 @@ module.exports = class ImportModel extends Base {
     }
 
     async processDeferredBinding () {
+    }
+
+    async processDeferredBindingModels (models) {
+        for (const model of models) {
+            if (!this.hasError()) {
+                await model.processDeferredBinding();
+                this.assignError(this.Helper.getError(model));
+            }
+        }
     }
 
     async validateSource (attr) {

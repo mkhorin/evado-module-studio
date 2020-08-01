@@ -33,12 +33,26 @@ module.exports = class ViewImport extends Base {
         }
     }
 
-    validateView () {
+    async validateView () {
         this.model = this.spawn('model/View', {scenario: 'create'});
         this.data.name = this.baseName;
         this.Helper.assignAttrs(this.data, this.model);
         this.model.set('class', this.classModel.getId());
+        this.model.unset('creationView', 'editView');
+        if (this.classModel.hasParent()) {
+            await this.deleteInheritedView();
+        }
         return this.save();
+    }
+
+    async deleteInheritedView () {
+        const model = await this.model.find({
+            class: this.model.get('class'),
+            name: this.model.get('name')
+        }).one();
+        if (model) {
+            await model.delete();
+        }
     }
 
     async processDeferredBinding () {
@@ -46,13 +60,34 @@ module.exports = class ViewImport extends Base {
             await this.meta.resolveClassMap();
         }
         if (!this.hasError()) {
+            this.bindView('creationView');
+            this.bindView('editView');
+        }
+        if (!this.hasError()) {
             await this.createTreeView();
         }
         await PromiseHelper.each(this.attrImports, model => {
             return this.hasError() ? null : model.processDeferredBinding();
         });
+        if (this.needSave && !this.hasError()) {
+            await this.model.forceSave();
+        }
         await this.deleteOnError();
         await PromiseHelper.setImmediate();
+    }
+
+    bindView (attr) {
+        const classModel = this.meta.classMap[this.model.get('class')];
+        const viewMap = classModel.rel('viewMap');
+        const name = this.data[attr];
+        if (!name) {
+            return null;
+        }
+        if (!viewMap.hasOwnProperty(name)) {
+            return this.assignError(`${attr}: Not found: ${name}`);
+        }
+        this.model.set(attr, viewMap[name].getId());
+        this.needSave = true;
     }
 
     // ATTRIBUTES
@@ -87,7 +122,9 @@ module.exports = class ViewImport extends Base {
     }
 
     createGroups () {
-        this.data.groups = Array.isArray(this.data.groups) ? this.data.groups : [];
+        if (!Array.isArray(this.data.groups)) {
+            this.data.groups = [];
+        }
         return PromiseHelper.each(this.data.groups, this.createGroup, this);
     }
 

@@ -24,7 +24,7 @@ module.exports = class TreeViewLevel extends Base {
                 ['recursive', 'checkbox'],
                 ['options', 'json']
             ],
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'nextLevels'
             ],            
             ATTR_LABELS: {
@@ -68,9 +68,7 @@ module.exports = class TreeViewLevel extends Base {
     }
 
     relNextLevels () {
-        return this.hasMany(TreeViewLevel, 'owner', 'owner')
-            .and(['>', this.PK, this.getId()])
-            .deleteOnUnlink();
+        return this.hasMany(TreeViewLevel, 'owner', 'owner').and(['>', this.PK, this.getId()]);
     }
 
     relRefAttr () {

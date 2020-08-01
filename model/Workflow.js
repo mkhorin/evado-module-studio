@@ -22,7 +22,7 @@ module.exports = class Workflow extends Base {
                 [['name', 'label'], 'unique'],
                 [['states', 'transitions'], 'relation'],
             ],
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'states',
                 'transitions'
             ]
@@ -33,12 +33,12 @@ module.exports = class Workflow extends Base {
 
     relStates () {
         const Class = this.getClass('model/State');
-        return this.hasMany(Class, 'workflow', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'workflow', this.PK);
     }
 
     relTransitions () {
         const Class = this.getClass('model/Transition');
-        return this.hasMany(Class, 'workflow', this.PK).order({orderNumber: 1}).deleteOnUnlink();
+        return this.hasMany(Class, 'workflow', this.PK).order({orderNumber: 1});
     }
 };
 module.exports.init(module);

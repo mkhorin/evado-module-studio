@@ -1,9 +1,16 @@
 <%
 const columnTemplate = _view.get('_part/group/columns');
 const jsonTemplate = _view.get('_part/attr/json');
+const selectTemplate = _view.get('_part/attr/select');
+const viewSelect2 = {ajax: {url: _url('view/list-select')}, queryData: {pid: model.get('class')}};
+const viewUpdate = _url('view/update');
 %>
 <%- include(_view.get('_part/attr/text'), {
     attr: 'description'
+}) %>
+
+<%- include(_view.get('_part/attr/checkbox'), {
+    attr: 'readOnly'
 }) %>
 
 <%- include(jsonTemplate, {
@@ -25,16 +32,41 @@ const jsonTemplate = _view.get('_part/attr/json');
     }]
 }) %>
 
-<%- include(jsonTemplate, {
-    attr: 'header',
-    extHint: 'String view template of object'
+<%- include(columnTemplate, {
+    items: [{
+        template: jsonTemplate,
+        params: {
+            attr: 'header',
+            extHint: 'String view template of object'
+        }
+    }, {
+        template: _view.get('_part/attr/string'),
+        params: {
+            attr: 'templateRoot'
+        }
+    }]
 }) %>
 
 <%- include(columnTemplate, {
     items: [{
-        template: _view.get('_part/attr/string'),
+        template: selectTemplate,
         params: {
-            attr: 'templateRoot'
+            attr: 'editView',
+            extHint: 'View used to edit an object',
+            items: null,
+            displayValue: model.getRelatedTitle('editView'),
+            select2: viewSelect2,
+            update: viewUpdate
+        }
+    }, {
+        template: selectTemplate,
+        params: {
+            attr: 'creationView',
+            extHint: 'View used to create an object',
+            items: null,
+            displayValue: model.getRelatedTitle('creationView'),
+            select2: viewSelect2,
+            update: viewUpdate
         }
     }]
 }) %>

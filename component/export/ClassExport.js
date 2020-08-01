@@ -27,7 +27,9 @@ module.exports = class ClassExport extends Base {
     }
 
     exportView (model) {
-        return this.spawn('export/ViewExport', {exporter: this.exporter, model}).execute();
+        if (!model.hasOriginal()) {
+            return this.spawn('export/ViewExport', {exporter: this.exporter, model}).execute();
+        }
     }
 
     async getData (viaMap) {
@@ -35,6 +37,7 @@ module.exports = class ClassExport extends Base {
         await model.resolveRelations([
             'activeDescendants',
             'attrs',
+            'forbiddenView',
             'groups',
             'indexes',
             'key',
@@ -51,6 +54,7 @@ module.exports = class ClassExport extends Base {
         data.attrs = data.attrs.filter(item => item);
         data.behaviors = await PromiseHelper.map(model.rel('behaviors'), this.getBehaviorData, this);
         data.behaviors = data.behaviors.filter(item => item);
+        data.forbiddenView = model.get('forbiddenView.name');
         data.groups = await PromiseHelper.map(model.rel('groups'), this.getGroupData, this);
         data.groups = data.groups.filter(item => item);
         data.indexes = await PromiseHelper.map(model.rel('indexes'), this.getIndexData, this);

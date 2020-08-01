@@ -1,0 +1,31 @@
+<!-- studio/_part/attr/metaLocation -->
+<%
+const p = {
+    label: 'Location',
+    extHint: 'Metadata directory relative to application root',
+    behaviors: [{name: 'StoreLastSavedValueBehavior'}]
+};
+%>
+<%- include(_view.get('_part/attr/_params'), {p, ...p}) %>
+
+<div class="meta-location form-attr form-group <%- p.required %>"
+     data-handler="<%= p.handler %>"
+     data-behaviors="<%= p.behaviors %>"
+     data-action-binder="<%= p.actionBinder %>">
+    <label class="control-label <%- p.labelCss %>"
+           title="<%= p.extHint %>" data-t="<%- p.translate %>"><%- p.label %></label>
+    <div class="<%- p.valueCss %>">
+        <div class="input-group">
+            <span class="input-group-addon cursor-default">metadata/</span>
+            <input name="<%- p.name %>" type="text" placeholder="<%- p.placeholder %>"
+                   value="<%= p.value %>" <%- p.required %> class="form-control form-value" autocomplete="on">
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-white" data-value="app">app</button>
+            <button class="btn btn-white" data-value="backup">backup</button>
+            <button class="btn btn-white" data-value="temp">temp</button>
+        </div>
+        <div class="error-block"></div>
+        <div class="hint-block" data-t="<%- p.translate %>"><%- p.hint %></div>
+    </div>
+</div>

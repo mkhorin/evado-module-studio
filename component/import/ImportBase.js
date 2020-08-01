@@ -18,6 +18,10 @@ module.exports = class ImportBase extends Base {
         return this.owner.hasError();
     }
 
+    getErrors () {
+        return this.owner.getErrors();
+    }
+
     assignError (message) {
         if (message) {
             message = this.data.name ? `${this.data.name}: ${message}` : message;

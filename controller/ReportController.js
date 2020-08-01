@@ -11,14 +11,13 @@ module.exports = class ReportController extends Base {
         return this.getClass('model/Report');
     }
 
-    actionListRelated (params = {}) {
-        let relations;
-        switch (this.getQueryParam('rel')) {
-            case 'attrs': relations = 'group'; break;
-            case 'indexes': relations = 'attrs'; break;
+    getListRelatedWith (relation) {
+        switch (relation) {
+            case 'attrs':
+                return 'group';
+            case 'indexes':
+                return 'attrs';
         }
-        params.with = relations;
-        return super.actionListRelated(params);
     }
 };
 module.exports.init(module);

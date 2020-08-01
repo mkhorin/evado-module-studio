@@ -15,47 +15,67 @@ module.exports = class View extends Base {
                 'label',
                 'description',
                 'class',
+                'creationView',
                 'disableGroups',
+                'editView',
                 'header',
                 'filter',
                 'order',
+                'original',
                 'grouping',
+                'readOnly',
                 'templateRoot',
                 'disableTreeView',
                 'options'
             ],
             RULES: [
                 [['name', 'class'], 'required'],
-                ['class', 'id'],
+                [['class', 'creationView', 'editView', 'original'], 'id'],
                 ['name', {
                     Class: require('../component/validator/CodeNameValidator'),
                     validFilename: true
                 }],
                 [['name', 'label'], 'unique', {filter: 'class'}],
                 [['label', 'description', 'templateRoot'], 'string'],
-                [['disableGroups', 'disableTreeView'], 'checkbox'],
+                [['disableGroups', 'disableTreeView', 'readOnly'], 'checkbox'],
                 [['filter', 'header', 'order', 'grouping', 'options'], 'json'],
                 ['filter', 'validateFilter'],
                 [['attrs', 'behaviors', 'groups', 'rules', 'treeViewLevels'], 'relation']
             ],
             BEHAVIORS: {
+                'ancestor': {
+                    Class: require('../component/behavior/AncestorBehavior'),
+                    relations: [{
+                        name: 'descendants',
+                        unchangeableAttrs: ['name', 'label']
+                    }],
+                    withOriginalOnly: true
+                },
                 'clone': {
                     Class: require('evado/component/behavior/CloneBehavior'),
                     relations: ['attrs', 'behaviors', 'groups', 'rules']
+                },
+                'overridden': {
+                    Class: require('evado/component/behavior/OverriddenValueBehavior'),
+                    attrs: []
                 }
             },
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'attrs',
                 'behaviors',
+                'descendants',
+                'groups',
+                'rules',
+                'treeViewLevels'
+            ],
+            UNLINK_ON_DELETE: [
                 'eagerViewAttrs',
                 'eagerViewClassAttrs',
-                'groups',
+                'forbiddenViewClasses',
                 'listViewAttrs',
                 'listViewClassAttrs',
-                'rules',
                 'selectListViewAttrs',
-                'selectListViewClassAttrs',
-                'treeViewLevels'
+                'selectListViewClassAttrs'
             ],
             ATTR_LABELS: {
                 'classAttrs': 'Class attributes',
@@ -72,7 +92,10 @@ module.exports = class View extends Base {
 
     async findParents (classId) {
         const models = await this.spawn('model/Class').getAncestors(classId);
-        return this.find({'class': models.map(model => model.getId())});
+        return this.find({
+            'class': models.map(model => model.getId()),
+            'original': null
+        });
     }
 
     validateFilter (attr) {
@@ -87,8 +110,8 @@ module.exports = class View extends Base {
 
     // CLONE
 
-    afterClone () {
-        return this.relinkAttrs();
+    async afterClone (sample) {
+        await this.relinkAttrs(sample);
     }
 
     cloneFor (owner) {
@@ -98,11 +121,19 @@ module.exports = class View extends Base {
         return model.forceSave();
     }
 
-    async relinkAttrs () {
-        const oid = this.originalClassId;
+    getRelinkMap (key, value) {
+        return super.getRelinkMap(this.find({class: key}), this.find({class: value}), 'name');
+    }
+
+    getRelinkMapByClass (name, sample) {
+        const oid = sample.get('class');
         const cid = this.get('class');
-        if (oid && !CommonHelper.isEqual(oid, cid)) {
-            const data = await this.spawn('model/ClassAttr').getRelinkMap(oid, cid);
+        return CommonHelper.isEqual(oid, cid) ? null : this.spawn(name).getRelinkMap(oid, cid);
+    }
+
+    async relinkAttrs (sample) {
+        const data = await this.getRelinkMapByClass('model/ClassAttr', sample);
+        if (data) {
             await this.relinkClassAttrs(data);
             await this.relinkClassGroups(data);
         }
@@ -116,17 +147,43 @@ module.exports = class View extends Base {
         return this.handleEachRelatedModel(['attrs', 'groups'], model => model.relinkClassGroups(data));
     }
 
+    async relinkClass (sampleClass, targetClass) {
+        this.set('class', targetClass);
+        const data = await this.getRelinkMap(sampleClass, targetClass);
+        return this.relinkViews(data);
+    }
+
+    relinkViews (data) {
+        return this.directUpdate({
+            creationView: data[this.get('creationView')],
+            editView: data[this.get('editView')]
+        });
+    }
+
+    // INHERIT
+
+    hasOriginal () {
+        return !!this.get('original');
+    }
+
+    async inherit (classId) {
+        const model = this.spawnSelf();
+        model.setAttrs(this, [this.PK, 'overriddenState']);
+        model.set('class', classId);
+        model.set('original', this.get('original') || this.getId());
+        return model.save();
+    }
+
     // RELATIONS
 
     relAttrs () {
         const Class = this.getClass('model/ViewAttr');
-        return this.hasMany(Class, 'view', this.PK).order({orderNumber: 1}).with('classAttr')
-            .deleteOnUnlink();
+        return this.hasMany(Class, 'view', this.PK).order({orderNumber: 1}).with('classAttr');
     }
 
     relBehaviors () {
         const Class = this.getClass('model/ViewBehavior');
-        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1}).deleteOnUnlink();
+        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1});
     }
 
     relClass () {
@@ -139,6 +196,16 @@ module.exports = class View extends Base {
         return this.hasMany(Class, Class.PK, 'classAttr').via('attrs');
     }
 
+    relCreationView () {
+        const Class = this.constructor;
+        return this.hasOne(Class, Class.PK, 'creationView');
+    }
+
+    relEditView () {
+        const Class = this.constructor;
+        return this.hasOne(Class, Class.PK, 'editView');
+    }
+
     relEagerViewAttrs () {
         const Class = this.getClass('model/ViewAttr');
         return this.hasMany(Class, 'eagerView', this.PK);
@@ -149,9 +216,14 @@ module.exports = class View extends Base {
         return this.hasMany(Class, 'eagerView', this.PK);
     }
 
+    relForbiddenViewClasses () {
+        const Class = this.getClass('model/Class');
+        return this.hasMany(Class, 'forbiddenView', this.PK);
+    }
+
     relGroups () {
         const Class = this.getClass('model/ViewGroup');
-        return this.hasMany(Class, 'view', this.PK).with('classGroup').deleteOnUnlink();
+        return this.hasMany(Class, 'view', this.PK).with('classGroup');
     }
 
     relListViewAttrs () {
@@ -164,9 +236,19 @@ module.exports = class View extends Base {
         return this.hasMany(Class, 'listView', this.PK);
     }
 
+    relDescendants () {
+        const Class = this.getClass('model/View');
+        return this.hasMany(Class, 'original', this.PK);
+    }
+
+    relOriginal () {
+        const Class = this.getClass('model/View');
+        return this.hasOne(Class, Class.PK, 'original');
+    }
+
     relRules () {
         const Class = this.getClass('model/ViewRule');
-        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1}).with('attrs').deleteOnUnlink();
+        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1}).with('attrs');
     }
 
     relSelectListViewAttrs () {
@@ -181,7 +263,7 @@ module.exports = class View extends Base {
 
     relTreeViewLevels () {
         const Class = this.getClass('model/TreeViewLevel');
-        return this.hasMany(Class, 'owner', this.PK).with('refAttr', 'view').deleteOnUnlink();
+        return this.hasMany(Class, 'owner', this.PK).with('refAttr', 'view');
     }
 };
 module.exports.init(module);

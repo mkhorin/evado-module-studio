@@ -22,7 +22,7 @@ module.exports = class Via extends Base {
                 [['attr', 'refClass', 'refAttr', 'linkAttr'], 'id'],
                 ['via', 'relation']
             ],
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'via'
             ],
             ATTR_LABELS: {
@@ -97,7 +97,7 @@ module.exports = class Via extends Base {
 
     relVia () {
         const Class = this.getClass('model/Via');
-        return this.hasOne(Class, 'parent', this.PK).deleteOnUnlink();
+        return this.hasOne(Class, 'parent', this.PK);
     }
 };
 module.exports.init(module);

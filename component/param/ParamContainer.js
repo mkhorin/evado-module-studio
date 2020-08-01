@@ -31,7 +31,7 @@ module.exports = class ParamContainer extends Base {
                 },
                 'unsetOwner': require('evado/component/behavior/UnsetChangedAttrBehavior')
             },
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'param'
             ],
             ATTR_LABELS: {
@@ -77,9 +77,7 @@ module.exports = class ParamContainer extends Base {
 
     relParam () {
         const Class = this.getBehavior('paramContainer').getParamClass();
-        return Class
-            ? this.hasOne(Class, 'owner', this.PK).deleteOnUnlink()
-            : false;
+        return Class ? this.hasOne(Class, 'owner', this.PK) : false;
     }
 };
 module.exports.init();

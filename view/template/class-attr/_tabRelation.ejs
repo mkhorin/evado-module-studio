@@ -41,18 +41,18 @@ const typeTrigger = ['START TRIGGER', 'type'];
     }]
 }) %>
 
-<%- include(columnTemplate, {
+<%- include(_view.get('_part/group/inline'), {
     items: [{
         template: checkboxTemplate,
         params: {
             attr: 'eagerLoading',
             hint: 'Load related objects along with the main'
         }
-    },{
+    }, {
         template: checkboxTemplate,
         params: {
             attr: 'sortableRelation',
-            label: 'Sortable by owner (non-indexable sorting)'
+            hint: 'Warning: non-indexable sorting'
         }
     }]
 }) %>

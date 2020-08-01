@@ -25,14 +25,12 @@ module.exports = class StateController extends Base {
         return this.sendSelectList(this.createModel().findByClass(this.getPostParam('pid')));
     }
 
-    actionListRelated (params = {}) {
-        switch (this.getQueryParam('rel')) {
+    getListRelatedWith (relation) {
+        switch (relation) {
             case 'startingTransitions':
             case 'finishingTransitions':
-                params.with = ['startStates', 'finalState'];
-                break;
+                return ['startStates', 'finalState'];
         }
-        return super.actionListRelated(params);
     }
 };
 module.exports.init(module);

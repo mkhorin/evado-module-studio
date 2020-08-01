@@ -11,6 +11,7 @@ module.exports = class AncestorBehavior extends Base {
         super({
             childrenRelation: 'children',
             overriddenBehavior: 'overridden',
+            withOriginalOnly: false,
             ...config
         });
         this.setHandler(ActiveRecord.EVENT_AFTER_INSERT, this.afterInsert);
@@ -19,44 +20,54 @@ module.exports = class AncestorBehavior extends Base {
 
     async afterInsert () {
         const children = await this.resolveChildren();
-        if (children === false) {
+        if (children === null) {
             return this.owner.delete();
         }
-        const models = await this.owner.find({
+        const query = this.owner.find({
             class: children,
             name: this.owner.get('name')
-        }).all();
-        await this.owner.constructor.delete(models);
+        });
+        this.addNotEmptyOriginal(query);
+        await this.owner.constructor.delete(await query.all());
         for (const id of children) {
             await this.owner.inherit(id);
         }
-        for (const {name, unchangeableAttrs} of this.relations) {
-            await this.setInheritedValues(name, unchangeableAttrs);
-        }
+        await this.changeRelations();
     }
 
     async afterUpdate () {
         const children = await this.resolveChildren();
-        if (children === false) {
+        if (children === null) {
             return this.owner.delete();
         }
-        for (const {name, unchangeableAttrs} of this.relations) {
-            await this.setInheritedValues(name, unchangeableAttrs);
-        }
+        await this.changeRelations();
         // delete children with this name and other parent from descendant classes
-        const condition = {
+        const query = this.owner.find({
             class: children,
             name: this.owner.get('name')
-        };
-        const query = this.owner.find(condition).and(['!=', 'original', this.owner.getId()]);
-        return this.owner.constructor.delete(await query.all());
+        });
+        query.and(['!=', 'original', this.owner.getId()]);
+        this.addNotEmptyOriginal(query);
+        await this.owner.constructor.delete(await query.all());
     }
 
-    async setInheritedValues (name, unchangeableAttrs) {
-        const models = await this.owner.resolveRelation(name);
+    addNotEmptyOriginal (query) {
+        if (this.withOriginalOnly) {
+            query.and(['NOT EMPTY', 'original']);
+        }
+    }
+
+    async changeRelations () {
+        for (const relation of this.relations) {
+            await this.setInheritedValues(relation);
+        }
+    }
+
+    async setInheritedValues (data) {
+        const models = await this.owner.resolveRelation(data.name);
         for (const model of models) {
-            if (unchangeableAttrs) {
-                for (const name of unchangeableAttrs) {
+            if (data.unchangeableAttrs) {
+                for (const name of data.unchangeableAttrs) {
                     model.set(name, this.owner.get(name));
                 }
             }

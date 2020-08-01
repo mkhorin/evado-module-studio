@@ -7,7 +7,7 @@ Jam.AttrList = class AttrList extends Jam.AttrList {
    
     getCommandMethod (name) {
         switch (name) {
-            case 'cloneFromParent': return this.onSelectFromParent;
+            case 'cloneFromParent': return this.onCloneFromParent;
         }
         return super.getCommandMethod(name);
     }
@@ -15,19 +15,23 @@ Jam.AttrList = class AttrList extends Jam.AttrList {
     prepareRowByDecorateInherited () {
     }
 
-    onSelectFromParent (event) {
-        const $btn = $(event.currentTarget);
-        this.childModal.load($btn.data('select')).done(() => {
+    onCloneFromParent (event) {
+        this.selectFromParent(event, this.cloneFromParent);
+    }
+
+    selectFromParent (event, handler) {
+        const $target = $(event.currentTarget);
+        this.childModal.load($target.data('select')).done(() => {
             this.childModal.one('afterClose', (event, data) => {
                 if (data && data.result) {
-                    this.cloneFromParent(data.result, $btn);
+                    handler.call(this, data.result, $target);
                 }
             });
         });
     }
 
-    cloneFromParent (sample, $btn) {
-        this.childModal.load($btn.data('clone'), {sample}).done(() => {
+    cloneFromParent (sample, $target) {
+        this.childModal.load($target.data('clone'), {sample}).done(() => {
             this.childModal.one('afterClose', (event, data) => {
                 if (data && data.result) {
                     this.linkObjects(data.result);

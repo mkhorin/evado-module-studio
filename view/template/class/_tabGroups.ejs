@@ -18,17 +18,14 @@ const columns = [{
     name: 'type',
     format: 'label'
 },{
-    name: 'active',
-    escape: false
-},{
     name: 'orderNumber',
     sortable: true,
     escape: false
 }];
-if (model.get('parent')) {
-    columns.unshift({
+if (model.hasParent()) {
+    columns.push({
         name: 'inherited',
-        translate: ''
+        translateData: ''
     });
 }
 %>

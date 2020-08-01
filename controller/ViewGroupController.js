@@ -45,5 +45,5 @@ module.exports = class ViewGroupController extends Base {
 };
 module.exports.init(module);
 
-const BadRequest = require('areto/error/BadRequestHttpException');
+const BadRequest = require('areto/error/http/BadRequest');
 const RequestHelper = require('evado/component/helper/RequestHelper');

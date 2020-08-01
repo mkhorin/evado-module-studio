@@ -26,7 +26,7 @@ module.exports = class ClassIndex extends Base {
                 ['options', 'json'],
                 ['attrs', 'relation']
             ],
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'attrs'
             ],
             ATTR_LABELS: {
@@ -57,7 +57,7 @@ module.exports = class ClassIndex extends Base {
 
     relAttrs () {
         const Class = this.getClass('model/ClassIndexAttr');
-        return this.hasMany(Class, 'index', this.PK).with('attr').deleteOnUnlink();
+        return this.hasMany(Class, 'index', this.PK).with('attr');
     }
 
     relClass () {

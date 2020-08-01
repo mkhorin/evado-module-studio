@@ -56,11 +56,13 @@ module.exports = class ClassAttrController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().find().with('class', 'original', 'group'));
+        const query = this.createModel().find().with('class', 'original', 'group');
+        return super.actionList(query);
     }
 
     actionListByClass () {
-        return super.actionList(this.createModel().findByClass(this.getQueryParam('pid')));
+        const query = this.createModel().findByClass(this.getQueryParam('pid'));
+        return super.actionList(query);
     }
 
     async actionListByView () {
@@ -68,25 +70,17 @@ module.exports = class ClassAttrController extends Base {
             Class: this.getClass('model/View'),
             with: 'attrs'
         });
-        return super.actionList(this.createModel().findById(view.get('attrs.classAttr')));
+        const query = this.createModel().findById(view.get('attrs.classAttr'));
+        return super.actionList(query);
     }
 
     actionListSelect () {
-        return this.sendSelectList(this.createModel().findByClass(this.getPostParam('pid')));
+        const query = this.createModel().findByClass(this.getPostParam('pid'));
+        return this.sendSelectList(query);
     }
 
     actionListSelectAll () {
         return this.sendSelectList(this.createModel().find());
-    }
-
-    actionListRelated (params = {}) {
-        let relation;
-        switch (this.getQueryParam('rel')) {
-            case 'enums': relation = ['class', 'items']; break;
-            case 'via': relation = ['linkAttr', 'refClass', 'refAttr']; break;
-        }
-        params.with = relation;
-        return super.actionListRelated(params);
     }
 
     async actionListUnusedByView () {
@@ -99,7 +93,16 @@ module.exports = class ClassAttrController extends Base {
         const query = view.rel('class').relAttrs().withOnly().andNotIn(ClassAttr.PK, usedClassAttrs);
         return super.actionList(query);
     }
+
+    getListRelatedWith (relation) {
+        switch (relation) {
+            case 'enums':
+                return ['class', 'items'];
+            case 'via':
+                return ['linkAttr', 'refClass', 'refAttr'];
+        }
+    }
 };
 module.exports.init(module);
 
-const BadRequest = require('areto/error/BadRequestHttpException');
+const BadRequest = require('areto/error/http/BadRequest');

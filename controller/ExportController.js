@@ -8,6 +8,7 @@ const Base = require('../component/base/BaseController');
 module.exports = class ExportController extends Base {
 
     async actionMeta () {
+        this.checkCsrfToken();
         return this.createExporter('Export metadata', async exporter => {
             await exporter.exportMeta();
             await this.renderResult('Metadata exported', exporter);
@@ -15,6 +16,7 @@ module.exports = class ExportController extends Base {
     }
 
     async actionClass () {
+        this.checkCsrfToken();
         const model = await this.getModel({
             Class: this.getClass('model/Class')
         });
@@ -25,6 +27,7 @@ module.exports = class ExportController extends Base {
     }
 
     async actionView () {
+        this.checkCsrfToken();
         const model = await this.getModel({
             Class: this.getClass('model/View')
         });
@@ -35,6 +38,7 @@ module.exports = class ExportController extends Base {
     }
 
     async actionNavSection () {
+        this.checkCsrfToken();
         const model = await this.getModel({
             Class: this.getClass('model/NavSection')
         });
@@ -45,6 +49,7 @@ module.exports = class ExportController extends Base {
     }
 
     async actionReport () {
+        this.checkCsrfToken();
         const model = await this.getModel({
             Class: this.getClass('model/Report')
         });

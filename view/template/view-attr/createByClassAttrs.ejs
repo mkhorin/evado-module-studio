@@ -13,7 +13,7 @@ const columns = [{
     format: 'label'
 }];
 if (classModel.hasParent()) {
-    columns.unshift({
+    columns.push({
         name: 'inherited',
         format: 'boolean'
     });

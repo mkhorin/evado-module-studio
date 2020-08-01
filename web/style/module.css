@@ -29,3 +29,9 @@
     color: #a20;
     margin-top: 5px;
 }
+.meta-location .btn-group {
+    margin-top: 15px;
+}
+.meta-location .form-control {
+    background: #fffcf4;
+}

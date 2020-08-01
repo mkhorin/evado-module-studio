@@ -47,7 +47,7 @@ module.exports = class NavNode extends Base {
                     filter: (query, model) => model.setParentFilter(query)
                 }
             },
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'children'
             ],
             ATTR_LABELS: {
@@ -113,7 +113,7 @@ module.exports = class NavNode extends Base {
 
     relChildren () {
         const Class = this.getClass('model/NavNode');
-        return this.hasMany(Class, 'parent', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'parent', this.PK);
     }
 
     relClass () {

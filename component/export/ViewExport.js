@@ -23,12 +23,22 @@ module.exports = class ViewExport extends Base {
 
     async getData () {
         const model = this.model;
-        await model.resolveRelations(['attrs', 'behaviors', 'groups', 'rules', 'treeViewLevels']);
+        await model.resolveRelations([
+            'attrs',
+            'behaviors',
+            'creationView',
+            'editView',
+            'groups',
+            'rules',
+            'treeViewLevels'
+        ]);
         const data = this.getAttrMap();
         data.attrs = await PromiseHelper.map(model.rel('attrs'), this.getAttrData, this);
         data.attrs = data.attrs.filter(item => item);
         data.behaviors = await PromiseHelper.map(model.rel('behaviors'), this.getBehaviorData, this);
         data.behaviors = data.behaviors.filter(item => item);
+        data.creationView = model.get('creationView.name');
+        data.editView = model.get('editView.name');
         data.groups = await PromiseHelper.map(model.rel('groups'), this.getGroupData, this);
         data.groups = data.groups.filter(item => item);
         data.rules = await PromiseHelper.map(model.rel('rules'), this.getRuleData, this);

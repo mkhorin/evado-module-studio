@@ -11,11 +11,11 @@ module.exports = class NavSectionController extends Base {
         return this.getClass('model/NavSection');
     }
 
-    actionListRelated (params = {}) {
-        switch (this.getQueryParam('rel')) {
-            case 'nodes': params.with = ['class', 'view', 'report']; break;
+    getListRelatedWith (relation) {
+        switch (relation) {
+            case 'nodes':
+                return ['class', 'view', 'report'];
         }
-        return super.actionListRelated(params);
     }
 };
 module.exports.init(module);

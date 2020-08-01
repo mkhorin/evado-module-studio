@@ -35,11 +35,11 @@ module.exports = class ReportGroupController extends Base {
         return super.actionList(this.createModel().find().with('report', 'parent'));
     }
 
-    actionListRelated (params = {}) {
-        switch (this.getQueryParam('rel')) {
-            case 'reportAttrs': params.with = 'report'; break;
+    getListRelatedWith (relation) {
+        switch (relation) {
+            case 'reportAttrs':
+                return 'report';
         }
-        return super.actionListRelated(params);
     }
 };
 module.exports.init(module);

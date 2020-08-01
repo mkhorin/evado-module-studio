@@ -108,8 +108,8 @@ const stringTemplate = _view.get('_part/attr/string');
                     name: 'orderNumber'
                 }],
                 order: {orderNumber: 1},
-                unlink: null,
                 link: null,
+                unlink: null,
                 create: ['create-by-group', model],
                 modalSort:true
             }
@@ -123,9 +123,6 @@ const stringTemplate = _view.get('_part/attr/string');
             css: 'no-label',
             data: {
                 columns: [{
-                    name: 'inherited',
-                    translate: ''
-                },{
                     name: 'name',
                     searchable: true
                 },{
@@ -137,6 +134,9 @@ const stringTemplate = _view.get('_part/attr/string');
                 },{
                     name: 'orderNumber',
                     sortable: true
+                }{
+                    name: 'inherited',
+                    translateData: ''
                 }],
                 order: {orderNumber: 1},
                 link: null,

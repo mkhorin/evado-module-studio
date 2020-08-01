@@ -8,8 +8,12 @@ const Base = require('areto/view/ViewModel');
 module.exports = class ViewForm extends Base {
 
     async resolveTemplateData () {
+        const model = this.data.model;
+        await model.resolveRelation('creationView');
+        await model.resolveRelation('editView');
         return {
-            class: await this.data.model.resolveRelation('class')
+            original: await model.resolveRelation('original'),
+            class: await model.resolveRelation('class')
         };
     }
 };

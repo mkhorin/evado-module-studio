@@ -1,4 +1,5 @@
 <%
+const checkboxTemplate = _view.get('_part/attr/checkbox');
 const overriddenTemplate = _view.get('_part/attr/overridden');
 %>
 <%- include(_view.get('_part/group/columns'), {
@@ -6,7 +7,19 @@ const overriddenTemplate = _view.get('_part/attr/overridden');
         template: overriddenTemplate,
         params: {
             attr: 'active',
-            template: _view.get('_part/attr/checkbox')
+            template: checkboxTemplate
+        }
+    }, {
+        template: overriddenTemplate,
+        params: {
+            attr: 'readOnly',
+            template: checkboxTemplate
+        }
+    }, {
+        template: overriddenTemplate,
+        params: {
+            attr: 'required',
+            template: checkboxTemplate
         }
     }]
 }) %>

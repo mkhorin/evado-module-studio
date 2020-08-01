@@ -4,14 +4,6 @@
     params: {closeConfirmation: false}
 }) %>
 
-<%- include(_view.get('_part/attr/stringAddon'), {
-    attr: 'target',
-    label: 'Location',
-    extHint: 'Metadata directory relative to application root',
-    before: 'meta/',
-    beforeCss: 'cursor-default',
-    behaviors: [{
-        name: 'StoreLastSavedValueBehavior',
-        defaultValueSelector: '.cursor-default'
-    }]
+<%- include(_view.get('_part/attr/metaLocation'), {
+    attr: 'target'
 }) %>

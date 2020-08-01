@@ -33,24 +33,30 @@ module.exports = class ClassController extends Base {
         return super.actionList(this.createModel().find().with('parent'));
     }
 
-    actionListRelated (params = {}) {
-        let relations;
-        switch (this.getQueryParam('rel')) {
-            case 'attrs': relations = 'group'; break;
-            case 'groups': relations = 'parent'; break;
-            case 'indexes': relations = 'attrs'; break;
-            case 'rules': relations = 'attrs'; break;
-            case 'states': relations = 'view'; break;
-            case 'transitions': relations = ['startStates', 'finalState']; break;
-            case 'treeViewLevels': relations = ['refAttr.refClass', 'refAttr.original.refClass']; break;
-        }
-        params.with = relations;
-        return super.actionListRelated(params);
+    async actionListRealDescendants () {
+        const model = await this.getModel({
+            Class: this.getClass('model/Class')
+        });
+        return super.actionList(await model.findDescendants({abstract: false}));
     }
 
-    async actionListRealDescendants () {
-        const model = await this.getModel({Class: this.getClass('model/Class')});
-        return super.actionList(await model.findDescendants({abstract: false}));
+    getListRelatedWith (relation) {
+        switch (relation) {
+            case 'attrs':
+                return 'group';
+            case 'groups':
+                return 'parent';
+            case 'indexes':
+                return 'attrs';
+            case 'rules':
+                return 'attrs';
+            case 'states':
+                return 'view';
+            case 'transitions':
+                return ['startStates', 'finalState'];
+            case 'treeViewLevels':
+                return ['refAttr.refClass', 'refAttr.original.refClass'];
+        }
     }
 };
 module.exports.init(module);

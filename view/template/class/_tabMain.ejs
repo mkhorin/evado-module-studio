@@ -7,9 +7,24 @@ const stringTemplate = _view.get('_part/attr/string');
     attr: 'description'
 }) %>
 
-<%- include(jsonTemplate, {
-    attr: 'header',
-    extHint: 'String view template of object'
+<%- include(columnTemplate, {
+    items: [{
+        template: jsonTemplate,
+        params: {
+            attr: 'header',
+            extHint: 'String view template of object'
+        }
+    },{
+        template: _view.get('_part/attr/select'),
+        params: {
+            attr: 'forbiddenView',
+            extHint: 'Used when class instance updating is forbidden by security',
+            items: null,
+            displayValue: model.getRelatedTitle('forbiddenView'),
+            select2: {ajax: {url: _url('view/list-select')}, queryData: {pid: model.getId()}},
+            update: _url('view/update')
+        }
+    }]
 }) %>
 
 <%- include(columnTemplate, {

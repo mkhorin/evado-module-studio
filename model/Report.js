@@ -35,9 +35,11 @@ module.exports = class Report extends Base {
                     relations: ['attrs', 'groups']
                 }
             },
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'attrs',
+                'behaviors',
                 'groups',
+                'indexes',
                 'navNodes'
             ],
             ATTR_LABELS: {
@@ -77,27 +79,27 @@ module.exports = class Report extends Base {
 
     relAttrs () {
         const Class = this.getClass('model/ReportAttr');
-        return this.hasMany(Class, 'report', this.PK).order({orderNumber: 1}).deleteOnUnlink();
+        return this.hasMany(Class, 'report', this.PK).order({orderNumber: 1});
     }
 
     relBehaviors () {
         const Class = this.getClass('model/ReportBehavior');
-        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1}).deleteOnUnlink();
+        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1});
     }
 
     relGroups () {
         const Class = this.getClass('model/ReportGroup');
-        return this.hasMany(Class, 'report', this.PK).order({orderNumber: 1}).with('parent').deleteOnUnlink();
+        return this.hasMany(Class, 'report', this.PK).order({orderNumber: 1}).with('parent');
     }
 
     relIndexes () {
         const Class = this.getClass('model/ReportIndex');
-        return this.hasMany(Class, 'report', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'report', this.PK);
     }
 
     relNavNodes () {
         const Class = this.getClass('model/NavNode');
-        return this.hasMany(Class, 'report', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'report', this.PK);
     }
 };
 module.exports.init(module);

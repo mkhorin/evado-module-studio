@@ -10,6 +10,7 @@ module.exports = class ClassForm extends Base {
     async resolveTemplateData () {
         const model = this.data.model;
         return {
+            forbiddenView: await model.resolveRelation('forbiddenView'),
             key: await model.resolveRelation('key'),
             parent: await model.resolveRelation('parent')
         };

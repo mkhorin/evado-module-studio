@@ -21,10 +21,10 @@ const columns = [{
     sortable: true,
     escape: false
 }];
-if (model.get('parent')) {
-    columns.unshift({
+if (model.hasParent()) {
+    columns.push({
         name: 'inherited',
-        translate: ''
+        translateData: ''
     });
 }
 %>

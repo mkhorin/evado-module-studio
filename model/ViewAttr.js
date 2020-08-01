@@ -88,7 +88,7 @@ module.exports = class ViewAttr extends Base {
                     ]
                 }
             },
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'actionBinder',
                 'behaviors',
                 'rules'
@@ -160,12 +160,12 @@ module.exports = class ViewAttr extends Base {
 
     relActionBinder () {
         const Class = this.getClass('model/ActionBinder');
-        return this.hasOne(Class, Class.PK, 'actionBinder').deleteOnUnlink();
+        return this.hasOne(Class, Class.PK, 'actionBinder');
     }
 
     relBehaviors () {
         const Class = this.getClass('model/ViewAttrBehavior');
-        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1}).deleteOnUnlink();
+        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1});
     }
 
     relClass () {
@@ -195,7 +195,7 @@ module.exports = class ViewAttr extends Base {
 
     relRules () {
         const Class = this.getClass('model/ViewAttrRule');
-        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1}).deleteOnUnlink();
+        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1});
     }
 
     relSelectListView () {

@@ -15,7 +15,8 @@ module.exports = class EnumItemController extends Base {
         const model = this.createModel();
         const id = this.getQueryParam('pid');
         if (id) {
-            const owner = await this.getModel({Class: this.getClass('model/Enum'), id});
+            const Class = this.getClass('model/Enum');
+            const owner = await this.getModel({Class, id});
             model.set('enum', owner.getId());
         }
         return super.actionCreate({model});

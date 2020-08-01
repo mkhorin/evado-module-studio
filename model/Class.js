@@ -18,6 +18,7 @@ module.exports = class Class extends Base {
                 'commands',
                 'description',
                 'disableTreeView',
+                'forbiddenView',
                 'grouping',
                 'header',
                 'key',
@@ -31,7 +32,7 @@ module.exports = class Class extends Base {
             ],
             RULES: [
                 ['name', 'required'],
-                [['key', 'parent'], 'id'],
+                [['forbiddenView', 'key', 'parent'], 'id'],
                 ['name', {
                     Class: require('../component/validator/CodeNameValidator'),
                     validFilename: true
@@ -62,8 +63,7 @@ module.exports = class Class extends Base {
                     ]
                 }
             },
-            UNLINK_ON_DELETE: [
-                'activeAncestors',
+            DELETE_ON_UNLINK: [
                 'attrs',
                 'behaviors',
                 'children',
@@ -74,6 +74,9 @@ module.exports = class Class extends Base {
                 'states',
                 'transitions',
                 'views'
+            ],
+            UNLINK_ON_DELETE: [
+                'activeAncestors'
             ],
             ATTR_LABELS: {
                 'header': 'Header template',
@@ -118,29 +121,35 @@ module.exports = class Class extends Base {
 
     // CLONE
 
-    async afterClone (original) {
-        await this.relinkAttrs(original);
-        await this.relinkGroups(original);
+    async afterClone (sample) {
+        await this.relinkAttrs(sample);
+        await this.relinkGroups(sample);
+        await this.relinkViews(sample);
     }
 
     async relinkAttrs (sample) {
         const data = await this.spawn('model/ClassAttr').getRelinkMap(sample.getId(), this.getId());
-        await this.handleEachRelatedModel([
-            'attrs',
-            'behaviors',
-            'indexes',
-            'rules',
-            'views'
-        ], model => model.relinkClassAttrs(data));
+        const names = ['attrs', 'behaviors', 'indexes', 'rules', 'views'];
+        await this.handleEachRelatedModel(names, model => model.relinkClassAttrs(data));
     }
 
     async relinkGroups (sample) {
         const data = await this.spawn('model/ClassGroup').getRelinkMap(sample.getId(), this.getId());
-        await this.handleEachRelatedModel([
-            'attrs',
-            'groups',
-            'views'
-        ], model => model.relinkClassGroups(data));
+        const names = ['attrs', 'groups', 'views'];
+        await this.handleEachRelatedModel(names, model => model.relinkClassGroups(data));
+    }
+
+    async relinkViews (sample) {
+        const data = await this.spawn('model/View').getRelinkMap(sample.getId(), this.getId());
+        for (const model of await this.resolveRelation('views')) {
+            await model.relinkViews(data);
+        }
+        await this.relinkForbiddenView(data);
+    }
+
+    relinkForbiddenView (data) {
+        const value = this.get('forbiddenView');
+        return value ? this.directUpdate({forbiddenView: data[value]}) : null;
     }
 
     // INHERIT
@@ -148,11 +157,14 @@ module.exports = class Class extends Base {
     async createInheritedItems () {
         await PromiseHelper.setImmediate();
         const parent = this.rel('parent');        
-        const [attrs, groups] = await parent.resolveRelations(['attrs', 'groups']);
+        const [attrs, groups, views] = await parent.resolveRelations(['attrs', 'groups', 'views']);
         for (const model of groups) {
             await model.inherit(this.getId());
         }
         for (const model of attrs) {
+            await model.inherit(this.getId());
+        }
+        for (const model of views) {
             await model.inherit(this.getId());
         }
         return this.relinkGroups(parent);
@@ -187,27 +199,32 @@ module.exports = class Class extends Base {
 
     relAttrs () {
         const Class = this.getClass('model/ClassAttr');
-        return this.hasMany(Class, 'class', this.PK).order({orderNumber: 1}).deleteOnUnlink();
+        return this.hasMany(Class, 'class', this.PK).order({orderNumber: 1});
     }
 
     relBehaviors () {
         const Class = this.getClass('model/ClassBehavior');
-        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1}).deleteOnUnlink();
+        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1});
     }
 
     relChildren () {
         const Class = this.getClass('model/Class');
-        return this.hasMany(Class, 'parent', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'parent', this.PK);
+    }
+
+    relForbiddenView () {
+        const Class = this.getClass('model/View');
+        return this.hasOne(Class, Class.PK, 'forbiddenView');
     }
 
     relGroups () {
         const Class = this.getClass('model/ClassGroup');
-        return this.hasMany(Class, 'class', this.PK).order({orderNumber: 1}).with('parent').deleteOnUnlink();
+        return this.hasMany(Class, 'class', this.PK).order({orderNumber: 1}).with('parent');
     }
 
     relIndexes () {
         const Class = this.getClass('model/ClassIndex');
-        return this.hasMany(Class, 'class', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'class', this.PK);
     }
 
     relKey () {
@@ -217,7 +234,7 @@ module.exports = class Class extends Base {
 
     relNavNodes () {
         const Class = this.getClass('model/NavNode');
-        return this.hasMany(Class, 'class', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'class', this.PK);
     }
 
     relParent () {
@@ -227,7 +244,7 @@ module.exports = class Class extends Base {
 
     relRules () {
         const Class = this.getClass('model/ClassRule');
-        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1}).with('attrs').deleteOnUnlink();
+        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1}).with('attrs');
     }
 
     relStateMap () {
@@ -237,12 +254,12 @@ module.exports = class Class extends Base {
 
     relStates () {
         const Class = this.getClass('model/State');
-        return this.hasMany(Class, 'class', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'class', this.PK);
     }
 
     relTransitions () {
         const Class = this.getClass('model/Transition');
-        return this.hasMany(Class, 'class', this.PK).order({orderNumber: 1}).deleteOnUnlink();
+        return this.hasMany(Class, 'class', this.PK).order({orderNumber: 1});
     }
 
     relTreeViewLevels () {
@@ -263,7 +280,7 @@ module.exports = class Class extends Base {
 
     relViews () {
         const Class = this.getClass('model/View');
-        return this.hasMany(Class, 'class', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'class', this.PK);
     }
 };
 module.exports.init(module);

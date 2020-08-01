@@ -31,7 +31,7 @@ module.exports = class NavSection extends Base {
                     relations: ['nodes']
                 }
             },
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'nodes'
             ],
             ATTR_LABELS: {
@@ -52,9 +52,7 @@ module.exports = class NavSection extends Base {
 
     relNodes () {
         const Class = this.getClass('model/NavNode');
-        return this.hasMany(Class, 'section', this.PK)
-            .and({parent: null}).order({orderNumber: 1})
-            .deleteOnUnlink();
+        return this.hasMany(Class, 'section', this.PK).and({parent: null}).order({orderNumber: 1});
     }
 };
 module.exports.init(module);

@@ -23,7 +23,7 @@ module.exports = class Enum extends Base {
                 [['condition', 'queryFilter'], 'json'],
                 ['items', 'relation']
             ],
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'items'
             ],
             ATTR_LABELS: {
@@ -59,7 +59,7 @@ module.exports = class Enum extends Base {
 
     relItems () {
         const Class = this.getClass('model/EnumItem');
-        return this.hasMany(Class, 'enum', this.PK).order({orderNumber: 1}).deleteOnUnlink();
+        return this.hasMany(Class, 'enum', this.PK).order({orderNumber: 1});
     }
 
     relView () {

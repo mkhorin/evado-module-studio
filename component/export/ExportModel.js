@@ -18,13 +18,13 @@ module.exports = class ExportModel extends Base {
         };
     }
 
-    getMetaDirectory () {
-        return 'meta/' + this.get('target');
+    getMetadataDirectory () {
+        return 'metadata/' + this.get('target');
     }
 
     async validateTarget (attr) {
         try {
-            this.basePath = this.module.app.getPath(this.getMetaDirectory());
+            this.basePath = this.module.app.getPath(this.getMetadataDirectory());
             await FileHelper.createDirectory(this.basePath);
         } catch (err) {
             this.addError(attr, err.toString());

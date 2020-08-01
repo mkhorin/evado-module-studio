@@ -29,8 +29,8 @@ const relationTemplate = _view.get('_part/attr/relation');
                     name: 'orderNumber'
                 }],
                 order: {orderNumber: 1},
-                unlink: null,
                 link: null,
+                unlink: null,
                 create: ['create-by-group', model],
                 modalSort: true
             }
@@ -75,8 +75,7 @@ const relationTemplate = _view.get('_part/attr/relation');
                     name: 'orderNumber'
                 }],
                 order: {orderNumber: 1},
-                link: null,
-                unlink: null,
+                link: ['class-attr/select', {list: _url('class-attr/list-by-class', {pid: model.get('class')})}],
                 create: ['class-attr/create-by-group', model],
                 delete: null,
                 showTop: true,

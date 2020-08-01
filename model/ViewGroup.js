@@ -19,6 +19,8 @@ module.exports = class ViewGroup extends Base {
                 'hint',
                 'orderNumber',
                 'parent',
+                'readOnly',
+                'required',
                 'view',
                 'actionBinder',
                 'options',
@@ -30,7 +32,7 @@ module.exports = class ViewGroup extends Base {
                 ['type', 'range', {range: ['tabs']}],
                 [['hint', 'label', 'description'], 'string'],
                 ['orderNumber', 'number', {integerOnly: true}],
-                ['active', 'checkbox'],
+                [['active', 'readOnly', 'required'], 'checkbox'],
                 ['options', 'json'],
                 ['actionBinder', 'relation'],
                 ['overriddenState', 'safe']
@@ -52,11 +54,13 @@ module.exports = class ViewGroup extends Base {
                         'orderNumber',
                         'options',
                         'parent',
+                        'readOnly',
+                        'required',
                         'type'
                     ]
                 }
             },
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'actionBinder'
             ],
             ATTR_LABELS: {
@@ -109,7 +113,7 @@ module.exports = class ViewGroup extends Base {
 
     relActionBinder () {
         const Class = this.getClass('model/ActionBinder');
-        return this.hasOne(Class, Class.PK, 'actionBinder').deleteOnUnlink();
+        return this.hasOne(Class, Class.PK, 'actionBinder');
     }
 
     relAttrs () {

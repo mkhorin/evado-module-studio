@@ -42,7 +42,7 @@ const selectTemplate = _view.get('_part/attr/select');
             template: selectTemplate,
             params: {
                 displayValue: model.getRelatedTitle('refAttr'),
-                extHint: 'Key attribute is used for empty value',
+                extHint: 'Key attribute will be used for empty value',
                 items: null,
                 select2: {ajax: {url: _url('class-attr/list-select')}},
                 depends: refClassMaster,
@@ -57,7 +57,7 @@ const selectTemplate = _view.get('_part/attr/select');
             template: selectTemplate,
             params: {
                 displayValue: model.getRelatedTitle('linkAttr'),
-                extHint: 'Key attribute is used for empty value',
+                extHint: 'Key attribute will be used for empty value',
                 items: null,
                 select2: {
                     ajax: {url: _url('class-attr/list-select')},

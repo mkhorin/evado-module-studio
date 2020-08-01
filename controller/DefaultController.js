@@ -24,11 +24,13 @@ module.exports = class DefaultController extends Base {
     }
 
     async actionDropAll () {
+        this.checkCsrfToken();
         await this.module.dropAll();
         this.send('Metadata deleted');
     }
 
     async actionReload () {
+        this.checkCsrfToken();
         await this.module.getMetaHub().reload();
         this.send('Application metadata reloaded');
     }

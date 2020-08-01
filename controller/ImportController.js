@@ -12,6 +12,7 @@ module.exports = class ImportController extends Base {
     }
 
     async actionMeta () {
+        this.checkCsrfToken();
         const model = this.createModel();
         if (this.isGet()) {
             await model.setDefaultValues();
@@ -24,6 +25,7 @@ module.exports = class ImportController extends Base {
     }
 
     async actionClass () {
+        this.checkCsrfToken();
         const meta = this.createModel();
         const model = this.spawn('import/ClassImport', {meta});
         if (this.isGet()) {
@@ -34,6 +36,7 @@ module.exports = class ImportController extends Base {
     }
 
     async actionView () {
+        this.checkCsrfToken();
         const meta = this.createModel();
         const classModel = await this.getModel({
             Class: this.getClass('model/Class')
@@ -47,6 +50,7 @@ module.exports = class ImportController extends Base {
     }
 
     async actionNavSection () {
+        this.checkCsrfToken();
         const meta = this.createModel();
         const model = this.spawn('import/NavSectionImport', {meta});
         if (this.isGet()) {
@@ -57,6 +61,7 @@ module.exports = class ImportController extends Base {
     }
 
     async actionReport () {
+        this.checkCsrfToken();
         const meta = this.createModel();
         const model = this.spawn('import/ReportImport', {meta});
         if (this.isGet()) {

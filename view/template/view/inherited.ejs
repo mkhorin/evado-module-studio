@@ -1,0 +1,22 @@
+<% layout(_view.get(_layout)) %>
+<% block('tab', 'View') %>
+<% block('title', model.getTitle()); %>
+<% block('titleTranslation', 'none'); %>
+
+<%- include(_view.get('_part/group/columns'), {
+    items: [{
+        template: _view.get('_part/attr/static'),
+        params: {
+            attr: 'original',
+            displayValue: model.getRelatedTitle('original'),
+            url: ['view/update', model.rel('original')]
+        }
+    }, {
+        template: _view.get('_part/attr/static'),
+        params: {
+            attr: 'class',
+            displayValue: model.getRelatedTitle('class'),
+            url: ['class/update', model.rel('class')]
+        }
+    }]
+}) %>

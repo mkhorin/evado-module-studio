@@ -46,7 +46,7 @@ module.exports = class ClassImport extends Base {
         this.model = this.spawn('model/Class', {scenario: 'create'});
         this.data.name = this.baseName;
         this.Helper.assignAttrs(this.data, this.model);
-        this.model.unset('key');
+        this.model.unset('forbiddenView', 'key');
         this.groupImports = [];
         this.groupMap = {};
         if (this.data.parent) {
@@ -78,21 +78,17 @@ module.exports = class ClassImport extends Base {
         if (!this.hasError()) {
             await this.createBehaviors();
         }
-        for (const item of this.attrImports) {
-            if (!this.hasError()) {
-                await item.processDeferredBinding();
-            }
-        }
-        for (const item of this.viewImports) {
-            if (!this.hasError()) {
-                await item.processDeferredBinding();
-            }
-        }
+        await this.processDeferredBindingModels(this.attrImports);
+        await this.processDeferredBindingModels(this.viewImports);
+
         if (!this.hasError()) {
             await this.createTreeView();
         }
         if (!this.hasError()) {
             await this.resolveActiveDescendants();
+        }
+        if (!this.hasError()) {
+            await this.setForbiddenView();
         }
         await this.deleteOnError();
         await PromiseHelper.setImmediate();
@@ -259,6 +255,13 @@ module.exports = class ClassImport extends Base {
         await model.process();
         this.viewImportMap[model.data.name] = model;
         this.assignError(this.Helper.getError(model, `View: ${path.basename(file)}`));
+    }
+
+    setForbiddenView () {
+        if (this.viewImportMap.hasOwnProperty(this.data.forbiddenView)) {
+            this.model.set('forbiddenView', this.viewImportMap[this.data.forbiddenView].model.getId());
+            this.model.forceSave();
+        }
     }
 
     // RULES

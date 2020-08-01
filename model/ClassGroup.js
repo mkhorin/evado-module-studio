@@ -20,6 +20,8 @@ module.exports = class ClassGroup extends Base {
                 'orderNumber',
                 'original',
                 'parent',
+                'readOnly',
+                'required',
                 'type',
                 'actionBinder',
                 'options',
@@ -32,14 +34,14 @@ module.exports = class ClassGroup extends Base {
                 ['name', 'unique', {filter: 'class'}],
                 [['hint', 'label', 'description'], 'string'],
                 ['parent', 'id'],
-                ['active', 'checkbox'],
+                [['active', 'readOnly', 'required'], 'checkbox'],
                 ['orderNumber', 'number', {integerOnly: true}],
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()
                 }],
                 ['overriddenState', 'safe'],
                 ['options', 'json'],
-                [['children', 'actionBinder'], 'relation']
+                [['children', 'actionBinder', 'classAttrs'], 'relation']
             ],
             BEHAVIORS: {
                 'ancestor': {
@@ -77,13 +79,14 @@ module.exports = class ClassGroup extends Base {
                     overriddenBehavior: 'overridden'
                 }
             },
-            UNLINK_ON_DELETE: [
+            DELETE_ON_UNLINK: [
                 'actionBinder',
                 'descendants',
-                'children',
+                'viewGroups'
+            ],
+            UNLINK_ON_DELETE: [
                 'classAttrs',
                 'viewAttrs',
-                'viewGroups',
                 'viewGroupParents'
             ],
             ATTR_LABELS: {
@@ -158,7 +161,7 @@ module.exports = class ClassGroup extends Base {
 
     relActionBinder () {
         const Class = this.getClass('model/ActionBinder');
-        return this.hasOne(Class, Class.PK, 'actionBinder').deleteOnUnlink();
+        return this.hasOne(Class, Class.PK, 'actionBinder');
     }
 
     relChildren () {
@@ -178,7 +181,7 @@ module.exports = class ClassGroup extends Base {
 
     relDescendants () {
         const Class = this.getClass('model/ClassGroup');
-        return this.hasMany(Class, 'original', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'original', this.PK);
     }
 
     relOriginal () {
@@ -203,7 +206,7 @@ module.exports = class ClassGroup extends Base {
 
     relViewGroups () {
         const Class = this.getClass('model/ViewGroup');
-        return this.hasMany(Class, 'classGroup', this.PK).deleteOnUnlink();
+        return this.hasMany(Class, 'classGroup', this.PK);
     }
 };
 module.exports.init(module);
