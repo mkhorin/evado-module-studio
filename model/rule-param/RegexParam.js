@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const Base = require('../../component/param/Param');
+const Base = require('./BaseRuleParam');
 
 module.exports = class RegexParam extends Base {
 
@@ -12,17 +12,13 @@ module.exports = class RegexParam extends Base {
             ATTRS: super.ATTRS.concat([
                 'pattern',
                 'flags',
-                'mismatch',
-                'message'
+                'mismatch'
             ]),
-            RULES: [
+            RULES: super.RULES.concat([
                 ['pattern', 'required'],
                 [['pattern', 'flags', 'message'], 'string'],
                 ['mismatch', 'checkbox']
-            ],
-            ATTR_LABELS: {
-                'message': 'Error message'
-            }
+            ])
         };
     }
 };

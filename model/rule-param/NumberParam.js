@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const Base = require('../../component/param/Param');
+const Base = require('./BaseRuleParam');
 
 module.exports = class NumberParam extends Base {
 
@@ -14,10 +14,10 @@ module.exports = class NumberParam extends Base {
                 'max',
                 'min'
             ]),
-            RULES: [
+            RULES: super.RULES.concat([
                 ['integerOnly', 'checkbox'],
                 [['max', 'min'], 'number']
-            ],
+            ]),
             ATTR_LABELS: {
                 'max': 'Maximum value',
                 'min': 'Minimum value'

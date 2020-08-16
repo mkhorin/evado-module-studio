@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const Base = require('../../component/param/Param');
+const Base = require('./BaseRuleParam');
 
 module.exports = class UniqueParam extends Base {
 
@@ -13,10 +13,10 @@ module.exports = class UniqueParam extends Base {
                 'filter',
                 'ignoreCase'
             ]),
-            RULES: [
+            RULES: super.RULES.concat([
                 ['filter', 'json'],
                 ['ignoreCase', 'checkbox']
-            ]
+            ])
         };
     }
 };

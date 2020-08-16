@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const DEFAULT_COMMANDS = ['add', 'remove', 'create', 'edit'];
+const DEFAULT_COMMANDS = ['edit'];
 const VIEW_TYPES = {
     boolean: 'Boolean',
     date: 'Date',
@@ -32,6 +32,7 @@ module.exports = class ClassAttr extends Base {
                 'class',
                 'commands',
                 'commonSearchable',
+                'createOnRead',
                 'defaultValue',
                 'description',
                 'extHint',
@@ -92,8 +93,9 @@ module.exports = class ClassAttr extends Base {
                 [['viewType', 'overriddenState'], 'safe'],
                 ['indexing', 'number'],
                 ['indexing', 'range', {range:[-1, 1]}],
-                [['commonSearchable', 'eagerLoading', 'escape', 'hidden', 'history', 'multiple', 'readOnly',
-                    'required', 'selectSearchable', 'sortable', 'sortableRelation', 'trim', 'unique'], 'checkbox'],
+                [['commonSearchable', 'createOnRead', 'eagerLoading', 'escape', 'hidden', 'history',
+                    'multiple', 'readOnly', 'required', 'selectSearchable', 'sortable', 'sortableRelation',
+                    'trim', 'unique'], 'checkbox'],
                 ['name', 'validateSystemAttr'], // after readOnly validation
                 [['defaultValue', 'expression', 'filter', 'header', 'options'], 'json'],
                 [['actionBinder', 'behaviors', 'enums', 'rules', 'via'], 'relation']
@@ -184,7 +186,6 @@ module.exports = class ClassAttr extends Base {
                 'name': 'Code name',
                 'refAttr': 'Reference attribute',
                 'refClass': 'Reference class',
-                'sortableRelation': 'Sortable by owner',
                 'via': 'Intermediate link'
             },
             ATTR_VALUE_LABELS: {

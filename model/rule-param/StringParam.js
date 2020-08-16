@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const Base = require('../../component/param/Param');
+const Base = require('./BaseRuleParam');
 
 module.exports = class StringParam extends Base {
 
@@ -14,9 +14,9 @@ module.exports = class StringParam extends Base {
                 'max',
                 'min'
             ]),
-            RULES: [
+            RULES: super.RULES.concat([
                 [['length', 'max', 'min'], 'number', {integerOnly: true, min: 1}]
-            ],
+            ]),
             ATTR_LABELS: {
                 'max': 'Maximum length',
                 'min': 'Minimum length'

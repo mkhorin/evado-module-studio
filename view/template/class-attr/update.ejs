@@ -43,11 +43,10 @@ const relationTemplate = _view.get('_part/attr/relation');
         id: 'Search',
         content: _view.getInternalTemplate('_tabSearch')
     }, {
-        id: 'Behaviors',
-        hint: 'Additional attribute functionality',
+        id: 'Validation',
         content: {
             template: relationTemplate,
-            attr: 'behaviors',
+            attr: 'rules',
             css: 'no-label',
             data: {
                 columns: [{
@@ -65,18 +64,19 @@ const relationTemplate = _view.get('_part/attr/relation');
             }
         }
     },{
-        id: 'Validation',
+        id: 'Behaviors',
+        hint: 'Additional attribute functionality',
         content: {
             template: relationTemplate,
-            attr: 'rules',
+            attr: 'behaviors',
             css: 'no-label',
             data: {
                 columns: [{
                     name: 'type',
                     format: 'label'
-                },{
+                }, {
                     name: 'param'
-                },{
+                }, {
                     name: 'orderNumber'
                 }],
                 order: {orderNumber: 1},

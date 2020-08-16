@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const Base = require('../../component/param/Param');
+const Base = require('./BaseRuleParam');
 
 module.exports = class RelationCounterParam extends Base {
 
@@ -13,9 +13,9 @@ module.exports = class RelationCounterParam extends Base {
                 'max',
                 'min'
             ]),
-            RULES: [
+            RULES: super.RULES.concat([
                 [['max', 'min'], 'number', {min: 1}]
-            ],
+            ]),
             ATTR_LABELS: {
                 'max': 'Maximum objects',
                 'min': 'Minimum objects'

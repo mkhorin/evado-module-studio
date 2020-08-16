@@ -19,15 +19,18 @@
         id: 'Grouping',
         content: _view.getInternalTemplate('_tabGroups')
     },{
-        id: 'Behaviors',
+        id: 'Validation',
         content: {
             template: _view.get('_part/attr/relation'),
-            attr: 'behaviors',
+            attr: 'rules',
             css: 'no-label',
             data: {
                 columns: [{
+                    name: 'attrs',
+                    format: 'relation'
+                }, {
                     name: 'type',
-                    translateData: ''
+                    format: 'label'
                 }, {
                     name: 'param'
                 }, {
@@ -40,21 +43,18 @@
             }
         }
     },{
-        id: 'Validation',
+        id: 'Behaviors',
         content: {
             template: _view.get('_part/attr/relation'),
-            attr: 'rules',
+            attr: 'behaviors',
             css: 'no-label',
             data: {
                 columns: [{
-                    name: 'attrs',
-                    format: 'relation'
-                },{
                     name: 'type',
-                    format: 'label'
-                },{
+                    translateData: ''
+                }, {
                     name: 'param'
-                },{
+                }, {
                     name: 'orderNumber'
                 }],
                 order: {orderNumber: 1},

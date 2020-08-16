@@ -24,14 +24,16 @@ const relationTemplate = _view.get('_part/attr/relation');
         id: 'Groups',
         content: _view.getInternalTemplate('_tabGroups')
     }, {
-        id: 'Behaviors',
-        hint: 'Additional class functionality',
+        id: 'Validation',
         content: {
             template: relationTemplate,
-            attr: 'behaviors',
+            attr: 'rules',
             css: 'no-label',
             data: {
                 columns: [{
+                    name: 'attrs',
+                    format: 'relation'
+                }, {
                     name: 'type',
                     translateData: ''
                 }, {
@@ -46,21 +48,19 @@ const relationTemplate = _view.get('_part/attr/relation');
             }
         }
     },{
-        id: 'Validation',
+        id: 'Behaviors',
+        hint: 'Additional class functionality',
         content: {
             template: relationTemplate,
-            attr: 'rules',
+            attr: 'behaviors',
             css: 'no-label',
             data: {
                 columns: [{
-                    name: 'attrs',
-                    format: 'relation'
-                },{
                     name: 'type',
                     translateData: ''
-                },{
+                }, {
                     name: 'param'
-                },{
+                }, {
                     name: 'orderNumber'
                 }],
                 order: {orderNumber: 1},

@@ -4,6 +4,7 @@ const viewSelect2 = {
     queryData: {pid: model.get('classAttr.refClass')}
 };
 const viewUpdate = _url('view/update');
+const checkboxTemplate = _view.get('_part/attr/checkbox');
 const columnTemplate = _view.get('_part/group/columns');
 const overriddenTemplate = _view.get('_part/attr/overridden');
 const selectTemplate = _view.get('_part/attr/select');
@@ -51,7 +52,13 @@ const stringTemplate = _view.get('_part/attr/string');
         template: overriddenTemplate,
         params: {
             attr: 'eagerLoading',
-            template: _view.get('_part/attr/checkbox')
+            template: checkboxTemplate
+        }
+    },{
+        template: overriddenTemplate,
+        params: {
+            attr: 'createOnRead',
+            template: checkboxTemplate
         }
     }]
 }) %>

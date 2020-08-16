@@ -13,6 +13,7 @@ module.exports = class BaseRule extends Base {
                 'custom': require('../../model/rule-param/CustomParam'),
                 'email': require('../../model/rule-param/EmailParam'),
                 'expression': require('../../model/rule-param/ExpressionParam'),
+                'condition': require('../../model/rule-param/ConditionParam'),
                 'number': require('../../model/rule-param/NumberParam'),
                 'string': require('../../model/rule-param/StringParam'),
                 'regex': require('../../model/rule-param/RegexParam'),
@@ -22,7 +23,8 @@ module.exports = class BaseRule extends Base {
             ATTR_VALUE_LABELS: {
                 'type': {
                     custom: 'Custom validator',
-                    email: 'E-mail',
+                    email: 'Email',
+                    condition: 'Condition',
                     expression: 'Expression',
                     number: 'Number',
                     string: 'String',

@@ -3,8 +3,6 @@
  */
 'use strict';
 
-const DEFAULT_COMMANDS = ['create', 'edit', 'delete'];
-
 const Base = require('../component/base/BaseActiveRecord');
 
 module.exports = class Class extends Base {
@@ -15,7 +13,6 @@ module.exports = class Class extends Base {
             ATTRS: [
                 'abstract',
                 'activeDescendants',
-                'commands',
                 'description',
                 'disableTreeView',
                 'forbiddenView',
@@ -40,8 +37,6 @@ module.exports = class Class extends Base {
                 [['name', 'label'], 'unique'],
                 [['label', 'description', 'templateRoot'], 'string'],
                 [['header', 'order', 'grouping', 'options'], 'json'],
-                ['commands', 'filter', {filter: 'split'}],
-                ['commands', 'default', {value: DEFAULT_COMMANDS}],
                 ['modelConfig', 'spawn', {BaseClass: require('evado-meta-base/model/Model')}],
                 [['abstract', 'disableTreeView'], 'checkbox'],
                 [['activeDescendants', 'behaviors', 'indexes', 'rules', 'states', 'transitions',
@@ -89,8 +84,7 @@ module.exports = class Class extends Base {
                 create: 'Create',
                 edit: 'Edit',
                 delete: 'Delete'
-            },
-            DEFAULT_COMMANDS
+            }
         };
     }
 

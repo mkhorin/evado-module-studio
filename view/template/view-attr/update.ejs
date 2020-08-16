@@ -14,10 +14,10 @@ if (classAttr.isRelation() || classAttr.isUser()) {
     });
 }
 items.push({
-    id: 'Behaviors',
+    id: 'Validation',
     content: {
         template: _view.get('_part/attr/relation'),
-        attr: 'behaviors',
+        attr: 'rules',
         css: 'no-label',
         data: {
             columns: [{
@@ -35,18 +35,18 @@ items.push({
         }
     }
 },{
-    id: 'Validation',
+    id: 'Behaviors',
     content: {
         template: _view.get('_part/attr/relation'),
-        attr: 'rules',
+        attr: 'behaviors',
         css: 'no-label',
         data: {
             columns: [{
                 name: 'type',
                 format: 'label'
-            },{
+            }, {
                 name: 'param'
-            },{
+            }, {
                 name: 'orderNumber'
             }],
             order: {orderNumber: 1},

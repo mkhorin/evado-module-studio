@@ -5,15 +5,15 @@
 
 const Base = require('./BaseRuleParam');
 
-module.exports = class ExpressionParam extends Base {
+module.exports = class ConditionParam extends Base {
 
     static getConstants () {
         return {
             ATTRS: super.ATTRS.concat([
-                'expression'
+                'condition'
             ]),
             RULES: super.RULES.concat([
-                ['expression', 'json']
+                ['condition', 'json']
             ])
         };
     }
