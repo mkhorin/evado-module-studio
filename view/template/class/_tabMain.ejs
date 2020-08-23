@@ -32,13 +32,13 @@ const stringTemplate = _view.get('_part/attr/string');
         template: jsonTemplate,
         params: {
             attr: 'order',
-            extHint: 'Object list order'
+            extHint: 'Object list order: {attrName: 1}'
         }
     },{
         template: jsonTemplate,
         params: {
             attr: 'grouping',
-            extHint: 'Object list grouping'
+            extHint: 'Object list grouping: {attrName: 1}'
         }
     }]
 }) %>
@@ -47,7 +47,8 @@ const stringTemplate = _view.get('_part/attr/string');
     items: [{
         template: stringTemplate,
         params: {
-            attr: 'templateRoot'
+            attr: 'templateRoot',
+            extHint: 'Root folder of view templates (relative to the base location)'
         }
     },{
         template: _view.get(model.rel('parent') ? null : '_part/attr/select'),

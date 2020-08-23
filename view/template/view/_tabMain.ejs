@@ -22,12 +22,14 @@ const viewUpdate = _url('view/update');
     items: [{
         template: jsonTemplate,
         params: {
-            attr: 'order'
+            attr: 'order',
+            extHint: 'Object list order: {attrName: 1}'
         }
     },{
         template: jsonTemplate,
         params: {
-            attr: 'grouping'
+            attr: 'grouping',
+            extHint: 'Object list grouping: {attrName: 1}'
         }
     }]
 }) %>
@@ -42,7 +44,8 @@ const viewUpdate = _url('view/update');
     }, {
         template: _view.get('_part/attr/string'),
         params: {
-            attr: 'templateRoot'
+            attr: 'templateRoot',
+            extHint: 'Root folder of view templates (relative to the base location)'
         }
     }]
 }) %>

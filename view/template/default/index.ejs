@@ -2,22 +2,16 @@
 <% block('title', 'Create application') %>
 
 <div class="folder panel-default panel">
-    <div class="panel-heading">
-        <h4 class="panel-title">Overview</h4>
-    </div>
     <div class="panel-body">
         <p>
-            Studio creates metadata describing the structure of application.
+            The Studio module creates metadata describing application entities and relationships between them.
             <br>
-            For example, the <b>Blog</b> application consists
-            of the <b>Article</b>, <b>Category</b>, <b>Comment</b> and other classes.
+            For example, the Blog application consists
+            of the Article, Category, Comment, and others classes.
         </p>
         <p>
-            Created metadata is stored in a separate storage.
-            Export data to the <b>metadata/app</b> folder to create application.
-            <br>
-            You can export to other place,
-            but application is launched from the <b>metadata/app</b> folder only.
+            The created entities are in a separate store.
+            Export them to <b>metadata/app</b> folder to load into the application.
         </p>
     </div>
 </div>
@@ -29,13 +23,14 @@
     <div class="panel-body">
         <p>
             Attribute describes a single class element.<br>
-            For example, the <b>Article</b> class consists
-            of the <b>Title</b>, <b>Content</b>, <b>Date</b> and other attributes.
+            For example, the Article class consists
+            of the Title, Content, Date and other attributes.
         </p>
         <p>
-            Each attribute has a specific type depending on stored data.<br>
-            For example, the <b>Title</b> attribute is of type <b>String</b>,
-            the <b>CreatedAt</b> attribute is of type <b>Date</b>.
+            Each attribute has a specific type depending on stored data.
+            <br>
+            For example, the Title attribute is of type String,
+            the Content attribute is of type Text.
         </p>
     </div>
 </div>
@@ -46,21 +41,23 @@
     </div>
     <div class="panel-body">
         <p>
-            Attribute types <b>Reference</b> and <b>Back reference</b> define relationship between classes.
-            Link settings are on the <b>Relation</b> tab.<br>
-            For example, the <b>Article</b> class is associated with the <b>Category</b> class,
-            since each article can be placed in any category.
+            Attribute types Reference and Back reference define relationship between classes.
+            Link settings are on the Relation tab.
+            <br>
+            The Reference type stores the link directly in the class instance.
+            For example, a comment has a link to the article it refers to.
         </p>
         <p>
-            Type <b>Reference</b> stores link data directly in a class object.<br>
-            Type <b>Back reference</b> retrieves link data from an object of reference class.<br>
-            For example, comments for article are retrieved via a back reference,
-            since each comment contains an article identifier.
+            The Back reference type retrieves the link data from the object of the referenced class.
+            <br>
+            For example, comments for an article are retrieved from a back reference,
+            because each comment stores an article ID. The article itself does not store any data about comments.
         </p>
         <p>
-            Relation can be multiple or single.<br>
-            Comments in the <b>Article</b> class is an example of a multiple relation.
-            Article in the <b>Comment</b> class is an example of a single relation.
+            The linking can be multiple or single.
+            <br>
+            An article link in a comment is an example of a single link.
+            A link to comments in an article is an examples of a multiple link.
         </p>
     </div>
 </div>
@@ -71,13 +68,18 @@
     </div>
     <div class="panel-body">
         <p>
-            View overrides class parameters for specific use cases.<br>
-            For example, when displaying class objects in a list, only selected attributes can be shown.
+            The view overrides class parameters for specific use cases.
+            <br>
+            For example, when displaying objects in a list, only selected attributes can be shown.
         </p>
         <p>
-            The <b>create</b> codename is used to represent a object when created.<br>
-            The <b>edit</b> codename is used to represent a object when edited.
-            The <b>list</b> codename is used to represent objects in a list.<br>
+            The codename "list" is used to represent objects in the list.
+            <br>
+            The codename "create" is used to represent the object when it is created.
+            <br>
+            The codename "edit" is used to represent the object when editing.
+            <br>
+            The codename "eager" is used to represent the eager load object.
         </p>
     </div>
 </div>
@@ -88,7 +90,7 @@
     </div>
     <div class="panel-body">
         <p>
-            The Office sidebar menu is created by the navigation section named <b>main</b>.
+            The Office module sidebar menu is created from the navigation section codenamed "main".
         </p>
     </div>
 </div>

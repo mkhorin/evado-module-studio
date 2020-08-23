@@ -50,8 +50,6 @@ module.exports = class ClassController extends Base {
                 return 'attrs';
             case 'rules':
                 return 'attrs';
-            case 'states':
-                return 'view';
             case 'transitions':
                 return ['startStates', 'finalState'];
             case 'treeViewLevels':
