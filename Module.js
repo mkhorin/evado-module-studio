@@ -9,14 +9,22 @@ module.exports = class StudioModule extends Base {
 
     static getConstants ()  {
         return {
-            VIEW_LAYOUT: '_layout/content',
             BEHAVIORS: {
                 'access': {
                     Class: require('areto/filter/AccessControl'),
-                    rules: [{permissions: ['moduleStudio']}]
+                    rules: [{
+                        permissions: ['moduleStudio']
+                    }]
                 }
             }
         };
+    }
+
+    constructor (config) {
+        super({
+            defaultViewLayout: '_layout/content',
+            ...config
+        });
     }
 
     async dropAll () {
