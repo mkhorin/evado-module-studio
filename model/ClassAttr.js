@@ -262,6 +262,11 @@ module.exports = class ClassAttr extends Base {
                     ['localDate', VIEW_TYPES.localDate],
                     ['localDatetime', VIEW_TYPES.localDatetime]
                 ]
+            }, {
+                condition: {type: ['user']},
+                items: [
+                    ['string', VIEW_TYPES.string]
+                ]
             }],
             COMMAND_VALUE_LABELS: {
                 add: 'Add',

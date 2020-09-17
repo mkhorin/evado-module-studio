@@ -30,7 +30,7 @@ module.exports = class ClassController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().find().with('parent'));
+        return super.actionList(this.createModel().createQuery().with('parent'));
     }
 
     async actionListRealDescendants () {

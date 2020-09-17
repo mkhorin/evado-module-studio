@@ -5,10 +5,10 @@
 
 const Base = require('../component/base/CrudController');
 
-module.exports = class NavNodeController extends Base {
+module.exports = class NodeController extends Base {
 
     getModelClass () {
-        return this.getClass('model/NavNode');
+        return this.getClass('model/Node');
     }
 
     actionCreateBySection () {
@@ -25,7 +25,7 @@ module.exports = class NavNodeController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().find().with('section', 'parent'));
+        return super.actionList(this.createModel().createQuery().with('section', 'parent'));
     }
 
     getListRelatedWith (relation) {

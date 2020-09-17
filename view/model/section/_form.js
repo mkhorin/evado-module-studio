@@ -5,6 +5,6 @@
 
 const Base = require('areto/view/ViewModel');
 
-module.exports = class NavSectionForm extends Base {
+module.exports = class SectionForm extends Base {
     
 };

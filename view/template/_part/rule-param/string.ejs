@@ -1,8 +1,4 @@
 
-<%- include(_view.get('_part/attr/string'), {
-    attr: 'length'
-}) %>
-
 <%- include(_view.get('_part/group/columns'), {
     items: [{
         template: _view.get('_part/attr/string'),
@@ -15,6 +11,10 @@
             attr: 'max'
         }
     }]
+}) %>
+
+<%- include(_view.get('_part/attr/string'), {
+    attr: 'length'
 }) %>
 
 <%- include(_view.get('_part/attr/string'), {

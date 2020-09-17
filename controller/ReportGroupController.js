@@ -32,7 +32,7 @@ module.exports = class ReportGroupController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().find().with('report', 'parent'));
+        return super.actionList(this.createModel().createQuery().with('report', 'parent'));
     }
 
     getListRelatedWith (relation) {

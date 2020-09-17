@@ -40,7 +40,7 @@ module.exports = class Report extends Base {
                 'behaviors',
                 'groups',
                 'indexes',
-                'navNodes'
+                'nodes'
             ],
             ATTR_LABELS: {
                 'name': 'Code name',
@@ -97,8 +97,8 @@ module.exports = class Report extends Base {
         return this.hasMany(Class, 'report', this.PK);
     }
 
-    relNavNodes () {
-        const Class = this.getClass('model/NavNode');
+    relNodes () {
+        const Class = this.getClass('model/Node');
         return this.hasMany(Class, 'report', this.PK);
     }
 };

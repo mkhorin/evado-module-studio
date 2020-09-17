@@ -35,7 +35,7 @@ module.exports = class Via extends Base {
     }
 
     async getMap () {
-        const models = await this.find().with({
+        const models = await this.createQuery().with({
             refClass: query => query.raw(),
             refAttr: query => query.raw(),
             linkAttr: query => query.raw()

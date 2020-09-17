@@ -49,7 +49,7 @@ module.exports = class ClassGroupController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().find().with('class', 'parent'));
+        return super.actionList(this.createModel().createQuery().with('class', 'parent'));
     }
 
     actionListSetSelect () {

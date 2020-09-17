@@ -18,7 +18,7 @@ module.exports = class ReportAttrController extends Base {
     }
 
     actionList () {
-        const query = this.spawn('model/ReportAttr').find().with('class', 'original', 'group');
+        const query = this.spawn('model/ReportAttr').createQuery().with('class', 'original', 'group');
         return super.actionList(query);
     }
 

@@ -5,11 +5,11 @@
 
 const Base = require('../component/base/BaseActiveRecord');
 
-module.exports = class NavSection extends Base {
+module.exports = class Section extends Base {
 
     static getConstants () {
         return {
-            TABLE: 'studio_navSection',
+            TABLE: 'studio_section',
             ATTRS: [
                 'name',
                 'label',
@@ -51,7 +51,7 @@ module.exports = class NavSection extends Base {
     // RELATIONS
 
     relNodes () {
-        const Class = this.getClass('model/NavNode');
+        const Class = this.getClass('model/Node');
         return this.hasMany(Class, 'section', this.PK).and({parent: null}).order({orderNumber: 1});
     }
 };

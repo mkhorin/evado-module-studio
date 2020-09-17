@@ -56,7 +56,7 @@ module.exports = class ClassAttrController extends Base {
     }
 
     actionList () {
-        const query = this.createModel().find().with('class', 'original', 'group');
+        const query = this.createModel().createQuery().with('class', 'original', 'group');
         return super.actionList(query);
     }
 
@@ -80,7 +80,7 @@ module.exports = class ClassAttrController extends Base {
     }
 
     actionListSelectAll () {
-        return this.sendSelectList(this.createModel().find());
+        return this.sendSelectList(this.createModel().createQuery());
     }
 
     async actionListUnusedByView () {

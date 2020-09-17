@@ -7,7 +7,7 @@
     template: _view.get('_part/tool/updateReportIndexes')
 }); %>
 
-<%- include('./_form') %>
+<%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
     items: [{

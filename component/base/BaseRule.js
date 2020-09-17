@@ -24,10 +24,10 @@ module.exports = class BaseRule extends Base {
                 'type': {
                     custom: 'Custom validator',
                     email: 'Email',
-                    condition: 'Condition',
-                    expression: 'Expression',
-                    number: 'Number',
                     string: 'String',
+                    number: 'Number',
+                    expression: 'Calculated expression',
+                    condition: 'Condition',
                     regex: 'Regular expression',
                     relationCounter: 'Relation counter',
                     unique: 'Unique'

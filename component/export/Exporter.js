@@ -64,8 +64,8 @@ module.exports = class Exporter extends Base {
         await this.reload();
     }
 
-    async exportNavSection (model) {
-        const handler = this.getHandler(model, 'export/NavSectionExport');
+    async exportSection (model) {
+        const handler = this.getHandler(model, 'export/SectionExport');
         await this.meta.process(handler, 'Navigation section export');
         await this.reload();
     }

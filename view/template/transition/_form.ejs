@@ -68,7 +68,9 @@ const stringTemplate = _view.get('_part/attr/string');
     items: null,
     select2: {
         ajax: {url: _url('state/list-select')},
-        queryData: {pid: model.get('class')}
+        queryData: {pid: model.get('class')},
+        placeholder: 'Null state',
+        translate: ''
     },
     update: _url('state/update')
 }) %>
@@ -79,7 +81,8 @@ const stringTemplate = _view.get('_part/attr/string');
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'config'
+    attr: 'config',
+    extHint: 'Transit instantiation configuration'
 }) %>
 
 <%- include(jsonTemplate, {

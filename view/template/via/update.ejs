@@ -1,7 +1,7 @@
 <% block('title', model.getTitle()); %>
 <% block('titleTranslation', 'none'); %>
 
-<%- include('./_form') %>
+<%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/attr/relation'), {
     attr: 'via',

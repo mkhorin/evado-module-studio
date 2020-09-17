@@ -9,10 +9,10 @@ module.exports = class MetaExport extends Base {
 
     async execute () {
         const viaMap = await this.getViaMap();
-        const classes = await this.spawn('model/Class').find().with('attrs').all();
-        const reports = await this.spawn('model/Report').find().with('attrs').all();
-        const sections = await this.spawn('model/NavSection').find().with('module').all();
-        const nodeMap = await this.spawn('model/NavNode').getMap();
+        const classes = await this.spawn('model/Class').createQuery().with('attrs').all();
+        const reports = await this.spawn('model/Report').createQuery().with('attrs').all();
+        const sections = await this.spawn('model/Section').createQuery().with('module').all();
+        const nodeMap = await this.spawn('model/Node').getMap();
         await this.createDirectory();
         for (const item of classes) {
             await this.exportClass(item, viaMap);
@@ -21,7 +21,7 @@ module.exports = class MetaExport extends Base {
             await this.exportReport(item);
         }
         for (const item of sections) {
-            await this.exportNavSection(item, nodeMap);
+            await this.exportSection(item, nodeMap);
         }
     }
 
@@ -48,9 +48,9 @@ module.exports = class MetaExport extends Base {
         return this.spawn('export/ReportExport', {exporter, model}).execute();
     }
 
-    exportNavSection (model, nodeMap) {
+    exportSection (model, nodeMap) {
         const exporter = this.exporter;
-        return this.spawn('export/NavSectionExport', {exporter, model, nodeMap}).execute();
+        return this.spawn('export/SectionExport', {exporter, model, nodeMap}).execute();
     }
 };
 

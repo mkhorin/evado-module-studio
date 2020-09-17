@@ -5,11 +5,11 @@
 
 const Base = require('../component/base/BaseActiveRecord');
 
-module.exports = class NavNode extends Base {
+module.exports = class Node extends Base {
 
     static getConstants () {
         return {
-            TABLE: 'studio_navNode',
+            TABLE: 'studio_node',
             ATTRS: [
                 'section',
                 'parent',
@@ -60,7 +60,7 @@ module.exports = class NavNode extends Base {
     }
 
     async getMap () {
-        const models = await this.find().with('class', 'view', 'report').all();
+        const models = await this.createQuery().with('class', 'view', 'report').all();
         return {
             byId: IndexHelper.indexModels(models, this.PK),
             bySection: IndexHelper.indexModelArrays(models, 'section')
@@ -89,7 +89,7 @@ module.exports = class NavNode extends Base {
     cloneFor (owner) {
         const model = this.spawnSelf();
         model.getBehavior('clone').setOriginal(this);
-        if (owner instanceof this.getClass('model/NavSection')) {
+        if (owner instanceof this.getClass('model/Section')) {
             model.set('section', owner.getId());
         } else {
             model.set('section', owner.get('section'));
@@ -112,7 +112,7 @@ module.exports = class NavNode extends Base {
     // RELATIONS
 
     relChildren () {
-        const Class = this.getClass('model/NavNode');
+        const Class = this.getClass('model/Node');
         return this.hasMany(Class, 'parent', this.PK);
     }
 
@@ -122,7 +122,7 @@ module.exports = class NavNode extends Base {
     }
 
     relParent () {
-        const Class = this.getClass('model/NavNode');
+        const Class = this.getClass('model/Node');
         return this.hasOne(Class, Class.PK, 'parent');
     }
 
@@ -132,7 +132,7 @@ module.exports = class NavNode extends Base {
     }
 
     relSection () {
-        const Class = this.getClass('model/NavSection');
+        const Class = this.getClass('model/Section');
         return this.hasOne(Class, Class.PK, 'section');
     }
 

@@ -64,7 +64,7 @@ module.exports = class Class extends Base {
                 'children',
                 'groups',
                 'indexes',
-                'navNodes',
+                'nodes',
                 'rules',
                 'states',
                 'transitions',
@@ -226,8 +226,8 @@ module.exports = class Class extends Base {
         return this.hasOne(Class, Class.PK, 'key');
     }
 
-    relNavNodes () {
-        const Class = this.getClass('model/NavNode');
+    relNodes () {
+        const Class = this.getClass('model/Node');
         return this.hasMany(Class, 'class', this.PK);
     }
 

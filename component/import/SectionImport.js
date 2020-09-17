@@ -5,7 +5,7 @@
 
 const Base = require('./ImportModel');
 
-module.exports = class NavSectionImport extends Base {
+module.exports = class SectionImport extends Base {
 
     static getConstants () {
         return {
@@ -16,15 +16,15 @@ module.exports = class NavSectionImport extends Base {
     }
 
     async validateData () {
-        await this.validateNavSection();
+        await this.validateSection();
         if (!this.hasError()) {
             await this.createNodes();
         }
         return PromiseHelper.setImmediate();
     }
 
-    validateNavSection () {
-        this.model = this.spawn('model/NavSection', {scenario: 'create'});
+    validateSection () {
+        this.model = this.spawn('model/Section', {scenario: 'create'});
         this.Helper.assignAttrs(this.data, this.model);
         this.model.set('name', this.baseName);
         return this.save();
@@ -41,7 +41,7 @@ module.exports = class NavSectionImport extends Base {
     }
 
     createNode (data) {
-        const node = this.spawn('import/NavNodeImport', {
+        const node = this.spawn('import/NodeImport', {
             owner: this,
             meta: this.meta,
             sectionModel: this.model,

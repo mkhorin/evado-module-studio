@@ -5,10 +5,10 @@
 
 const Base = require('./ImportBase');
 
-module.exports = class NavNodeImport extends Base {
+module.exports = class NodeImport extends Base {
 
     async process () {
-        this.model = this.spawn('model/NavNode', {scenario: 'create'});
+        this.model = this.spawn('model/Node', {scenario: 'create'});
         this.Helper.assignAttrs(this.data, this.model);
         this.model.set('section', this.sectionModel.getId());
         this.model.unset('parent', 'class', 'view', 'report');

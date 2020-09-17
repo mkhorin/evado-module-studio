@@ -31,7 +31,7 @@ module.exports = class MetaImport extends Base {
             await this.createReports();
         }
         if (!this.hasError()) {
-            await this.createNavSections();
+            await this.createSections();
         }
     }
 
@@ -45,7 +45,7 @@ module.exports = class MetaImport extends Base {
         if (this.hasError()) {
             await this.deleteImports(this.classImports);
             await this.deleteImports(this.reportImports);
-            await this.deleteImports(this.navSectionImports);
+            await this.deleteImports(this.sectionImports);
             this.log('error', 'Import error', this.getErrors());
         }
     }
@@ -149,22 +149,22 @@ module.exports = class MetaImport extends Base {
 
     // NAVIGATION
 
-    async createNavSections () {
+    async createSections () {
         const dir = path.join(this.basePath, 'navigation');
         const files = await FileHelper.readDirectory(dir);
-        this.navSectionImports = [];
+        this.sectionImports = [];
         for (const file of FileHelper.filterJsonFiles(files)) {
-            await this.createNavSection(path.join(dir, file));
+            await this.createSection(path.join(dir, file));
         }
     }
 
-    async createNavSection (file) {
-        const model = this.spawn('import/NavSectionImport', {meta: this, file});
+    async createSection (file) {
+        const model = this.spawn('import/SectionImport', {meta: this, file});
         model.set('source', FileHelper.trimExtension(file));
-        this.navSectionImports.push(model);
+        this.sectionImports.push(model);
         model.set('source', file);
         await model.process();
-        this.assignError(this.Helper.getError(model, `NavSection: ${file}`));
+        this.assignError(this.Helper.getError(model, `Section: ${file}`));
     }
 
     // DEFERRED BINDING
@@ -176,7 +176,7 @@ module.exports = class MetaImport extends Base {
         await this.resolveClassMap();
         await this.processDeferredBindingModels(this.classImports, 'Class');
         await this.processDeferredBindingModels(this.reportImports, 'Report');
-        await this.processDeferredBindingModels(this.navSectionImports, 'NavSection');
+        await this.processDeferredBindingModels(this.sectionImports, 'Section');
         await this.deleteOnError();
         await PromiseHelper.setImmediate();
     }

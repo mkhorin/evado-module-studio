@@ -37,13 +37,13 @@ module.exports = class ExportController extends Base {
         });
     }
 
-    async actionNavSection () {
+    async actionSection () {
         this.checkCsrfToken();
         const model = await this.getModel({
-            Class: this.getClass('model/NavSection')
+            Class: this.getClass('model/Section')
         });
         return this.createExporter('Export navigation section', async exporter => {
-            await exporter.exportNavSection(model);
+            await exporter.exportSection(model);
             await this.renderResult('Navigation section exported', exporter);
         });
     }

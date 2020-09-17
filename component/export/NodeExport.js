@@ -5,7 +5,7 @@
 
 const Base = require('./BaseExport');
 
-module.exports = class NavNodeExport extends Base {
+module.exports = class NodeExport extends Base {
 
     execute () {
         const data = {

@@ -5,16 +5,16 @@
 
 const Base = require('./BaseExport');
 
-module.exports = class NavSectionExport extends Base {
+module.exports = class SectionExport extends Base {
 
     async execute () {
         await PromiseHelper.setImmediate();
-        this.nodeMap = this.nodeMap || await this.spawn('model/NavNode').getMap();
+        this.nodeMap = this.nodeMap || await this.spawn('model/Node').getMap();
         const data = await this.getData();
-        return this.saveJson(this.getNavSectionFile(), data);
+        return this.saveJson(this.getSectionFile(), data);
     }
 
-    getNavSectionFile () {
+    getSectionFile () {
         return this.getNavigationPath(`${this.model.get('name')}.json`);
     }
 
@@ -31,7 +31,7 @@ module.exports = class NavSectionExport extends Base {
     }
 
     getNodeData (model) {
-        return this.spawn('export/NavNodeExport', {nodeMap: this.nodeMap, model}).execute();
+        return this.spawn('export/NodeExport', {nodeMap: this.nodeMap, model}).execute();
     }
 };
 

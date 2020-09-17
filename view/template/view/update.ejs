@@ -5,7 +5,7 @@
     url: _url('export/view', model)
 }); %>
 
-<%- include('./_form') %>
+<%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
     items: [{

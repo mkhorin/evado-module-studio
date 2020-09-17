@@ -1,5 +1,4 @@
 <% block('title', 'Create view') %>
 
-<%- include('./_form') %>
-
-<%- include('./_tabMain') %>
+<%- include(_view.getInternalTemplate('_form')) %>
+<%- include(_view.getInternalTemplate('_tabMain')) %>

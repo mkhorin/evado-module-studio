@@ -28,7 +28,7 @@ module.exports = class ViewAttrController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().find().with('classAttr', 'class', 'view'));
+        return super.actionList(this.createModel().createQuery().with('classAttr', 'class', 'view'));
     }
 };
 module.exports.init(module);

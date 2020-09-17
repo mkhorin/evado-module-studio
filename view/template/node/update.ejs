@@ -1,24 +1,31 @@
+<% block('tab', 'Node') %>
 <% block('title', model.getTitle()); %>
 <% block('titleTranslation', 'none'); %>
 <% block('commands', {
     template: _view.get('_part/tool/modelExport'),
-    url: _url('export/nav-section', model)
-});%>
+    url: _url('export/section', model.rel('section'))
+}); %>
 
-<%- include('./_form') %>
+<%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
     items: [{
-        id: 'Nodes',
+        id: 'Main',
+        active: true,
+        content: _view.getInternalTemplate('_tabMain')
+    }, {
+        id: 'Children',
         content: {
             template: _view.get('_part/attr/relation'),
-            attr: 'nodes',
+            attr: 'children',
             css: 'no-label',
             data: {
                 columns: [{
-                    name: 'name'
+                    name: 'name',
+                    sortable: true
                 }, {
-                    name: 'label'
+                    name: 'label',
+                    sortable: true
                 }, {
                     name: 'class',
                     format: {
@@ -44,7 +51,7 @@
                 order: {orderNumber: 1},
                 link: null,
                 unlink: null,
-                create: ['nav-node/create-by-section', model],
+                create: ['create-by-node', model],
                 modalSort: true
             }
         }

@@ -67,7 +67,7 @@ module.exports = class ViewController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().find().with('class'));
+        return super.actionList(this.createModel().createQuery().with('class'));
     }
 
     actionListSelect () {

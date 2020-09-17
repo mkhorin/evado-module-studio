@@ -49,10 +49,10 @@ module.exports = class ImportController extends Base {
         return this.processModel(model, 'View imported');
     }
 
-    async actionNavSection () {
+    async actionSection () {
         this.checkCsrfToken();
         const meta = this.createModel();
-        const model = this.spawn('import/NavSectionImport', {meta});
+        const model = this.spawn('import/SectionImport', {meta});
         if (this.isGet()) {
             await model.setDefaultValues();
             return this.renderForm('Import navigation section', model);

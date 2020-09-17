@@ -1,7 +1,6 @@
 <% block('title', 'Create class attribute') %>
 
-<%- include('./_form') %>
-
+<%- include(_view.getInternalTemplate('_form')) %>
 <%- include(_view.getInternalTemplate('_tabMainBase')) %>
 
 <div class="form-container" data-action-binder='{"show":{"type":["backref","ref"]}}'>

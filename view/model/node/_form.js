@@ -5,7 +5,7 @@
 
 const Base = require('areto/view/ViewModel');
 
-module.exports = class NavNodeForm extends Base {
+module.exports = class NodeForm extends Base {
 
     async resolveTemplateData () {
         const model = this.data.model;
