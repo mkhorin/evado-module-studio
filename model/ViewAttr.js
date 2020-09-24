@@ -44,7 +44,6 @@ module.exports = class ViewAttr extends Base {
                 [['classAttr', 'view'], 'required'],
                 [['classAttr', 'view', 'group', 'eagerView', 'listView', 'selectListView'], 'id'],
                 [['label', 'hint', 'extHint'], 'string'],
-                [['label'], 'unique', {filter: 'view'}],
                 [['eagerDepth', 'orderNumber'], 'number', {integerOnly: true}],
                 [['overriddenState', 'viewType'], 'safe'],
                 [['createOnRead', 'eagerLoading', 'escape', 'hidden', 'history', 'readOnly', 'required',
@@ -108,6 +107,10 @@ module.exports = class ViewAttr extends Base {
         return attrs.filter(attr => {
             return CommonHelper.isEqual(groupId, attr.getBehavior('overridden').get('classGroup'));
         });
+    }
+
+    getTitle () {
+        return this.getFullTitle();
     }
 
     async createByClassAttrs (attrs, view) {

@@ -49,6 +49,10 @@ module.exports = class Report extends Base {
         };
     }
 
+    getTitle () {
+        return this.getFullTitle();
+    }
+
     static async filterInheritedChanges (changes, model, attr) {
         model = model.getRelation(attr).model;
         changes.deletes = await model.findById(changes.deletes).and({original: null}).column(model.PK);

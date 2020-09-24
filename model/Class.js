@@ -34,7 +34,7 @@ module.exports = class Class extends Base {
                     Class: require('../component/validator/CodeNameValidator'),
                     validFilename: true
                 }],
-                [['name', 'label'], 'unique'],
+                ['name', 'unique'],
                 [['label', 'description', 'templateRoot'], 'string'],
                 [['header', 'order', 'grouping', 'options'], 'json'],
                 ['modelConfig', 'spawn', {BaseClass: require('evado-meta-base/model/Model')}],
@@ -94,6 +94,10 @@ module.exports = class Class extends Base {
 
     hasParent () {
         return !!this.get('parent');
+    }
+
+    getTitle () {
+        return this.getFullTitle();
     }
 
     async getAncestors (classId) {

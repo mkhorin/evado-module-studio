@@ -48,6 +48,10 @@ module.exports = class ReportGroup extends Base {
         };
     }
 
+    getTitle () {
+        return this.getFullTitle();
+    }
+
     findForSelect (id) {
         return super.findForSelect(['ID', 'report', id]);
     }

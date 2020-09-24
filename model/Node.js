@@ -59,6 +59,10 @@ module.exports = class Node extends Base {
         };
     }
 
+    getTitle () {
+        return this.getFullTitle();
+    }
+
     async getMap () {
         const models = await this.createQuery().with('class', 'view', 'report').all();
         return {

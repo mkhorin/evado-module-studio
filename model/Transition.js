@@ -29,7 +29,7 @@ module.exports = class Transition extends Base {
                 [['class', 'finalState'], 'id'],
                 [['label', 'description', 'hint'], 'string'],
                 ['name', require('../component/validator/CodeNameValidator')],
-                [['name', 'label'], 'unique', {filter: 'class'}],
+                ['name', 'unique', {filter: 'class'}],
                 [['condition', 'options'], 'json'],
                 ['config', 'spawn', {BaseClass: require('evado-meta-base/workflow/Transit')}],
                 ['orderNumber', 'number', {integerOnly: true}],
@@ -51,6 +51,10 @@ module.exports = class Transition extends Base {
                 'name': 'Code name'
             }
         };
+    }
+
+    getTitle () {
+        return this.getFullTitle();
     }
 
     // CLONE

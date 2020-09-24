@@ -40,6 +40,10 @@ module.exports = class Section extends Base {
         };
     }
 
+    getTitle () {
+        return this.getFullTitle();
+    }
+
     // CLONE
 
     cloneFor () {

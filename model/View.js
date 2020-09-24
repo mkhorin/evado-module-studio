@@ -35,7 +35,7 @@ module.exports = class View extends Base {
                     Class: require('../component/validator/CodeNameValidator'),
                     validFilename: true
                 }],
-                [['name', 'label'], 'unique', {filter: 'class'}],
+                ['name', 'unique', {filter: 'class'}],
                 [['label', 'description', 'templateRoot'], 'string'],
                 [['disableGroups', 'disableTreeView', 'readOnly'], 'checkbox'],
                 [['filter', 'header', 'order', 'grouping', 'options'], 'json'],
@@ -84,6 +84,10 @@ module.exports = class View extends Base {
                 'order': 'Sort order'
             }
         };
+    }
+
+    getTitle () {
+        return this.getFullTitle();
     }
 
     findForSelect (id) {

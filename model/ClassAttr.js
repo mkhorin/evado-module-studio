@@ -81,7 +81,7 @@ module.exports = class ClassAttr extends Base {
                 [['label', 'description', 'hint', 'extHint'], 'string'],
                 [['orderNumber', 'eagerDepth', 'searchDepth'], 'number', {integerOnly: true}],
                 ['name', require('../component/validator/AttrNameValidator')],
-                [['name', 'label'], 'unique', {filter: 'class'}],
+                ['name', 'unique', {filter: 'class'}],
                 ['commands', 'filter', {filter: 'split'}],
                 ['commands', 'default', {value: DEFAULT_COMMANDS}],
                 [['escape', 'trim'], 'default', {value: true}],
@@ -314,6 +314,10 @@ module.exports = class ClassAttr extends Base {
     canIndexing () {
         const type = this.get('type');
         return !(type === 'backref' || type === 'file' || (type === 'ref' && this.get('multiple')));
+    }
+
+    getTitle () {
+        return this.getFullTitle();
     }
 
     findByClass (id) {

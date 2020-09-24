@@ -114,6 +114,10 @@ module.exports = class ClassGroup extends Base {
         return original.find({name}).and({class: id}).id();
     }
 
+    getTitle () {
+        return this.getFullTitle();
+    }
+
     findForSelect (id) {
         return super.findForSelect(['ID', 'class', id]);
     }

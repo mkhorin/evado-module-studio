@@ -66,10 +66,6 @@ module.exports = class ReportAttr extends Base {
         };
     }
 
-    findByReport (id) {
-        return this.find(['ID', 'report', id]);
-    }
-
     isFile () {
         return this.get('type') === 'file';
     }
@@ -77,6 +73,14 @@ module.exports = class ReportAttr extends Base {
     canIndexing () {
         const type = this.get('type');
         return !(type === 'backref' || type === 'file' || (type === 'ref' && this.get('multiple')));
+    }
+
+    getTitle () {
+        return this.getFullTitle();
+    }
+
+    findByReport (id) {
+        return this.find(['ID', 'report', id]);
     }
 
     // CLONE

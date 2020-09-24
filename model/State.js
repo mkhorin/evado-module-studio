@@ -43,6 +43,10 @@ module.exports = class State extends Base {
         };
     }
 
+    getTitle () {
+        return this.getFullTitle();
+    }
+
     findForSelect (id) {
         return super.findForSelect(['ID', 'class', id]);
     }
