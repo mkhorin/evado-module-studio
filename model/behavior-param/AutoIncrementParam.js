@@ -19,7 +19,8 @@ module.exports = class AutoIncrementParam extends Base {
                 [['start', 'step'], 'default', {value: 1}]
             ],
             ATTR_LABELS: {
-                'start': 'Start value'
+                start: 'Start value',
+                step: 'Change step'
             }
         };
     }

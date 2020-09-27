@@ -43,8 +43,8 @@ module.exports = class Report extends Base {
                 'nodes'
             ],
             ATTR_LABELS: {
-                'name': 'Code name',
-                'order': 'Sort order'
+                name: 'Code name',
+                order: 'Sort order'
             }
         };
     }

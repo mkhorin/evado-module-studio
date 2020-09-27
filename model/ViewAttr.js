@@ -95,10 +95,10 @@ module.exports = class ViewAttr extends Base {
                 'rules'
             ],
             ATTR_LABELS: {
-                'classAttr': 'Class attribute',
-                'expression': 'Calculated expression',
-                'extHint': 'Extended hint',
-                'header': 'Header template'
+                classAttr: 'Class attribute',
+                expression: 'Calculated expression',
+                extHint: 'Extended hint',
+                header: 'Header template'
             }
         };
     }

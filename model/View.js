@@ -78,10 +78,10 @@ module.exports = class View extends Base {
                 'selectListViewClassAttrs'
             ],
             ATTR_LABELS: {
-                'classAttrs': 'Class attributes',
-                'header': 'Header template',
-                'name': 'Code name',
-                'order': 'Sort order'
+                classAttrs: 'Class attributes',
+                header: 'Header template',
+                name: 'Code name',
+                order: 'Sort order'
             }
         };
     }

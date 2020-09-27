@@ -17,8 +17,8 @@ module.exports = class TimestampParam extends Base {
                 [['createdAttr', 'updatedAttr'], 'id']
             ],
             ATTR_LABELS: {
-                'createdAttr': 'Create timestamp',
-                'updatedAttr': 'Update timestamp'
+                createdAttr: 'Create timestamp',
+                updatedAttr: 'Update timestamp'
             }
 
         };

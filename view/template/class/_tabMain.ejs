@@ -32,13 +32,13 @@ const stringTemplate = _view.get('_part/attr/string');
         template: jsonTemplate,
         params: {
             attr: 'order',
-            extHint: 'Object list order: {attrName: 1}'
+            extHint: 'Object list order (e.g. {attrName: 1})'
         }
     },{
         template: jsonTemplate,
         params: {
             attr: 'grouping',
-            extHint: 'Object list grouping: {attrName: 1}'
+            extHint: 'Object list grouping (e.g. {attrName: 1})'
         }
     }]
 }) %>
@@ -71,5 +71,6 @@ const stringTemplate = _view.get('_part/attr/string');
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'options'
+    attr: 'options',
+    extHint: 'Additional class parameters'
 }) %>

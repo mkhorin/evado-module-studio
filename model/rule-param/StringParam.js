@@ -18,8 +18,8 @@ module.exports = class StringParam extends Base {
                 [['length', 'max', 'min'], 'number', {integerOnly: true, min: 1}]
             ]),
             ATTR_LABELS: {
-                'max': 'Maximum length',
-                'min': 'Minimum length'
+                max: 'Maximum length',
+                min: 'Minimum length'
             }
         };
     }

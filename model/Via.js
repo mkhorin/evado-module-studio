@@ -26,10 +26,10 @@ module.exports = class Via extends Base {
                 'via'
             ],
             ATTR_LABELS: {
-                'refClass': 'Reference class',
-                'refAttr': 'Reference attribute',
-                'linkAttr': 'Link attribute',
-                'via': 'Intermediate link'
+                refClass: 'Reference class',
+                refAttr: 'Reference attribute',
+                linkAttr: 'Link attribute',
+                via: 'Intermediate link'
             }
         };
     }

@@ -20,6 +20,9 @@ module.exports = class BaseRule extends Base {
                 'relationCounter': require('../../model/rule-param/RelationCounterParam'),
                 'unique': require('../../model/rule-param/UniqueParam')
             },
+            ATTR_LABELS: {
+                type: 'Validator type'
+            },
             ATTR_VALUE_LABELS: {
                 'type': {
                     custom: 'Custom validator',
@@ -30,7 +33,7 @@ module.exports = class BaseRule extends Base {
                     condition: 'Condition',
                     regex: 'Regular expression',
                     relationCounter: 'Relation counter',
-                    unique: 'Unique'
+                    unique: 'Uniqueness'
                 }
             }
         };

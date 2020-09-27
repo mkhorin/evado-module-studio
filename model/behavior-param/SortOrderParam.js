@@ -16,7 +16,11 @@ module.exports = class SortOrderParam extends Base {
             RULES: [
                 [['start', 'step'], 'number', {integerOnly: true}],
                 [['start', 'step'], 'default', {value: 10}]
-            ]
+            ],
+            ATTR_LABELS: {
+                start: 'Start value',
+                step: 'Change step'
+            }
         };
     }
 

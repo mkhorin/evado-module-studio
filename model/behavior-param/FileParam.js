@@ -25,10 +25,10 @@ module.exports = class FileParam extends Base {
                 [['extensions', 'mimeTypes', 'accept'], 'string']
             ],
             ATTR_LABELS: {
-                'maxSize': 'Maximum size',
-                'minSize': 'Minimum size',
-                'mimeTypes': 'MIME types',
-                'nameAttr': 'Filename attribute'
+                maxSize: 'Maximum size',
+                minSize: 'Minimum size',
+                mimeTypes: 'MIME types',
+                nameAttr: 'Filename attribute'
             }
         };
     }

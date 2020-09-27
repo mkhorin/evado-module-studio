@@ -30,7 +30,9 @@ module.exports = class ClassIndex extends Base {
                 'attrs'
             ],
             ATTR_LABELS: {
-                'attrs': 'Attributes'
+                attrs: 'Attributes',
+                background: 'Background build',
+                unique: 'Unique key value'
             }
         };
     }

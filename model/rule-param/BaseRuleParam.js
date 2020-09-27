@@ -16,7 +16,7 @@ module.exports = class BaseRuleParam extends Base {
                 ['message', 'string']
             ],
             ATTR_LABELS: {
-                'message': 'Error message'
+                message: 'Error message'
             }
         };
     }

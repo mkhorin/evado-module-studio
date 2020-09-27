@@ -3,4 +3,15 @@
  */
 'use strict';
 
-module.exports = require('./_form');
+const Base = require('../attr-behavior/update');
+
+module.exports = class ClassBehaviorUpdate extends Base {
+
+    async resolveTemplateData () {
+        const data = await super.resolveTemplateData();
+        await this.resolveModelRelations(data.paramModelMap, {
+            file: ['nameAttr']
+        });
+        return data;
+    }
+};

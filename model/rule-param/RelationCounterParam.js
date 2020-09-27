@@ -17,8 +17,8 @@ module.exports = class RelationCounterParam extends Base {
                 [['max', 'min'], 'number', {min: 1}]
             ]),
             ATTR_LABELS: {
-                'max': 'Maximum objects',
-                'min': 'Minimum objects'
+                max: 'Maximum objects',
+                min: 'Minimum objects'
             }
         };
     }

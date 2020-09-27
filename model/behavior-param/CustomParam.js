@@ -19,7 +19,7 @@ module.exports = class CustomParam extends Base {
                 }]
             ],
             ATTR_LABELS: {
-                'config': 'Spawn configuration'
+                config: 'Spawn configuration'
             }
         };
     }

@@ -35,7 +35,7 @@ module.exports = class Section extends Base {
                 'nodes'
             ],
             ATTR_LABELS: {
-                'name': 'Code name'
+                name: 'Code name'
             }
         };
     }

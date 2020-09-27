@@ -23,7 +23,7 @@ module.exports = class ClassIndexAttr extends Base {
                 ['direction', 'range', {range: [-1, 1]}]
             ],
             ATTR_LABELS: {
-                'attr': 'Attribute'
+                attr: 'Attribute'
             }
         };
     }

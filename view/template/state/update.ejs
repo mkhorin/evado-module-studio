@@ -3,44 +3,60 @@
 
 <%- include(_view.getInternalTemplate('_form')) %>
 
-<%- include(_view.get('_part/attr/relation'), {
-    attr: 'startingTransitions',
-    data: {
-        columns: [{
-            name: 'name'
-        },{
-            name: 'label'
-        },{
-            name: 'startStates',
-            format: 'relation'
-        },{
-            name: 'finalState',
-            format: 'relation'
-        }],
-        link: null,
-        unlink: null,
-        create: null,
-        delete: null
-    }
-}) %>
-
-<%- include(_view.get('_part/attr/relation'), {
-    attr: 'finishingTransitions',
-    data: {
-        columns: [{
-            name: 'name'
-        },{
-            name: 'label'
-        },{
-            name: 'startStates',
-            format: 'relation'
-        },{
-            name: 'finalState',
-            format: 'relation'
-        }],
-        link: null,
-        unlink: null,
-        create: null,
-        delete: null
-    }
-}) %>
+<%- include(_view.get('_part/group/tabs'), {
+    items: [{
+        id: 'Main',
+        active: true,
+        content: _view.getInternalTemplate('_tabMain')
+    }, {
+        id: 'Starting transitions',
+        hint: 'Transitions starting from this state',
+        content: {
+            template: _view.get('_part/attr/relation'),
+            attr: 'startingTransitions',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'name'
+                }, {
+                    name: 'label'
+                }, {
+                    name: 'startStates',
+                    format: 'relation'
+                }, {
+                    name: 'finalState',
+                    format: 'relation'
+                }],
+                link: null,
+                unlink: null,
+                create: null,
+                delete: null
+            }
+        }
+    }, {
+        id: 'Finishing transitions',
+        hint: 'Transitions ending in this state',
+        content: {
+            template: _view.get('_part/attr/relation'),
+            attr: 'finishingTransitions',
+            css: 'no-label',
+            data: {
+                columns: [{
+                    name: 'name'
+                }, {
+                    name: 'label'
+                }, {
+                    name: 'startStates',
+                    format: 'relation'
+                }, {
+                    name: 'finalState',
+                    format: 'relation'
+                }],
+                link: null,
+                unlink: null,
+                create: null,
+                delete: null
+            }
+        }
+    }]
+}); %>

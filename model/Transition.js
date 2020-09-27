@@ -47,8 +47,8 @@ module.exports = class Transition extends Base {
                 }
             },
             ATTR_LABELS: {
-                'config': 'Transit configuration',
-                'name': 'Code name'
+                config: 'Transit configuration',
+                name: 'Code name'
             }
         };
     }

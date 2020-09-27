@@ -51,9 +51,9 @@ module.exports = class Node extends Base {
                 'children'
             ],
             ATTR_LABELS: {
-                'name': 'Code name',
-                'parent': 'Parent node',
-                'url': 'URL'
+                name: 'Code name',
+                parent: 'Parent node',
+                url: 'URL'
             }
 
         };

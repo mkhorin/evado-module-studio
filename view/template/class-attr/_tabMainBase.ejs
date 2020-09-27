@@ -10,7 +10,8 @@ const checkboxTemplate = _view.get('_part/attr/checkbox');
     items: [{
         template: checkboxTemplate,
         params: {
-            attr: 'required'
+            attr: 'required',
+            hint: 'Attribute value cannot be empty'
         }
     },{
         template: checkboxTemplate,
@@ -20,7 +21,8 @@ const checkboxTemplate = _view.get('_part/attr/checkbox');
     },{
         template: checkboxTemplate,
         params: {
-            attr: 'unique'
+            attr: 'unique',
+            hint: 'Attribute value must be unique'
         }
     },{
         template: checkboxTemplate,
@@ -31,7 +33,8 @@ const checkboxTemplate = _view.get('_part/attr/checkbox');
     },{
         template: checkboxTemplate,
         params: {
-            attr: 'hidden'
+            attr: 'hidden',
+            hint: 'Hidden attribute view'
         }
     },{
         template: checkboxTemplate,
@@ -42,13 +45,13 @@ const checkboxTemplate = _view.get('_part/attr/checkbox');
         template: checkboxTemplate,
         params: {
             attr: 'trim',
-            hint: 'Remove whitespace from both string ends'
+            hint: 'Remove spaces from both ends of an attribute value'
         }
     },{
         template: checkboxTemplate,
         params: {
             attr: 'history',
-            hint: 'Save data change history'
+            hint: 'Keep history of attribute value changes'
         }
     }]
 }) %>

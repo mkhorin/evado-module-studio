@@ -74,20 +74,21 @@ const typeTrigger = ['START TRIGGER', 'type'];
             select2: viewSelect2,
             depends: refClassMaster,
             update: viewUpdate,
-            actionBinder: refClassExists
+            actionBinder: refClassExists,
+            extHint: 'View for eager loading of related objects'
         }
     },{
         template: _view.get('_part/attr/number'),
         params: {
             attr: 'eagerDepth',
-            extHint: 'Limit the loading depth of related objects'
+            extHint: 'Limit the loading depth of nested related objects'
         }
     }]
 }) %>
 
 <%- include(_view.get('_part/attr/json'), {
     attr: 'filter',
-    extHint: 'Filter condition or configuration of custom class for querying related objects'
+    extHint: 'Filter condition or class configuration for custom query related objects'
 }) %>
 
 <%- include(_view.get('_part/attr/relation'), {

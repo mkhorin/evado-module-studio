@@ -14,10 +14,7 @@ module.exports = class ExpressionParam extends Base {
             ]),
             RULES: super.RULES.concat([
                 ['expression', 'json']
-            ]),
-            ATTR_LABELS: {
-                'expression': 'Calculated expression'
-            }
+            ])
         };
     }
 };

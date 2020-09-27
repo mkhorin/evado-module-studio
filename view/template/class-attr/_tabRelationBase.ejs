@@ -24,7 +24,7 @@ const backrefTypeTrigger = ['AND', {type: 'backref'}, typeTrigger];
         template: _view.get('_part/attr/checkbox'),
         params: {
             attr: 'multiple',
-            hint: 'Many related objects are possible',
+            hint: 'Many related objects possible',
             actionBinder: {value: [[true, backrefTypeTrigger], [false, refTypeTrigger]]}
         }
     }]
@@ -64,7 +64,7 @@ const backrefTypeTrigger = ['AND', {type: 'backref'}, typeTrigger];
         template: enumTemplate,
         params: {
             attr: 'onDelete',
-            extHint: 'When deleting an instance of a reference class:\nCascade - delete relation owner instance\nNull - empty linked attribute value',
+            extHint: 'When deleting an instance of a reference class:\nNull - empty linked attribute value\nCascade - delete relation owner instance',
             sets: model.RELATED_ACTION_ENUMS,
             actionBinder: {value: [['null', refTypeTrigger], ['', backrefTypeTrigger]]}
         }
@@ -72,7 +72,7 @@ const backrefTypeTrigger = ['AND', {type: 'backref'}, typeTrigger];
         template: enumTemplate,
         params: {
             attr: 'onUpdate',
-            extHint: 'When updating an instance of a reference class:\nCascade - update linked attribute value\nNull - empty linked attribute value',
+            extHint: 'When updating an instance of a reference class:\nNull - empty linked attribute value\nCascade - update linked attribute value',
             sets: model.RELATED_ACTION_ENUMS
         }
     }]

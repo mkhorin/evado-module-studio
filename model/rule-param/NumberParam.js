@@ -19,8 +19,8 @@ module.exports = class NumberParam extends Base {
                 [['max', 'min'], 'number']
             ]),
             ATTR_LABELS: {
-                'max': 'Maximum value',
-                'min': 'Minimum value'
+                max: 'Maximum value',
+                min: 'Minimum value'
             }
         };
     }

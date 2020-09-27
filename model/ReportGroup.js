@@ -43,7 +43,7 @@ module.exports = class ReportGroup extends Base {
                 'reportAttrs'
             ],
             ATTR_LABELS: {
-                'name': 'Code name'
+                name: 'Code name'
             }
         };
     }

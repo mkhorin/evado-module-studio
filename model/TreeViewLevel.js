@@ -28,8 +28,8 @@ module.exports = class TreeViewLevel extends Base {
                 'nextLevels'
             ],            
             ATTR_LABELS: {
-                'refAttr': 'Reference attribute',
-                'refClass': 'Reference class'
+                refAttr: 'Reference attribute',
+                refClass: 'Reference class'
             }            
         };
     }

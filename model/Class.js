@@ -74,11 +74,11 @@ module.exports = class Class extends Base {
                 'activeAncestors'
             ],
             ATTR_LABELS: {
-                'header': 'Header template',
-                'key': 'Primary key',
-                'modelConfig': 'Model configuration',
-                'name': 'Code name',
-                'order': 'Sort order'
+                header: 'Header template',
+                key: 'Primary key',
+                modelConfig: 'Model configuration',
+                name: 'Code name',
+                order: 'Sort order'
             },
             COMMAND_VALUE_LABELS: {
                 create: 'Create',

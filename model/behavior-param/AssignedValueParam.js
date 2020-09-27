@@ -19,7 +19,10 @@ module.exports = class AssignedValueParam extends Base {
                 ['expression', 'json'],
                 [['onCreate', 'onUpdate'], 'checkbox'],
                 ['onCreate', 'default', {value: true}]
-            ]
+            ],
+            ATTR_LABELS: {
+                expression: 'Calculated expression'
+            }
         };
     }
 };

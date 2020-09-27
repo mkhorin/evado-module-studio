@@ -35,8 +35,8 @@ module.exports = class ParamContainer extends Base {
                 'param'
             ],
             ATTR_LABELS: {
-                'attrs': 'Attributes',
-                'param': 'Configuration'
+                attrs: 'Attributes',
+                param: 'Configuration'
             },            
             PARAM_MAP: {}
         };

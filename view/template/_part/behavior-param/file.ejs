@@ -1,3 +1,4 @@
+<!-- _part/behavior-param/file -->
 <%
 const stringTemplate = _view.get('_part/attr/string');
 %>
@@ -5,37 +6,38 @@ const stringTemplate = _view.get('_part/attr/string');
     attr: 'imageOnly'
 }) %>
 
-<%- include(_view.get('_part/group/columns'), {
-    items: [{
-        template: stringTemplate,
-        params: {
-            attr: 'maxSize',
-            hint: 'In bytes'
+<%- include(stringTemplate, {
+    attr: 'minSize',
+    hint: 'In bytes'
+}) %>
 
-        }
-    }, {
-        template: stringTemplate,
-        params: {
-            attr: 'minSize',
-            hint: 'In bytes'
-        }
-    }]
+<%- include(stringTemplate, {
+    attr: 'maxSize',
+    hint: 'In bytes'
 }) %>
 
 <%- include(_view.get('_part/attr/select'), {
     attr: 'nameAttr',
-    items: attrItems,
-    update: _url('class-attr/update')
+    displayValue: model.getRelatedTitle('nameAttr'),
+    items: null,
+    select2: {
+        ajax: {url: _url('class-attr/list-select')},
+        queryData: {pid: owner.getId()}
+    },
+    update: _url('class-attr/update'),
+    extHint: 'Attribute that gets filename on upload'
 }) %>
 
 <%- include(stringTemplate, {
     attr: 'extensions',
-    hint: 'Separate with comma'
+    hint: 'Separate with comma',
+    extHint: 'Valid file extensions (e.g. png)'
 }) %>
 
 <%- include(stringTemplate, {
     attr: 'mimeTypes',
-    hint: 'Separate with comma'
+    hint: 'Separate with comma',
+    extHint: 'Valid MIME types (e.g. image/png)'
 }) %>
 
 <%- include(stringTemplate, {

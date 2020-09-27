@@ -179,14 +179,15 @@ module.exports = class ClassAttr extends Base {
                 'viewAttrs'
             ],
             ATTR_LABELS: {
-                'expression': 'Calculated expression',
-                'extHint': 'Extended hint',
-                'header': 'Header template',
-                'linkAttr': 'Link attribute',
-                'name': 'Code name',
-                'refAttr': 'Reference attribute',
-                'refClass': 'Reference class',
-                'via': 'Intermediate link'
+                expression: 'Calculated expression',
+                extHint: 'Extended hint',
+                header: 'Header template',
+                linkAttr: 'Link attribute',
+                multiple: 'Multiple link',
+                name: 'Code name',
+                refAttr: 'Reference attribute',
+                refClass: 'Reference class',
+                via: 'Intermediate link'
             },
             ATTR_VALUE_LABELS: {
                 'onDelete': {
@@ -268,13 +269,26 @@ module.exports = class ClassAttr extends Base {
                     ['string', VIEW_TYPES.string]
                 ]
             }],
-            COMMAND_VALUE_LABELS: {
-                add: 'Add',
-                remove: 'Remove',
-                create: 'Create',
-                edit: 'Edit',
-                delete: 'Delete'
-            },
+            COMMAND_VALUE_LABELS: [{
+                value: 'add',
+                text: 'Add',
+                hint: 'Select from existing objects'
+            }, {
+                value: 'remove',
+                text: 'Remove',
+                hint: 'Remove from related objects'
+            }, {
+                value: 'create',
+                text: 'Create',
+                hint: 'Create new object'
+            }, {
+                value: 'edit',
+                text: 'Edit'
+            }, {
+                value: 'delete',
+                text: 'Delete',
+                hint: 'Delete object'
+            }],
             DEFAULT_COMMANDS
         };
     }

@@ -49,7 +49,7 @@ module.exports = class ReportAttr extends Base {
             UNLINK_ON_DELETE: [
             ],
             ATTR_LABELS: {
-                'name': 'Code name'
+                name: 'Code name'
             },
             ATTR_VALUE_LABELS: {
                 'type': {

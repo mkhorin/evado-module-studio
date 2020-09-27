@@ -37,8 +37,8 @@ module.exports = class State extends Base {
                 'startingTransitions'
             ],
             ATTR_LABELS: {
-                'name': 'Code name',
-                'readOnly': 'Read-only mode'
+                name: 'Code name',
+                readOnly: 'Read-only mode'
             }
         };
     }

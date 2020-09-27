@@ -3,4 +3,4 @@
  */
 'use strict';
 
-module.exports = require('./_form');
+module.exports = require('../attr-behavior/update');
