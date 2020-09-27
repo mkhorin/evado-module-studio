@@ -41,14 +41,14 @@
             Attribute types Reference and Back reference define relationship between classes.
             Link settings are on the Relation tab.
             <br>
-            The Reference type stores the link directly in the class instance.
+            The Reference type keeps a link directly in a class instance.
             For example, a comment has a link to the article it refers to.
         </p>
         <p>
-            The Back reference type retrieves the link data from the object of the referenced class.
+            The Back reference type retrieves a link data from referenced class object.
             <br>
             For example, comments for an article are retrieved from a back reference,
-            because each comment stores an article ID. The article itself does not store any data about comments.
+            because each comment keeps an article ID. Article itself does not keep any data about comments.
         </p>
         <p>
             The linking can be multiple or single.
@@ -70,13 +70,13 @@
             For example, when displaying objects in a list, only selected attributes can be shown.
         </p>
         <p>
-            The codename "list" is used to represent objects in the list.
+            The codename "list" is used to represent objects in a list.
             <br>
-            The codename "create" is used to represent the object when it is created.
+            The codename "create" is used to represent an object when it is created.
             <br>
-            The codename "edit" is used to represent the object when editing.
+            The codename "edit" is used to represent an object when edited.
             <br>
-            The codename "eager" is used to represent the eager load object.
+            The codename "eager" is used to represent an object when eagerly loaded.
         </p>
     </div>
 </div>
