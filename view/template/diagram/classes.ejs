@@ -1,0 +1,13 @@
+<% layout(_view.get('_layout/wrapper')) %>
+<% block('title', 'Class diagram') %>
+<% block('tools', {template: _view.getInternalTemplate('_tools')}); %>
+
+<div class="diagram" data-items="<%= JSON.stringify(classes) %>">
+    <div class="diagram-content">
+
+    </div>
+
+    <template data-id="block">
+        <div class="diagram-block"></div>
+    </template>
+</div>

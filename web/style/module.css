@@ -35,3 +35,31 @@
 .meta-location .form-control {
     background: #fffcf4;
 }
+
+/* DIAGRAM */
+
+.diagram {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    user-select: none;
+}
+.diagram-content {
+    position: relative;
+    overflow: visible;
+}
+.diagram-block {
+    position: absolute;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #000;
+}
+.diagram-block.draggable {
+    cursor: move;
+}
+.diagram-block.active {
+    background: #ff0;
+}

@@ -17,6 +17,7 @@
             <%- include(_view.get('_part/nav/commonMenuToggle')) %>
             <%- include(_view.get('_part/nav/meta')) %>
             <%- include(_view.get('_part/tool/modalBack')) %>
+            <%- include(_view.get('_part/nav/tools')) %>
         </nav>
     </header>
 
@@ -29,18 +30,9 @@
     </aside>
 
     <div class="content-wrapper">
-        <section class="content-header">
 
-            <%- include(_view.get('_part/other/alert')) %>
+        <%- body %>
 
-            <h1 data-t=""><%- blocks.title %></h1>
-        </section>
-
-        <section id="content" class="content">
-
-            <%- body %>
-
-        </section>
     </div>
     <%- include(_view.get('_part/other/footer')) %>
 </div>
