@@ -1,3 +1,6 @@
+<%
+const relationTemplate = _view.get('_part/attr/relation');
+%>
 <% block('title', model.getTitle()); %>
 <% block('titleTranslation', 'none'); %>
 <% block('commands', {
@@ -16,12 +19,12 @@
         id: 'Attributes',
         content: _view.getInternalTemplate('_tabAttributes')
     },{
-        id: 'Grouping',
+        id: 'Groups',
         content: _view.getInternalTemplate('_tabGroups')
     },{
-        id: 'Validation',
+        id: 'Validators',
         content: {
-            template: _view.get('_part/attr/relation'),
+            template: relationTemplate,
             attr: 'rules',
             css: 'no-label',
             data: {
@@ -45,7 +48,7 @@
     },{
         id: 'Behaviors',
         content: {
-            template: _view.get('_part/attr/relation'),
+            template: relationTemplate,
             attr: 'behaviors',
             css: 'no-label',
             data: {
@@ -66,11 +69,9 @@
     },{
         id: 'Tree view',
         content: [{
-            template: _view.get('_part/attr/checkbox'),
-            attr: 'disableTreeView'
-        },{
-            template: _view.get('_part/attr/relation'),
+            template: relationTemplate,
             attr: 'treeViewLevels',
+            css: 'no-label',
             data: {
                 columns: [{
                     name: 'refAttr',
@@ -79,7 +80,8 @@
                         url: _url('class-attr/update')
                     }
                 },{
-                    name: 'refClass'
+                    name: 'refClass',
+                    escape: false
                 },{
                     name: 'recursive',
                     format: 'boolean'
@@ -89,6 +91,10 @@
                 link: null,
                 unlink: null
             }
+        }, {
+            template: _view.get('_part/attr/checkbox'),
+            attr: 'disableTreeView',
+            css: 'no-label'
         }]
     }]
 }) %>

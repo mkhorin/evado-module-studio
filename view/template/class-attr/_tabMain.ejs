@@ -10,28 +10,24 @@ const stringTemplate = _view.get('_part/attr/string');
     attr: 'defaultValue'
 }) %>
 
-<%- include(columnTemplate, {
-    items: [{
-        template: _view.get('_part/attr/select'),
-        params: {
-            attr: 'group',
-            displayValue: model.getRelatedTitle('group'),
-            items: null,
-            select2: {ajax: {url: _url('class-group/list-set-select', model.rel('class'))}},
-            update: _url('class-group/update')
-        }
-    },{
-        template: stringTemplate,
-        params: {attr: 'orderNumber'}
-    }]
+<%- include(_view.get('_part/attr/select'), {
+    attr: 'group',
+    displayValue: model.getRelatedTitle('group'),
+    items: null,
+    select2: {ajax: {url: _url('class-group/list-set-select', model.rel('class'))}},
+    update: _url('class-group/update')
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'header',
+    extHint: 'String view template'
 }) %>
 
 <%- include(columnTemplate, {
     items: [{
-        template: jsonTemplate,
+        template: stringTemplate,
         params: {
-            attr: 'header',
-            extHint: 'String view template'
+            attr: 'orderNumber'
         }
     },{
         template: _view.get('_part/attr/radioList'),
@@ -56,7 +52,8 @@ const stringTemplate = _view.get('_part/attr/string');
 }) %>
 
 <%- include(_view.get('_part/attr/text'), {
-    attr: 'extHint'
+    attr: 'extHint',
+    extHint: 'Hint is displayed when hovering over an attribute label'
 }) %>
 
 <%- include(jsonTemplate, {

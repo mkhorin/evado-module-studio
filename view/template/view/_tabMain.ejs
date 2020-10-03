@@ -10,7 +10,8 @@ const viewUpdate = _url('view/update');
 }) %>
 
 <%- include(_view.get('_part/attr/checkbox'), {
-    attr: 'readOnly'
+    attr: 'readOnly',
+    hint: 'Object in this view is read-only'
 }) %>
 
 <%- include(jsonTemplate, {
@@ -55,7 +56,7 @@ const viewUpdate = _url('view/update');
         template: selectTemplate,
         params: {
             attr: 'editView',
-            extHint: 'View used to edit an object',
+            extHint: 'View used to edit an instance',
             items: null,
             displayValue: model.getRelatedTitle('editView'),
             select2: viewSelect2,

@@ -1,12 +1,19 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'State') %>
 <%
 const stringTemplate = _view.get('_part/attr/string');
 %>
+<% layout(_view.get(_layout)) %>
+<% block('tab', 'State') %>
+
 <%- include(stringTemplate, {
     attr: 'name'
 }) %>
 
 <%- include(stringTemplate, {
     attr: 'label'
+}) %>
+
+<%- include(_view.get('_part/attr/static'), {
+    attr: 'class',
+    displayValue: model.getRelatedTitle('class'),
+    url: ['class/update', model.rel('class')]
 }) %>

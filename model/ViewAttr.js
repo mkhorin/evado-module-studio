@@ -95,10 +95,12 @@ module.exports = class ViewAttr extends Base {
                 'rules'
             ],
             ATTR_LABELS: {
+                actionBinder: 'Action binders',
                 classAttr: 'Class attribute',
                 expression: 'Calculated expression',
                 extHint: 'Extended hint',
-                header: 'Header template'
+                header: 'Header template',
+                readOnly: 'Read-only'
             }
         };
     }

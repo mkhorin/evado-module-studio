@@ -17,10 +17,11 @@ if (model.isRelation() || model.isUser()) {
     });
 }
 tabs.push({
-    id: 'Validation',
+    id: 'Validators',
     content: {
         template: relationTemplate,
         attr: 'rules',
+        css: 'no-label',
         data: {
             columns: [{
                 name: 'type'
@@ -36,7 +37,7 @@ tabs.push({
         }
     }
 }, {
-    id: 'Action binder',
+    id: 'Action binders',
     content: {
         template: relationTemplate,
         attr: 'actionBinder',
@@ -57,22 +58,11 @@ tabs.push({
     }
 });
 %>
-<%- include(columnTemplate, {
-    items: [{
-        template: staticTemplate,
-        params: {
-            attr: 'original',
-            displayValue: model.getRelatedTitle('original'),
-            url: ['update', model.rel('original')]
-        }
-    }, {
-        template: staticTemplate,
-        params: {
-            attr: 'class',
-            displayValue: model.getRelatedTitle('class'),
-            url: ['class/update', {id: model.get('class')}]
-        }
-    }]
+
+<%- include(staticTemplate, {
+    attr: 'original',
+    displayValue: model.getRelatedTitle('original'),
+    url: ['update', model.rel('original')]
 }) %>
 
 <%- include(overriddenTemplate, {
@@ -85,7 +75,8 @@ tabs.push({
         template: staticTemplate,
         params: {
             attr: 'type',
-            displayValue: model.getAttrValueLabel('type')
+            displayValue: model.getAttrValueLabel('type'),
+            translateValue: ''
         }
     }, {
         template: overriddenTemplate,
@@ -97,6 +88,12 @@ tabs.push({
             }
         }
     }]
+}) %>
+
+<%- include(staticTemplate, {
+    attr: 'class',
+    displayValue: model.getRelatedTitle('class'),
+    url: ['class/update', {id: model.get('class')}]
 }) %>
 
 <%- include(_view.get('_part/group/tabs'), {items: tabs}) %>

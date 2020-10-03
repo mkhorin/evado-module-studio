@@ -1,6 +1,9 @@
 <% layout(_view.get(_layout)) %>
 <% block('tab', 'Enum') %>
-
+<%
+const jsonTemplate = _view.get('_part/attr/json');
+const selectTemplate = _view.get('_part/attr/select');
+%>
 <%- include(_view.get('_part/attr/relation'), {
     attr: 'items',
     data: {
@@ -20,37 +23,31 @@
     }
 }) %>
 
-<%- include(_view.get('_part/attr/json'), {
+<%- include(jsonTemplate, {
     attr: 'condition',
     extHint: 'Form values condition activating this enumeration'
 }) %>
 
-<%- include(_view.get('_part/group/columns'), {
-    items: [{
-        template: _view.get('_part/attr/select'),
-        params: {
-            attr: 'class',
-            extHint: 'Enum source',
-            items: null,
-            displayValue: model.getRelatedTitle('class'),
-            select2: {ajax: {url: _url('class/list-select')}},
-            update: _url('class/update')
-        }
-    }, {
-        template: _view.get('_part/attr/select'),
-        params: {
-            attr: 'view',
-            items: null,
-            displayValue: model.getRelatedTitle('view'),
-            select2: {ajax: {url: _url('view/list-select')}},
-            depends: [{attr: 'class', param: 'pid'}],
-            actionBinder: {enable: ['NOT EMPTY', 'class']},
-            update: _url('view/update')
-        }
-    }]
+<%- include(selectTemplate, {
+    attr: 'class',
+    extHint: 'Enum source',
+    items: null,
+    displayValue: model.getRelatedTitle('class'),
+    select2: {ajax: {url: _url('class/list-select')}},
+    update: _url('class/update')
 }) %>
 
-<%- include(_view.get('_part/attr/select'), {
+<%- include(selectTemplate, {
+    attr: 'view',
+    items: null,
+    displayValue: model.getRelatedTitle('view'),
+    select2: {ajax: {url: _url('view/list-select')}},
+    depends: [{attr: 'class', param: 'pid'}],
+    actionBinder: {enable: ['NOT EMPTY', 'class']},
+    update: _url('view/update')
+}) %>
+
+<%- include(selectTemplate, {
     attr: 'attr',
     extHint: 'Enum source',
     items: null,
@@ -61,6 +58,6 @@
     update: _url('class-attr/update')
 }) %>
 
-<%- include(_view.get('_part/attr/json'), {
+<%- include(jsonTemplate, {
     attr: 'queryFilter'
 }) %>

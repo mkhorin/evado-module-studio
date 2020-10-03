@@ -3,24 +3,18 @@
 <%- include(_view.getInternalTemplate('_form')) %>
 <%- include(_view.getInternalTemplate('_tabMainBase')) %>
 
+<%- include(_view.get('_part/attr/select'), {
+    attr: 'group',
+    displayValue: model.getRelatedTitle('group'),
+    items: null,
+    select2: {ajax: {url: _url('class-group/list-set-select', model.rel('class'))}},
+    update: _url('class-group/update')
+}) %>
+
+<%- include(_view.get('_part/attr/number'), {
+    attr: 'orderNumber'
+}) %>
+
 <div class="form-container" data-action-binder='{"show":{"type":["backref","ref"]}}'>
     <%- include(_view.getInternalTemplate('_tabRelationBase')) %>
 </div>
-
-<%- include(_view.get('_part/group/columns'), {
-    items: [{
-        template: _view.get('_part/attr/select'),
-        params: {
-            attr: 'group',
-            displayValue: model.getRelatedTitle('group'),
-            items: null,
-            select2: {ajax: {url: _url('class-group/list-set-select', model.rel('class'))}},
-            update: _url('class-group/update')
-        }
-    },{
-        template: _view.get('_part/attr/string'),
-        params: {
-            attr: 'orderNumber'
-        }
-    }]
-}) %>

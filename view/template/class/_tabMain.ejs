@@ -7,24 +7,9 @@ const stringTemplate = _view.get('_part/attr/string');
     attr: 'description'
 }) %>
 
-<%- include(columnTemplate, {
-    items: [{
-        template: jsonTemplate,
-        params: {
-            attr: 'header',
-            extHint: 'String view template of object'
-        }
-    },{
-        template: _view.get('_part/attr/select'),
-        params: {
-            attr: 'forbiddenView',
-            extHint: 'Used when class instance updating is forbidden by security',
-            items: null,
-            displayValue: model.getRelatedTitle('forbiddenView'),
-            select2: {ajax: {url: _url('view/list-select')}, queryData: {pid: model.getId()}},
-            update: _url('view/update')
-        }
-    }]
+<%- include(jsonTemplate, {
+    attr: 'header',
+    extHint: 'String view template of object'
 }) %>
 
 <%- include(columnTemplate, {
@@ -41,6 +26,20 @@ const stringTemplate = _view.get('_part/attr/string');
             extHint: 'Object list grouping (e.g. {attrName: 1})'
         }
     }]
+}) %>
+
+<%- include(_view.get('_part/attr/checkbox'), {
+    attr: 'abstract',
+    hint: 'Abstract class cannot be instantiated'
+}) %>
+
+<%- include(_view.get('_part/attr/select'), {
+    attr: 'forbiddenView',
+    extHint: 'Used when class instance updating is forbidden by security',
+    items: null,
+    displayValue: model.getRelatedTitle('forbiddenView'),
+    select2: {ajax: {url: _url('view/list-select')}, queryData: {pid: model.getId()}},
+    update: _url('view/update')
 }) %>
 
 <%- include(columnTemplate, {
@@ -67,10 +66,10 @@ const stringTemplate = _view.get('_part/attr/string');
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'modelConfig'
+    attr: 'options',
+    extHint: 'Additional class parameters'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'options',
-    extHint: 'Additional class parameters'
+    attr: 'modelConfig'
 }) %>

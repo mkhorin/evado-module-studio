@@ -1,33 +1,21 @@
+<%
+const stringTemplate = _view.get('_part/attr/string');
+%>
 <% layout(_view.get(_layout)); %>
 <% block('tab', 'Class'); %>
 
-<%- include(_view.get('_part/group/columns'), {
-    items: [{
-        items: [{
-            template: _view.get('_part/attr/string'),
-            params: {
-                attr: 'name'
-            }
-        }, {
-            template: _view.get('_part/attr/string'),
-            params: {
-                attr: 'label'
-            }
-        }]
-    }, {
-        items: [{
-            template: _view.get('_part/attr/static'),
-            params: {
-                attr: 'parent',
-                displayValue: model.getRelatedTitle('parent'),
-                url: ['update', model.rel('parent')]
-            }
-        }, {
-            template: _view.get('_part/attr/checkbox'),
-            params: {
-                attr: 'abstract',
-                hint: 'Abstract class cannot be instantiated'
-            }
-        }]
-    }]
+<%- include(stringTemplate, {
+    attr: 'name'
 }) %>
+
+<%- include(stringTemplate, {
+    attr: 'label'
+}) %>
+
+<% if (model.get('parent')) { %>
+<%- include(_view.get('_part/attr/static'), {
+    attr: 'parent',
+    displayValue: model.getRelatedTitle('parent'),
+    url: ['update', model.rel('parent')]
+}) %>
+<% } %>

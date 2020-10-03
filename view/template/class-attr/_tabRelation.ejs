@@ -10,8 +10,9 @@ const columnTemplate = _view.get('_part/group/columns');
 const selectTemplate = _view.get('_part/attr/select');
 const typeTrigger = ['START TRIGGER', 'type'];
 %>
-
 <%- include(_view.getInternalTemplate('_tabRelationBase')) %>
+
+<hr class="dashed">
 
 <%- include(columnTemplate, {
     items: [{

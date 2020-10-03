@@ -64,7 +64,9 @@ module.exports = class ViewGroup extends Base {
                 'actionBinder'
             ],
             ATTR_LABELS: {
-                attrs: 'Attributes'
+                actionBinder: 'Action binders',
+                attrs: 'Attributes',
+                readOnly: 'Read-only'
             },
             ATTR_VALUE_LABELS: {
                 'type': {

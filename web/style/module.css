@@ -24,6 +24,9 @@
 .form-override-toggle .checkbox {
     padding-top: 4px;
 }
+.form-override + .form-tabs {
+    margin-top: 35px;
+}
 
 .message .error-message {
     color: #a20;

@@ -74,6 +74,7 @@ module.exports = class Class extends Base {
                 'activeAncestors'
             ],
             ATTR_LABELS: {
+                abstract: 'Abstract class',
                 header: 'Header template',
                 key: 'Primary key',
                 modelConfig: 'Model configuration',

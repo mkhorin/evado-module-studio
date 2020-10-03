@@ -4,18 +4,8 @@
 const columnTemplate = _view.get('_part/group/columns');
 const stringTemplate = _view.get('_part/attr/string');
 %>
-<%- include(columnTemplate, {
-    items: [{
-        template: stringTemplate,
-        params: {attr: 'name'}
-    },{
-        template: _view.get('_part/attr/static'),
-        params: {
-            attr: 'class',
-            displayValue: model.getRelatedTitle('class'),
-            url: ['class/update', {id: model.get('class')}]
-        }
-    }]
+<%- include(stringTemplate, {
+    attr: 'name'
 }) %>
 
 <%- include(stringTemplate, {
@@ -42,4 +32,3 @@ const stringTemplate = _view.get('_part/attr/string');
     attr: 'expression',
     actionBinder: {show: {type: 'calc'}}
 }) %>
-

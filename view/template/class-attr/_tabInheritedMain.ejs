@@ -6,42 +6,9 @@ const overriddenTemplate = _view.get('_part/attr/overridden');
 const stringTemplate = _view.get('_part/attr/string');
 const textTemplate = _view.get('_part/attr/text');
 %>
-
 <%- include(overriddenTemplate, {
     attr: 'description',
     template: textTemplate
-}) %>
-
-<%- include(overriddenTemplate, {
-    attr: 'defaultValue',
-    template: jsonTemplate
-}) %>
-
-<%- include(columnTemplate, {
-    items: [{
-        template: overriddenTemplate,
-        params: {
-            attr: 'group',
-            template: _view.get('_part/attr/select'),
-            params: {
-                items: null,
-                select2: {ajax: {url: _url('class-group/list-set-select', model.rel('class'))}},
-                displayValue: model.getRelatedTitle('group'),
-                update: _url('class-group/update')
-            }
-        }
-    }, {
-        template: overriddenTemplate,
-        params: {
-            attr: 'orderNumber',
-            template: stringTemplate
-        }
-    }]
-}) %>
-
-<%- include(overriddenTemplate, {
-    attr: 'header',
-    template: jsonTemplate
 }) %>
 
 <%- include(columnTemplate, {
@@ -86,6 +53,32 @@ const textTemplate = _view.get('_part/attr/text');
             }
         }]
     }]
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'defaultValue',
+    template: jsonTemplate
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'group',
+    template: _view.get('_part/attr/select'),
+    params: {
+        items: null,
+        select2: {ajax: {url: _url('class-group/list-set-select', model.rel('class'))}},
+        displayValue: model.getRelatedTitle('group'),
+        update: _url('class-group/update')
+    }
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'header',
+    template: jsonTemplate
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'orderNumber',
+    template: stringTemplate
 }) %>
 
 <%- include(overriddenTemplate, {

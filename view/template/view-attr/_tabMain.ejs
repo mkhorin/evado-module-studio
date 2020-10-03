@@ -101,3 +101,9 @@ const stringTemplate = _view.get('_part/attr/string');
     attr: 'options',
     template: jsonTemplate
 }) %>
+
+<%- include(_view.get('_part/attr/static'), {
+    attr: 'view',
+    displayValue: model.getRelatedTitle('view'),
+    url: ['view/update', model.rel('view')]
+}) %>

@@ -81,7 +81,8 @@ module.exports = class View extends Base {
                 classAttrs: 'Class attributes',
                 header: 'Header template',
                 name: 'Code name',
-                order: 'Sort order'
+                order: 'Sort order',
+                readOnly: 'Read-only mode'
             }
         };
     }

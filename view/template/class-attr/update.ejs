@@ -5,6 +5,12 @@ const relationTemplate = _view.get('_part/attr/relation');
 %>
 <%- include(_view.getInternalTemplate('_form')) %>
 
+<%- include(_view.get('_part/attr/static'), {
+    attr: 'class',
+    displayValue: model.getRelatedTitle('class'),
+    url: ['class/update', {id: model.get('class')}]
+}) %>
+
 <%- include(_view.get('_part/group/tabs'), {
     items: [{
         id: 'Main',
@@ -43,7 +49,7 @@ const relationTemplate = _view.get('_part/attr/relation');
         id: 'Search',
         content: _view.getInternalTemplate('_tabSearch')
     }, {
-        id: 'Validation',
+        id: 'Validators',
         content: {
             template: relationTemplate,
             attr: 'rules',
@@ -86,7 +92,7 @@ const relationTemplate = _view.get('_part/attr/relation');
             }
         }
     },{
-        id: 'Action binder',
+        id: 'Action binders',
         hint: 'Actions with attribute depending on the current object values',
         content: {
             template: relationTemplate,

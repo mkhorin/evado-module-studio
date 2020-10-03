@@ -5,54 +5,28 @@ const columnTemplate = _view.get('_part/group/columns');
 const overriddenTemplate = _view.get('_part/attr/overridden');
 const relationTemplate = _view.get('_part/attr/relation');
 const selectTemplate = _view.get('_part/attr/select');
+const staticTemplate = _view.get('_part/attr/static');
 const stringTemplate = _view.get('_part/attr/string');
 %>
-<%- include(columnTemplate, {
-    items: [{
-        template: _view.get('_part/attr/static'),
-        params: {
-            attr: 'original',
-            displayValue: model.getRelatedTitle('original'),
-            url: ['update', model.rel('original')]
-        }
-    }, {
-        template: _view.get('_part/attr/static'),
-        params: {
-            attr: 'class',
-            displayValue: model.getRelatedTitle('class'),
-            url: ['class/update', model.rel('class')]
-        }
-    }]
+<%- include(staticTemplate, {
+    attr: 'original',
+    displayValue: model.getRelatedTitle('original'),
+    url: ['update', model.rel('original')]
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'label',
+    template: stringTemplate
 }) %>
 
 <%- include(columnTemplate, {
     items: [{
-        template: overriddenTemplate,
-        params: {
-            attr: 'label',
-            template: stringTemplate
-        }
-    },{
         template: overriddenTemplate,
         params: {
             attr: 'type',
             template: selectTemplate,
             params: {
                 items: 'labels'
-            }
-        }
-    }]
-}) %>
-
-<%- include(columnTemplate, {
-    items: [{
-        template: overriddenTemplate,
-        params: {
-            attr: 'parent',
-            template: selectTemplate,
-            params: {
-                items: validParents,
-                update: _url('class-group/update')
             }
         }
     }, {
@@ -64,25 +38,39 @@ const stringTemplate = _view.get('_part/attr/string');
     }]
 }) %>
 
+<%- include(overriddenTemplate, {
+    attr: 'parent',
+    template: selectTemplate,
+    params: {
+        items: validParents,
+        update: _url('class-group/update')
+    }
+}) %>
+
+<%- include(staticTemplate, {
+    attr: 'class',
+    displayValue: model.getRelatedTitle('class'),
+    url: ['class/update', model.rel('class')]
+}) %>
+
 <%- include(_view.get('_part/group/tabs'), {
     items: [{
         id: 'Main',
         active: true,
         content: _view.getInternalTemplate('_tabInheritedMain')
     }, {
-        id: 'actionBinder',
-        label: 'Action binder',
+        id: 'Action binders',
         content: {
             template: relationTemplate,
             attr: 'actionBinder',
             css: 'no-label',
             data: {
                 columns: [{
-                    name: 'visible'
+                    name: 'show'
                 }, {
-                    name: 'required'
+                    name: 'require'
                 }, {
-                    name: 'enabled'
+                    name: 'enable'
                 }, {
                     name: 'value'
                 }],
@@ -125,16 +113,16 @@ const stringTemplate = _view.get('_part/attr/string');
                 columns: [{
                     name: 'name',
                     searchable: true
-                },{
+                }, {
                     name: 'label',
                     searchable: true
-                },{
+                }, {
                     name: 'type',
                     format: 'label'
-                },{
+                }, {
                     name: 'orderNumber',
                     sortable: true
-                }{
+                }, {
                     name: 'inherited',
                     translateData: ''
                 }],

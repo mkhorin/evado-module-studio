@@ -3,9 +3,6 @@
 <%- include(_view.get('_part/list/select'), {
     data: {
         columns: [{
-            name: 'abstract',
-            format: 'boolean'
-        },{
             name: 'name',
             sortable: true,
             searchable: true
@@ -14,11 +11,11 @@
             sortable: true,
             searchable: true
         },{
-            name: 'description',
-            searchable: true
+            name: 'description'
         }],
         order: {name: 1},
         create: null,
-        delete: null
+        delete: null,
+        filter: {}
     }
 }) %>

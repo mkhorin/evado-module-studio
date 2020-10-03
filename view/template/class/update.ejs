@@ -24,7 +24,7 @@ const relationTemplate = _view.get('_part/attr/relation');
         id: 'Groups',
         content: _view.getInternalTemplate('_tabGroups')
     }, {
-        id: 'Validation',
+        id: 'Validators',
         content: {
             template: relationTemplate,
             attr: 'rules',
@@ -145,11 +145,9 @@ const relationTemplate = _view.get('_part/attr/relation');
     },{
         id: 'Tree view',
         content: [{
-            template: _view.get('_part/attr/checkbox'),
-            attr: 'disableTreeView'
-        },{
             template: relationTemplate,
             attr: 'treeViewLevels',
+            css: 'no-label',
             data: {
                 columns: [{
                     name: 'refAttr',
@@ -169,6 +167,10 @@ const relationTemplate = _view.get('_part/attr/relation');
                 link: null,
                 unlink: null
             }
+        }, {
+            template: _view.get('_part/attr/checkbox'),
+            attr: 'disableTreeView',
+            css: 'no-label'
         }]
     },{
         id: 'Hierarchy',

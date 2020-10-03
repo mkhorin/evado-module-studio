@@ -18,10 +18,14 @@ const stringTemplate = _view.get('_part/attr/string');
 <%- include(columnTemplate, {
     items: [{
         template: stringTemplate,
-        params: {attr: 'name'}
+        params: {
+            attr: 'name'
+        }
     }, {
         template: stringTemplate,
-        params: {attr: 'label'}
+        params: {
+            attr: 'label'
+        }
     }]
 }) %>
 
@@ -48,7 +52,9 @@ const stringTemplate = _view.get('_part/attr/string');
 <%- include(columnTemplate, {
     items: [{
         template: stringTemplate,
-        params: {attr: 'orderNumber'}
+        params: {
+            attr: 'orderNumber'
+        }
     }]
 }) %>
 

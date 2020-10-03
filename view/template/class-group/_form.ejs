@@ -1,50 +1,43 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'Group') %>
 <%
 const columnTemplate = _view.get('_part/group/columns');
 const relationTemplate = _view.get('_part/attr/relation');
 const selectTemplate = _view.get('_part/attr/select');
 const stringTemplate = _view.get('_part/attr/string');
 %>
-<%- include(columnTemplate, {
-    items: [{
-        items: [{
-            template: stringTemplate,
-            params: {attr: 'name'}
-        }, {
-            template: stringTemplate,
-            params: {attr: 'label'}
-        }]
-    }, {
-        items: [{
-            template: _view.get('_part/attr/static'),
-            params: {
-                attr: 'class',
-                displayValue: model.getRelatedTitle('class'),
-                url: ['class/update', model.rel('class')]
-            }
-        },{
-            template: selectTemplate,
-            params: {
-                attr: 'type',
-                items: 'labels'
-            }
-        }]
-    }]
+<% layout(_view.get(_layout)) %>
+<% block('tab', 'Group') %>
+
+<%- include(stringTemplate, {
+    attr: 'name'
+}) %>
+
+<%- include(stringTemplate, {
+    attr: 'label'
 }) %>
 
 <%- include(columnTemplate, {
     items: [{
         template: selectTemplate,
         params: {
-            attr: 'parent',
-            items: validParents,
-            update: _url('update')
+            attr: 'type',
+            items: 'labels'
         }
-    },{
+    }, {
         template: stringTemplate,
         params: {
             attr: 'orderNumber'
         }
     }]
+}) %>
+
+<%- include(selectTemplate, {
+    attr: 'parent',
+    items: validParents,
+    update: _url('update')
+}) %>
+
+<%- include(_view.get('_part/attr/static'), {
+    attr: 'class',
+    displayValue: model.getRelatedTitle('class'),
+    url: ['class/update', model.rel('class')]
 }) %>

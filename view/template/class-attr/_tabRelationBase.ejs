@@ -7,27 +7,20 @@ const typeTrigger = ['START TRIGGER', 'type'];
 const refTypeTrigger = ['AND', {type: 'ref'}, typeTrigger];
 const backrefTypeTrigger = ['AND', {type: 'backref'}, typeTrigger];
 %>
+<%- include(_view.get('_part/attr/checkbox'), {
+    attr: 'multiple',
+    hint: 'Many related objects possible',
+    actionBinder: {value: [[true, backrefTypeTrigger], [false, refTypeTrigger]]}
+}) %>
 
-<%- include(columnTemplate, {
-    items: [{
-        template: selectTemplate,
-        params: {
-            attr: 'refClass',
-            extHint: 'Class of related objects',
-            items: null,
-            displayValue: model.getRelatedTitle('refClass'),
-            select2: {ajax: {url: _url('class/list-select')}},
-            update: _url('class/update'),
-            actionBinder: {require: {type: ['ref', 'backref']}}
-        }
-    }, {
-        template: _view.get('_part/attr/checkbox'),
-        params: {
-            attr: 'multiple',
-            hint: 'Many related objects possible',
-            actionBinder: {value: [[true, backrefTypeTrigger], [false, refTypeTrigger]]}
-        }
-    }]
+<%- include(selectTemplate, {
+    attr: 'refClass',
+    extHint: 'Class of related objects',
+    items: null,
+    displayValue: model.getRelatedTitle('refClass'),
+    select2: {ajax: {url: _url('class/list-select')}},
+    update: _url('class/update'),
+    actionBinder: {require: {type: ['ref', 'backref']}}
 }) %>
 
 <%- include(columnTemplate, {

@@ -3,7 +3,9 @@
  */
 'use strict';
 
-const DEFAULT_COMMANDS = ['edit'];
+const DEFAULT_COMMANDS = [
+    'edit'
+];
 const VIEW_TYPES = {
     boolean: 'Boolean',
     date: 'Date',
@@ -19,7 +21,6 @@ const VIEW_TYPES = {
     time: 'Time',
     thumbnail: 'Thumbnail'
 };
-
 const Base = require('../component/base/BaseActiveRecord');
 
 module.exports = class ClassAttr extends Base {
@@ -179,12 +180,14 @@ module.exports = class ClassAttr extends Base {
                 'viewAttrs'
             ],
             ATTR_LABELS: {
+                actionBinder: 'Action binders',
                 expression: 'Calculated expression',
                 extHint: 'Extended hint',
                 header: 'Header template',
                 linkAttr: 'Link attribute',
                 multiple: 'Multiple link',
                 name: 'Code name',
+                readOnly: 'Read-only',
                 refAttr: 'Reference attribute',
                 refClass: 'Reference class',
                 via: 'Intermediate link'
@@ -211,7 +214,7 @@ module.exports = class ClassAttr extends Base {
                     json: 'JSON',
                     id: 'Identifier',
                     text: 'Text',
-                    user: 'User'
+                    user: 'System user'
                 },
                 'viewType': VIEW_TYPES
             },
@@ -299,6 +302,10 @@ module.exports = class ClassAttr extends Base {
         const name = await query.scalar('name');
         const id = behavior.owner.get('class');
         return query.model.find({name}).and({class: id}).id();
+    }
+
+    isCalc () {
+        return this.get('type') === 'calc';
     }
 
     isFile () {

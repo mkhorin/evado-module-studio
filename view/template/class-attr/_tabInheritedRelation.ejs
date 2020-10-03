@@ -10,22 +10,8 @@ const columnTemplate = _view.get('_part/group/columns');
 const overriddenTemplate = _view.get('_part/attr/overridden');
 const selectTemplate = _view.get('_part/attr/select');
 %>
-
 <%- include(columnTemplate, {
     items: [{
-        template: overriddenTemplate,
-        params: {
-            attr: 'refClass',
-            template: selectTemplate,
-            params: {
-                items: null,
-                displayValue: model.getRelatedTitle('refClass'),
-                select2: {ajax: {url: _url('class/list-select')}},
-                update: classUpdate,
-                actionBinder: {require: {type: ['ref', 'backref']}}
-            }
-        }
-    }, {
         template: overriddenTemplate,
         params: {
             attr: 'multiple',
@@ -34,42 +20,46 @@ const selectTemplate = _view.get('_part/attr/select');
     }]
 }) %>
 
-<%- include(columnTemplate, {
-    items: [{
-        template: overriddenTemplate,
-        params: {
-            attr: 'refAttr',
-            template: selectTemplate,
-            params: {
-                displayValue: model.getRelatedTitle('refAttr'),
-                extHint: 'Key attribute will be used for empty value',
-                items: null,
-                select2: {ajax: {url: _url('class-attr/list-select')}},
-                depends: refClassMaster,
-                update: attrUpdate,
-                actionBinder: refClassExists
-            }
-        }
-    }, {
-        template: overriddenTemplate,
-        params: {
-            attr: 'linkAttr',
-            template: selectTemplate,
-            params: {
-                displayValue: model.getRelatedTitle('linkAttr'),
-                extHint: 'Key attribute will be used for empty value',
-                items: null,
-                select2: {
-                    ajax: {url: _url('class-attr/list-select')},
-                    queryData: {pid: model.get('class')}
-                },
-                update: attrUpdate
-            }
-        }
-    }]
+<%- include(overriddenTemplate, {
+    attr: 'refClass',
+    template: selectTemplate,
+    params: {
+        items: null,
+        displayValue: model.getRelatedTitle('refClass'),
+        select2: {ajax: {url: _url('class/list-select')}},
+        update: classUpdate,
+        actionBinder: {require: {type: ['ref', 'backref']}}
+    }
 }) %>
 
-<hr class="dashed">
+<%- include(overriddenTemplate, {
+    attr: 'refAttr',
+    template: selectTemplate,
+    params: {
+        displayValue: model.getRelatedTitle('refAttr'),
+        extHint: 'Key attribute will be used for empty value',
+        items: null,
+        select2: {ajax: {url: _url('class-attr/list-select')}},
+        depends: refClassMaster,
+        update: attrUpdate,
+        actionBinder: refClassExists
+    }
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'linkAttr',
+    template: selectTemplate,
+    params: {
+        displayValue: model.getRelatedTitle('linkAttr'),
+        extHint: 'Key attribute will be used for empty value',
+        items: null,
+        select2: {
+            ajax: {url: _url('class-attr/list-select')},
+            queryData: {pid: model.get('class')}
+        },
+        update: attrUpdate
+    }
+}) %>
 
 <%- include(overriddenTemplate, {
     attr: 'commands',
@@ -79,37 +69,31 @@ const selectTemplate = _view.get('_part/attr/select');
     }
 }) %>
 
-<%- include(columnTemplate, {
-    items: [{
-        template: overriddenTemplate,
-        params: {
-            attr: 'listView',
-            template: selectTemplate,
-            params: {
-                displayValue: model.getRelatedTitle('listView'),
-                items: null,
-                select2: viewSelect2,
-                depends: refClassMaster,
-                update: viewUpdate,
-                actionBinder: refClassExists
-            }
-        }
-    }, {
-        template: overriddenTemplate,
-        params: {
-            attr: 'selectListView',
-            template: selectTemplate,
-            params: {
-                attr: 'selectListView',
-                displayValue: model.getRelatedTitle('selectListView'),
-                items: null,
-                select2: viewSelect2,
-                depends: refClassMaster,
-                update: viewUpdate,
-                actionBinder: refClassExists
-            }
-        }
-    }]
+<%- include(overriddenTemplate, {
+    attr: 'listView',
+    template: selectTemplate,
+    params: {
+        displayValue: model.getRelatedTitle('listView'),
+        items: null,
+        select2: viewSelect2,
+        depends: refClassMaster,
+        update: viewUpdate,
+        actionBinder: refClassExists
+    }
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'selectListView',
+    template: selectTemplate,
+    params: {
+        attr: 'selectListView',
+        displayValue: model.getRelatedTitle('selectListView'),
+        items: null,
+        select2: viewSelect2,
+        depends: refClassMaster,
+        update: viewUpdate,
+        actionBinder: refClassExists
+    }
 }) %>
 
 <%- include(columnTemplate, {
@@ -119,25 +103,6 @@ const selectTemplate = _view.get('_part/attr/select');
             attr: 'eagerLoading',
             template: checkboxTemplate
         }
-    }]
-}) %>
-
-<%- include(columnTemplate, {
-    items: [{
-        template: overriddenTemplate,
-        params: {
-            attr: 'eagerView',
-            template: selectTemplate,
-            params: {
-                displayValue: model.getRelatedTitle('eagerView'),
-                items: null,
-                select2: viewSelect2,
-                depends: refClassMaster,
-                update: viewUpdate,
-                actionBinder: refClassExists,
-                extHint: 'View for eager loading of related objects'
-            }
-        }
     }, {
         template: overriddenTemplate,
         params: {
@@ -145,4 +110,18 @@ const selectTemplate = _view.get('_part/attr/select');
             template: _view.get('_part/attr/number')
         }
     }]
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'eagerView',
+    template: selectTemplate,
+    params: {
+        displayValue: model.getRelatedTitle('eagerView'),
+        items: null,
+        select2: viewSelect2,
+        depends: refClassMaster,
+        update: viewUpdate,
+        actionBinder: refClassExists,
+        extHint: 'View for eager loading of related objects'
+    }
 }) %>

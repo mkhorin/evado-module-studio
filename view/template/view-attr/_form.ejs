@@ -6,23 +6,10 @@ const columnTemplate = _view.get('_part/group/columns');
 const overriddenTemplate = _view.get('_part/attr/overridden');
 const staticTemplate = _view.get('_part/attr/static');
 %>
-
-<%- include(columnTemplate, {
-    items: [{
-        template: staticTemplate,
-        params: {
-            attr: 'classAttr',
-            displayValue: classAttr.getTitle(),
-            url: ['class-attr/update', classAttr]
-        }
-    }, {
-        template: staticTemplate,
-        params: {
-            attr: 'view',
-            displayValue: model.getRelatedTitle('view'),
-            url: ['view/update', model.rel('view')]
-        }
-    }]
+<%- include(staticTemplate, {
+    attr: 'classAttr',
+    displayValue: classAttr.getTitle(),
+    url: ['class-attr/update', classAttr]
 }) %>
 
 <%- include(overriddenTemplate, {
@@ -51,8 +38,9 @@ const staticTemplate = _view.get('_part/attr/static');
     }]
 }) %>
 
+<% if (classAttr.isCalc()) { %>
 <%- include(overriddenTemplate, {
     attr: 'expression',
-    template: _view.get('_part/attr/json'),
-    actionBinder: {show: {type: 'calc'}}
+    template: _view.get('_part/attr/json')
 }) %>
+<% } %>

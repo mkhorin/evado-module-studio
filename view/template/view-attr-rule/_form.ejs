@@ -1,5 +1,5 @@
 <% layout(_view.get(_layout)) %>
-<% block('tab', 'Rule') %>
+<% block('tab', 'Validator') %>
 
 <%- include(_view.get('_part/group/columns'), {
     items: [{
@@ -9,7 +9,7 @@
             items: 'labels'
         }
     },{
-        template: _view.get('_part/attr/string'),
+        template: _view.get('_part/attr/number'),
         params: {
             attr: 'orderNumber'
         }

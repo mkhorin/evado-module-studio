@@ -1,6 +1,10 @@
 <%
 const checkboxTemplate = _view.get('_part/attr/checkbox');
 %>
+<%- include(_view.get('_part/attr/text'), {
+    attr: 'description'
+}) %>
+
 <%- include(_view.get('_part/group/inline'), {
     items: [{
         template: checkboxTemplate,
@@ -21,10 +25,6 @@ const checkboxTemplate = _view.get('_part/attr/checkbox');
             hint: 'All attributes in this group are required'
         }
     }]
-}) %>
-
-<%- include(_view.get('_part/attr/text'), {
-    attr: 'description'
 }) %>
 
 <%- include(_view.get('_part/attr/string'), {

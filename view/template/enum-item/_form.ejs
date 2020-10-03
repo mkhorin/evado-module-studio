@@ -1,18 +1,20 @@
 <% layout(_view.get(_layout)) %>
 <% block('tab', 'Enum item') %>
-
-<%- include(_view.get('_part/attr/string'), {
+<%
+const stringTemplate = _view.get('_part/attr/string');
+%>
+<%- include(stringTemplate, {
     attr: 'value'
 }) %>
 
-<%- include(_view.get('_part/attr/string'), {
+<%- include(stringTemplate, {
     attr: 'text'
 }) %>
 
-<%- include(_view.get('_part/attr/string'), {
+<%- include(stringTemplate, {
     attr: 'hint'
 }) %>
 
-<%- include(_view.get('_part/attr/string'), {
+<%- include(stringTemplate, {
     attr: 'orderNumber'
 }) %>

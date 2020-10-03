@@ -90,8 +90,10 @@ module.exports = class ClassGroup extends Base {
                 'viewGroupParents'
             ],
             ATTR_LABELS: {
+                actionBinder: 'Action binders',
                 name: 'Code name',
-                parent: 'Parent group'
+                parent: 'Parent group',
+                readOnly: 'Read-only'
             },
             ATTR_VALUE_LABELS: {
                 'type': {
