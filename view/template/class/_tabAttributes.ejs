@@ -40,5 +40,12 @@ if (model.hasParent()) {
         modalSort: true,
         showTop: true,
         filter: {}
-    }
+    },
+    tools: [{
+        template: _view.get('_part/tool/selectAndClone'),
+        select: ['class-attr/select-with-class', model],
+        clone: ['class-attr/clone-from-class', model],
+        icon: 'fa fa-copy',
+        title: 'Clone from other classes'
+    }]
 }) %>

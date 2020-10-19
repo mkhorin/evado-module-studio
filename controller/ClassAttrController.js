@@ -37,7 +37,26 @@ module.exports = class ClassAttrController extends Base {
     }
 
     actionClone () {
-        return super.actionClone({excepts: ['original']});
+        return super.actionClone({
+            excepts: ['original']
+        });
+    }
+
+    async actionCloneFromClass () {
+        const classModel = await this.getModel({
+            Class: this.getClass('model/Class')
+        });
+        const sample = await this.getModelByClassName({
+            id: this.getQueryParam('sample')
+        });
+        const model = this.createModel();
+        model.getBehavior('clone').setOriginal(sample);
+        model.set('class', classModel.getId());
+        return super.actionCreate({
+            model,
+            scenario: 'clone',
+            excepts: ['original']
+        });
     }
 
     actionUpdate () {
@@ -53,6 +72,12 @@ module.exports = class ClassAttrController extends Base {
         }
         await model.delete();
         this.sendText(model.getId());
+    }
+
+    actionSelectWithClass () {
+        return this.actionSelect({
+            template: 'selectWithClass'
+        });
     }
 
     actionList () {

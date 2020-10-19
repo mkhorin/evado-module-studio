@@ -17,17 +17,17 @@ if (model.hasParent()) {
         translateData: ''
     });
     tools.push({
-        template: _view.get('_part/tool/cloneFromParent'),
+        template: _view.get('_part/tool/selectAndClone'),
         select: ['view/select-from-parent', model],
         clone: ['view/clone-from-parent', model],
         icon: 'fa fa-copy',
         title: 'Clone from parent classes'
     }, {
-        template: _view.get('_part/tool/cloneFromParent'),
+        template: _view.get('_part/tool/selectAndClone'),
         select: ['view/select-from-parent', model],
         clone: ['view/link-to-parent', model],
         icon: 'fa fa-link',
-        title: 'Link to parent class view'
+        title: 'Add view from parent class'
     });
 }
 %>
