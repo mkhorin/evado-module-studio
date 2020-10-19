@@ -13,7 +13,9 @@ module.exports = class BaseActiveRecord extends Base {
         const values = await valueQuery.select(linkAttr).raw().index(linkAttr).all();
         const map = {};
         for (const key of keys) {
-            map[key[this.PK]] = values[key[linkAttr]][this.PK];
+            if (values.hasOwnProperty(key[linkAttr])) {
+                map[key[this.PK]] = values[key[linkAttr]][this.PK];
+            }
         }
         return map;
     }
