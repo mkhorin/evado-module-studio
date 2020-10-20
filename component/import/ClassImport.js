@@ -154,8 +154,9 @@ module.exports = class ClassImport extends Base {
 
     async extendAttrs () {
         const attr = this.spawn('model/ClassAttr');
+        const query = attr.find({class: this.model.getId()});
+        this.attrMap = await query.index('name').all();
         this.attrImports = [];
-        this.attrMap = await attr.find({class: this.model.getId()}).index('name').all();
         if (Array.isArray(this.data.attrs)) {
             for (const item of this.data.attrs) {
                 await this.createAttr(item, this.getAttrByName(item.name));
@@ -164,7 +165,9 @@ module.exports = class ClassImport extends Base {
     }
 
     createAttr (data, model) {
-        const constructor = model ? 'InheritedClassAttrImport' : 'ClassAttrImport';
+        const constructor = model
+            ? 'InheritedClassAttrImport'
+            : 'ClassAttrImport';
         const attr = this.spawn(`import/${constructor}`, {
             owner: this,
             meta: this.meta,
@@ -258,8 +261,9 @@ module.exports = class ClassImport extends Base {
     }
 
     setForbiddenView () {
-        if (this.viewImportMap.hasOwnProperty(this.data.forbiddenView)) {
-            this.model.set('forbiddenView', this.viewImportMap[this.data.forbiddenView].model.getId());
+        const view = this.data.forbiddenView;
+        if (this.viewImportMap.hasOwnProperty(view)) {
+            this.model.set('forbiddenView', this.viewImportMap[view].model.getId());
             this.model.forceSave();
         }
     }
@@ -283,7 +287,9 @@ module.exports = class ClassImport extends Base {
         if (!Array.isArray(data.attrs) || !data.attrs.length) {
             return this.assignError('Invalid rule attributes');
         }
-        data.attrs = {links: await PromiseHelper.map(data.attrs, this.resolveRuleAttr, this)};
+        data.attrs = {
+            links: await PromiseHelper.map(data.attrs, this.resolveRuleAttr, this)
+        };
         return PromiseHelper.setImmediate();
     }
 
@@ -392,8 +398,10 @@ module.exports = class ClassImport extends Base {
         const names = this.data.activeDescendants;
         if (Array.isArray(names) && names.length) {
             const map = this.meta.classMapByName;
-            const ids = names.map(name => map.hasOwnProperty(name) ? map[name].getId() : null).filter(id => id);
-            return this.model.directUpdate({activeDescendants: ids});
+            const activeDescendants = names
+                .map(name => map.hasOwnProperty(name) ? map[name].getId() : null)
+                .filter(id => id);
+            return this.model.directUpdate({activeDescendants});
         }
     }
 };

@@ -38,7 +38,9 @@ module.exports = class TreeViewLevelController extends Base {
         const model = await this.getModel({
             Class: this.getClass('model/ClassAttr')
         });
-        const query = this.spawn('model/View').find({class: model.get('refClass')});
+        const query = this.spawn('model/View').find({
+            class: model.get('refClass')
+        });
         return this.sendSelectList(query);
     }
 };

@@ -7,7 +7,8 @@ Jam.AttrList = class AttrList extends Jam.AttrList {
    
     getCommandMethod (name) {
         switch (name) {
-            case 'cloneFromParent': return this.onCloneFromParent;
+            case 'selectAndClone':
+                return this.onSelectAndClone;
         }
         return super.getCommandMethod(name);
     }
@@ -15,11 +16,11 @@ Jam.AttrList = class AttrList extends Jam.AttrList {
     prepareRowByDecorateInherited () {
     }
 
-    onCloneFromParent (event) {
-        this.selectFromParent(event, this.cloneFromParent);
+    onSelectAndClone (event) {
+        this.selectToClone(event, this.cloneSelected);
     }
 
-    selectFromParent (event, handler) {
+    selectToClone (event, handler) {
         const $target = $(event.currentTarget);
         this.childModal.load($target.data('select')).done(() => {
             this.childModal.one('afterClose', (event, data) => {
@@ -30,7 +31,7 @@ Jam.AttrList = class AttrList extends Jam.AttrList {
         });
     }
 
-    cloneFromParent (sample, $target) {
+    cloneSelected (sample, $target) {
         this.childModal.load($target.data('clone'), {sample}).done(() => {
             this.childModal.one('afterClose', (event, data) => {
                 if (data && data.result) {

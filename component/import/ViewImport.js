@@ -46,10 +46,11 @@ module.exports = class ViewImport extends Base {
     }
 
     async deleteInheritedView () {
-        const model = await this.model.find({
+        const query = this.model.find({
             class: this.model.get('class'),
             name: this.model.get('name')
-        }).one();
+        });
+        const model = await query.one();
         if (model) {
             await model.delete();
         }

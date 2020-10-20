@@ -12,7 +12,9 @@ module.exports = class ClassGroupController extends Base {
             ACTIONS: {
                 'sort-related': {
                     Class: require('evado/component/action/SortRelatedAction'),
-                    with: {children: 'parent'}
+                    with: {
+                        children: 'parent'
+                    }
                 }
             }
         };
@@ -64,8 +66,12 @@ module.exports = class ClassGroupController extends Base {
             with: 'class'
         });
         const ClassGroup = this.getClass('model/ClassGroup');
-        const ids = await this.spawn('model/ViewGroup').find({view: view.getId()}).column('classGroup');
-        const query = this.spawn(ClassGroup).find({class: view.get('class')}).and(['NOT IN', ClassGroup.PK, ids]);
+        const ids = await this.spawn('model/ViewGroup')
+            .find({view: view.getId()})
+            .column('classGroup');
+        const query = this.spawn(ClassGroup)
+            .find({class: view.get('class')})
+            .and(['NOT IN', ClassGroup.PK, ids]);
         return super.actionList(query.with('parent'));
     }
 

@@ -115,7 +115,8 @@ module.exports = class Class extends Base {
     }
 
     async findDescendants () {
-        return this.spawn('other/HierarchySolver', {model: this}).getDescendantQuery(...arguments);
+        const solver = this.spawn('other/HierarchySolver', {model: this});
+        return solver.getDescendantQuery(...arguments);
     }
 
     // CLONE
@@ -127,19 +128,22 @@ module.exports = class Class extends Base {
     }
 
     async relinkAttrs (sample) {
-        const data = await this.spawn('model/ClassAttr').getRelinkMap(sample.getId(), this.getId());
+        const attr = this.spawn('model/ClassAttr');
+        const data = await attr.getRelinkMap(sample.getId(), this.getId());
         const names = ['attrs', 'behaviors', 'indexes', 'rules', 'views'];
         await this.handleEachRelatedModel(names, model => model.relinkClassAttrs(data));
     }
 
     async relinkGroups (sample) {
-        const data = await this.spawn('model/ClassGroup').getRelinkMap(sample.getId(), this.getId());
+        const group = this.spawn('model/ClassGroup');
+        const data = await group.getRelinkMap(sample.getId(), this.getId());
         const names = ['attrs', 'groups', 'views'];
         await this.handleEachRelatedModel(names, model => model.relinkClassGroups(data));
     }
 
     async relinkViews (sample) {
-        const data = await this.spawn('model/View').getRelinkMap(sample.getId(), this.getId());
+        const view = this.spawn('model/View');
+        const data = await view.getRelinkMap(sample.getId(), this.getId());
         for (const model of await this.resolveRelation('views')) {
             await model.relinkViews(data);
         }

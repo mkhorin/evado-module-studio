@@ -32,7 +32,9 @@ module.exports = class ViaController extends Base {
     }
 
     actionListRelated () {
-        return super.actionListRelated({with: ['refClass', 'refAttr', 'linkAttr']});
+        return super.actionListRelated({
+            with: ['refClass', 'refAttr', 'linkAttr']
+        });
     }
 };
 module.exports.init(module);

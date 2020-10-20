@@ -12,7 +12,9 @@ module.exports = class ViewAttrController extends Base {
     }
     
     async actionCreateByClassAttrs () {
-        const viewModel = await this.getModel({Class: this.getClass('model/View')});
+        const viewModel = await this.getModel({
+            Class: this.getClass('model/View')
+        });
         const classModel = await viewModel.resolveRelation('class');
         const model = this.spawn('model/ClassAttr');
         if (this.isGet()) {
@@ -20,7 +22,7 @@ module.exports = class ViewAttrController extends Base {
         }
         const ids = RequestHelper.getNotEmptyArrayParam(this.getPostParam('ids'));
         if (!ids) {
-            throw new BadRequest('Invalid IDs');
+            throw new BadRequest('Invalid identifiers');
         }
         let models = await model.findById(ids).all();
         models = await this.createModel().createByClassAttrs(models, viewModel);
@@ -28,7 +30,8 @@ module.exports = class ViewAttrController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().createQuery().with('classAttr', 'class', 'view'));
+        const query = this.createModel().createQuery().with('classAttr', 'class', 'view');
+        return super.actionList(query);
     }
 };
 module.exports.init(module);

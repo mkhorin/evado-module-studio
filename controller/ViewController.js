@@ -12,7 +12,9 @@ module.exports = class ViewController extends Base {
             ACTIONS: {
                 'sort-related': {
                     Class: require('evado/component/action/SortRelatedAction'),
-                    with: {attrs: 'group'}
+                    with: {
+                        attrs: 'group'
+                    }
                 }
             }
         };
@@ -57,7 +59,9 @@ module.exports = class ViewController extends Base {
     }
 
     actionClone () {
-        return super.actionClone({excepts: ['original']});
+        return super.actionClone({
+            excepts: ['original']
+        });
     }
 
     actionUpdate () {

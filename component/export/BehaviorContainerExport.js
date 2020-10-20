@@ -9,8 +9,10 @@ module.exports = class BehaviorContainerExport extends Base {
 
     getParamHandler (model) {
         switch (model.constructor.name) {
-            case 'FileParam': return this.getFileData.bind(this);
-            case 'TimestampParam': return this.getTimestampData.bind(this);
+            case 'FileParam':
+                return this.getFileData.bind(this);
+            case 'TimestampParam':
+                return this.getTimestampData.bind(this);
         }
     }
 

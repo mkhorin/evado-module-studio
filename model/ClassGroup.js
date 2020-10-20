@@ -151,8 +151,8 @@ module.exports = class ClassGroup extends Base {
     }
 
     getParentQuery () {
-        return this.spawn('other/HierarchySolver', {model: this})
-            .getParentQuery({class: this.get('class')});
+        const solver = this.spawn('other/HierarchySolver', {model: this});
+        return solver.getParentQuery({class: this.get('class')});
     }
 
     inherit (classId) {
@@ -182,7 +182,7 @@ module.exports = class ClassGroup extends Base {
 
     relClassAttrs () {
         const Class = this.getClass('model/ClassAttr');
-        return this.hasMany(Class, 'group', this.PK);//.and({'class': this.get('class')});
+        return this.hasMany(Class, 'group', this.PK);
     }
 
     relDescendants () {

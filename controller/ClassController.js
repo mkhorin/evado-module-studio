@@ -12,7 +12,9 @@ module.exports = class ClassController extends Base {
             ACTIONS: {
                 'sort-related': {
                     Class: require('evado/component/action/SortRelatedAction'),
-                    with: {groups: 'parent'}
+                    with: {
+                        groups: 'parent'
+                    }
                 }
             }
         };
@@ -37,7 +39,8 @@ module.exports = class ClassController extends Base {
         const model = await this.getModel({
             Class: this.getClass('model/Class')
         });
-        return super.actionList(await model.findDescendants({abstract: false}));
+        const query = await model.findDescendants({abstract: false});
+        return super.actionList(query);
     }
 
     getListRelatedWith (relation) {
