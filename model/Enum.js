@@ -62,6 +62,11 @@ module.exports = class Enum extends Base {
         return this.hasMany(Class, 'enum', this.PK).order({orderNumber: 1});
     }
 
+    relOwner () {
+        const Class = this.getClass('model/ClassAttr');
+        return this.hasOne(Class, Class.PK, 'owner');
+    }
+
     relView () {
         const Class = this.getClass('model/View');
         return this.hasOne(Class, this.PK, 'view');

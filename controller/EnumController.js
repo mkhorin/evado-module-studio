@@ -13,7 +13,7 @@ module.exports = class EnumController extends Base {
 
     actionUpdate () {
         return super.actionUpdate({
-            with: ['attr', 'class', 'view']
+            with: ['attr', 'class', 'owner', 'view']
         });
     }
 };

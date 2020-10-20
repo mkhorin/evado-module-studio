@@ -1,0 +1,32 @@
+<% layout(_view.get('_layout/list')) %>
+
+<% block('title', 'Enum items') %>
+
+<%- include(_view.get('_part/list/grid'), {
+    data: {
+        columns: [{
+            name: 'value',
+            sortable: true,
+            searchable: true
+        }, {
+            name: 'text',
+            sortable: true,
+            searchable: true
+        }, {
+            name: 'hint'
+        }, {
+            name: 'orderNumber',
+            type: 'integer',
+            sortable: true
+        }, {
+            name: 'enum',
+            format: {
+                name: 'relation',
+                url: _url('enum/update')
+            },
+            sortable: true
+        }],
+        create: null,
+        filter: {}
+    }
+}) %>

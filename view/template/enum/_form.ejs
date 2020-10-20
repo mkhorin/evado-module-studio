@@ -30,7 +30,7 @@ const selectTemplate = _view.get('_part/attr/select');
 
 <%- include(selectTemplate, {
     attr: 'class',
-    extHint: 'Enum source',
+    extHint: 'Enumeration source',
     items: null,
     displayValue: model.getRelatedTitle('class'),
     select2: {ajax: {url: _url('class/list-select')}},
@@ -49,7 +49,7 @@ const selectTemplate = _view.get('_part/attr/select');
 
 <%- include(selectTemplate, {
     attr: 'attr',
-    extHint: 'Enum source',
+    extHint: 'Enumeration source',
     items: null,
     displayValue: model.getRelatedTitle('attr'),
     select2: {ajax: {url: _url('class-attr/list-select')}},

@@ -2,28 +2,24 @@
 <ul class="sidebar-menu tree-menu" data-widget="true" data-jam="TreeMenu">
     <li class="menu-item">
         <a href="studio/class" class="menu-item-btn">
-            <i class="menu-item-icon fa fa-file"></i>
             <span data-t="">Classes</span>
         </a>
     </li>
 
     <li class="menu-item">
         <a href="studio/class-attr" class="menu-item-btn">
-            <i class="menu-item-icon fa fa-tag"></i>
             <span data-t="">Class attributes</span>
         </a>
     </li>
 
     <li class="menu-item">
         <a href="studio/view" class="menu-item-btn">
-            <i class="menu-item-icon fa fa-eye"></i>
             <span data-t="">Views</span>
         </a>
     </li>
 
     <li class="menu-item">
         <a href="studio/view-attr" class="menu-item-btn">
-            <i class="menu-item-icon fa fa-tag"></i>
             <span data-t="">View attributes</span>
         </a>
     </li>
@@ -32,22 +28,28 @@
 
     <li class="menu-item">
         <a href="studio/section" class="menu-item-btn">
-            <i class="menu-item-icon fa fa-layer-group"></i>
             <span data-t="">Navigation sections</span>
         </a>
     </li>
     <li class="menu-item">
         <a href="studio/node" class="menu-item-btn">
-            <i class="menu-item-icon fa fa-bars"></i>
             <span data-t="">Navigation nodes</span>
         </a>
     </li>
+
+    <li class="separator"></li>
+
+    <li class="menu-item">
+        <a href="studio/enum-item" class="menu-item-btn">
+            <span data-t="">Enumerations</span>
+        </a>
+    </li>
+
 
     <% if (_module.app.getModule('report')) { %>
     <li class="separator"></li>
     <li class="menu-item">
         <a href="studio/report" class="menu-item-btn">
-            <i class="menu-item-icon fa fa-flag"></i>
             <span data-t="">Reports</span>
         </a>
     </li>
@@ -56,7 +58,6 @@
     <li class="separator hidden"></li>
     <li class="menu-item hidden">
         <a href="studio/diagram/classes" class="menu-item-btn">
-            <i class="menu-item-icon fas fa-project-diagram"></i>
             <span data-t="">Class diagram</span>
         </a>
     </li>
