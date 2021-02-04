@@ -13,7 +13,7 @@ module.exports = class DefaultController extends Base {
                 'widget': require('evado/component/action/WidgetAction')
             },
             METHODS: {
-                'drop-all': 'post',
+                'dropAll': 'post',
                 'reload': 'post'
             }
         };

@@ -25,7 +25,7 @@ module.exports = class ReportGroupController extends Base {
         const group = await this.getModel();
         const model = this.createModel();
         model.set('report', group.get('report'));
-        if (this.isGet()) {
+        if (this.isGetRequest()) {
             model.set('parent', group.getId());
         }
         return super.actionCreate({model});

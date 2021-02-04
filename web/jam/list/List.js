@@ -22,9 +22,9 @@ Jam.AttrList = class AttrList extends Jam.AttrList {
 
     selectToClone (event, handler) {
         const $target = $(event.currentTarget);
-        this.childModal.load($target.data('select')).done(() => {
-            this.childModal.one('afterClose', (event, data) => {
-                if (data && data.result) {
+        this.childFrame.load($target.data('select')).done(() => {
+            this.childFrame.one('afterClose', (event, data) => {
+                if (data?.result) {
                     handler.call(this, data.result, $target);
                 }
             });
@@ -32,9 +32,9 @@ Jam.AttrList = class AttrList extends Jam.AttrList {
     }
 
     cloneSelected (sample, $target) {
-        this.childModal.load($target.data('clone'), {sample}).done(() => {
-            this.childModal.one('afterClose', (event, data) => {
-                if (data && data.result) {
+        this.childFrame.load($target.data('clone'), {sample}).done(() => {
+            this.childFrame.one('afterClose', (event, data) => {
+                if (data?.result) {
                     this.linkObjects(data.result);
                 }
             });

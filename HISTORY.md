@@ -1,3 +1,9 @@
+## 2.0.0
+
+* migration to Bootstrap 4
+* use optional chaining
+* use the integer validator
+
 ## 1.8.0
 
 * Module
@@ -9,7 +15,7 @@
 
 ## 1.7.0
 
-* model/rule-param/BaseRuleParam    
+* model/ruleParam/BaseRuleParam    
     - add attribute to replace error message
-* model/rule-param/ConditionParam
+* model/ruleParam/ConditionParam
     - add condition validator

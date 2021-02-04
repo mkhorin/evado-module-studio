@@ -17,7 +17,7 @@ module.exports = class ViewAttrController extends Base {
         });
         const classModel = await viewModel.resolveRelation('class');
         const model = this.spawn('model/ClassAttr');
-        if (this.isGet()) {
+        if (this.isGetRequest()) {
             return this.render('createByClassAttrs', {model, viewModel, classModel});
         }
         const ids = RequestHelper.getNotEmptyArrayParam(this.getPostParam('ids'));

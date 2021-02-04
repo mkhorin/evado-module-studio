@@ -11,11 +11,11 @@ module.exports = class AttrBehavior extends Base {
         return {
             TABLE: 'studio_attrBehavior',
             PARAM_MAP: {
-                'assignedValue': require('./behavior-param/AssignedValueParam'),
-                'autoIncrement': require('./behavior-param/AutoIncrementParam'),
-                'guid': require('./behavior-param/GuidParam'),
-                'sortOrder': require('./behavior-param/SortOrderParam'),
-                'custom': require('./behavior-param/CustomParam'),
+                'assignedValue': require('./behaviorParam/AssignedValueParam'),
+                'autoIncrement': require('./behaviorParam/AutoIncrementParam'),
+                'guid': require('./behaviorParam/GuidParam'),
+                'sortOrder': require('./behaviorParam/SortOrderParam'),
+                'custom': require('./behaviorParam/CustomParam'),
             },
             ATTR_VALUE_LABELS: {
                 'type': {

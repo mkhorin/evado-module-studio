@@ -19,9 +19,11 @@ module.exports = class ImportHelper {
         ];
         for (const {attrs} of validators) {
             for (const attr of attrs) {
-                const value = data[attr];
-                if (data.hasOwnProperty(attr) && value !== '' && value !== null) {
-                    data[attr] = JSON.stringify(value);
+                if (Object.prototype.hasOwnProperty.call(data, attr)) {
+                    const value = data[attr];
+                    if (value !== '' && value !== null) {
+                        data[attr] = JSON.stringify(value);
+                    }
                 }
             }
         }

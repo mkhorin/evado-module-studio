@@ -10,15 +10,15 @@ module.exports = class BaseRule extends Base {
     static getConstants () {
         return {
             PARAM_MAP: {
-                'custom': require('../../model/rule-param/CustomParam'),
-                'email': require('../../model/rule-param/EmailParam'),
-                'expression': require('../../model/rule-param/ExpressionParam'),
-                'condition': require('../../model/rule-param/ConditionParam'),
-                'number': require('../../model/rule-param/NumberParam'),
-                'string': require('../../model/rule-param/StringParam'),
-                'regex': require('../../model/rule-param/RegexParam'),
-                'relationCounter': require('../../model/rule-param/RelationCounterParam'),
-                'unique': require('../../model/rule-param/UniqueParam')
+                'custom': require('../../model/ruleParam/CustomParam'),
+                'email': require('../../model/ruleParam/EmailParam'),
+                'expression': require('../../model/ruleParam/ExpressionParam'),
+                'condition': require('../../model/ruleParam/ConditionParam'),
+                'number': require('../../model/ruleParam/NumberParam'),
+                'string': require('../../model/ruleParam/StringParam'),
+                'regex': require('../../model/ruleParam/RegexParam'),
+                'relationCounter': require('../../model/ruleParam/RelationCounterParam'),
+                'unique': require('../../model/ruleParam/UniqueParam')
             },
             ATTR_LABELS: {
                 type: 'Validator type'

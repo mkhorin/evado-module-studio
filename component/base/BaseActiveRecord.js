@@ -7,7 +7,9 @@ const Base = require('evado/component/base/BaseActiveRecord');
 
 module.exports = class BaseActiveRecord extends Base {
 
-    // map to replace one ID to another linked by linkAttr: {key: value}
+    /**
+     * Map to replace one ID to another linked by linkAttr: {key: value}
+     */
     async getRelinkMap (keyQuery, valueQuery, linkAttr) {
         const keys = await keyQuery.select(linkAttr).raw().all();
         const values = await valueQuery.select(linkAttr).raw().index(linkAttr).all();

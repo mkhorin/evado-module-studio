@@ -1,8 +1,8 @@
 <% layout(_view.get('_layout/content')) %>
-<% block('title', 'Create metadata') %>
+<% block('title', 'Create app metadata') %>
 
-<div class="folder panel-default panel">
-    <div class="panel-body">
+<div class="card">
+    <div class="card-body">
         <p>
             The Studio module creates metadata describing domain entities and relationships between them.
             <br>
@@ -15,13 +15,13 @@
     </div>
 </div>
 
-<div class="folder panel-default panel">
-    <div class="panel-heading">
-        <h4 class="panel-title">Class attribute</h4>
+<div class="card-info card mt-3">
+    <div class="card-header">
+        Class attribute
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <p>
-            The attribute describes a single class element.
+            Class attribute describes a single class element.
             <br>
             For example, the Article class consists of the Title, Content, Date and other attributes.
         </p>
@@ -33,11 +33,11 @@
     </div>
 </div>
 
-<div class="folder panel-default panel">
-    <div class="panel-heading">
-        <h4 class="panel-title">Class relation</h4>
+<div class="card-success card mt-3">
+    <div class="card-header">
+        Class relation
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <p>
             The Reference and Back Reference attribute types define the relationship between classes.
             Link settings are located on the Relation tab.
@@ -60,13 +60,13 @@
     </div>
 </div>
 
-<div class="folder panel-default panel">
-    <div class="panel-heading">
-        <h4 class="panel-title">Class view</h4>
+<div class="card-primary card mt-3">
+    <div class="card-header">
+        Class view
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <p>
-            The view overrides class parameters for specific use cases.
+            Views override class parameters for specific use cases.
             <br>
             For example, when displaying objects in a list, only selected attributes can be shown.
         </p>
@@ -82,11 +82,11 @@
     </div>
 </div>
 
-<div class="folder panel-default panel">
-    <div class="panel-heading">
-        <h4 class="panel-title">Navigation</h4>
+<div class="card-warning card mt-3">
+    <div class="card-header">
+        Navigation
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <p>
             The Office module sidebar menu is created from the navigation section codenamed "main".
         </p>

@@ -10,7 +10,7 @@ module.exports = class ClassController extends Base {
     static getConstants () {
         return {
             ACTIONS: {
-                'sort-related': {
+                'sortRelated': {
                     Class: require('evado/component/action/SortRelatedAction'),
                     with: {
                         groups: 'parent'

@@ -24,7 +24,7 @@ module.exports = class ReportGroup extends Base {
                 ['name', 'unique', {filter: 'report'}],
                 ['label', 'string'],
                 ['parent', 'id'],
-                ['orderNumber', 'number', {integerOnly: true}],
+                ['orderNumber', 'integer'],
                 ['options', 'json'],
                 ['children', 'relation']
             ],

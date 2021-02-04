@@ -163,11 +163,9 @@ module.exports = class ViewImport extends Base {
         if (!Array.isArray(data.attrs)) {
             data.attrs = [];
         }
-        data.attrs = data.attrs.map(name => {
-            const model = this.getClassAttrByName(name);
-            return model ? model : null;
-        });
-        data.attrs = {links: data.attrs};
+        data.attrs = {
+            links: data.attrs.map(name => this.getClassAttrByName(name))
+        };
         const model = this.spawn('model/ViewRule', {scenario: 'create'});
         model.populateRelation('owner', this.model);
         await this.Helper.importParamContainer(model, data);

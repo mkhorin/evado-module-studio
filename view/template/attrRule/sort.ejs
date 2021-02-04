@@ -1,0 +1,15 @@
+<% layout(_view.get('_layout/frame/list')) %>
+
+<%- include(_view.get('_part/list/sort'), {
+    data: {
+        columns: [{
+            name: 'type',
+            translateData: ''
+        },{
+            name: 'param'
+        },{
+            name: 'orderNumber',
+            sortable: true
+        }]
+    }
+}) %>

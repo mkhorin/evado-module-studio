@@ -11,8 +11,8 @@ module.exports = class ClassBehavior extends Base {
         return {
             TABLE: 'studio_classBehavior',
             PARAM_MAP: {
-                'custom': require('./behavior-param/CustomParam'),
-                'file': require('./behavior-param/FileParam')
+                'custom': require('./behaviorParam/CustomParam'),
+                'file': require('./behaviorParam/FileParam')
             },
             ATTR_VALUE_LABELS: {
                 'type': {

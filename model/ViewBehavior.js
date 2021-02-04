@@ -14,7 +14,7 @@ module.exports = class ViewBehavior extends Base {
                 'sortOrder': {...super.BEHAVIORS.sortOrder, start: 100}
             },
             PARAM_MAP: {
-                'custom': require('./behavior-param/CustomParam')
+                'custom': require('./behaviorParam/CustomParam')
             },
             ATTR_VALUE_LABELS: {
                 'type': {

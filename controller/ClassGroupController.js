@@ -10,7 +10,7 @@ module.exports = class ClassGroupController extends Base {
     static getConstants () {
         return {
             ACTIONS: {
-                'sort-related': {
+                'sortRelated': {
                     Class: require('evado/component/action/SortRelatedAction'),
                     with: {
                         children: 'parent'
@@ -44,7 +44,7 @@ module.exports = class ClassGroupController extends Base {
         const group = await this.getModel();
         const model = this.createModel();
         model.set('class', group.get('class'));
-        if (this.isGet()) {
+        if (this.isGetRequest()) {
             model.set('parent', group.getId());
         }
         return super.actionCreate({model});

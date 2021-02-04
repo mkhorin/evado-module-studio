@@ -39,8 +39,7 @@ module.exports = class Class extends Base {
                 [['header', 'order', 'grouping', 'options'], 'json'],
                 ['modelConfig', 'spawn', {BaseClass: require('evado-meta-base/model/Model')}],
                 [['abstract', 'disableTreeView'], 'checkbox'],
-                [['activeDescendants', 'behaviors', 'indexes', 'rules', 'states', 'transitions',
-                  'treeViewLevels', 'views'], 'relation'],
+                [['activeDescendants', 'behaviors', 'indexes', 'rules', 'states', 'transitions', 'treeViewLevels', 'views'], 'relation'],
                 [['groups', 'attrs'], 'relation', {filter: this.filterInheritedChanges.bind(this)}]
             ],
             BEHAVIORS: {

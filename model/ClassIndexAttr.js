@@ -19,8 +19,8 @@ module.exports = class ClassIndexAttr extends Base {
                 [['index', 'attr', 'direction'], 'required'],
                 [['index', 'attr'], 'id'],
                 ['attr', 'unique', {filter: 'index'}],
-                ['direction', 'number'],
-                ['direction', 'range', {range: [-1, 1]}]
+                ['direction', 'integer'],
+                ['direction', 'range', {values: [-1, 1]}]
             ],
             ATTR_LABELS: {
                 attr: 'Attribute'

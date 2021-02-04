@@ -32,7 +32,7 @@ module.exports = class Transition extends Base {
                 ['name', 'unique', {filter: 'class'}],
                 [['condition', 'options'], 'json'],
                 ['config', 'spawn', {BaseClass: require('evado-meta-base/workflow/Transit')}],
-                ['orderNumber', 'number', {integerOnly: true}],
+                ['orderNumber', 'integer'],
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()
                 }],

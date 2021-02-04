@@ -4,14 +4,6 @@ const stringTemplate = _view.get('_part/attr/string');
 <% layout(_view.get(_layout)); %>
 <% block('tab', 'Class'); %>
 
-<%- include(stringTemplate, {
-    attr: 'name'
-}) %>
-
-<%- include(stringTemplate, {
-    attr: 'label'
-}) %>
-
 <% if (model.get('parent')) { %>
 <%- include(_view.get('_part/attr/static'), {
     attr: 'parent',
@@ -19,3 +11,11 @@ const stringTemplate = _view.get('_part/attr/string');
     url: ['update', model.rel('parent')]
 }) %>
 <% } %>
+
+<%- include(stringTemplate, {
+    attr: 'name'
+}) %>
+
+<%- include(stringTemplate, {
+    attr: 'label'
+}) %>

@@ -13,7 +13,7 @@ const VIEW_TYPES = {
     localDate: 'Local date',
     localDatetime: 'Local date and time',
     relationSelect: 'Object select box',
-    class: 'Metaclass',
+    class: 'Metadata class',
     radioList: 'Radio list',
     select: 'Select box',
     state: 'State',
@@ -80,20 +80,20 @@ module.exports = class ClassAttr extends Base {
                 [['class', 'original'], 'id', {on: 'create'}],
                 [['eagerView', 'group', 'linkAttr', 'listView', 'refAttr', 'refClass', 'selectListView'], 'id'],
                 [['label', 'description', 'hint', 'extHint'], 'string'],
-                [['orderNumber', 'eagerDepth', 'searchDepth'], 'number', {integerOnly: true}],
+                [['orderNumber', 'eagerDepth', 'searchDepth'], 'integer'],
                 ['name', require('../component/validator/AttrNameValidator')],
                 ['name', 'unique', {filter: 'class'}],
-                ['commands', 'filter', {filter: 'split'}],
+                ['commands', 'filter', {method: 'split'}],
                 ['commands', 'default', {value: DEFAULT_COMMANDS}],
                 [['escape', 'trim'], 'default', {value: true}],
                 ['type', 'default', {value: 'string'}],
-                [['onDelete', 'onUpdate'], 'range', {range: ['cascade', 'null']}],
+                [['onDelete', 'onUpdate'], 'range', {values: ['cascade', 'null']}],
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()
                 }],
                 [['viewType', 'overriddenState'], 'safe'],
-                ['indexing', 'number'],
-                ['indexing', 'range', {range:[-1, 1]}],
+                ['indexing', 'integer'],
+                ['indexing', 'range', {values: [-1, 1]}],
                 [['commonSearchable', 'createOnRead', 'eagerLoading', 'escape', 'hidden', 'history',
                     'multiple', 'readOnly', 'required', 'selectSearchable', 'sortable', 'sortableRelation',
                     'trim', 'unique'], 'checkbox'],
@@ -296,8 +296,10 @@ module.exports = class ClassAttr extends Base {
         };
     }
 
-    static async getGroupOriginalValue (original, behavior) {
-        // find group among current class groups by name of ancestor class group
+    /**
+     * Find group among current class groups by name of ancestor class group
+     */
+    static async getGroupOriginalValue (original, behavior) {        
         const query = original.relGroup();
         const name = await query.scalar('name');
         const id = behavior.owner.get('class');

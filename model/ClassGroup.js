@@ -29,13 +29,13 @@ module.exports = class ClassGroup extends Base {
             ],
             RULES: [
                 ['name', 'required'],
-                ['type', 'range', {range: ['tabs', 'columns']}],
+                ['type', 'range', {values: ['tabs', 'columns']}],
                 ['name', require('../component/validator/CodeNameValidator')],
                 ['name', 'unique', {filter: 'class'}],
                 [['hint', 'label', 'description'], 'string'],
                 ['parent', 'id'],
                 [['active', 'readOnly', 'required'], 'checkbox'],
-                ['orderNumber', 'number', {integerOnly: true}],
+                ['orderNumber', 'integer'],
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()
                 }],

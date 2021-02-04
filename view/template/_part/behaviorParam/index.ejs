@@ -1,0 +1,18 @@
+<%
+for (const type of Object.keys(paramModelMap)) {
+    if (paramModelMap[type].hasExtendedAttrs()) {
+        const title = model.constructor.getAttrValueLabel('type', type);
+%>
+<%- include(_view.get('_part/group/set'), {
+    id: type,
+    title: `${title} options`,
+    active: true,
+    actionBinder: {show: {type}},
+    items: [{
+        template: _view.get(`_part/behaviorParam/${type}`),
+        params: {
+            model: paramModelMap[type]
+        }
+    }]
+}) %>
+<% }} %>

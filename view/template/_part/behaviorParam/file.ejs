@@ -1,0 +1,47 @@
+<!-- studio/_part/behaviorParam/file -->
+<%
+const stringTemplate = _view.get('_part/attr/string');
+%>
+<%- include(_view.get('_part/attr/checkbox'), {
+    attr: 'imageOnly'
+}) %>
+
+<%- include(stringTemplate, {
+    attr: 'minSize',
+    hint: 'In bytes'
+}) %>
+
+<%- include(stringTemplate, {
+    attr: 'maxSize',
+    hint: 'In bytes'
+}) %>
+
+<%- include(_view.get('_part/attr/select'), {
+    attr: 'nameAttr',
+    displayValue: model.getRelatedTitle('nameAttr'),
+    items: null,
+    select2: {
+        ajax: {url: _url('class-attr/list-select')},
+        queryData: {pid: owner.getId()}
+    },
+    update: _url('class-attr/update'),
+    extHint: 'Attribute that gets filename on upload'
+}) %>
+
+<%- include(stringTemplate, {
+    attr: 'extensions',
+    hint: 'Separate with comma',
+    extHint: 'Valid file extensions (e.g. png)'
+}) %>
+
+<%- include(stringTemplate, {
+    attr: 'mimeTypes',
+    hint: 'Separate with comma',
+    extHint: 'Valid MIME types (e.g. image/png)'
+}) %>
+
+<%- include(stringTemplate, {
+    attr: 'accept',
+    extHint: 'Filter selected files by type (e.g. image/jpeg)'
+}) %>
+

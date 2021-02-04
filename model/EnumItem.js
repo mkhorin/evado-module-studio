@@ -21,7 +21,7 @@ module.exports = class EnumItem extends Base {
                 [['text', 'hint'], 'string'],
                 ['value', require('../component/validator/CodeNameValidator')],
                 ['value', 'unique', {filter: 'enum'}],
-                ['orderNumber', 'number', {integerOnly: true}],
+                ['orderNumber', 'integer'],
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()
                 }],

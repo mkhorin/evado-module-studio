@@ -41,7 +41,7 @@ module.exports = class EnumImport extends Base {
 
     setView (name, classModel) {
         if (name) {
-            const view = classModel && classModel.rel('viewMap')[name];
+            const view = classModel?.rel('viewMap')[name];
             view ? this.model.set('view', view.getId())
                  : this.assignError(`Unknown view: ${name}`);
         }
@@ -49,7 +49,7 @@ module.exports = class EnumImport extends Base {
 
     setAttr (name, classModel) {
         if (name) {
-            const attr = classModel && classModel.rel('attrMap')[name];
+            const attr = classModel?.rel('attrMap')[name];
             attr ? this.model.set('attr', attr.getId())
                  : this.assignError(`Unknown attr: ${name}`);
         }

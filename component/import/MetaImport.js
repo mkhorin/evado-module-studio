@@ -63,11 +63,11 @@ module.exports = class MetaImport extends Base {
     // CLASSES
 
     getClass (id) {
-        return this.classMap.hasOwnProperty(id) ? this.classMap[id] : null;
+        return ObjectHelper.getValue(id, this.classMap);
     }
 
     getClassByName (name) {
-        return this.classMapByName.hasOwnProperty(name) ? this.classMapByName[name] : null;
+        return ObjectHelper.getValue(name, this.classMapByName);
     }
 
     async resolveClassMap () {
@@ -120,7 +120,7 @@ module.exports = class MetaImport extends Base {
     // REPORT
 
     getReportByName (name) {
-        return this.reportMapByName.hasOwnProperty(name) ? this.reportMapByName[name] : null;
+        return ObjectHelper.getValue(name, this.reportMapByName);
     }
 
     async resolveReportMap () {
@@ -196,4 +196,5 @@ const path = require('path');
 const ArrayHelper = require('areto/helper/ArrayHelper');
 const FileHelper = require('areto/helper/FileHelper');
 const IndexHelper = require('areto/helper/IndexHelper');
+const ObjectHelper = require('areto/helper/ObjectHelper');
 const PromiseHelper = require('areto/helper/PromiseHelper');

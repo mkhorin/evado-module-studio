@@ -29,7 +29,7 @@ module.exports = class Node extends Base {
                 [['label', 'description', 'url'], 'string'],
                 ['name', require('../component/validator/CodeNameValidator')],
                 ['name', 'unique', {filter: 'section'}],
-                ['orderNumber', 'number', {integerOnly: true}],
+                ['orderNumber', 'integer'],
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()
                 }],

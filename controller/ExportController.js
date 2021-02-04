@@ -69,7 +69,7 @@ module.exports = class ExportController extends Base {
     async createExporter (title, handler) {
         const model = this.spawn('export/ExportModel');
         await model.setDefaultValues();
-        if (this.isGet()) {
+        if (this.isGetRequest()) {
             return this.render('meta', {title, model});
         }
         await model.load(this.getPostParams()).validate();

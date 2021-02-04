@@ -17,7 +17,7 @@ module.exports = class ViewGroupController extends Base {
         });
         const ClassGroup = this.getClass('model/ClassGroup');
         const model = this.spawn(ClassGroup);
-        if (this.isGet()) {
+        if (this.isGetRequest()) {
             return this.render('createByGroups', {model, view});
         }
         let ids = RequestHelper.getNotEmptyArrayParam(this.getPostParam('ids'));

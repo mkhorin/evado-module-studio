@@ -14,7 +14,7 @@ module.exports = class ImportController extends Base {
     async actionMeta () {
         this.checkCsrfToken();
         const model = this.createModel();
-        if (this.isGet()) {
+        if (this.isGetRequest()) {
             await model.setDefaultValues();
             return this.renderForm('Import metadata', model, {
                 alert: 'All studio data will be overwritten'
@@ -28,7 +28,7 @@ module.exports = class ImportController extends Base {
         this.checkCsrfToken();
         const meta = this.createModel();
         const model = this.spawn('import/ClassImport', {meta});
-        if (this.isGet()) {
+        if (this.isGetRequest()) {
             await model.setDefaultValues();
             return this.renderForm('Import class', model);
         }
@@ -42,7 +42,7 @@ module.exports = class ImportController extends Base {
             Class: this.getClass('model/Class')
         });
         const model = this.spawn('import/ViewImport', {meta, classModel});
-        if (this.isGet()) {
+        if (this.isGetRequest()) {
             await model.setDefaultValues();
             return this.renderForm('Import view', model);
         }
@@ -53,7 +53,7 @@ module.exports = class ImportController extends Base {
         this.checkCsrfToken();
         const meta = this.createModel();
         const model = this.spawn('import/SectionImport', {meta});
-        if (this.isGet()) {
+        if (this.isGetRequest()) {
             await model.setDefaultValues();
             return this.renderForm('Import navigation section', model);
         }
@@ -64,7 +64,7 @@ module.exports = class ImportController extends Base {
         this.checkCsrfToken();
         const meta = this.createModel();
         const model = this.spawn('import/ReportImport', {meta});
-        if (this.isGet()) {
+        if (this.isGetRequest()) {
             await model.setDefaultValues();
             return this.renderForm('Import report', model);
         }

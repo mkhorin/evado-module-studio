@@ -69,7 +69,7 @@ module.exports = class ImportModel extends Base {
     deleteOnError () {
         if (this.hasError()) {
             this.log('error', 'Model import error', this.getErrors());
-            return this.model ? this.model.delete() : null;
+            return this.model?.delete();
         }
     }
 

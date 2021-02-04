@@ -36,12 +36,12 @@ module.exports = class ClassGroupImport extends Base {
         if (!this.data.parent) {
             return false;
         }
-        if (!Object.prototype.hasOwnProperty.call(this.groupMap, this.data.parent)) {
-            return this.assignError('Parent not found');
-        }
-        this.model.set('parent', this.groupMap[this.data.parent].getId());
+        const parent = ObjectHelper.getValue(this.data.parent, this.groupMap);
+        parent ? this.model.set('parent', parent.getId())
+               : this.assignError('Parent not found')
     }
 };
 module.exports.init(module);
 
+const ObjectHelper = require('areto/helper/ObjectHelper');
 const PromiseHelper = require('areto/helper/PromiseHelper');

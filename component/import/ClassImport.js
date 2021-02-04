@@ -97,7 +97,7 @@ module.exports = class ClassImport extends Base {
     // GROUPS
 
     getGroupByName (name) {
-        return this.groupMap.hasOwnProperty(name) ? this.groupMap[name] : null;
+        return ObjectHelper.getValue(name, this.groupMap);
     }
 
     async createGroups () {
@@ -135,7 +135,7 @@ module.exports = class ClassImport extends Base {
     // ATTRIBUTES
 
     getAttrByName (name) {
-        return this.attrMap.hasOwnProperty(name) ? this.attrMap[name] : null;
+        return ObjectHelper.getValue(name, this.attrMap);
     }
 
     async createAttrs () {
@@ -396,11 +396,9 @@ module.exports = class ClassImport extends Base {
 
     resolveActiveDescendants () {
         const names = this.data.activeDescendants;
-        if (Array.isArray(names) && names.length) {
-            const map = this.meta.classMapByName;
-            const activeDescendants = names
-                .map(name => map.hasOwnProperty(name) ? map[name].getId() : null)
-                .filter(id => id);
+        if (names?.length) {
+            const data = this.meta.classMapByName;
+            const activeDescendants = names.map(name => data[name]?.getId?.()).filter(id => id);
             return this.model.directUpdate({activeDescendants});
         }
     }
@@ -409,4 +407,5 @@ module.exports.init(module);
 
 const path = require('path');
 const FileHelper = require('areto/helper/FileHelper');
+const ObjectHelper = require('areto/helper/ObjectHelper');
 const PromiseHelper = require('areto/helper/PromiseHelper');
