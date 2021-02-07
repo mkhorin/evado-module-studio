@@ -21,7 +21,8 @@ module.exports = class Node extends Base {
                 'view',
                 'report',
                 'url',
-                'options'
+                'options',
+                'type'
             ],
             RULES: [
                 ['name', 'required'],
@@ -35,7 +36,8 @@ module.exports = class Node extends Base {
                 }],
                 ['parent', 'default', {value: null}],
                 ['children', 'relation'],
-                ['options', 'json']
+                ['options', 'json'],
+                ['type', 'range', {values: ['divider', 'header']}]
             ],
             BEHAVIORS: {
                 'clone': {
@@ -55,7 +57,6 @@ module.exports = class Node extends Base {
                 parent: 'Parent node',
                 url: 'URL'
             }
-
         };
     }
 

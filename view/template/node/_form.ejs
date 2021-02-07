@@ -29,5 +29,20 @@
                 update: _url('update')
             }
         }]
+    }, {
+        template: _view.get('_part/attr/radioList'),
+        params: {
+            attr: 'type',
+            items: [{
+                value: '',
+                text: 'Node'
+            }, {
+                value: 'divider',
+                text: 'Divider'
+            }, {
+                value: 'header',
+                text: 'Header'
+            }]
+        }
     }]
 }) %>

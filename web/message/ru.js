@@ -112,6 +112,7 @@ Object.assign(Jam.I18n.defaults, {
     'Direction': 'Направление',
     'Disable groups': 'Отключить группы',
     'Disable tree view': 'Отключить древовид',
+    'Divider': 'Разделитель',
     'Drop duplicates': 'Удалять дубли',
     'Dropdown selector search': 'Поиск в выпадающем списке',
 
@@ -167,6 +168,7 @@ Object.assign(Jam.I18n.defaults, {
     'Group': 'Группа',
     'Groups': 'Группы',
 
+    'Header': 'Заголовок',
     'Header template': 'Шаблон заголовка',
     'Hidden': 'Скрыто',
     'Hidden attribute view': 'Скрытое представление атрибута',

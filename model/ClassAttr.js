@@ -12,7 +12,7 @@ const VIEW_TYPES = {
     datetime: 'Date and time',
     localDate: 'Local date',
     localDatetime: 'Local date and time',
-    relationSelect: 'Object select box',
+    relationSelect: 'Select box',
     class: 'Metadata class',
     radioList: 'Radio list',
     select: 'Select box',
