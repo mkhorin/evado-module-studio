@@ -13,7 +13,7 @@ Jam.AttrList = class AttrList extends Jam.AttrList {
         return super.getCommandMethod(name);
     }
 
-    prepareRowByDecorateInherited () {
+    prepareItemByDecorateInherited () {
     }
 
     onSelectAndClone (event) {
