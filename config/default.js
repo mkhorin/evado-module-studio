@@ -12,10 +12,5 @@ module.exports = {
     },
     modules: {      
     },
-    classes: require('./default-classes'),
-    widgets: {
-        'sideMenu': {
-            Class: require('evado/component/widget/SideMenu')
-        }
-    }
+    classes: require('./default-classes')
 };
