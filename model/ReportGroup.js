@@ -77,7 +77,7 @@ module.exports = class ReportGroup extends Base {
     // INHERIT
 
     getParentQuery () {
-        return this.spawn('other/HierarchySolver', {model: this})
+        return this.spawn('misc/HierarchySolver', {model: this})
             .getParentQuery({report: this.get('report')});
     }
 

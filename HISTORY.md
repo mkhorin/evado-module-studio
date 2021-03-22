@@ -1,3 +1,8 @@
+## 2.1.0
+
+* add language toggle
+* add navigation node type
+
 ## 2.0.0
 
 * migration to Bootstrap 4

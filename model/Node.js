@@ -73,7 +73,7 @@ module.exports = class Node extends Base {
     }
 
     getParentQuery () {
-        return this.spawn('other/HierarchySolver', {model: this})
+        return this.spawn('misc/HierarchySolver', {model: this})
             .getParentQuery({section: this.get('section')});
     }
 

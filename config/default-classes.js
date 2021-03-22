@@ -56,7 +56,7 @@ module.exports = {
     'import/ViewGroupImport': require('../component/import/ViewGroupImport'),
     'import/ViewImport': require('../component/import/ViewImport'),
 
-    'other/HierarchySolver': require('evado/component/other/HierarchySolver'),
+    'misc/HierarchySolver': require('evado/component/misc/HierarchySolver'),
 
     'model/ActionBinder': require('../model/ActionBinder'),
     'model/AttrBehavior': require('../model/AttrBehavior'),

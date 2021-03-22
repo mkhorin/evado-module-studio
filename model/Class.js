@@ -102,7 +102,7 @@ module.exports = class Class extends Base {
 
     async getAncestors (classId) {
         const model = await this.findById(classId).one();
-        return this.spawn('other/HierarchySolver', {model}).getAncestors(model);
+        return this.spawn('misc/HierarchySolver', {model}).getAncestors(model);
     }
 
     async getViewMapByName () {
@@ -114,7 +114,7 @@ module.exports = class Class extends Base {
     }
 
     async findDescendants () {
-        const solver = this.spawn('other/HierarchySolver', {model: this});
+        const solver = this.spawn('misc/HierarchySolver', {model: this});
         return solver.getDescendantQuery(...arguments);
     }
 

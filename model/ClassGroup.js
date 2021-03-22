@@ -151,7 +151,7 @@ module.exports = class ClassGroup extends Base {
     }
 
     getParentQuery () {
-        const solver = this.spawn('other/HierarchySolver', {model: this});
+        const solver = this.spawn('misc/HierarchySolver', {model: this});
         return solver.getParentQuery({class: this.get('class')});
     }
 
