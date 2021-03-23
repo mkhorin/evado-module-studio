@@ -172,6 +172,8 @@ Object.assign(Jam.I18n.defaults, {
     'Header template': 'Шаблон заголовка',
     'Hidden': 'Скрыто',
     'Hidden attribute view': 'Скрытое представление атрибута',
+    'Hide attribute with empty value': 'Скрыть атрибут с пустым значением',
+    'Hide empty': 'Скрыть пустой',
     'Hierarchy': 'Иерархия',
     'Hint': 'Подсказка',
     'Hint is displayed when hovering over an attribute label': 'Подсказка отображается при наведении курсора на ярлык атрибута',

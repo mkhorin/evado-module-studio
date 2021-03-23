@@ -31,15 +31,15 @@ const textTemplate = _view.get('_part/attr/text');
                 attr: 'hidden',
                 template: checkboxTemplate
             }
-        }]
-    }, {
-        items: [{
+        }, {
             template: overriddenTemplate,
             params: {
                 attr: 'escape',
                 template: checkboxTemplate
             }
-        }, {
+        }]
+    }, {
+        items: [{
             template: overriddenTemplate,
             params: {
                 attr: 'unique',
@@ -49,6 +49,12 @@ const textTemplate = _view.get('_part/attr/text');
             template: overriddenTemplate,
             params: {
                 attr: 'sortable',
+                template: checkboxTemplate
+            }
+        }, {
+            template: overriddenTemplate,
+            params: {
+                attr: 'hideEmpty',
                 template: checkboxTemplate
             }
         }]
