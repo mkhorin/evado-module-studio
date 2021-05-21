@@ -43,6 +43,7 @@ module.exports = class Report extends Base {
                 'nodes'
             ],
             ATTR_LABELS: {
+                minerConfig: 'Miner configuration',
                 name: 'Code name',
                 order: 'Sort order'
             }

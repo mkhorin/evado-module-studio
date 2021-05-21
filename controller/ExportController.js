@@ -62,7 +62,7 @@ module.exports = class ExportController extends Base {
     renderResult (message, exporter) {
         return this.render('result', {
             message: this.translate(message),
-            errors: exporter.meta.loadErrors
+            errors: exporter.meta.logger.errors
         });
     }
 

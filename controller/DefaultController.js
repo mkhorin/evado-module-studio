@@ -31,8 +31,12 @@ module.exports = class DefaultController extends Base {
 
     async actionReload () {
         this.checkCsrfToken();
-        await this.module.getMetaHub().reload();
-        this.send('Metadata reloaded');
+        const meta = this.module.getMetaHub();
+        await meta.reload();
+        await this.render('reload', {
+            message: this.translate('Metadata reloaded'),
+            errors: meta.logger.errors
+        });
     }
 };
 module.exports.init(module);

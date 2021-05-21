@@ -1,6 +1,6 @@
 {
   "name": "evado-module-studio",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Evado module for creating application metadata",
   "author": {
     "name": "Maxim Khorin",

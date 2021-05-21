@@ -1,3 +1,11 @@
+## 3.1.0
+
+* controller/DefaultController
+    - show errors on metadata reload
+* model/Class
+    - add hierarchical versioning of classes
+        
+
 ## 3.0.0
 
 * migration to Bootstrap 5
