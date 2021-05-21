@@ -13,6 +13,7 @@ module.exports = {
     'Invalid source': 'Неправильный источник',
 
     'Metadata exported': 'Метаданные экспортированы',
+    'Metadata reloaded': 'Метаданные перезагружены',
 
     'Navigation section exported': 'Секции навигации экспортирована',
     'None': 'Отсутствует',

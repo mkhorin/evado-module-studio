@@ -12,7 +12,8 @@ module.exports = class ClassForm extends Base {
         return {
             forbiddenView: await model.resolveRelation('forbiddenView'),
             key: await model.resolveRelation('key'),
-            parent: await model.resolveRelation('parent')
+            parent: await model.resolveRelation('parent'),
+            version: await model.resolveRelation('version')
         };
     }
 };

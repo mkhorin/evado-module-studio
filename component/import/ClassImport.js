@@ -46,7 +46,7 @@ module.exports = class ClassImport extends Base {
         this.model = this.spawn('model/Class', {scenario: 'create'});
         this.data.name = this.baseName;
         this.Helper.assignAttrs(this.data, this.model);
-        this.model.unset('forbiddenView', 'key');
+        this.model.unset('forbiddenView', 'key', 'version'); // to pass validation
         this.groupImports = [];
         this.groupMap = {};
         if (this.data.parent) {
@@ -90,8 +90,19 @@ module.exports = class ClassImport extends Base {
         if (!this.hasError()) {
             await this.setForbiddenView();
         }
+        if (!this.hasError()) {
+            await this.setVersionClass();
+        }
         await this.deleteOnError();
         await PromiseHelper.setImmediate();
+    }
+
+    async setVersionClass () {
+        const version = this.meta.getClassByName(this.data.version);
+        if (version) {
+            this.model.set('version', version.getId());
+            this.model.forceSave();
+        }
     }
 
     // GROUPS

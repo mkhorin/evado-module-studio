@@ -25,11 +25,12 @@ module.exports = class Class extends Base {
                 'options',
                 'order',
                 'parent',                
-                'templateRoot'
+                'templateRoot',
+                'version'
             ],
             RULES: [
                 ['name', 'required'],
-                [['forbiddenView', 'key', 'parent'], 'id'],
+                [['forbiddenView', 'key', 'parent', 'version'], 'id'],
                 ['name', {
                     Class: require('../component/validator/CodeNameValidator'),
                     validFilename: true
@@ -78,7 +79,8 @@ module.exports = class Class extends Base {
                 key: 'Primary key',
                 modelConfig: 'Model configuration',
                 name: 'Code name',
-                order: 'Sort order'
+                order: 'Sort order',
+                version: 'New version'
             },
             COMMAND_VALUE_LABELS: {
                 create: 'Create',
@@ -267,6 +269,11 @@ module.exports = class Class extends Base {
     relTreeViewLevels () {
         const Class = this.getClass('model/TreeViewLevel');
         return this.hasMany(Class, 'owner', this.PK).order({[Class.PK]: 1}).with('refAttr');
+    }
+
+    relVersion () {
+        const Class = this.getClass('model/Class');
+        return this.hasOne(Class, Class.PK, 'version');
     }
 
     relViewAttrs () {

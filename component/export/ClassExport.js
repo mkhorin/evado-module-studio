@@ -47,7 +47,8 @@ module.exports = class ClassExport extends Base {
             'states',
             'stateMap',
             'transitions',
-            'treeViewLevels'
+            'treeViewLevels',
+            'version'
         ]);
         const data = this.getAttrMap();
         data.attrs = await PromiseHelper.map(model.rel('attrs'), this.getAttrData.bind(this, viaMap));
@@ -70,6 +71,7 @@ module.exports = class ClassExport extends Base {
         data.treeView = await PromiseHelper.map(model.rel('treeViewLevels'), this.getTreeViewData, this);
         delete data.activeDescendants; // move to end
         data.activeDescendants = model.rel('activeDescendants').map(model => model.get('name'));
+        data.version = model.get('version.name');
         ObjectHelper.deleteProperties([model.PK, 'name'], data);
         ObjectHelper.deleteEmptyProperties(data);
         ObjectHelper.deleteEmptyArrayProperties(data);
