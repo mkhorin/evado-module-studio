@@ -1,0 +1,15 @@
+<!-- studio/_part/behaviorParam/signature -->
+
+<%- include(_view.get('_part/attr/select'), {
+    attr: 'signature',
+    displayValue: model.getRelatedTitle('signature'),
+    items: null,
+    select2: {
+        ajax: {url: _url('class/list-select')}
+    },
+    update: _url('class/update')
+}) %>
+
+<%- include(_view.get('_part/attr/json'), {
+    attr: 'params'
+}) %>
