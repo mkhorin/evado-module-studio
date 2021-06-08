@@ -1,9 +1,11 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'View') %>
-<% block('title', 'Create view') %>
 <%
+layout(_view.get(_layout));
+block('tab', 'View');
+block('title', 'Create view');
+
 const staticTemplate = _view.get('_part/attr/static');
 %>
+
 <%- include(staticTemplate, {
     attr: 'original',
     displayValue: model.getRelatedTitle('original'),

@@ -1,5 +1,7 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', `Attribute`) %>
+<%
+layout(_view.get(_layout));
+block('tab', `Attribute`);
+%>
 
 <%- include(_view.get('_part/attr/hidden'), {
     attr: 'index'

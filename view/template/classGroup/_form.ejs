@@ -1,11 +1,11 @@
 <%
+layout(_view.get(_layout));
+block('tab', 'Group');
+
 const columnTemplate = _view.get('_part/group/columns');
-const relationTemplate = _view.get('_part/attr/relation');
 const selectTemplate = _view.get('_part/attr/select');
 const stringTemplate = _view.get('_part/attr/string');
 %>
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'Group') %>
 
 <%- include(stringTemplate, {
     attr: 'name'

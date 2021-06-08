@@ -1,5 +1,7 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'Section') %>
+<%
+layout(_view.get(_layout));
+block('tab', 'Section');
+%>
 
 <%- include(_view.get('_part/attr/string'), {
     attr: 'name'

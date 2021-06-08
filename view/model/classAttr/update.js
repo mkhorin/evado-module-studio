@@ -19,6 +19,5 @@ module.exports = class UpdateClassAttrForm extends Base {
             'refAttr',
             'selectListView'
         ]);
-        return {};
     }
 };

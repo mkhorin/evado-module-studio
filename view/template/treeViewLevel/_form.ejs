@@ -1,5 +1,9 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'Tree level') %>
+<%
+layout(_view.get(_layout));
+block('tab', 'Tree level');
+
+const selectTemplate = _view.get('_part/attr/select');
+%>
 
 <%- include(_view.get('_part/attr/static'), {
     attr: 'sourceClass',
@@ -8,13 +12,13 @@
     url: ['class/update', sourceClass]
 }) %>
 
-<%- include(_view.get('_part/attr/select'), {
+<%- include(selectTemplate, {
     attr: 'refAttr',
     items: refAttrs,
     update: _url('class-attr/update')
 }) %>
 
-<%- include(_view.get('_part/attr/select'), {
+<%- include(selectTemplate, {
     attr: 'view',
     items: null,
     displayValue: model.getRelatedTitle('view'),

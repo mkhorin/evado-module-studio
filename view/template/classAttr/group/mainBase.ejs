@@ -1,0 +1,69 @@
+<%
+const checkboxTemplate = _view.get('_part/attr/checkbox');
+%>
+
+<%- include(_view.get('_part/attr/text'), {
+    attr: 'description'
+}) %>
+
+<%- include(_view.get('_part/group/inline'), {
+    items: [{
+        template: checkboxTemplate,
+        params: {
+            attr: 'required',
+            hint: 'Attribute value cannot be empty'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'readOnly'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'unique',
+            hint: 'Attribute value must be unique'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'escape',
+            hint: 'Escape HTML data output'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'hidden',
+            hint: 'Hidden attribute view'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'sortable'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'trim',
+            hint: 'Remove spaces from both ends of an attribute value'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'history',
+            hint: 'Keep history of attribute value changes'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'hideEmpty',
+            hint: 'Hide attribute with empty value'
+        }
+    },{
+        template: checkboxTemplate,
+        params: {
+            attr: 'signed',
+            hint: 'Attribute contains data for digital signing'
+        }
+    }]
+}) %>

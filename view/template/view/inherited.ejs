@@ -1,10 +1,12 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'View') %>
-<% block('title', model.getTitle()); %>
-<% block('titleTranslation', 'none'); %>
 <%
+layout(_view.get(_layout))
+block('tab', 'View')
+block('title', model.getTitle());
+block('titleTranslation', 'none');
+
 const staticTemplate = _view.get('_part/attr/static');
 %>
+
 <%- include(staticTemplate, {
     attr: 'original',
     displayValue: model.getRelatedTitle('original'),

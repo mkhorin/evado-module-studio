@@ -1,9 +1,12 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'Attribute') %>
 <%
+layout(_view.get(_layout));
+block('tab', 'Attribute');
+
 const columnTemplate = _view.get('_part/group/columns');
+const selectTemplate = _view.get('_part/attr/select');
 const stringTemplate = _view.get('_part/attr/string');
 %>
+
 <%- include(columnTemplate, {
     items: [{
         template: _view.get('_part/attr/static'),
@@ -31,13 +34,13 @@ const stringTemplate = _view.get('_part/attr/string');
 
 <%- include(columnTemplate, {
     items: [{
-        template: _view.get('_part/attr/select'),
+        template: selectTemplate,
         params: {
             attr: 'type',
             items: 'labels'
         }
     },{
-        template: _view.get('_part/attr/select'),
+        template: selectTemplate,
         params: {
             attr: 'viewType',
             items: 'labels'

@@ -1,0 +1,128 @@
+<%
+const viewSelect2 = {ajax: {url: _url('view/list-select')}};
+const attrUpdate = _url('class-attr/update');
+const classUpdate = _url('class/update');
+const viewUpdate = _url('view/update');
+const refClassExists = {enable: ['NOT EMPTY', 'refClass']};
+const refClassMaster = [{attr: 'refClass', param: 'pid'}];
+const checkboxTemplate = _view.get('_part/attr/checkbox');
+const columnTemplate = _view.get('_part/group/columns');
+const overriddenTemplate = _view.get('_part/attr/overridden');
+const selectTemplate = _view.get('_part/attr/select');
+%>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: overriddenTemplate,
+        params: {
+            attr: 'multiple',
+            template: checkboxTemplate
+        }
+    }]
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'refClass',
+    template: selectTemplate,
+    params: {
+        items: null,
+        displayValue: model.getRelatedTitle('refClass'),
+        select2: {ajax: {url: _url('class/list-select')}},
+        update: classUpdate,
+        actionBinder: {require: {type: ['ref', 'backref']}}
+    }
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'refAttr',
+    template: selectTemplate,
+    params: {
+        displayValue: model.getRelatedTitle('refAttr'),
+        extHint: 'Key attribute will be used for empty value',
+        items: null,
+        select2: {ajax: {url: _url('class-attr/list-select')}},
+        depends: refClassMaster,
+        update: attrUpdate,
+        actionBinder: refClassExists
+    }
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'linkAttr',
+    template: selectTemplate,
+    params: {
+        displayValue: model.getRelatedTitle('linkAttr'),
+        extHint: 'Key attribute will be used for empty value',
+        items: null,
+        select2: {
+            ajax: {url: _url('class-attr/list-select')},
+            queryData: {pid: model.get('class')}
+        },
+        update: attrUpdate
+    }
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'commands',
+    template: _view.get('_part/attr/checkList'),
+    params: {
+        items: model.COMMAND_VALUE_LABELS
+    }
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'listView',
+    template: selectTemplate,
+    params: {
+        displayValue: model.getRelatedTitle('listView'),
+        items: null,
+        select2: viewSelect2,
+        depends: refClassMaster,
+        update: viewUpdate,
+        actionBinder: refClassExists
+    }
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'selectListView',
+    template: selectTemplate,
+    params: {
+        attr: 'selectListView',
+        displayValue: model.getRelatedTitle('selectListView'),
+        items: null,
+        select2: viewSelect2,
+        depends: refClassMaster,
+        update: viewUpdate,
+        actionBinder: refClassExists
+    }
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: overriddenTemplate,
+        params: {
+            attr: 'eagerLoading',
+            template: checkboxTemplate
+        }
+    }, {
+        template: overriddenTemplate,
+        params: {
+            attr: 'eagerDepth',
+            template: _view.get('_part/attr/number')
+        }
+    }]
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'eagerView',
+    template: selectTemplate,
+    params: {
+        displayValue: model.getRelatedTitle('eagerView'),
+        items: null,
+        select2: viewSelect2,
+        depends: refClassMaster,
+        update: viewUpdate,
+        actionBinder: refClassExists,
+        extHint: 'View for eager loading of related objects'
+    }
+}) %>

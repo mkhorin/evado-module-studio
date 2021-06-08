@@ -83,12 +83,11 @@ module.exports = class Exporter extends Base {
     async saveJsonFile (file, data) {
         await FileHelper.createDirectory(path.dirname(file));
         data = JSON.stringify(data, this.jsonReplacer, this.jsonSpace);
-        return PromiseHelper.promise(fs.writeFile.bind(fs, file, data));
+        await fs.promises.writeFile(file, data);
     }
 };
 module.exports.init(module);
 
+const FileHelper = require('areto/helper/FileHelper');
 const fs = require('fs');
 const path = require('path');
-const FileHelper = require('areto/helper/FileHelper');
-const PromiseHelper = require('areto/helper/PromiseHelper');

@@ -1,55 +1,25 @@
-<% block('title', model.getTitle()); %>
-<% block('titleTranslation', 'none'); %>
+<%
+block('title', model.getTitle());
+block('titleTranslation', 'none');
+%>
 
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
     items: [{
-        id: 'Main',
-        content: _view.getInternalTemplate('_tabMain')
+        id: 'main',
+        label: 'Main',
+        content: _view.getInternalTemplate('group/main'),
+        loadable: true
     },{
-        id: 'Attributes',
-        content: {
-            template: _view.get('_part/attr/relation'),
-            attr: 'attrs',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'classAttr'
-                }, {
-                    name: 'label'
-                }, {
-                    name: 'viewType'
-                }, {
-                    name: 'orderNumber'
-                }],
-                order: {orderNumber: 1},
-                list: 'list-attrs',
-                link: null,
-                unlink: null,
-                create: null,
-                modalSort: true
-            }
-        }
+        id: 'attrs',
+        label: 'Attributes',
+        content: _view.getInternalTemplate('group/attrs'),
+        loadable: true
     }, {
-        id: 'Action binders',
-        content: {
-            template: _view.get('_part/attr/relation'),
-            attr: 'actionBinder',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'show'
-                }, {
-                    name: 'require'
-                }, {
-                    name: 'enable'
-                }, {
-                    name: 'value'
-                }],
-                link: null,
-                unlink: null
-            }
-        }
+        id: 'actionBinders',
+        label: 'Action binders',
+        content: _view.getInternalTemplate('group/actionBinders'),
+        loadable: true
     }]
 }) %>

@@ -10,6 +10,5 @@ module.exports = class StateForm extends Base {
     async resolveTemplateData () {
         const model = this.data.model;
         await model.resolveRelations(['class', 'view']);
-        return {};
     }
 };

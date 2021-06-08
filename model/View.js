@@ -106,10 +106,9 @@ module.exports = class View extends Base {
     validateFilter (attr) {
         const value = this.get(attr);
         if (value.Class) {
+            const BaseClass = require('evado-meta-base/base/ViewFilter');
             const Class = require('areto/validator/SpawnValidator');
-            return this.module.spawn(Class, {
-                BaseClass: require('evado-meta-base/base/ViewFilter')
-            }).validateAttr(this, attr);
+            return this.module.spawn(Class, {BaseClass}).validateAttr(this, attr);
         }
     }
 
@@ -133,7 +132,9 @@ module.exports = class View extends Base {
     getRelinkMapByClass (name, sample) {
         const oid = sample.get('class');
         const cid = this.get('class');
-        return CommonHelper.isEqual(oid, cid) ? null : this.spawn(name).getRelinkMap(oid, cid);
+        if (!CommonHelper.isEqual(oid, cid)) {
+            return this.spawn(name).getRelinkMap(oid, cid);
+        }
     }
 
     async relinkAttrs (sample) {
@@ -145,11 +146,13 @@ module.exports = class View extends Base {
     }
 
     relinkClassAttrs (data) {
-        return this.handleEachRelatedModel(['attrs', 'behaviors', 'rules'], model => model.relinkClassAttrs(data));
+        const items = ['attrs', 'behaviors', 'rules'];
+        return this.handleEachRelatedModel(items, model => model.relinkClassAttrs(data));
     }
 
     relinkClassGroups (data) {
-        return this.handleEachRelatedModel(['attrs', 'groups'], model => model.relinkClassGroups(data));
+        const items = ['attrs', 'groups'];
+        return this.handleEachRelatedModel(items, model => model.relinkClassGroups(data));
     }
 
     async relinkClass (sampleClass, targetClass) {

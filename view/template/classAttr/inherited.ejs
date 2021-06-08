@@ -1,61 +1,34 @@
-<% layout(_view.get(_layout)) %>
-<% block('title', 'Class attribute') %>
 <%
+layout(_view.get(_layout));
+block('title', 'Class attribute');
+
 const columnTemplate = _view.get('_part/group/columns');
 const overriddenTemplate = _view.get('_part/attr/overridden');
-const relationTemplate = _view.get('_part/attr/relation');
 const staticTemplate = _view.get('_part/attr/static');
 
 const tabs = [{
-    id: 'Main',
-    content: _view.getInternalTemplate('_tabInheritedMain')
+    id: 'main',
+    label: 'Main',
+    content: _view.getInternalTemplate('group/inheritedMain'),
+    loadable: true
 }];
 if (model.isRelation() || model.isUser()) {
     tabs.push({
-        id: 'Relation',
-        content: _view.getInternalTemplate('_tabInheritedRelation')
+        id: 'relation',
+        label: 'Relation',
+        content: _view.getInternalTemplate('group/inheritedRelation')
     });
 }
 tabs.push({
-    id: 'Validators',
-    content: {
-        template: relationTemplate,
-        attr: 'rules',
-        css: 'no-label',
-        data: {
-            columns: [{
-                name: 'type'
-            }, {
-                name: 'param'
-            }, {
-                name: 'orderNumber'
-            }],
-            order: {orderNumber: 1},
-            link: null,
-            unlink: null,
-            modalSort: true
-        }
-    }
+    id: 'validators',
+    label: 'Validators',
+    content: _view.getInternalTemplate('group/validators'),
+    loadable: true
 }, {
-    id: 'Action binders',
-    content: {
-        template: relationTemplate,
-        attr: 'actionBinder',
-        css: 'no-label',
-        data: {
-            columns: [{
-                name: 'show'
-            }, {
-                name: 'require'
-            }, {
-                name: 'enable'
-            }, {
-                name: 'value'
-            }],
-            link: null,
-            unlink: null
-        }
-    }
+    id: 'actionBinders',
+    label: 'Action binders',
+    content: _view.getInternalTemplate('group/actionBinders'),
+    loadable: true
 });
 %>
 
@@ -96,4 +69,6 @@ tabs.push({
     url: ['class/update', {id: model.get('class')}]
 }) %>
 
-<%- include(_view.get('_part/group/tabs'), {items: tabs}) %>
+<%- include(_view.get('_part/group/tabs'), {
+    items: tabs
+}) %>

@@ -12,6 +12,5 @@ module.exports = class ClassRuleSort extends Base {
             model.setRelatedViewAttr('attrs');
         }
         await this.prepareModels(this.data.models);
-        return this.data;
     }
 };

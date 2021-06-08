@@ -7,7 +7,7 @@ const Base = require('areto/view/ViewModel');
 
 module.exports = class ViewAttrFilter extends Base {
 
-    async resolveTemplateData () {
+    resolveTemplateData () {
         const ClassAttr = this.getClass('model/ClassAttr');
         return {
             viewTypes: ClassAttr.getAttrValueLabels('viewType')

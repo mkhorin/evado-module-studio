@@ -1,6 +1,7 @@
-<% layout(_view.get('_layout/list')) %>
-
-<% block('title', 'View attributes') %>
+<%
+layout(_view.get('_layout/list'));
+block('title', 'View attributes');
+%>
 
 <%- include(_view.get('_part/list/grid'), {
     data: {
@@ -18,9 +19,6 @@
             escape: false,
             translateData: ''
         },{
-            name: 'header',
-            escape: false
-        }, {
             name: 'view',
             format: {
                 name: 'relation',

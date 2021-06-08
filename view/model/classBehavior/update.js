@@ -10,7 +10,9 @@ module.exports = class ClassBehaviorUpdate extends Base {
     async resolveTemplateData () {
         const data = await super.resolveTemplateData();
         await this.resolveModelRelations(data.paramModelMap, {
-            file: ['nameAttr']
+            file: ['nameAttr'],
+            s3: ['nameAttr'],
+            signature: ['signature']
         });
         return data;
     }

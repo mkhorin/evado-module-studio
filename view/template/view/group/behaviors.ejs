@@ -1,0 +1,20 @@
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'behaviors',
+    css: 'no-label',
+    data: {
+        columns: [{
+            name: 'type',
+            translateData: ''
+        }, {
+            name: 'param'
+        }, {
+            name: 'orderNumber'
+        }],
+        order: {orderNumber: 1},
+        link: null,
+        unlink: null,
+        modalSort: true
+    }
+}) %>
+

@@ -1,8 +1,10 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'Via') %>
 <%
+layout(_view.get(_layout));
+block('tab', 'Via');
+
 const selectTemplate = _view.get('_part/attr/select');
 %>
+
 <%- include(selectTemplate, {
     attr: 'refClass',
     items: null,

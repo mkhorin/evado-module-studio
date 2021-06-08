@@ -25,4 +25,12 @@ module.exports = class BaseActiveRecord extends Base {
     findByClass (id) {
         return this.find(['ID', 'class', id]);
     }
+
+    relinkAttr (name, data) {
+        const key = this.get(name);
+        if (data.hasOwnProperty(key)) {
+            this.set(name, data[key]);
+            return true;
+        }
+    }
 };

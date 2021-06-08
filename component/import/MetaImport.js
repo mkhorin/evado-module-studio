@@ -95,14 +95,14 @@ module.exports = class MetaImport extends Base {
             items.push(await this.parseClassFile(file, dir));
         }
         items = ArrayHelper.sortHierarchy(items, 'name', 'parent');
-        return items.map(item => item._fileName);
+        return items.map(item => item._filename);
     }
 
     async parseClassFile (file, dir) {
         try {
             const data = await FileHelper.readJsonFile(path.join(dir, file));
             data.name = FileHelper.getBasename(file);
-            data._fileName = file;
+            data._filename = file;
             return data;
         } catch (err) {
             throw new Error(`Invalid class file: ${file}: ${err}`);
@@ -192,9 +192,9 @@ module.exports = class MetaImport extends Base {
 };
 module.exports.init(module);
 
-const path = require('path');
 const ArrayHelper = require('areto/helper/ArrayHelper');
 const FileHelper = require('areto/helper/FileHelper');
 const IndexHelper = require('areto/helper/IndexHelper');
 const ObjectHelper = require('areto/helper/ObjectHelper');
 const PromiseHelper = require('areto/helper/PromiseHelper');
+const path = require('path');

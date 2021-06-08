@@ -26,8 +26,8 @@ module.exports = class CodeNameValidator extends Base {
         if (!this.pattern.test(value)) {
             return this.getMessage();
         }
-        const filename = RegexValidator.PATTERNS.reservedFileNameChars;
-        const window = RegexValidator.PATTERNS.reservedWindowsFileName;
+        const filename = RegexValidator.PATTERNS.reservedFilenameChars;
+        const window = RegexValidator.PATTERNS.reservedWindowsFilename;
         if (this.validFilename && (filename.test(value) || window.test(value))) {
             return this.getMessage();
         }

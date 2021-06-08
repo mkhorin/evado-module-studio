@@ -1,62 +1,27 @@
-<% block('title', model.getTitle()); %>
-<% block('titleTranslation', 'none'); %>
+<%
+block('title', model.getTitle());
+block('titleTranslation', 'none');
+%>
 
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
     items: [{
-        id: 'Main',
+        id: 'main',
+        label: 'Main',
         active: true,
-        content: _view.getInternalTemplate('_tabMain')
+        content: _view.getInternalTemplate('group/main')
     }, {
-        id: 'Starting transitions',
+        id: 'startingTransitions',
+        label: 'Starting transitions',
         hint: 'Transitions starting from this state',
-        content: {
-            template: _view.get('_part/attr/relation'),
-            attr: 'startingTransitions',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'name'
-                }, {
-                    name: 'label'
-                }, {
-                    name: 'startStates',
-                    format: 'relation'
-                }, {
-                    name: 'finalState',
-                    format: 'relation'
-                }],
-                link: null,
-                unlink: null,
-                create: null,
-                delete: null
-            }
-        }
+        content: _view.getInternalTemplate('group/startingTransitions'),
+        loadable: true
     }, {
-        id: 'Finishing transitions',
+        id: 'finishingTransitions',
+        label: 'Finishing transitions',
         hint: 'Transitions ending in this state',
-        content: {
-            template: _view.get('_part/attr/relation'),
-            attr: 'finishingTransitions',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'name'
-                }, {
-                    name: 'label'
-                }, {
-                    name: 'startStates',
-                    format: 'relation'
-                }, {
-                    name: 'finalState',
-                    format: 'relation'
-                }],
-                link: null,
-                unlink: null,
-                create: null,
-                delete: null
-            }
-        }
+        content: _view.getInternalTemplate('group/finishingTransitions'),
+        loadable: true
     }]
 }); %>

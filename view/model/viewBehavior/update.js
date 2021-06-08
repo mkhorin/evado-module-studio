@@ -1,6 +1,17 @@
 /**
- * @copyright Copyright (c) 2020 Maxim Khorin <maksimovichu@gmail.com>
+ * @copyright Copyright (c) 2021 Maxim Khorin <maksimovichu@gmail.com>
  */
 'use strict';
 
-module.exports = require('../attrBehavior/update');
+const Base = require('../attrBehavior/update');
+
+module.exports = class ViewBehaviorUpdate extends Base {
+
+    async resolveTemplateData () {
+        const data = await super.resolveTemplateData();
+        await this.resolveModelRelations(data.paramModelMap, {
+            signature: ['signature']
+        });
+        return data;
+    }
+};

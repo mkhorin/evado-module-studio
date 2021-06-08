@@ -97,7 +97,7 @@ module.exports = class ClassAttrImport extends Base {
     async createBehavior (data) {
         const model = this.spawn('model/AttrBehavior');
         data.owner = this.model.getId();
-        await this.Helper.importParamContainer(model, data);
+        await this.Helper.importParamContainer(model, data, this.meta);
         this.assignError(this.Helper.getError(model, model.constructor.name));
     }
 
@@ -118,7 +118,7 @@ module.exports = class ClassAttrImport extends Base {
     async createRule (data) {
         const model = this.spawn('model/AttrRule', {scenario: 'create'});
         data.owner = this.model.getId();
-        await this.Helper.importParamContainer(model, data);
+        await this.Helper.importParamContainer(model, data, this.meta);
         this.assignError(this.Helper.getError(model, 'Rules'));
     }
 

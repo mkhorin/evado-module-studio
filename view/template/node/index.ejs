@@ -1,6 +1,7 @@
-<% layout(_view.get('_layout/list')) %>
-
-<% block('title', 'Navigation nodes') %>
+<%
+layout(_view.get('_layout/list'));
+block('title', 'Navigation nodes');
+%>
 
 <%- include(_view.get('_part/list/grid'), {
     data: {

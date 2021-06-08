@@ -13,6 +13,5 @@ module.exports = class CreateClassAttrForm extends Base {
             ? ['class', 'group', 'linkAttr', 'refClass', 'refAttr']
             : ['class'];
         await model.resolveRelations(names);
-        return {};
     }
 };

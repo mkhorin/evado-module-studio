@@ -1,5 +1,7 @@
-<% block('title', model.getTitle()); %>
-<% block('titleTranslation', 'none'); %>
+<%
+block('title', model.getTitle());
+block('titleTranslation', 'none');
+%>
 
 <%- include(_view.getInternalTemplate('_form')) %>
 

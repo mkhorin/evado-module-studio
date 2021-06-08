@@ -11,6 +11,5 @@ module.exports = class ViewAttrSort extends Base {
         for (const model of this.data.models) {
             model.setViewAttr('classAttr', model.get('classAttr.name'));
         }
-        return this.data;
     }
 };

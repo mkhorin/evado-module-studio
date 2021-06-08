@@ -70,6 +70,7 @@ module.exports = class ClassAttr extends Base {
                 'searchDepth',
                 'selectListView',
                 'selectSearchable',
+                'signed',
                 'trim',
                 'type',
                 'unique',
@@ -96,7 +97,7 @@ module.exports = class ClassAttr extends Base {
                 ['indexing', 'integer'],
                 ['indexing', 'range', {values: [-1, 1]}],
                 [['commonSearchable', 'createOnRead', 'eagerLoading', 'escape', 'hidden', 'hideEmpty', 'history',
-                    'multiple', 'readOnly', 'required', 'selectSearchable', 'sortable', 'sortableRelation',
+                    'multiple', 'readOnly', 'required', 'selectSearchable', 'sortable', 'sortableRelation', 'signed',
                     'trim', 'unique'], 'checkbox'],
                 ['name', 'validateSystemAttr'], // after readOnly validation
                 [['defaultValue', 'expression', 'filter', 'header', 'options'], 'json'],
@@ -258,7 +259,9 @@ module.exports = class ClassAttr extends Base {
                 ]
             }, {
                 condition: {type: 'integer'},
-                items: [['time', VIEW_TYPES.time]]
+                items: [
+                    ['time', VIEW_TYPES.time]
+                ]
             }, {
                 condition: {type: 'calc'},
                 items: [

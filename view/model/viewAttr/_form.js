@@ -9,7 +9,14 @@ module.exports = class ViewAttrForm extends Base {
 
     async resolveTemplateData () {
         const model = this.data.model;
-        await model.resolveRelations(['class', 'group', 'view', 'eagerView', 'listView', 'selectListView']);
+        await model.resolveRelations([
+            'class',
+            'group',
+            'view',
+            'eagerView',
+            'listView',
+            'selectListView'
+        ]);
         return {
             overridden: await model.getBehavior('overridden').getAttrMap()
         };

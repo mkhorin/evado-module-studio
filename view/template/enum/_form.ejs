@@ -1,9 +1,11 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'Enum') %>
 <%
+layout(_view.get(_layout));
+block('tab', 'Enum');
+
 const jsonTemplate = _view.get('_part/attr/json');
 const selectTemplate = _view.get('_part/attr/select');
 %>
+
 <%- include(_view.get('_part/attr/relation'), {
     attr: 'items',
     data: {

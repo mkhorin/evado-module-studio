@@ -17,10 +17,9 @@ module.exports = class TimestampParam extends Base {
                 [['createdAttr', 'updatedAttr'], 'id']
             ],
             ATTR_LABELS: {
-                createdAttr: 'Create timestamp',
+                createdAttr: 'Creation timestamp',
                 updatedAttr: 'Update timestamp'
             }
-
         };
     }
 
@@ -35,12 +34,8 @@ module.exports = class TimestampParam extends Base {
     }
 
     relinkClassAttrs (data) {
-        if (data.hasOwnProperty(this.get('createdAttr'))) {
-            this.set('createdAttr', data[this.get('createdAttr')]);
-        }
-        if (data.hasOwnProperty(this.get('updatedAttr'))) {
-            this.set('updatedAttr', data[this.get('updatedAttr')]);
-        }
+        this.relinkAttr('createdAttr', data);
+        this.relinkAttr('updatedAttr', data);
         return this.forceSave();
     }
 

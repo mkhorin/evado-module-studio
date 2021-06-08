@@ -1,11 +1,13 @@
-<% layout(_view.get(_layout)); %>
-<% block('tab', 'View attribute'); %>
 <%
+layout(_view.get(_layout));
+block('tab', 'View attribute');
+
 const classAttr = model.rel('classAttr');
 const columnTemplate = _view.get('_part/group/columns');
 const overriddenTemplate = _view.get('_part/attr/overridden');
 const staticTemplate = _view.get('_part/attr/static');
 %>
+
 <%- include(staticTemplate, {
     attr: 'classAttr',
     displayValue: classAttr.getTitle(),

@@ -1,5 +1,9 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', `Index`) %>
+<%
+layout(_view.get(_layout));
+block('tab', `Index`);
+
+const checkboxTemplate = _view.get('_part/attr/checkbox');
+%>
 
 <%- include(_view.get('_part/attr/hidden'), {
     attr: 'class'
@@ -9,11 +13,11 @@
     attr: 'name'
 }) %>
 
-<%- include(_view.get('_part/attr/checkbox'), {
+<%- include(checkboxTemplate, {
     attr: 'unique'
 }) %>
 
-<%- include(_view.get('_part/attr/checkbox'), {
+<%- include(checkboxTemplate, {
     attr: 'background',
     hint: 'Build the index without blocking other database activity'
 }) %>

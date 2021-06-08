@@ -10,7 +10,7 @@ module.exports = class FileParamBehavior extends Base {
     async execute () {
         await super.execute();
         this.join('extensions');
-        this.join('mimeTypes');
+        this.join('types');
         await this.resolveClassAttrByName('nameAttr');
     }
 

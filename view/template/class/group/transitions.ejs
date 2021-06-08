@@ -1,0 +1,25 @@
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'transitions',
+    css: 'no-label',
+    data: {
+        columns: [{
+            name: 'name'
+        }, {
+            name: 'label'
+        }, {
+            name: 'startStates',
+            format: 'relation'
+        }, {
+            name: 'finalState',
+            format: 'relation'
+        }, {
+            name: 'orderNumber'
+        }],
+        order: {orderNumber: 1},
+        modalSort: true,
+        link: null,
+        unlink: null
+    }
+}) %>
+

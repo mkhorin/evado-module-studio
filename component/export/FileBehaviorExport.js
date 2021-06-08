@@ -10,7 +10,7 @@ module.exports = class FileBehaviorExport extends Base {
     async execute () {
         await this.model.prepareData();
         this.split('extensions');
-        this.split('mimeTypes');
+        this.split('types');
         this.model.set('nameAttr', this.model.get('nameAttr.name'));
         return super.execute();
     }

@@ -11,7 +11,8 @@ module.exports = class ClassRuleExport extends Base {
         await this.model.resolveRelation('attrs');
         const data = await this.getRuleContainerData(this.model);
         data.attrs = this.model.get('attrs.name');
-        return data.attrs.length ? data : null;
+        data.attrs = data.attrs.length ? data.attrs : undefined;
+        return data;
     }
 
     getRuleContainerData (model) {

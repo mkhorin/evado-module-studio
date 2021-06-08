@@ -68,16 +68,16 @@ module.exports = class ParamContainer extends Base {
 
     async relinkClassAttrs (classAttrMap) {
         const param = await this.resolveRelation('param');
-        if (param) {
-            await param.relinkClassAttrs(classAttrMap);
-        }
+        return param?.relinkClassAttrs(classAttrMap);
     }
 
     // RELATIONS
 
     relParam () {
         const Class = this.getBehavior('paramContainer').getParamClass();
-        return Class ? this.hasOne(Class, 'owner', this.PK) : false;
+        return Class
+            ? this.hasOne(Class, 'owner', this.PK)
+            : false;
     }
 };
 module.exports.init();

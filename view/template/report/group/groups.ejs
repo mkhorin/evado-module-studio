@@ -1,0 +1,24 @@
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'groups',
+    css: 'no-label',
+    data: {
+        columns: [{
+            name: 'name'
+        },{
+            name: 'label'
+        },{
+            name: 'parent',
+            format: {
+                name: 'relation',
+                url: _url('report-group/update')
+            }
+        },{
+            name: 'orderNumber'
+        }],
+        order: {orderNumber: 1},
+        link: null,
+        unlink: null,
+        modalSort: true
+    }
+}) %>

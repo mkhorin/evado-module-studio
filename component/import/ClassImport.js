@@ -290,17 +290,16 @@ module.exports = class ClassImport extends Base {
         data.owner = this.model.getId();
         model.populateRelation('owner', this.model);
         await this.resolveRuleAttrs(data);
-        await this.Helper.importParamContainer(model, data);
+        await this.Helper.importParamContainer(model, data, this.meta);
         this.assignError(this.Helper.getError(model, 'rules'));
     }
 
     async resolveRuleAttrs (data) {
-        if (!Array.isArray(data.attrs) || !data.attrs.length) {
-            return this.assignError('Invalid rule attributes');
+        if (Array.isArray(data.attrs) && data.attrs.length) {
+            data.attrs = {
+                links: await PromiseHelper.map(data.attrs, this.resolveRuleAttr, this)
+            };
         }
-        data.attrs = {
-            links: await PromiseHelper.map(data.attrs, this.resolveRuleAttr, this)
-        };
         return PromiseHelper.setImmediate();
     }
 
@@ -323,7 +322,7 @@ module.exports = class ClassImport extends Base {
         const model = this.spawn('model/ClassBehavior', {scenario: 'create'});
         data.owner = this.model.getId();
         model.populateRelation('owner', this.model);
-        await this.Helper.importParamContainer(model, data);
+        await this.Helper.importParamContainer(model, data, this.meta);
         this.assignError(this.Helper.getError(model, 'behaviors'));
     }
 
@@ -416,7 +415,7 @@ module.exports = class ClassImport extends Base {
 };
 module.exports.init(module);
 
-const path = require('path');
 const FileHelper = require('areto/helper/FileHelper');
 const ObjectHelper = require('areto/helper/ObjectHelper');
 const PromiseHelper = require('areto/helper/PromiseHelper');
+const path = require('path');

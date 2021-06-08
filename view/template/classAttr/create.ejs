@@ -1,7 +1,8 @@
 <% block('title', 'Create class attribute') %>
 
 <%- include(_view.getInternalTemplate('_form')) %>
-<%- include(_view.getInternalTemplate('_tabMainBase')) %>
+
+<%- include(_view.getInternalTemplate('group/mainBase')) %>
 
 <%- include(_view.get('_part/attr/select'), {
     attr: 'group',
@@ -16,5 +17,5 @@
 }) %>
 
 <div class="form-group" data-action-binder='{"show":{"type":["backref","ref"]}}'>
-    <%- include(_view.getInternalTemplate('_tabRelationBase')) %>
+    <%- include(_view.getInternalTemplate('group/relationBase')) %>
 </div>

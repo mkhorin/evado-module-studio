@@ -1,0 +1,27 @@
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'viewAttrs',
+    css: 'no-label',
+    data: {
+        columns: [{
+            name: 'classAttr',
+            format: 'relation'
+        },{
+            name: 'label'
+        },{
+            name: 'view',
+            format: {
+                name: 'relation',
+                url: _url('view/update')
+            }
+        },{
+            name: 'orderNumber'
+        }],
+        order: {orderNumber: 1},
+        link: null,
+        unlink: null,
+        create: null,
+        delete: null
+    }
+}) %>
+

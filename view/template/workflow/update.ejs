@@ -1,8 +1,9 @@
-<% block('title', model.getTitle()); %>
-<% block('titleTranslation', 'none'); %>
-<% block('commands', {
+<%
+block('commands', {
     template: _view.get('_part/tool/modelExport'),
     url: _url('export/workflow', model)
-}); %>
-
+});
+block('title', model.getTitle());
+block('titleTranslation', 'none');
+%>
 <%- include(_view.getInternalTemplate('_form')) %>

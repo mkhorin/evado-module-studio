@@ -1,8 +1,9 @@
-<% block('title', title) %>
-
-<% layout(_view.get('_layout/frame/form'), {
+<%
+layout(_view.get('_layout/frame/form'), {
     params: {closeConfirmation: false}
-}) %>
+});
+block('title', title);
+%>
 
 <% if (typeof alert !== 'undefined') { %>
 <div class="alert-warning alert light" data-t=""><%- alert %></div>

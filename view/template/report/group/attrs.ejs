@@ -1,0 +1,22 @@
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'attrs',
+    css: 'no-label',
+    data: {
+        columns: [{
+            name: 'name'
+        },{
+            name: 'label'
+        },{
+            name: 'type',
+            format: 'label'
+        },{
+            name: 'orderNumber'
+        }],
+        order: {orderNumber: 1},
+        link: null,
+        unlink: null,
+        clone: true,
+        modalSort: true
+    }
+}) %>

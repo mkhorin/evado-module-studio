@@ -12,12 +12,16 @@ module.exports = class ClassBehavior extends Base {
             TABLE: 'studio_classBehavior',
             PARAM_MAP: {
                 'custom': require('./behaviorParam/CustomParam'),
-                'file': require('./behaviorParam/FileParam')
+                'file': require('./behaviorParam/FileParam'),
+                'signature': require('./behaviorParam/SignatureParam'),
+                's3': require('./behaviorParam/S3Param')
             },
             ATTR_VALUE_LABELS: {
                 'type': {
                     custom: 'Custom behavior',
-                    file: 'File'
+                    file: 'File',
+                    signature: 'Digital signature',
+                    s3: 'S3'
                 }
             }
         };

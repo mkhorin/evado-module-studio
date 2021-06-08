@@ -1,0 +1,23 @@
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'states',
+    css: 'no-label',
+    data: {
+        columns: [{
+            name: 'name'
+        }, {
+            name: 'label'
+        }, {
+            name: 'description'
+        }, {
+            name: 'defaults',
+            format: 'boolean'
+        }, {
+            name: 'readOnly',
+            format: 'boolean'
+        }],
+        order: {name: 1},
+        link: null,
+        unlink: null
+    }
+}) %>

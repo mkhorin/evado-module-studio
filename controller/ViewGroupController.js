@@ -43,7 +43,7 @@ module.exports = class ViewGroupController extends Base {
         const attrs = await viewAttr.findByViewAndGroup(viewGroup.get('view'), groupId, ids).all();
         ids = ViewAttr.filterInherited(attrs, groupId).map(attr => attr.getId());
         const query = viewAttr.findById(ids).with('classAttr');
-        return this.sendGridList(query, {viewModel: 'listAttrs'});
+        return this.sendGridList(query, {viewModel: 'list/attrs'});
     }
 };
 module.exports.init(module);

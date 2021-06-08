@@ -1,52 +1,18 @@
-<% block('title', model.getTitle()); %>
-<% block('titleTranslation', 'none'); %>
-<% block('commands', {
+<%
+block('commands', {
     template: _view.get('_part/tool/modelExport'),
     url: _url('export/section', model)
-});%>
+});
+block('title', model.getTitle());
+block('titleTranslation', 'none');
+%>
 
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
     items: [{
-        id: 'Nodes',
-        content: {
-            template: _view.get('_part/attr/relation'),
-            attr: 'nodes',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'name'
-                }, {
-                    name: 'label'
-                }, {
-                    name: 'class',
-                    format: {
-                        name: 'relation',
-                        url: _url('class/update')
-                    }
-                }, {
-                    name: 'view',
-                    format: {
-                        name: 'relation',
-                        url: _url('view/update')
-                    }
-                }, {
-                    name: 'report',
-                    format: {
-                        name: 'relation',
-                        url: _url('report/updatet')
-                    }
-                }, {
-                    name: 'orderNumber',
-                    sortable: true
-                }],
-                order: {orderNumber: 1},
-                link: null,
-                unlink: null,
-                create: ['node/create-by-section', model],
-                modalSort: true
-            }
-        }
+        id: 'nodes',
+        label: 'Nodes',
+        content: _view.getInternalTemplate('group/nodes')
     }]
 }) %>

@@ -16,6 +16,7 @@ module.exports = class ClassGroup extends Base {
                 'hint',
                 'name',
                 'label',
+                'loadable',
                 'description',
                 'orderNumber',
                 'original',
@@ -34,7 +35,7 @@ module.exports = class ClassGroup extends Base {
                 ['name', 'unique', {filter: 'class'}],
                 [['hint', 'label', 'description'], 'string'],
                 ['parent', 'id'],
-                [['active', 'readOnly', 'required'], 'checkbox'],
+                [['active', 'loadable', 'readOnly', 'required'], 'checkbox'],
                 ['orderNumber', 'integer'],
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()
@@ -65,10 +66,13 @@ module.exports = class ClassGroup extends Base {
                         'active',
                         'hint',
                         'label',
+                        'loadable',
                         'description',
                         'options',
                         'orderNumber',
                         'parent',
+                        'readOnly',
+                        'required',
                         'type'
                     ]
                 },

@@ -1,5 +1,10 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'Group') %>
+<%
+layout(_view.get(_layout));
+block('tab', 'Group');
+
+const columnTemplate = _view.get('_part/group/columns');
+const stringTemplate = _view.get('_part/attr/string');
+%>
 
 <%- include(_view.get('_part/attr/static'), {
     attr: 'report',
@@ -7,21 +12,21 @@
     url: ['report/update', model.rel('report')]
 }) %>
 
-<%- include(_view.get('_part/group/columns'), {
+<%- include(columnTemplate, {
     items: [{
-        template: _view.get('_part/attr/string'),
+        template: stringTemplate,
         params: {
             attr: 'name'
         }
     }, {
-        template: _view.get('_part/attr/string'),
+        template: stringTemplate,
         params: {
             attr: 'label'
         }
     }]
 }) %>
 
-<%- include(_view.get('_part/group/columns'), {
+<%- include(columnTemplate, {
     items: [{
         template: _view.get('_part/attr/select'),
         params: {

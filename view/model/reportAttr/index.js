@@ -8,7 +8,7 @@ const Base = require('areto/view/ViewModel');
 module.exports = class ReportAttrIndex extends Base {
 
     async resolveTemplateData () {
-        return {            
+        return {
             reports: await SelectHelper.queryItems(this.spawn('model/Report').findForSelect())
         };
     }

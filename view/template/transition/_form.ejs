@@ -1,9 +1,11 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'Transition') %>
 <%
+layout(_view.get(_layout));
+block('tab', 'Transition');
+
 const jsonTemplate = _view.get('_part/attr/json');
 const stringTemplate = _view.get('_part/attr/string');
 %>
+
 <%- include(stringTemplate, {
     attr: 'name'
 }) %>

@@ -1,10 +1,15 @@
+## 4.0.0
+
+* add S3 storage behavior
+* add digital signature behavior
+* loadable tabs to speed up form rendering 
+
 ## 3.1.0
 
 * controller/DefaultController
     - show errors on metadata reload
 * model/Class
     - add hierarchical versioning of classes
-        
 
 ## 3.0.0
 

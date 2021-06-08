@@ -1,0 +1,43 @@
+<%
+const checkboxTemplate = _view.get('_part/attr/checkbox');
+%>
+
+<%- include(_view.get('_part/attr/text'), {
+    attr: 'description'
+}) %>
+
+<%- include(_view.get('_part/group/inline'), {
+    items: [{
+        template: checkboxTemplate,
+        params: {
+            attr: 'active',
+            hint: 'Expanded group or active tab'
+        }
+    }, {
+        template: checkboxTemplate,
+        params: {
+            attr: 'loadable',
+            hint: 'Group content is loaded when activated'
+        }
+    }, {
+        template: checkboxTemplate,
+        params: {
+            attr: 'readOnly',
+            hint: 'All attributes in this group are read-only'
+        }
+    }, {
+        template: checkboxTemplate,
+        params: {
+            attr: 'required',
+            hint: 'All attributes in this group are required'
+        }
+    }]
+}) %>
+
+<%- include(_view.get('_part/attr/string'), {
+    attr: 'hint'
+}) %>
+
+<%- include(_view.get('_part/attr/json'), {
+    attr: 'options'
+}) %>

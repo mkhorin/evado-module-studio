@@ -1,0 +1,22 @@
+
+<%- include(_view.get('_part/attr/relation'), {
+    attr: 'startingTransitions',
+    css: 'no-label',
+    data: {
+        columns: [{
+            name: 'name'
+        }, {
+            name: 'label'
+        }, {
+            name: 'startStates',
+            format: 'relation'
+        }, {
+            name: 'finalState',
+            format: 'relation'
+        }],
+        link: null,
+        unlink: null,
+        create: null,
+        delete: null
+    }
+}) %>

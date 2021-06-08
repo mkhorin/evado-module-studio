@@ -1,8 +1,9 @@
 <%
+layout(_view.get(_layout));
+block('tab', 'Class');
+
 const stringTemplate = _view.get('_part/attr/string');
 %>
-<% layout(_view.get(_layout)); %>
-<% block('tab', 'Class'); %>
 
 <% if (model.get('parent')) { %>
 <%- include(_view.get('_part/attr/static'), {

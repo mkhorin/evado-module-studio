@@ -1,8 +1,8 @@
-<% block('title', model.getTitle()); %>
-<% block('titleTranslation', 'none'); %>
 <%
-const relationTemplate = _view.get('_part/attr/relation');
+block('title', model.getTitle());
+block('titleTranslation', 'none');
 %>
+
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/attr/static'), {
@@ -13,104 +13,43 @@ const relationTemplate = _view.get('_part/attr/relation');
 
 <%- include(_view.get('_part/group/tabs'), {
     items: [{
-        id: 'Main',
+        id: 'main',
+        label: 'Main',
         active: true,
-        content: _view.getInternalTemplate('_tabMain')
+        content: _view.getInternalTemplate('group/main'),
+        loadable: true
     },{
-        id: 'Relation',
-        content: _view.getInternalTemplate('_tabRelation')
+        id: 'relation',
+        label: 'Relation',
+        content: _view.getInternalTemplate('group/relation'),
+        loadable: true
     },{
-        id: 'Enums',
+        id: 'enums',
+        label: 'Enums',
         hint: 'Predefined sets of named values',
-        content: {
-            template: relationTemplate,
-            attr: 'enums',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'items',
-                    format: 'relation',
-                }, {
-                    name: 'condition'
-                }, {
-                    name: 'class',
-                    format: {
-                        name: 'relation',
-                        url: _url('class/update')
-                    }
-                }],
-                link: null,
-                unlink: null,
-                create: {c: model.get('class')},
-                update: {c: model.get('class')}
-            }
-        }
+        content: _view.getInternalTemplate('group/enums'),
+        loadable: true
     },{
-        id: 'Search',
-        content: _view.getInternalTemplate('_tabSearch')
+        id: 'search',
+        label: 'Search',
+        content: _view.getInternalTemplate('group/search'),
+        loadable: true
     }, {
-        id: 'Validators',
-        content: {
-            template: relationTemplate,
-            attr: 'rules',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'type',
-                    format: 'label'
-                }, {
-                    name: 'param'
-                }, {
-                    name: 'orderNumber'
-                }],
-                order: {orderNumber: 1},
-                link: null,
-                unlink: null,
-                modalSort: true
-            }
-        }
+        id: 'validators',
+        label: 'Validators',
+        content: _view.getInternalTemplate('group/validators'),
+        loadable: true
     },{
-        id: 'Behaviors',
+        id: 'behaviors',
+        label: 'Behaviors',
         hint: 'Additional attribute functionality',
-        content: {
-            template: relationTemplate,
-            attr: 'behaviors',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'type',
-                    format: 'label'
-                }, {
-                    name: 'param'
-                }, {
-                    name: 'orderNumber'
-                }],
-                order: {orderNumber: 1},
-                link: null,
-                unlink: null,
-                modalSort: true
-            }
-        }
+        content: _view.getInternalTemplate('group/behaviors'),
+        loadable: true
     },{
-        id: 'Action binders',
+        id: 'actionBinders',
+        label: 'Action binders',
         hint: 'Actions with attribute depending on the current object values',
-        content: {
-            template: relationTemplate,
-            attr: 'actionBinder',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'show'
-                },{
-                    name: 'require'
-                },{
-                    name: 'enable'
-                },{
-                    name: 'value'
-                }],
-                link: null,
-                unlink: null
-            }
-        }
+        content: _view.getInternalTemplate('group/actionBinders'),
+        loadable: true
     }]
 }) %>

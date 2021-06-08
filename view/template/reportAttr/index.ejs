@@ -1,7 +1,7 @@
-<% layout(_view.get('_layout/list')) %>
-
-<% block('title', 'Report attributes') %>
-
+<%
+layout(_view.get('_layout/list'));
+block('title', 'Report attributes');
+%>
 <%- include(_view.get('_part/list/grid'), {
     data: {
         columns: [{

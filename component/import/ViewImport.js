@@ -25,12 +25,6 @@ module.exports = class ViewImport extends Base {
         if (!this.hasError()) {
             await this.createGroups();
         }
-        if (!this.hasError()) {
-            await this.createBehaviors();
-        }
-        if (!this.hasError()) {
-            await this.createRules();
-        }
     }
 
     async validateView () {
@@ -59,6 +53,12 @@ module.exports = class ViewImport extends Base {
     async processDeferredBinding () {
         if (!this.hasError()) {
             await this.meta.resolveClassMap();
+        }
+        if (!this.hasError()) {
+            await this.createRules();
+        }
+        if (!this.hasError()) {
+            await this.createBehaviors();
         }
         if (!this.hasError()) {
             this.bindView('creationView');
@@ -148,7 +148,7 @@ module.exports = class ViewImport extends Base {
         data.owner = this.model.getId();
         const model = this.spawn('model/ViewBehavior', {scenario: 'create'});
         model.populateRelation('owner', this.model);
-        await this.Helper.importParamContainer(model, data);
+        await this.Helper.importParamContainer(model, data, this.meta);
         this.assignError(this.Helper.getError(model, 'behaviors'));
     }
 
@@ -168,7 +168,7 @@ module.exports = class ViewImport extends Base {
         };
         const model = this.spawn('model/ViewRule', {scenario: 'create'});
         model.populateRelation('owner', this.model);
-        await this.Helper.importParamContainer(model, data);
+        await this.Helper.importParamContainer(model, data, this.meta);
         this.assignError(this.Helper.getError(model, 'rules'));
     }
 

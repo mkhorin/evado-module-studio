@@ -1,5 +1,7 @@
-<% block('tab', 'Create node') %>
-<% block('title', 'Create navigation node') %>
+<%
+block('tab', 'Create node');
+block('title', 'Create navigation node');
+%>
 
 <%- include(_view.getInternalTemplate('_form')) %>
-<%- include(_view.getInternalTemplate('_tabMain')) %>
+<%- include(_view.getInternalTemplate('group/main')) %>

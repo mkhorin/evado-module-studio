@@ -7,13 +7,13 @@ const Base = require('areto/view/ViewModel');
 
 module.exports = class ClassForm extends Base {
 
-    async resolveTemplateData () {
+     async resolveTemplateData () {
         const model = this.data.model;
-        return {
-            forbiddenView: await model.resolveRelation('forbiddenView'),
-            key: await model.resolveRelation('key'),
-            parent: await model.resolveRelation('parent'),
-            version: await model.resolveRelation('version')
-        };
+        await model.resolveRelations([
+            'forbiddenView',
+            'key',
+            'parent',
+            'version'
+        ]);
     }
 };

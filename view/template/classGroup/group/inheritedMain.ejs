@@ -1,0 +1,48 @@
+<%
+const checkboxTemplate = _view.get('_part/attr/checkbox');
+const columnTemplate = _view.get('_part/group/columns');
+const overriddenTemplate = _view.get('_part/attr/overridden');
+%>
+
+<%- include(overriddenTemplate, {
+    attr: 'description',
+    template: _view.get('_part/attr/text')
+}) %>
+
+<%- include(columnTemplate, {
+    items: [{
+        template: overriddenTemplate,
+        params: {
+            attr: 'active',
+            template: checkboxTemplate
+        }
+    }, {
+        template: overriddenTemplate,
+        params: {
+            attr: 'loadable',
+            template: checkboxTemplate
+        }
+    }, {
+        template: overriddenTemplate,
+        params: {
+            attr: 'readOnly',
+            template: checkboxTemplate
+        }
+    }, {
+        template: overriddenTemplate,
+        params: {
+            attr: 'required',
+            template: checkboxTemplate
+        }
+    }]
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'hint',
+    template: _view.get('_part/attr/string')
+}) %>
+
+<%- include(overriddenTemplate, {
+    attr: 'options',
+    template: _view.get('_part/attr/json')
+}) %>

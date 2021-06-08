@@ -56,7 +56,7 @@ module.exports = class ViewAttrImport extends Base {
         const model = this.spawn('model/ViewAttrBehavior', {scenario: 'create'});
         data.owner = this.model.getId();
         model.populateRelation('owner', this.model);
-        await this.Helper.importParamContainer(model, data);
+        await this.Helper.importParamContainer(model, data, this.meta);
         this.assignError(this.Helper.getError(model));
     }
 
@@ -70,7 +70,7 @@ module.exports = class ViewAttrImport extends Base {
         const model = this.spawn('model/ViewAttrRule', {scenario: 'create'});
         data.owner = this.model.getId();
         model.populateRelation('owner', this.model);
-        await this.Helper.importParamContainer(model, data);
+        await this.Helper.importParamContainer(model, data, this.meta);
         this.assignError(this.Helper.getError(model));
     }
 

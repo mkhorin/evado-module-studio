@@ -14,21 +14,24 @@ module.exports = class FileParam extends Base {
                 'minSize',
                 'maxSize',
                 'extensions',
-                'mimeTypes',
+                'types',
                 'nameAttr',
-                'accept'
+                'accept',
+                'hashing',
+                'rawClass'
             ]),
             RULES: [
-                ['imageOnly', 'checkbox'],
                 ['nameAttr', 'id'],
+                [['hashing', 'imageOnly'], 'checkbox'],
                 [['minSize', 'maxSize'], 'integer', {min: 1}],
-                [['extensions', 'mimeTypes', 'accept'], 'string']
+                [['extensions', 'types', 'accept', 'rawClass'], 'string']
             ],
             ATTR_LABELS: {
                 maxSize: 'Maximum size',
                 minSize: 'Minimum size',
-                mimeTypes: 'MIME types',
-                nameAttr: 'Filename attribute'
+                types: 'Media types',
+                nameAttr: 'Filename attribute',
+                rawClass: 'Raw file class'
             }
         };
     }
@@ -37,9 +40,13 @@ module.exports = class FileParam extends Base {
         return this.resolveRelations(['nameAttr']);
     }
 
+    stringify () {
+        this.set('nameAttr', this.get('nameAttr.name'));
+        return super.stringify();
+    }
+
     relinkClassAttrs (data) {
-        if (data.hasOwnProperty(this.get('nameAttr'))) {
-            this.set('nameAttr', data[this.get('nameAttr')]);
+        if (this.relinkAttr('nameAttr', data)) {
             return this.forceSave();
         }
     }

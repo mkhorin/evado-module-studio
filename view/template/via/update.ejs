@@ -1,6 +1,9 @@
-<% block('title', model.getTitle()); %>
-<% block('titleTranslation', 'none'); %>
+<%
+block('title', model.getTitle());
+block('titleTranslation', 'none');
 
+const updateUrl = _url('class-attr/update');
+%>
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/attr/relation'), {
@@ -10,19 +13,19 @@
             name: 'refClass',
             format: {
                 name: 'relation',
-                url: _url('class-attr/update')
+                url: updateUrl
             }
         },{
             name: 'refAttr',
             format: {
                 name: 'relation',
-                url: _url('class-attr/update')
+                url: updateUrl
             }
         },{
             name: 'linkAttr',
             format: {
                 name: 'relation',
-                url: _url('class-attr/update')
+                url: updateUrl
             }
         }],
         link: null,

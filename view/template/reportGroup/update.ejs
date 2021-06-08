@@ -1,5 +1,7 @@
-<% block('title', model.getTitle()); %>
-<% block('titleTranslation', 'none'); %>
+<%
+block('title', model.getTitle());
+block('titleTranslation', 'none');
+%>
 
 <%- include(_view.getInternalTemplate('_form')) %>
 
@@ -8,50 +10,12 @@
         id: 'children',
         label: 'Children',
         active: true,
-        content: {
-            template: _view.get('_part/attr/relation'),
-            attr: 'children',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'name'
-                },{
-                    name: 'label'
-                },{
-                    name: 'orderNumber'
-                }],
-                order: {orderNumber: 1},
-                link: null,
-                unlink: null,
-                create: ['create-by-group', model],
-                modalSort: true
-            }
-        }
+        content: _view.getInternalTemplate('group/children'),
+        loadable: true
     },{
         id: 'reportAttrs',
         label: 'Attributes',
-        content: {
-            template: _view.get('_part/attr/relation'),
-            attr: 'reportAttrs',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'report',
-                    format: 'relation'
-                },{
-                    name: 'name'
-                },{
-                    name: 'label'
-                },{
-                    name: 'orderNumber'
-                }],
-                order: {orderNumber: 1},
-                link: null,
-                unlink: null,
-                create: null,
-                delete: null,
-                modalSort: true
-            }
-        }
+        content: _view.getInternalTemplate('group/reportAttrs'),
+        loadable: true
     }]
 }) %>

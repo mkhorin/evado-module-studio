@@ -1,9 +1,23 @@
 <!-- studio/_part/behaviorParam/file -->
 <%
+const checkboxTemplate = _view.get('_part/attr/checkbox');
+const selectTemplate = _view.get('_part/attr/select');
 const stringTemplate = _view.get('_part/attr/string');
 %>
-<%- include(_view.get('_part/attr/checkbox'), {
-    attr: 'imageOnly'
+
+<%- include(_view.get('_part/group/inline'), {
+    items: [{
+        template: checkboxTemplate,
+        params: {
+            attr: 'imageOnly'
+        }
+    }, {
+        template: checkboxTemplate,
+        params: {
+            attr: 'hashing',
+            label: 'Store file hash'
+        }
+    }]
 }) %>
 
 <%- include(stringTemplate, {
@@ -16,7 +30,7 @@ const stringTemplate = _view.get('_part/attr/string');
     hint: 'In bytes'
 }) %>
 
-<%- include(_view.get('_part/attr/select'), {
+<%- include(selectTemplate, {
     attr: 'nameAttr',
     displayValue: model.getRelatedTitle('nameAttr'),
     items: null,
@@ -35,9 +49,9 @@ const stringTemplate = _view.get('_part/attr/string');
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'mimeTypes',
+    attr: 'types',
     hint: 'Separate with comma',
-    extHint: 'Valid MIME types (e.g. image/png)'
+    extHint: 'Valid media types (e.g. image/png)'
 }) %>
 
 <%- include(stringTemplate, {
@@ -45,3 +59,7 @@ const stringTemplate = _view.get('_part/attr/string');
     extHint: 'Filter selected files by type (e.g. image/jpeg)'
 }) %>
 
+<%- include(stringTemplate, {
+    attr: 'rawClass',
+    placeholder: 'model/RawFile'
+}) %>

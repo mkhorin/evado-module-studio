@@ -1,100 +1,45 @@
 <%
-const relationTemplate = _view.get('_part/attr/relation');
-%>
-<% block('title', model.getTitle()); %>
-<% block('titleTranslation', 'none'); %>
-<% block('commands', {
+block('commands', {
     template: _view.get('_part/tool/modelExport'),
     url: _url('export/view', model)
-}); %>
+});
+block('title', model.getTitle());
+block('titleTranslation', 'none');
+%>
 
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
     items: [{
-        id: 'Main',
+        id: 'main',
+        label: 'Main',
         active: true,
-        content: _view.getInternalTemplate('_tabMain')
+        content: _view.getInternalTemplate('group/main'),
+        loadable: true
     },{
-        id: 'Attributes',
-        content: _view.getInternalTemplate('_tabAttributes')
+        id: 'attrs',
+        label: 'Attributes',
+        content: _view.getInternalTemplate('group/attrs'),
+        loadable: true
     },{
-        id: 'Groups',
-        content: _view.getInternalTemplate('_tabGroups')
+        id: 'groups',
+        label: 'Groups',
+        content: _view.getInternalTemplate('group/groups'),
+        loadable: true
     },{
-        id: 'Validators',
-        content: {
-            template: relationTemplate,
-            attr: 'rules',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'attrs',
-                    format: 'relation'
-                }, {
-                    name: 'type',
-                    format: 'label'
-                }, {
-                    name: 'param'
-                }, {
-                    name: 'orderNumber'
-                }],
-                order: {orderNumber: 1},
-                link: null,
-                unlink: null,
-                modalSort: true
-            }
-        }
+        id: 'validators',
+        label: 'Validators',
+        content: _view.getInternalTemplate('group/validators'),
+        loadable: true
     },{
-        id: 'Behaviors',
-        content: {
-            template: relationTemplate,
-            attr: 'behaviors',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'type',
-                    translateData: ''
-                }, {
-                    name: 'param'
-                }, {
-                    name: 'orderNumber'
-                }],
-                order: {orderNumber: 1},
-                link: null,
-                unlink: null,
-                modalSort: true
-            }
-        }
+        id: 'behaviors',
+        label: 'Behaviors',
+        content: _view.getInternalTemplate('group/behaviors'),
+        loadable: true
     },{
-        id: 'Tree view',
-        content: [{
-            template: relationTemplate,
-            attr: 'treeViewLevels',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'refAttr',
-                    format: {
-                        name: 'relation',
-                        url: _url('class-attr/update')
-                    }
-                },{
-                    name: 'refClass',
-                    escape: false
-                },{
-                    name: 'recursive',
-                    format: 'boolean'
-                }],
-                order: {[model.PK]: 1},
-                create: 'tree-view-level/create-by-view',
-                link: null,
-                unlink: null
-            }
-        }, {
-            template: _view.get('_part/attr/checkbox'),
-            attr: 'disableTreeView',
-            css: 'no-label'
-        }]
+        id: 'treeView',
+        label: 'Tree view',
+        content: _view.getInternalTemplate('group/treeView'),
+        loadable: true
     }]
 }) %>

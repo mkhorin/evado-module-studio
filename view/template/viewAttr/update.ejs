@@ -1,81 +1,40 @@
-<% block('title', model.getTitle()); %>
-<% block('titleTranslation', 'none'); %>
 <%
+block('title', model.getTitle());
+block('titleTranslation', 'none');
+
 const items = [{
-    id: 'Main',
+    id: 'main',
+    label: 'Main',
     active: true,
-    content: _view.getInternalTemplate('_tabMain')
+    content: _view.getInternalTemplate('group/main')
 }];
+
 const classAttr = model.rel('classAttr');
 if (classAttr.isRelation() || classAttr.isUser()) {
     items.push({
-        id: 'Relation',
-        content: _view.getInternalTemplate('_tabRelation')
+        id: 'relation',
+        label: 'Relation',
+        content: _view.getInternalTemplate('group/relation'),
+        loadable: true
     });
 }
 items.push({
-    id: 'Validators',
-    content: {
-        template: _view.get('_part/attr/relation'),
-        attr: 'rules',
-        css: 'no-label',
-        data: {
-            columns: [{
-                name: 'type',
-                format: 'label'
-            }, {
-                name: 'param'
-            }, {
-                name: 'orderNumber'
-            }],
-            order: {orderNumber: 1},
-            link: null,
-            unlink: null,
-            modalSort: true
-        }
-    }
+    id: 'validators',
+    label: 'Validators',
+    content: _view.getInternalTemplate('group/validators'),
+    loadable: true
 },{
-    id: 'Behaviors',
-    content: {
-        template: _view.get('_part/attr/relation'),
-        attr: 'behaviors',
-        css: 'no-label',
-        data: {
-            columns: [{
-                name: 'type',
-                format: 'label'
-            }, {
-                name: 'param'
-            }, {
-                name: 'orderNumber'
-            }],
-            order: {orderNumber: 1},
-            link: null,
-            unlink: null,
-            modalSort: true
-        }
-    }
+    id: 'behaviors',
+    label: 'Behaviors',
+    content: _view.getInternalTemplate('group/behaviors'),
+    loadable: true
 },{
-    id: 'Action binders',
-    content: {
-        template: _view.get('_part/attr/relation'),
-        attr: 'actionBinder',
-        css: 'no-label',
-        data: {
-            columns: [{
-                name: 'show'
-            },{
-                name: 'require'
-            },{
-                name: 'enable'
-            },{
-                name: 'value'
-            }],
-            link: null,
-            unlink: null
-        }
-    }
+    id: 'actionBinders',
+    label: 'Action binders',
+    content: _view.getInternalTemplate('group/actionBinders'),
+    loadable: true
 });
 %>
 <%- include(_view.getInternalTemplate('_form')) %>
+
 <%- include(_view.get('_part/group/tabs'), {items}) %>

@@ -51,7 +51,7 @@ module.exports = class ImportHelper {
 
     // PARAM
 
-    static async importParamContainer (model, data) {
+    static async importParamContainer (model, data, meta) {
         model.scenario = 'create';
         this.assignAttrs(data, model);
         await model.resolveRelation('param');
@@ -66,7 +66,7 @@ module.exports = class ImportHelper {
             return;
         }
         this.assignAttrs(data, paramModel);
-        await this.resolveRelations(paramModel, model);
+        await this.resolveRelations(paramModel, model, meta);
         if (!await paramModel.save()) {
             model.addError(model.constructor.name, `params: ${paramModel.getFirstError()}`);
         }
@@ -76,15 +76,17 @@ module.exports = class ImportHelper {
         return model.constructor.name + owner.constructor.name;
     }
 
-    static resolveRelations (model, owner) {
+    static resolveRelations (model, owner, meta) {
+        const customs = {
+            FileParamClassBehavior: FileParamBehavior,
+            S3ParamClassBehavior: S3ParamBehavior,
+            SignatureParamClassBehavior: SignatureParamBehavior,
+            TimestampParamClassBehavior: TimestampParamBehavior,
+            SignatureParamViewBehavior: SignatureParamBehavior
+        };
         const name = this.getParamImportName(model, owner);
-        switch (name) {
-            case 'FileParamClassBehavior':
-                return owner.spawn(FileParamBehavior, {model, owner}).execute();
-            case 'TimestampParamClassBehavior':
-                return owner.spawn(TimestampParamBehavior, {model, owner}).execute();
-        }
-        return owner.spawn(BaseParam, {model, owner}).execute();
+        const cls = customs.hasOwnProperty(name) ? customs[name] : BaseParam;
+        return owner.spawn(cls, {model, owner, meta}).execute();
     }
 
     // HIERARCHY
@@ -123,4 +125,6 @@ const JsonValidator = require('areto/validator/JsonValidator');
 const SpawnValidator = require('areto/validator/SpawnValidator');
 const BaseParam = require('./BaseParam');
 const FileParamBehavior = require('./FileParamBehavior');
+const S3ParamBehavior = require('./S3ParamBehavior');
+const SignatureParamBehavior = require('./SignatureParamBehavior');
 const TimestampParamBehavior = require('./TimestampParamBehavior');

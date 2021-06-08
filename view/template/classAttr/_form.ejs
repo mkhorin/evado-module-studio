@@ -1,9 +1,11 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'Class attribute') %>
 <%
+layout(_view.get(_layout));
+block('tab', 'Class attribute');
+
 const columnTemplate = _view.get('_part/group/columns');
 const stringTemplate = _view.get('_part/attr/string');
 %>
+
 <%- include(stringTemplate, {
     attr: 'name'
 }) %>

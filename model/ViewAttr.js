@@ -151,15 +151,13 @@ module.exports = class ViewAttr extends Base {
     }
 
     relinkClassAttrs (data) {
-        if (data.hasOwnProperty(this.get('classAttr'))) {
-            this.set('classAttr', data[this.get('classAttr')]);
+        if (this.relinkAttr('classAttr', data)) {
             return this.forceSave();
         }
     }
 
     relinkClassGroups (data) {
-        if (data.hasOwnProperty(this.get('group'))) {
-            this.set('group', data[this.get('group')]);
+        if (this.relinkAttr('group', data)) {
             return this.forceSave();
         }
     }

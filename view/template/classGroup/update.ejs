@@ -1,145 +1,41 @@
-<% block('title', model.getTitle()); %>
-<% block('titleTranslation', 'none'); %>
 <%
-const relationTemplate = _view.get('_part/attr/relation');
+block('title', model.getTitle());
+block('titleTranslation', 'none');
 %>
+
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
     items: [{
-        id: 'Main',
+        id: 'main',
+        label: 'Main',
         active: true,
-        content: _view.getInternalTemplate('_tabMain')
+        content: _view.getInternalTemplate('group/main'),
+        loadable: true
     },{
         id: 'children',
         label: 'Child groups',
-        content: {
-            template: relationTemplate,
-            attr: 'children',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'name'
-                }, {
-                    name: 'label'
-                }, {
-                    name: 'type',
-                    format: 'label'
-                }, {
-                    name: 'orderNumber'
-                }],
-                order: {orderNumber: 1},
-                link: null,
-                unlink: null,
-                create: ['create-by-group', model],
-                modalSort: true
-            }
-        }
+        content: _view.getInternalTemplate('group/children'),
+        loadable: true
     },{
-        id: 'Action binders',
-        content: {
-            template: relationTemplate,
-            attr: 'actionBinder',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'show'
-                },{
-                    name: 'require'
-                },{
-                    name: 'enable'
-                },{
-                    name: 'value'
-                }],
-                link: null,
-                unlink: null
-            }
-        }
+        id: 'actionBinders',
+        label: 'Action binders',
+        content: _view.getInternalTemplate('group/actionBinders'),
+        loadable: true
     },{
         id: 'classAttrs',
         label: 'Class attributes',
-        content: {
-            template: relationTemplate,
-            attr: 'classAttrs',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'name'
-                },{
-                    name: 'label'
-                },{
-                    name: 'type',
-                    format: 'label'
-                },{
-                    name: 'orderNumber'
-                }],
-                order: {orderNumber: 1},
-                link: ['class-attr/select', {list: _url('class-attr/list-by-class', {pid: model.get('class')})}],
-                create: ['class-attr/create-by-group', model],
-                delete: null,
-                showTop: true,
-                modalSort: true
-            }
-        }
+        content: _view.getInternalTemplate('group/classAttrs'),
+        loadable: true
     },{
         id: 'viewAttrs',
         label: 'View attributes',
-        content: {
-            template: relationTemplate,
-            attr: 'viewAttrs',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'classAttr',
-                    format: 'relation'
-                },{
-                    name: 'label'
-                },{
-                    name: 'view',
-                    format: {
-                        name: 'relation',
-                        url: _url('view/update')
-                    }
-                },{
-                    name: 'orderNumber'
-                }],
-                order: {orderNumber: 1},
-                link: null,
-                unlink: null,
-                create: null,
-                delete: null
-            }
-        }
+        content: _view.getInternalTemplate('group/viewAttrs'),
+        loadable: true
     },{
         id: 'viewGroups',
         label: 'View groups',
-        content: {
-            template: relationTemplate,
-            attr: 'viewGroups',
-            css: 'no-label',
-            data: {
-                columns: [{
-                    name: 'label'
-                },{
-                    name: 'parent',
-                    format: 'relation'
-                },{
-                    name: 'type'
-                },{
-                    name: 'view',
-                    format: {
-                        name: 'relation',
-                        url: _url('view/update')
-                    }
-                },{
-                    name: 'orderNumber'
-                }],
-                order: {orderNumber: 1},
-                link: null,
-                unlink: null,
-                create: null,
-                delete: null
-            }
-        }
+        content: _view.getInternalTemplate('group/viewGroups'),
+        loadable: true
     }]
 }) %>

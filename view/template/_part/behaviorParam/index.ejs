@@ -5,7 +5,7 @@ for (const type of Object.keys(paramModelMap)) {
 %>
 <%- include(_view.get('_part/group/set'), {
     id: type,
-    title: `${title} options`,
+    title: `${title} parameters`,
     active: true,
     actionBinder: {show: {type}},
     items: [{

@@ -1,14 +1,19 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'Workflow') %>
+<%
+layout(_view.get(_layout));
+block('tab', 'Workflow');
+
+const relationTemplate = _view.get('_part/attr/relation');
+const stringTemplate = _view.get('_part/attr/string');
+%>
 
 <%- include(_view.get('_part/group/columns'), {
     items: [{
-        template: _view.get('_part/attr/string'),
+        template: stringTemplate,
         params: {
             attr: 'name'
         }
     }, {
-        template: _view.get('_part/attr/string'),
+        template: stringTemplate,
         params: {
             attr: 'label'
         }
@@ -19,7 +24,7 @@
     attr: 'description'
 }) %>
 
-<%- include(_view.get('_part/attr/relation'), {
+<%- include(relationTemplate, {
     attr: 'states',
     data: {
         columns: [{
@@ -37,7 +42,7 @@
     }
 }) %>
 
-<%- include(_view.get('_part/attr/relation'), {
+<%- include(relationTemplate, {
     attr: 'transitions',
     data: {
         columns: [{

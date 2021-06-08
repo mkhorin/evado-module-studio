@@ -10,6 +10,5 @@ module.exports = class ClassAttrForm extends Base {
     async resolveTemplateData () {
         const model = this.data.model;
         await model.resolveRelation('class');
-        return {};
     }
 };

@@ -14,11 +14,13 @@ module.exports = class ViewBehavior extends Base {
                 'sortOrder': {...super.BEHAVIORS.sortOrder, start: 100}
             },
             PARAM_MAP: {
-                'custom': require('./behaviorParam/CustomParam')
+                'custom': require('./behaviorParam/CustomParam'),
+                'signature': require('./behaviorParam/SignatureParam')
             },
             ATTR_VALUE_LABELS: {
                 'type': {
-                    custom: 'Custom behavior'
+                    custom: 'Custom behavior',
+                    signature: 'Digital signature'
                 }
             }
         };

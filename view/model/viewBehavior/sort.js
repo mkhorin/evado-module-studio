@@ -9,6 +9,5 @@ module.exports = class ViewBehaviorSort extends Base {
 
     async resolveTemplateData () {
         await this.prepareModels(this.data.models);
-        return this.data;
     }
 };

@@ -1,22 +1,26 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'Action binder') %>
+<%
+layout(_view.get(_layout));
+block('tab', 'Action binder');
 
-<%- include(_view.get('_part/attr/json'), {
+const jsonTemplate = _view.get('_part/attr/json');
+%>
+
+<%- include(jsonTemplate, {
     attr: 'show',
     extHint: 'Attribute visibility condition'
 }) %>
 
-<%- include(_view.get('_part/attr/json'), {
+<%- include(jsonTemplate, {
     attr: 'require',
     extHint: 'Attribute requirement condition'
 }) %>
 
-<%- include(_view.get('_part/attr/json'), {
+<%- include(jsonTemplate, {
     attr: 'enable',
     extHint: 'Attribute availability condition'
 }) %>
 
-<%- include(_view.get('_part/attr/json'), {
+<%- include(jsonTemplate, {
     attr: 'value',
     extHint: 'Condition of setting a specific value to attribute'
 }) %>

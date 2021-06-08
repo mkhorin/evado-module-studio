@@ -1,5 +1,7 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'Behavior') %>
+<%
+layout(_view.get(_layout));
+block('tab', 'Behavior');
+%>
 
 <%- include(_view.get('_part/attr/hidden'), {
     attr: 'owner'

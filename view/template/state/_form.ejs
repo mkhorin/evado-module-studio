@@ -1,8 +1,10 @@
-<% layout(_view.get(_layout)) %>
-<% block('tab', 'State') %>
 <%
+layout(_view.get(_layout));
+block('tab', 'State');
+
 const stringTemplate = _view.get('_part/attr/string');
 %>
+
 <%- include(stringTemplate, {
     attr: 'name'
 }) %>

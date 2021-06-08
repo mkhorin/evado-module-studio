@@ -12,6 +12,16 @@ module.exports = class BaseParam extends Base {
         this.model.populateRelation('owner', this.owner);
     }
 
+    async resolveClassByName (name) {
+        const className = this.model.get(name);
+        if (!className) {
+            return false;
+        }
+        const cls = this.meta.getClassByName(className);
+        cls ? this.model.set(name, cls.getId())
+            : this.model.addError(name, `Class not found: ${className}`);
+    }
+
     async resolveClassAttrByName (name) {
         const attrName = this.model.get(name);
         if (!attrName) {
