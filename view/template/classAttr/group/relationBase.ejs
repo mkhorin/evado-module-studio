@@ -10,7 +10,7 @@ const backrefTypeTrigger = ['AND', {type: 'backref'}, typeTrigger];
 
 <%- include(_view.get('_part/attr/checkbox'), {
     attr: 'multiple',
-    hint: 'Many related objects possible',
+    extHint: 'Many related objects possible',
     actionBinder: {value: [[true, backrefTypeTrigger], [false, refTypeTrigger]]}
 }) %>
 

@@ -48,19 +48,19 @@ const typeTrigger = ['START TRIGGER', 'type'];
         template: checkboxTemplate,
         params: {
             attr: 'eagerLoading',
-            hint: 'Load related objects along with the main'
+            extHint: 'Load related objects together with the main one'
         }
     }, {
         template: checkboxTemplate,
         params: {
             attr: 'sortableRelation',
-            hint: 'Sorting related objects within owner (non-indexable sorting)'
+            extHint: 'Sorting related objects within owner (non-indexable sorting)'
         }
     }, {
         template: checkboxTemplate,
         params: {
             attr: 'createOnRead',
-            hint: 'Allow to create related objects on read-only mode'
+            extHint: 'Allow to create related objects on read-only mode'
         }
     }]
 }) %>

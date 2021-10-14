@@ -11,7 +11,7 @@ const checkboxTemplate = _view.get('_part/attr/checkbox');
         template: checkboxTemplate,
         params: {
             attr: 'required',
-            hint: 'Attribute value cannot be empty'
+            extHint: 'Attribute value cannot be empty'
         }
     },{
         template: checkboxTemplate,
@@ -22,48 +22,49 @@ const checkboxTemplate = _view.get('_part/attr/checkbox');
         template: checkboxTemplate,
         params: {
             attr: 'unique',
-            hint: 'Attribute value must be unique'
+            extHint: 'Attribute value must be unique'
         }
     },{
         template: checkboxTemplate,
         params: {
             attr: 'escape',
-            hint: 'Escape HTML data output'
+            extHint: 'Escape HTML data output'
         }
     },{
         template: checkboxTemplate,
         params: {
             attr: 'hidden',
-            hint: 'Hidden attribute view'
+            extHint: 'Hidden attribute view'
         }
     },{
         template: checkboxTemplate,
         params: {
-            attr: 'sortable'
+            attr: 'sortable',
+            extHint: 'Allow sorting objects by this attribute'
         }
     },{
         template: checkboxTemplate,
         params: {
             attr: 'trim',
-            hint: 'Remove spaces from both ends of an attribute value'
+            extHint: 'Remove spaces from both ends of an attribute value'
         }
     },{
         template: checkboxTemplate,
         params: {
             attr: 'history',
-            hint: 'Keep history of attribute value changes'
+            extHint: 'Keep history of attribute value changes'
         }
     },{
         template: checkboxTemplate,
         params: {
             attr: 'hideEmpty',
-            hint: 'Hide attribute with empty value'
+            extHint: 'Hide attribute with empty value'
         }
     },{
         template: checkboxTemplate,
         params: {
             attr: 'signed',
-            hint: 'Attribute contains data for digital signing'
+            extHint: 'Attribute contains data for digital signing'
         }
     }]
 }) %>

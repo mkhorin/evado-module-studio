@@ -1,16 +1,19 @@
+<%
+const checkboxTemplate = _view.get('_part/attr/checkbox');
+%>
 
 <%- include(_view.get('_part/group/inline'), {
     items: [{
-        template: _view.get('_part/attr/checkbox'),
+        template: checkboxTemplate,
         params: {
             attr: 'commonSearchable',
-            hint: 'List search'
+            extHint: 'List search'
         }
     },{
-        template: _view.get('_part/attr/checkbox'),
+        template: checkboxTemplate,
         params: {
             attr: 'selectSearchable',
-            hint: 'Dropdown selector search'
+            extHint: 'Dropdown selector search'
         }
     }]
 }) %>
