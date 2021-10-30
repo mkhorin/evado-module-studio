@@ -1,4 +1,7 @@
-<% layout(_view.get('_layout/frame/select')) %>
+<%
+layout(_view.get('_layout/frame/select'));
+block('title', 'Report group');
+%>
 
 <%- include(_view.get('_part/list/select'), {
     data: {

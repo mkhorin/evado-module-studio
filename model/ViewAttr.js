@@ -116,6 +116,12 @@ module.exports = class ViewAttr extends Base {
         return this.getFullTitle();
     }
 
+    getFullTitle () {
+        const name = this.get('classAttr.name') || this.getId();
+        const label = this.get('label');
+        return label ? `${label} (${name})` : name;
+    }
+
     async createByClassAttrs (attrs, view) {
         const usedMap = await this.find({view: view.getId()}).raw().index('classAttr').all();
         const models = [];

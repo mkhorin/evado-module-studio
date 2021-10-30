@@ -1,3 +1,10 @@
+## 5.0.0
+
+* add a general menu of states and transitions
+* fix extended hint for checkboxes
+* model/ViewAttr
+    - fix full title of view attribute
+
 ## 4.0.0
 
 * add S3 storage behavior

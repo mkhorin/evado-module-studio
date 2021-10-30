@@ -18,11 +18,16 @@ module.exports = class StateController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().findByClass(this.getQueryParam('pid')));
+        return super.actionList(this.getQueryByClass(this.getQueryParam('pid')));
     }
 
     actionListSelect () {
-        return this.sendSelectList(this.createModel().findByClass(this.getPostParam('pid')));
+        return this.sendSelectList(this.getQueryByClass(this.getPostParam('pid')));
+    }
+
+    getQueryByClass (pid) {
+        const model = this.createModel();
+        return pid ? model.findByClass(pid) : model.find().with('class');
     }
 
     getListRelatedWith (relation) {

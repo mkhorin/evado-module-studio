@@ -2,9 +2,17 @@
 layout(_view.get('_layout/list'));
 block('title', 'Transitions');
 %>
+
 <%- include(_view.get('_part/list/grid'), {
     data: {
         columns: [{
+            name: 'class',
+            format: {
+                name: 'relation',
+                url: _url('class/update')
+            },
+            sortable: true
+        },{
             name: 'name',
             searchable: true,
             sortable: true
@@ -13,7 +21,7 @@ block('title', 'Transitions');
             searchable: true,
             sortable: true
         },{
-            name: 'class'
+            name: 'description'
         }],
         create: null,
         filter: {}

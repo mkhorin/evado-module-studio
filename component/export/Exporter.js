@@ -7,9 +7,12 @@ const Base = require('areto/base/Base');
 
 module.exports = class Exporter extends Base {
 
+    /**
+     * @param {Object} config
+     * @param {string} config.basePath - Meta base path
+     */
     constructor (config) {
         super({
-            // basePath: [meta base path]
             jsonSpace: 2,
             jsonReplacer: null,
             jsonFileOptions: {},
