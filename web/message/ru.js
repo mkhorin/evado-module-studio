@@ -231,8 +231,6 @@ Object.assign(Jam.I18n.defaults, {
     'Main': 'Главная',
     'Many related objects possible': 'Разрешить множество связанных объектов',
     'Maximum': 'Максимум',
-    'Maximum files': 'Максимум файлов',
-    'Maximum items': 'Максимум объектов',
     'Maximum length': 'Максимальная длина',
     'Maximum number of nested levels of related search filter objects': 'Максимальное количество вложенных уровней связанных объектов фильтра поиска',
     'Maximum objects': 'Максимум объектов',
