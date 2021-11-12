@@ -12,7 +12,6 @@ module.exports = {
     'Column container': 'Контейнер колонок',
     'Created at {timestamp}': 'Создано {метка времени}',
 
-    'Invalid class configuration': 'Неправильная конфигурация класса',
     'Invalid class file': 'Неправильный файл класса',
     'Invalid file': 'Неправильный файл',
     'Invalid source': 'Неправильный источник',
