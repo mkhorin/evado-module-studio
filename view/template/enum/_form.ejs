@@ -45,7 +45,7 @@ const selectTemplate = _view.get('_part/attr/select');
     displayValue: model.getRelatedTitle('view'),
     select2: {ajax: {url: _url('view/list-select')}},
     depends: [{attr: 'class', param: 'pid'}],
-    actionBinder: {enable: ['NOT EMPTY', 'class']},
+    actionBinder: {enable: ['notEmpty', 'class']},
     update: _url('view/update')
 }) %>
 
@@ -56,7 +56,7 @@ const selectTemplate = _view.get('_part/attr/select');
     displayValue: model.getRelatedTitle('attr'),
     select2: {ajax: {url: _url('class-attr/list-select')}},
     depends: [{attr: 'class', param: 'pid'}],
-    actionBinder: {enable: ['NOT EMPTY', 'class']},
+    actionBinder: {enable: ['notEmpty', 'class']},
     update: _url('class-attr/update')
 }) %>
 

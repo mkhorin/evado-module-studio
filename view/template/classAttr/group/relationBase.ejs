@@ -3,9 +3,9 @@ const attrUpdate = _url('class-attr/update');
 const columnTemplate = _view.get('_part/group/columns');
 const enumTemplate = _view.get('_part/attr/enum');
 const selectTemplate = _view.get('_part/attr/select');
-const typeTrigger = ['START TRIGGER', 'type'];
-const refTypeTrigger = ['AND', {type: 'ref'}, typeTrigger];
-const backrefTypeTrigger = ['AND', {type: 'backref'}, typeTrigger];
+const typeTrigger = ['startTrigger', 'type'];
+const refTypeTrigger = ['and', {type: 'ref'}, typeTrigger];
+const backrefTypeTrigger = ['and', {type: 'backref'}, typeTrigger];
 %>
 
 <%- include(_view.get('_part/attr/checkbox'), {
@@ -35,7 +35,7 @@ const backrefTypeTrigger = ['AND', {type: 'backref'}, typeTrigger];
             select2: {ajax: {url: _url('class-attr/list-select')}},
             depends: [{attr: 'refClass', param: 'pid'}],
             update: attrUpdate,
-            actionBinder: {enable: ['NOT EMPTY', 'refClass']}
+            actionBinder: {enable: ['notEmpty', 'refClass']}
         }
     },{
         template: selectTemplate,

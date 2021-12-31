@@ -19,7 +19,7 @@ const selectTemplate = _view.get('_part/attr/select');
     displayValue: model.getRelatedTitle('refAttr'),
     select2: {ajax: {url: _url('class-attr/list-select')}},
     depends: [{attr: 'refClass', param: 'pid'}],
-    actionBinder: {enable: ['NOT EMPTY', 'refClass']},
+    actionBinder: {enable: ['notEmpty', 'refClass']},
     update: _url('class-attr/update')
 }) %>
 
@@ -29,6 +29,6 @@ const selectTemplate = _view.get('_part/attr/select');
     displayValue: model.getRelatedTitle('linkAttr'),
     select2: {ajax: {url: _url('class-attr/list-select')}},
     depends: [{attr: 'refClass', param: 'pid'}],
-    actionBinder: {enable: ['NOT EMPTY', 'refClass']},
+    actionBinder: {enable: ['notEmpty', 'refClass']},
     update: _url('class-attr/update')
 }) %>

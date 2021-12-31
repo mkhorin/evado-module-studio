@@ -25,7 +25,7 @@ const selectTemplate = _view.get('_part/attr/select');
     select2: {ajax: {url: _url('list-select-view')}},
     update: _url('view/update'),
     depends: [{attr: 'refAttr', param: 'id'}],
-    actionBinder: {enable: ['NOT EMPTY', 'refAttr']}
+    actionBinder: {enable: ['notEmpty', 'refAttr']}
 }) %>
 
 <%- include(_view.get('_part/attr/checkbox'), {
