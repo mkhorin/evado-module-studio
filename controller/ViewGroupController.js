@@ -24,7 +24,7 @@ module.exports = class ViewGroupController extends Base {
         if (!ids) {
             throw new BadRequest('Invalid identifiers');
         }
-        ids = await model.find(['ID', ClassGroup.PK, ids]).column(ClassGroup.PK);
+        ids = await model.find(['id', ClassGroup.PK, ids]).column(ClassGroup.PK);
         const models = await this.createModel().createByGroups(ids, view);
         return this.send(models.map(model => model.getId()).join());
     }

@@ -35,7 +35,7 @@ module.exports = class TreeViewLevel extends Base {
     }
     
     findByOwner (id) {
-        return this.find(['ID', 'owner', id]);
+        return this.find(['id', 'owner', id]);
     }
 
     async findSourceClass () {

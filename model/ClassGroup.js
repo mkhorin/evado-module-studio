@@ -109,7 +109,7 @@ module.exports = class ClassGroup extends Base {
     }
 
     static getOnlySetCondition () {
-        return ['NOT IN', 'type', ['tabs', 'columns']];
+        return ['notIn', 'type', ['tabs', 'columns']];
     }
 
     static async getParentOriginalValue (original, behavior) {
@@ -125,7 +125,7 @@ module.exports = class ClassGroup extends Base {
     }
 
     findForSelect (id) {
-        return super.findForSelect(['ID', 'class', id]);
+        return super.findForSelect(['id', 'class', id]);
     }
 
     getRelinkMap (key, value) {

@@ -53,7 +53,7 @@ module.exports = class AncestorBehavior extends Base {
 
     addNotEmptyOriginal (query) {
         if (this.withOriginalOnly) {
-            query.and(['NOT EMPTY', 'original']);
+            query.and(['notEmpty', 'original']);
         }
     }
 

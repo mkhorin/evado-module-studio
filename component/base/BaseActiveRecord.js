@@ -23,7 +23,7 @@ module.exports = class BaseActiveRecord extends Base {
     }
 
     findByClass (id) {
-        return this.find(['ID', 'class', id]);
+        return this.find(['id', 'class', id]);
     }
 
     relinkAttr (name, data) {

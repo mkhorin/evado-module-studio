@@ -98,7 +98,7 @@ module.exports = class ViewGroup extends Base {
     }
 
     findForSelect (id) {
-        return super.findForSelect(['ID', 'view', id]);
+        return super.findForSelect(['id', 'view', id]);
     }
 
     // CLONE

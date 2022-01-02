@@ -144,7 +144,7 @@ module.exports = class ViewAttr extends Base {
     }
 
     findByViewAndGroup (view, classGroup, classAttr) {
-        return this.find({view}).and(['OR', {classGroup}, {classAttr}]).with('classAttr');
+        return this.find({view}).and(['or', {classGroup}, {classAttr}]).with('classAttr');
     }
 
     // CLONE

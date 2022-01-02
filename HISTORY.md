@@ -1,3 +1,9 @@
+## 5.1.0
+
+* reorder navigation node attributes
+* update names of action operators
+* update names of condition operators
+
 ## 5.0.0
 
 * add a general menu of states and transitions

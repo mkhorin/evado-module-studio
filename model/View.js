@@ -92,7 +92,7 @@ module.exports = class View extends Base {
     }
 
     findForSelect (id) {
-        return super.findForSelect(['ID', 'class', id]);
+        return super.findForSelect(['id', 'class', id]);
     }
 
     async findParents (classId) {

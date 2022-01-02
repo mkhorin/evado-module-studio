@@ -71,7 +71,7 @@ module.exports = class ClassGroupController extends Base {
             .column('classGroup');
         const query = this.spawn(ClassGroup)
             .find({class: view.get('class')})
-            .and(['NOT IN', ClassGroup.PK, ids]);
+            .and(['notIn', ClassGroup.PK, ids]);
         return super.actionList(query.with('parent'));
     }
 

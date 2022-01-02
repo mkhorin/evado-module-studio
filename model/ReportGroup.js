@@ -53,7 +53,7 @@ module.exports = class ReportGroup extends Base {
     }
 
     findForSelect (id) {
-        return super.findForSelect(['ID', 'report', id]);
+        return super.findForSelect(['id', 'report', id]);
     }
 
     getRelinkMap (key, value) {

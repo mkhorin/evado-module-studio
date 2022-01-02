@@ -80,7 +80,7 @@ module.exports = class ReportAttr extends Base {
     }
 
     findByReport (id) {
-        return this.find(['ID', 'report', id]);
+        return this.find(['id', 'report', id]);
     }
 
     // CLONE
