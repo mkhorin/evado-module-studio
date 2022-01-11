@@ -10,6 +10,7 @@ module.exports = class CodeNameValidator extends Base {
     constructor (config) {
         super({
             pattern: /^[0-9a-zA-Z-]{1,40}$/,
+            trimming: true,
             validFilename: false,
             ...config
         });
@@ -17,6 +18,17 @@ module.exports = class CodeNameValidator extends Base {
 
     getMessage () {
         return this.createMessage(this.message, 'Invalid code name');
+    }
+
+    validateAttr (attr, model) {
+        let value = model.get(attr);
+        if (typeof value === 'string') {
+            if (this.trimming) {
+                value = value.trim();
+            }
+            model.set(attr, value);
+        }
+        return super.validateAttr(attr, model);
     }
 
     validateValue (value) {
