@@ -117,7 +117,7 @@ module.exports = class Class extends Base {
 
     async findDescendants () {
         const solver = this.spawn('misc/HierarchySolver', {model: this});
-        return solver.getDescendantQuery(...arguments);
+        return solver.getDescendantAndParentQuery(...arguments);
     }
 
     // CLONE
@@ -193,7 +193,7 @@ module.exports = class Class extends Base {
 
     relActiveDescendants () {
         const Class = this.getClass('model/Class');
-        return this.hasMany(Class, Class.PK, 'activeDescendants').viaArray();
+        return this.hasMany(Class, Class.PK, 'activeDescendants').viaArray().and({abstract: false});
     }
 
     relAttrMap () {
