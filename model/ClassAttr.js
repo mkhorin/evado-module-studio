@@ -89,7 +89,7 @@ module.exports = class ClassAttr extends Base {
                 ['commands', 'default', {value: DEFAULT_COMMANDS}],
                 [['escape', 'trim'], 'default', {value: true}],
                 ['type', 'default', {value: 'string'}],
-                [['onDelete', 'onUpdate'], 'range', {values: ['cascade', 'null']}],
+                [['onDelete', 'onUpdate'], 'range', {values: ['cascade', 'null', 'lock']}],
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()
                 }],
@@ -198,7 +198,8 @@ module.exports = class ClassAttr extends Base {
             ATTR_VALUE_LABELS: {
                 'onDelete': {
                     cascade: 'Cascade',
-                    null: 'Null'
+                    null: 'Null',
+                    lock: 'Lock'
                 },
                 'onUpdate': {
                     cascade: 'Cascade',
@@ -221,12 +222,15 @@ module.exports = class ClassAttr extends Base {
                 },
                 'viewType': VIEW_TYPES
             },
-            RELATED_ACTION_ENUMS: [{
+            RELATION_ACTION_ENUMS: [{
                 condition: {type: 'ref'},
                 items: [['null', 'Null']]
             }, {
                 condition: {type: ['ref', 'backref']},
-                items: [['cascade', 'Cascade']]
+                items: [
+                    ['cascade', 'Cascade'],
+                    ['lock', 'Lock']
+                ]
             }],
             TYPE_ENUMS: [{
                 condition: {type: 'date'},

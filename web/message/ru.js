@@ -14,7 +14,6 @@ Object.assign(Jam.I18n.defaults, {
     'Activation': 'Активация',
     'Active': 'Активно',
     'Active descendants': 'Активные наследники',
-    'Add view from parent class': 'Добавить представление из родительского класса',
     'Additional attribute functionality': 'Дополнительная функциональность атрибута',
     'Additional class functionality': 'Дополнительная функциональность класса',
     'Additional class parameters': 'Дополнительные параметры класса',
@@ -66,6 +65,8 @@ Object.assign(Jam.I18n.defaults, {
     'Clear': 'Очистить',
     'Clone from other classes': 'Клонировать из других классов',
     'Clone from parent classes': 'Клонировать из родительских классов',
+    'Cloud storage (S3)': 'Облачное хранилище (S3)',
+    'Cloud storage (S3) parameters': 'Параметры облачного хранилища (S3)',
     'Code name': 'Кодовое имя',
     'Column container': 'Контейнер колонок',
     'Commands': 'Команды',
@@ -219,6 +220,7 @@ Object.assign(Jam.I18n.defaults, {
 
     'Length': 'Длина',
     'Limit the loading depth of nested related objects': 'Ограничение глубины загрузки вложенных связанных объектов',
+    'Link view from parent class': 'Привязать представление из родительского класса',
     'Link attribute': 'Атрибут связи',
     'List limit': 'Предел списка',
     'List search': 'Поиск в списке',
@@ -228,6 +230,7 @@ Object.assign(Jam.I18n.defaults, {
     'Local date': 'Локальная дата',
     'Local date and time': 'Локальная дата и время',
     'Location': 'Местоположение',
+    'Lock': 'Блокировать',
 
     'Main': 'Главная',
     'Many related objects possible': 'Разрешить множество связанных объектов',
@@ -318,7 +321,7 @@ Object.assign(Jam.I18n.defaults, {
     'Relation': 'Отношение',
     'Relation counter': 'Счетчик отношения',
     'Relation counter parameters': 'Параметры счетчика отношения',
-    'Remove spaces from both ends of an attribute value': 'Удалить пустые символы с обоих концов значения атрибута',
+    'Remove spaces from both ends of input value': 'Удалить пустые символы с обоих концов входного значения',
     'Report': 'Отчет',
     'Report imported': 'Отчет импортирован',
     'Reports': 'Отчеты',
@@ -423,8 +426,8 @@ Object.assign(Jam.I18n.defaults, {
     'View used to edit an object': 'Представление используемое для редакирования объекта',
     'Views': 'Представления',
 
-    'When deleting an instance of a reference class:\nNull - empty linked attribute value\nCascade - delete relation owner instance': 'При удалении объекта ссылочного класса:\nОбнуление - очистить значение связи\nКаскадное действие - удалить объект-владельца данного отношения',
-    'When updating an instance of a reference class:\nNull - empty linked attribute value\nCascade - update linked attribute value': 'При обновлении объекта ссылочного класса:\nОбнуление - очистить значение связи\nКаскадное действие - обновить атрибут связи',
+    'When deleting a linked object:\nNull - empty a link value\nCascade - delete current object\nLock - Not delete linked object': 'При удалении связанного объекта:\nОбнуление - очистить значение связи\nКаскадное действие - удалить текущий объект\nБлокировать - не удалять связанный объект',
+    'When updating a linked object:\nNull - empty a link value\nCascade - update a link value': 'При обновлении связанного объекта:\nОбнуление - очистить значение связи\nКаскадное действие - обновить значение связи',
     'Workflow': 'Бизнес-процесс',
     'Workflow state': 'Состояние бизнес-процесса'
 });
