@@ -21,7 +21,7 @@ module.exports = class ClassBehavior extends Base {
                     custom: 'Custom behavior',
                     file: 'File',
                     signature: 'Digital signature',
-                    s3: 'S3'
+                    s3: 'Cloud storage (S3)'
                 }
             }
         };
