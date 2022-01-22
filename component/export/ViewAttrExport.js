@@ -36,10 +36,10 @@ module.exports = class ViewAttrExport extends Base {
         data.behaviors = behaviors.length ? behaviors : undefined;
         rules = rules.filter(item => item);
         data.rules = rules.length ? rules : undefined;
-        data.group = model.get('group.name');
-        data.eagerView = model.get('eagerView.name');
-        data.listView = model.get('listView.name');
-        data.selectListView = model.get('selectListView.name');
+        data.group = model.get('group.name') ?? null;
+        data.eagerView = model.get('eagerView.name') ?? null;
+        data.listView = model.get('listView.name') ?? null;
+        data.selectListView = model.get('selectListView.name') ?? null;
         data.actionBinder = actionBinder;
         ObjectHelper.deleteProperties(overridden.getInheritedAttrNames(), data);
         ObjectHelper.deleteProperties([model.PK, 'view', 'classAttr', 'overriddenState'], data);
