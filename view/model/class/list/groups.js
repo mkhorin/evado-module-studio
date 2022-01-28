@@ -21,9 +21,6 @@ module.exports = class ClassGroups extends Base {
                 continue;
             }
             const states = model.getBehavior('overridden').getStates();
-            if (states.label !== true) {
-                model.setViewAttr('label', this.format(model.get('label'), 'inherited'));
-            }
             if (states.type !== true) {
                 model.setViewAttr('type', this.format(model.getViewAttr('type'), 'inherited'));
             }

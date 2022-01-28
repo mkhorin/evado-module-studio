@@ -16,9 +16,6 @@ module.exports = class ClassAttrs extends Base {
                 if (states.group !== true) {
                     model.setViewAttr('group', this.format(model.get('group.name'), 'inherited'));
                 }
-                if (states.label !== true) {
-                    model.setViewAttr('label', this.format(model.get('label'), 'inherited'));
-                }
                 if (states.viewType !== true) {
                     const type = viewTypeMap[model.get('viewType')];
                     model.setViewAttr('viewType', this.format(type, 'inherited', {translate: ''}));

@@ -17,9 +17,6 @@ module.exports = class ViewAttrList extends Base {
                 continue;
             }
             const states = model.getBehavior('overridden').getStates();
-            if (states.label !== true) {
-                model.setViewAttr('label', this.format(attr.get('label'), 'inherited'));
-            }
             if (states.header !== true) {
                 model.setViewAttr('header', this.format(attr.get('header'), 'inherited'));
             }

@@ -63,7 +63,7 @@ const backrefTypeTrigger = ['and', {type: 'backref'}, typeTrigger];
         template: enumTemplate,
         params: {
             attr: 'onDelete',
-            extHint: 'When deleting a linked object:\nNull - empty a link value\nCascade - delete current object\nLock - Not delete linked object',
+            extHint: 'When deleting a linked object:\nNull - empty a link value\nCascade - delete current object\nLock - not delete linked object',
             sets: model.RELATION_ACTION_ENUMS,
             actionBinder: {value: [['null', refTypeTrigger], ['', backrefTypeTrigger]]}
         }

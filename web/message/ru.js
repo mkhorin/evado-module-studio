@@ -426,7 +426,7 @@ Object.assign(Jam.I18n.defaults, {
     'View used to edit an object': 'Представление используемое для редакирования объекта',
     'Views': 'Представления',
 
-    'When deleting a linked object:\nNull - empty a link value\nCascade - delete current object\nLock - Not delete linked object': 'При удалении связанного объекта:\nОбнуление - очистить значение связи\nКаскадное действие - удалить текущий объект\nБлокировать - не удалять связанный объект',
+    'When deleting a linked object:\nNull - empty a link value\nCascade - delete current object\nLock - not delete linked object': 'При удалении связанного объекта:\nОбнуление - очистить значение связи\nКаскадное действие - удалить текущий объект\nБлокировать - не удалять связанный объект',
     'When updating a linked object:\nNull - empty a link value\nCascade - update a link value': 'При обновлении связанного объекта:\nОбнуление - очистить значение связи\nКаскадное действие - обновить значение связи',
     'Workflow': 'Бизнес-процесс',
     'Workflow state': 'Состояние бизнес-процесса'
