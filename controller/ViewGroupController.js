@@ -11,6 +11,10 @@ module.exports = class ViewGroupController extends Base {
         return this.getClass('model/ViewGroup');
     }
 
+    actionList () {
+        return super.actionList(this.createModel().createQuery().with('classGroup', 'parent', 'view'));
+    }
+
     async actionCreateByGroups () {
         const view = await this.getModel({
             Class: this.getClass('model/View')

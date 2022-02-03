@@ -1,0 +1,40 @@
+<%- include(_view.get('_part/list/filter'), {
+    data: {
+        columns: [{
+            name: 'type',
+            type: 'selector',
+            items: 'labels'
+        },{
+            name: 'class',
+            type: 'selector',
+            url: _url('class/list-select')
+        },{
+            name: 'parent',
+            type: 'selector',
+            url: _url('class-group/list-select')
+        },{
+            name: 'original',
+            type: 'selector',
+            url: _url('class-group/list-select')
+        },{
+            name: 'active',
+            type: 'boolean'
+        },{
+            name: 'loadable',
+            type: 'boolean'
+        },{
+            name: 'readOnly',
+            type: 'boolean'
+        },{
+            name: 'required',
+            type: 'boolean'
+        },{
+            name: 'description'
+        },{
+            name: 'label'
+        },{
+            name: 'orderNumber',
+            type: 'number'
+        }]
+    }
+}) %>
