@@ -160,7 +160,7 @@ module.exports = class Class extends Base {
 
     async createInheritedItems () {
         await PromiseHelper.setImmediate();
-        const parent = this.rel('parent');        
+        const parent = this.rel('parent');
         const [attrs, groups, views] = await parent.resolveRelations(['attrs', 'groups', 'views']);
         for (const model of groups) {
             await model.inherit(this.getId());

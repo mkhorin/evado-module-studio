@@ -13,7 +13,7 @@ module.exports = class ParamContainerBase extends Base {
             let param = model.rel('param');
             if (param) {
                 await param.prepareData();
-                param = param.stringify();                
+                param = param.stringify();
             } else {
                 param = '';
             }

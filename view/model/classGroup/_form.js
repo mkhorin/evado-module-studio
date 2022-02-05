@@ -9,7 +9,7 @@ module.exports = class ClassGroupForm extends Base {
 
     async resolveTemplateData () {
         const model = this.data.model;
-        await model.resolveRelations(['class', 'parent']);        
+        await model.resolveRelations(['class', 'parent']);
         return {
             validParents: await SelectHelper.handleQueryLabelItems(model.getParentQuery.bind(model))
         };

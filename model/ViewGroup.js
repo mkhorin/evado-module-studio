@@ -30,8 +30,7 @@ module.exports = class ViewGroup extends Base {
             RULES: [
                 [['view', 'classGroup'], 'required'],
                 [['view', 'classGroup', 'parent'], 'id'],
-                ['type', 'range', {values: ['tabs']}],
-                [['hint', 'label', 'description'], 'string'],
+                [['hint', 'label', 'description', 'type'], 'string'],
                 ['orderNumber', 'integer'],
                 [['active', 'loadable', 'readOnly', 'required'], 'checkbox'],
                 ['options', 'json'],

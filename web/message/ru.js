@@ -247,6 +247,7 @@ Object.assign(Jam.I18n.defaults, {
     'Meta': 'Мета',
     'Metadata': 'Метаданные',
     'Metadata class': 'Класс метаданных',
+    'Metadata classes': 'Классы метаданных',
     'Metadata deleted': 'Метаданные удалены',
     'Metadata directory relative to application root': 'Директория метаданных относительно корня приложения',
     'Metadata imported': 'Метаданные импортированы',
@@ -428,6 +429,7 @@ Object.assign(Jam.I18n.defaults, {
 
     'When deleting a linked object:\nNull - empty a link value\nCascade - delete current object\nLock - not delete linked object': 'При удалении связанного объекта:\nОбнуление - очистить значение связи\nКаскадное действие - удалить текущий объект\nБлокировать - не удалять связанный объект',
     'When updating a linked object:\nNull - empty a link value\nCascade - update a link value': 'При обновлении связанного объекта:\nОбнуление - очистить значение связи\nКаскадное действие - обновить значение связи',
+    'Without borders': 'Без границ',
     'Workflow': 'Бизнес-процесс',
     'Workflow state': 'Состояние бизнес-процесса'
 });

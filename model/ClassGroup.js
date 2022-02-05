@@ -30,10 +30,9 @@ module.exports = class ClassGroup extends Base {
             ],
             RULES: [
                 ['name', 'required'],
-                ['type', 'range', {values: ['tabs', 'columns']}],
                 ['name', require('../component/validator/CodeNameValidator')],
                 ['name', 'unique', {filter: 'class'}],
-                [['hint', 'label', 'description'], 'string'],
+                [['hint', 'label', 'description', 'type'], 'string'],
                 ['parent', 'id'],
                 [['active', 'loadable', 'readOnly', 'required'], 'checkbox'],
                 ['orderNumber', 'integer'],

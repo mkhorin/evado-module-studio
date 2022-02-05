@@ -17,7 +17,7 @@ module.exports = class MetaImport extends Base {
 
     async validateSource (attr) {
         this.basePath = this.getSourcePath();
-        const stat = await FileHelper.getStat(this.basePath);        
+        const stat = await FileHelper.getStat(this.basePath);
         if (!stat || !stat.isDirectory()) {
             this.addError(attr, 'Invalid directory');
         }

@@ -14,6 +14,7 @@ const VIEW_TYPES = {
     localDatetime: 'Local date and time',
     relationSelect: 'Select box',
     class: 'Metadata class',
+    classes: 'Metadata classes',
     radioList: 'Radio list',
     select: 'Select box',
     state: 'State',
@@ -256,7 +257,7 @@ module.exports = class ClassAttr extends Base {
                     ['thumbnail', VIEW_TYPES.thumbnail]
                 ]
             }, {
-                condition: {type: ['string']},
+                condition: {type: 'string'},
                 items: [
                     ['state', VIEW_TYPES.state],
                     ['class', VIEW_TYPES.class]
@@ -276,7 +277,12 @@ module.exports = class ClassAttr extends Base {
                     ['localDatetime', VIEW_TYPES.localDatetime]
                 ]
             }, {
-                condition: {type: ['user']},
+                condition: {type: 'json'},
+                items: [
+                    ['classes', VIEW_TYPES.classes]
+                ]
+            }, {
+                condition: {type: ['file', 'user']},
                 items: [
                     ['string', VIEW_TYPES.string]
                 ]
