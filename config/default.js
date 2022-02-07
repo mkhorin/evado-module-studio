@@ -10,7 +10,10 @@ module.exports = {
     components: {
         'i18n': {}
     },
-    modules: {      
-    },
-    classes: require('./default-classes')
+    classes: require('./default-classes'),
+    indexes: [
+        'model/Class'
+    ],
+    modules: {
+    }
 };

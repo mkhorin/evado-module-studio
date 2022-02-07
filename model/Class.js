@@ -28,6 +28,7 @@ module.exports = class Class extends Base {
                 'templateRoot',
                 'version'
             ],
+            INDEXES: [[{name: 1}, {unique: true}]],
             RULES: [
                 ['name', 'required'],
                 [['forbiddenView', 'key', 'parent', 'version'], 'id'],
