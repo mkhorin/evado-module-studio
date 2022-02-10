@@ -19,7 +19,7 @@ module.exports = class MetaImport extends Base {
         this.basePath = this.getSourcePath();
         const stat = await FileHelper.getStat(this.basePath);
         if (!stat || !stat.isDirectory()) {
-            this.addError(attr, 'Invalid directory');
+            this.addError(attr, `Invalid directory: ${this.basePath}`);
         }
     }
 

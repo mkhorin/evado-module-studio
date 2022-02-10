@@ -75,6 +75,7 @@ Object.assign(Jam.I18n.defaults, {
     'Condition of setting a specific value to attribute': 'Условие задания определенного значения атрибуту',
     'Condition parameters': 'Параметры условия',
     'Configuration': 'Конфигурация',
+    'Container': 'Контейнер',
     'Create action binder': 'Создать настройку действий',
     'Create attribute': 'Создать атрибут',
     'Create behavior': 'Создать поведение',

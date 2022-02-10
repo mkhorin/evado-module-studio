@@ -9,6 +9,6 @@ module.exports = class AttrBehaviorController extends Base {
     
     getModelClass () {
         return this.getClass('model/AttrBehavior');
-    }    
+    }
 };
 module.exports.init(module);

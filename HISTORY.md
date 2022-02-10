@@ -1,3 +1,17 @@
+## 5.2.0
+
+* component/export/ViewAttrExport
+    - fix replacement of reference values with empty ones
+* component/validator/CodeNameValidator
+    - remove leading and trailing spaces in code names
+* model/Class
+    - add database index to class names
+    - add base class to active descendants
+* model/ClassAttr
+    - protect a linked object from deletion
+* view/template/_part/nav/sideMenu
+    - add group lists
+
 ## 5.1.0
 
 * reorder navigation node attributes
@@ -47,11 +61,11 @@
 * component/export/MetaExport
     - fix query creation
 * view/template
-    - fix path to included template   
+    - fix path to included template
 
 ## 1.7.0
 
-* model/ruleParam/BaseRuleParam    
+* model/ruleParam/BaseRuleParam
     - add attribute to replace error message
 * model/ruleParam/ConditionParam
     - add condition validator

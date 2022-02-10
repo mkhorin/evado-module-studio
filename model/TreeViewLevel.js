@@ -30,7 +30,7 @@ module.exports = class TreeViewLevel extends Base {
             ATTR_LABELS: {
                 refAttr: 'Reference attribute',
                 refClass: 'Reference class'
-            }            
+            }      
         };
     }
     

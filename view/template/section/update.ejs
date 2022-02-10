@@ -11,6 +11,10 @@ block('titleTranslation', 'none');
 
 <%- include(_view.get('_part/group/tabs'), {
     items: [{
+        id: 'main',
+        label: 'Main',
+        content: _view.getInternalTemplate('group/main')
+    }, {
         id: 'nodes',
         label: 'Nodes',
         content: _view.getInternalTemplate('group/nodes')

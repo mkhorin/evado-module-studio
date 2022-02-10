@@ -69,9 +69,6 @@ module.exports = class StudioModule extends Base {
         model.set('source', source);
         await model.process();
         await model.processDeferredBinding();
-        if (model.hasError()) {
-            throw new Error(model.getFirstError());
-        }
     }
 };
 module.exports.init(module);

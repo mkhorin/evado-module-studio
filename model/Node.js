@@ -27,7 +27,7 @@ module.exports = class Node extends Base {
             RULES: [
                 ['name', 'required'],
                 [['section', 'parent', 'class', 'view', 'report'], 'id'],
-                [['label', 'description', 'url'], 'string'],
+                [['label', 'description', 'type', 'url'], 'string'],
                 ['name', require('../component/validator/CodeNameValidator')],
                 ['name', 'unique', {filter: 'section'}],
                 ['orderNumber', 'integer'],
@@ -36,8 +36,7 @@ module.exports = class Node extends Base {
                 }],
                 ['parent', 'default', {value: null}],
                 ['children', 'relation'],
-                ['options', 'json'],
-                ['type', 'range', {values: ['divider', 'header']}]
+                ['options', 'json']
             ],
             BEHAVIORS: {
                 'clone': {
