@@ -314,7 +314,7 @@ module.exports = class ClassAttr extends Base {
     /**
      * Find group among current class groups by name of ancestor class group
      */
-    static async getGroupOriginalValue (original, behavior) {        
+    static async getGroupOriginalValue (original, behavior) {
         const query = original.relGroup();
         const name = await query.scalar('name');
         const id = behavior.owner.get('class');

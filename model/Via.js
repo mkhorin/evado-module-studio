@@ -43,7 +43,7 @@ module.exports = class Via extends Base {
         return {
             'byParent': IndexHelper.indexModels(models, 'parent'),
             'byAttr': IndexHelper.indexModels(models, 'attr')
-        }; 
+        };
     }
 
     // CLONE

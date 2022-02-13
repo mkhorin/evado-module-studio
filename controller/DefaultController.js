@@ -9,7 +9,7 @@ module.exports = class DefaultController extends Base {
 
     static getConstants () {
         return {
-            ACTIONS: {                
+            ACTIONS: {
                 'widget': require('evado/component/action/WidgetAction')
             },
             METHODS: {

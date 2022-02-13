@@ -59,7 +59,7 @@ module.exports = class ReportAttr extends Base {
                     float: 'Float',
                     id: 'ID',
                     integer: 'Integer',
-                    string: 'String',                    
+                    string: 'String',
                     user: 'User'
                 }
             }

@@ -4,7 +4,7 @@
 'use strict';
 
 Jam.AttrList = class AttrList extends Jam.AttrList {
-   
+
     getCommandMethod (name) {
         switch (name) {
             case 'selectAndClone':

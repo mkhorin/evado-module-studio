@@ -31,7 +31,7 @@ module.exports = class ImportModel extends Base {
     getSourcePath () {
         return this.module.app.getPath('metadata/' + this.get('source'));
     }
-    
+
     assignError (message) {
         if (message) {
             this.addError(this.Helper.trimConstructorName(this), `${this.data.name}: ${message}`);

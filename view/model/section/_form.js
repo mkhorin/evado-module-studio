@@ -6,5 +6,5 @@
 const Base = require('areto/view/ViewModel');
 
 module.exports = class SectionForm extends Base {
-    
+
 };

@@ -29,7 +29,7 @@
 
 * add S3 storage behavior
 * add digital signature behavior
-* loadable tabs to speed up form rendering 
+* loadable tabs to speed up form rendering
 
 ## 3.1.0
 

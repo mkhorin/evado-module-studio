@@ -6,7 +6,7 @@
 const Base = require('./AttrRuleController');
 
 module.exports = class AttrBehaviorController extends Base {
-    
+
     getModelClass () {
         return this.getClass('model/AttrBehavior');
     }

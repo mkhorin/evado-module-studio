@@ -6,11 +6,11 @@
 const Base = require('../component/base/CrudController');
 
 module.exports = class AttrRuleController extends Base {
-    
+
     getModelClass () {
         return this.getClass('model/AttrRule');
     }
-    
+
     actionCreate () {
         const model = this.createModel();
         this.setOwner(model);

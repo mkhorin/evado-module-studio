@@ -10,7 +10,7 @@ module.exports = class ViewAttrController extends Base {
     getModelClass () {
         return this.getClass('model/ViewAttr');
     }
-    
+
     async actionCreateByClassAttrs () {
         const viewModel = await this.getModel({
             Class: this.getClass('model/View')

@@ -10,8 +10,8 @@ module.exports = class ClassMainGroup extends Base {
     async resolveTemplateData () {
         const model = this.data.model;
         await model.resolveRelations([
-            'forbiddenView', 
-            'key', 
+            'forbiddenView',
+            'key',
             'version'
         ]);
     }

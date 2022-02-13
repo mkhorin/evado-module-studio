@@ -10,8 +10,8 @@ module.exports = class ViewAttr extends Base {
     static getConstants () {
         return {
             TABLE: 'studio_viewAttr',
-            ATTRS: [                
-                'label',                
+            ATTRS: [
+                'label',
                 'classAttr',
                 'commands',
                 'createOnRead',
@@ -35,7 +35,7 @@ module.exports = class ViewAttr extends Base {
                 'sortable',
                 'overriddenState',
                 'readOnly',
-                'required',                
+                'required',
                 'selectListView',
                 'unique',
                 'view',
@@ -83,7 +83,7 @@ module.exports = class ViewAttr extends Base {
                         'sortable',
                         'options',
                         'readOnly',
-                        'required',                        
+                        'required',
                         'selectListView',
                         'unique',
                         'viewType'

@@ -11,7 +11,7 @@ module.exports = class TreeViewLevel extends Base {
         return {
             TABLE: 'studio_treeViewLevel',
             ATTRS: [
-                'owner', // class or view                
+                'owner', // class or view
                 'refAttr',
                 'view',
                 'recursive',
@@ -26,14 +26,14 @@ module.exports = class TreeViewLevel extends Base {
             ],
             DELETE_ON_UNLINK: [
                 'nextLevels'
-            ],            
+            ],
             ATTR_LABELS: {
                 refAttr: 'Reference attribute',
                 refClass: 'Reference class'
-            }      
+            }
         };
     }
-    
+
     findByOwner (id) {
         return this.find(['id', 'owner', id]);
     }

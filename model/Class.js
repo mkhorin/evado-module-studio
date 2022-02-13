@@ -24,7 +24,7 @@ module.exports = class Class extends Base {
                 'name',
                 'options',
                 'order',
-                'parent',                
+                'parent',
                 'templateRoot',
                 'version'
             ],

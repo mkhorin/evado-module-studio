@@ -43,7 +43,7 @@ module.exports = class ImportHelper {
         for (const key of Object.keys(errors)) {
             if (errors[key].length) {
                 const error = model.module.translate(errors[key][0]);
-                message = message ? `${message}: ` : ''; 
+                message = message ? `${message}: ` : '';
                 return message + `Attribute: ${key}: ${error}`;
             }
         }

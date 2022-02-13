@@ -16,7 +16,7 @@ module.exports = class ViewGroupForm extends Base {
             overridden: await model.getBehavior('overridden').getAttrMap()
         };
     }
-    
+
     getValidParents () {
         const group = this.data.model.rel('classGroup');
         return SelectHelper.handleQueryLabelItems(group.getParentQuery.bind(group));
