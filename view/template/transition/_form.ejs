@@ -4,6 +4,7 @@ block('tab', 'Transition');
 
 const jsonTemplate = _view.get('_part/attr/json');
 const stringTemplate = _view.get('_part/attr/string');
+const pid = model.get('class');
 %>
 
 <%- include(stringTemplate, {
@@ -46,7 +47,7 @@ const stringTemplate = _view.get('_part/attr/string');
         },{
             name: 'description'
         }],
-        link: ['state/select', {list: _url('state/list', {pid: model.rel('class').getId()})}],
+        link: ['state/select', {list: encodeURIComponent(_url('state/list', {pid}))}],
         create: null,
         delete: null
     }
@@ -58,7 +59,7 @@ const stringTemplate = _view.get('_part/attr/string');
     items: null,
     select2: {
         ajax: {url: _url('state/list-select')},
-        queryData: {pid: model.get('class')},
+        queryData: {pid},
         placeholder: 'Null state',
         translate: ''
     },

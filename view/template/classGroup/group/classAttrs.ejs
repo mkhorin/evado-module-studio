@@ -17,7 +17,7 @@
             sortable: true
         }],
         order: {orderNumber: 1},
-        link: ['class-attr/select', {list: _url('class-attr/list-by-class', {pid: model.get('class')})}],
+        link: ['class-attr/select', {list: encodeURIComponent(_url('class-attr/list-by-class', {pid: model.get('class')}))}],
         create: ['class-attr/create-by-group', model],
         delete: null,
         showTop: true,

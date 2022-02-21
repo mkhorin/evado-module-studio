@@ -13,7 +13,7 @@ Object.assign(Jam.I18n.defaults, {
     'Actions with attribute depending on the current object values': 'Действия с атрибутом, зависящие от текущих значений объекта',
     'Activation': 'Активация',
     'Active': 'Активно',
-    'Active descendants': 'Активные наследники',
+    'Active descendants': 'Активные потомки',
     'Additional attribute functionality': 'Дополнительная функциональность атрибута',
     'Additional class functionality': 'Дополнительная функциональность класса',
     'Additional class parameters': 'Дополнительные параметры класса',
