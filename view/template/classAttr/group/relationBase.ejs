@@ -6,6 +6,7 @@ const selectTemplate = _view.get('_part/attr/select');
 const typeTrigger = ['startTrigger', 'type'];
 const refTypeTrigger = ['and', {type: 'ref'}, typeTrigger];
 const backrefTypeTrigger = ['and', {type: 'backref'}, typeTrigger];
+const refTypes = ['ref', 'backref'];
 %>
 
 <%- include(_view.get('_part/attr/checkbox'), {
@@ -21,7 +22,10 @@ const backrefTypeTrigger = ['and', {type: 'backref'}, typeTrigger];
     displayValue: model.getRelatedTitle('refClass'),
     select2: {ajax: {url: _url('class/list-select')}},
     update: _url('class/update'),
-    actionBinder: {require: {type: ['ref', 'backref']}}
+    actionBinder: {
+        require: {type: refTypes},
+        value: ['null', ['notIn', 'type', refTypes]]
+    }
 }) %>
 
 <%- include(columnTemplate, {
