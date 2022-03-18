@@ -19,6 +19,7 @@ const VIEW_TYPES = {
     select: 'Select box',
     state: 'State',
     string: 'String',
+    text: 'Text',
     time: 'Time',
     thumbnail: 'Thumbnail'
 };
@@ -259,6 +260,7 @@ module.exports = class ClassAttr extends Base {
             }, {
                 condition: {type: 'string'},
                 items: [
+                    ['text', VIEW_TYPES.text],
                     ['state', VIEW_TYPES.state],
                     ['class', VIEW_TYPES.class]
                 ]
@@ -289,23 +291,19 @@ module.exports = class ClassAttr extends Base {
             }],
             COMMAND_VALUE_LABELS: [{
                 value: 'add',
-                text: 'Add',
-                hint: 'Select from existing objects'
+                text: 'Add'
             }, {
                 value: 'remove',
-                text: 'Remove',
-                hint: 'Remove from related objects'
+                text: 'Remove'
             }, {
                 value: 'create',
-                text: 'Create',
-                hint: 'Create new object'
+                text: 'Create'
             }, {
                 value: 'edit',
                 text: 'Edit'
             }, {
                 value: 'delete',
-                text: 'Delete',
-                hint: 'Delete object'
+                text: 'Delete'
             }],
             DEFAULT_COMMANDS
         };
