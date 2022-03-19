@@ -188,7 +188,7 @@ Object.assign(Jam.I18n.defaults, {
     'Hide empty': 'Скрыть пустой',
     'Hierarchy': 'Иерархия',
     'Hint': 'Подсказка',
-    'Hint is displayed when hovering over an attribute label': 'Подсказка отображается при наведении курсора на ярлык атрибута',
+    'Hint is hidden in an icon': 'Подсказка скрыта в иконке',
 
     'Identifier': 'Идентификатор',
     'Ignore case': 'Игнорировать регистр',
@@ -243,7 +243,7 @@ Object.assign(Jam.I18n.defaults, {
     'Maximum size': 'Максимальный размер',
     'Maximum total size': 'Предел общего размера',
     'Maximum value': 'Максимальное значение',
-    'Media types': 'Медиа типы',
+    'Media types': 'Тип медиа',
     'Message': 'Сообщение',
     'Meta': 'Мета',
     'Metadata': 'Метаданные',
@@ -405,7 +405,7 @@ Object.assign(Jam.I18n.defaults, {
     'User': 'Пользователь',
 
     'Valid file extensions (e.g. png)': 'Допустимые расширения файлов (например, png)',
-    'Valid media types (e.g. image/png)': 'Допустимые медиа типы (например, image/png)',
+    'Valid media types (e.g. image/png)': 'Допустимые типы медиа (например, image/png)',
     'Validator': 'Валидатор',
     'Validator type': 'Тип валидатора',
     'Validators': 'Валидаторы',

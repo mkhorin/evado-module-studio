@@ -14,7 +14,7 @@ const stringTemplate = _view.get('_part/attr/string');
     attr: 'group',
     displayValue: model.getRelatedTitle('group'),
     items: null,
-    select2: {ajax: {url: _url('class-group/list-set-select', model.rel('class'))}},
+    select2: {ajax: {url: _url('class-group/list-set-select', {id: model.get('class')})}},
     update: _url('class-group/update')
 }) %>
 
@@ -53,7 +53,7 @@ const stringTemplate = _view.get('_part/attr/string');
 
 <%- include(_view.get('_part/attr/text'), {
     attr: 'extHint',
-    extHint: 'Hint is displayed when hovering over an attribute label'
+    extHint: 'Hint is hidden in an icon'
 }) %>
 
 <%- include(jsonTemplate, {

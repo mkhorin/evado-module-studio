@@ -1,8 +1,9 @@
 <%
 const checkboxTemplate = _view.get('_part/attr/checkbox');
+const textTemplate = _view.get('_part/attr/text');
 %>
 
-<%- include(_view.get('_part/attr/text'), {
+<%- include(textTemplate, {
     attr: 'description'
 }) %>
 
@@ -34,7 +35,7 @@ const checkboxTemplate = _view.get('_part/attr/checkbox');
     }]
 }) %>
 
-<%- include(_view.get('_part/attr/string'), {
+<%- include(textTemplate, {
     attr: 'hint'
 }) %>
 

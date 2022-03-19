@@ -1,3 +1,11 @@
+## 5.3.0
+
+* clear reference class if type does not match
+* encode URL params
+* model/ClassAttr
+    - add text view for string type
+* remove trailing spaces
+
 ## 5.2.0
 
 * component/export/ViewAttrExport
