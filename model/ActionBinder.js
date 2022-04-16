@@ -14,10 +14,12 @@ module.exports = class ActionBinder extends Base {
                 'show',
                 'require',
                 'enable',
-                'value'
+                'value',
+                'description'
             ],
             RULES: [
-                [['show', 'require', 'enable', 'value'], 'json']
+                [['show', 'require', 'enable', 'value'], 'json'],
+                [['description'], 'string']
             ]
         };
     }

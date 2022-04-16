@@ -3,6 +3,7 @@ layout(_view.get(_layout));
 block('tab', 'Action binder');
 
 const jsonTemplate = _view.get('_part/attr/json');
+const textTemplate = _view.get('_part/attr/text');
 %>
 
 <%- include(jsonTemplate, {
@@ -23,4 +24,8 @@ const jsonTemplate = _view.get('_part/attr/json');
 <%- include(jsonTemplate, {
     attr: 'value',
     extHint: 'Condition of setting a specific value to attribute'
+}) %>
+
+<%- include(textTemplate, {
+    attr: 'description'
 }) %>
