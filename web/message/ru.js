@@ -72,7 +72,7 @@ Object.assign(Jam.I18n.defaults, {
     'Commands': 'Команды',
     'Common searchable': 'Общий поисковый',
     'Condition': 'Условие',
-    'Condition of setting a specific value to attribute': 'Условие задания определенного значения атрибуту',
+    'Condition of setting a specific value to attribute': 'Установка определенного значения по условию',
     'Condition parameters': 'Параметры условия',
     'Configuration': 'Конфигурация',
     'Container': 'Контейнер',
