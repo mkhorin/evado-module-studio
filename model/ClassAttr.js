@@ -289,23 +289,13 @@ module.exports = class ClassAttr extends Base {
                     ['string', VIEW_TYPES.string]
                 ]
             }],
-            COMMAND_VALUE_LABELS: [{
-                value: 'add',
-                text: 'Add'
-            }, {
-                value: 'remove',
-                text: 'Remove'
-            }, {
-                value: 'create',
-                text: 'Create'
-            }, {
-                value: 'edit',
-                text: 'Edit'
-            }, {
-                value: 'delete',
-                text: 'Delete'
-            }],
-            DEFAULT_COMMANDS
+            COMMAND_VALUE_LABELS: {
+                'add': 'Add',
+                'remove': 'Remove',
+                'create': 'Create',
+                'edit': 'Edit',
+                'delete': 'Delete'
+            }
         };
     }
 

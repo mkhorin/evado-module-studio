@@ -1,3 +1,10 @@
+## 5.4.0
+
+* model/ruleParam/DateParam
+    - add date validator
+* model/ActionBinder
+    - add action binder description
+
 ## 5.3.0
 
 * clear reference class if type does not match
