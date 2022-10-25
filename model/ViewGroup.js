@@ -82,6 +82,12 @@ module.exports = class ViewGroup extends Base {
         return this.getFullTitle();
     }
 
+    getFullTitle () {
+        const name = this.get('classGroup.name') || this.getId();
+        const label = this.get('label');
+        return label ? `${label} (${name})` : name;
+    }
+
     async createByGroups (ids, view) {
         const result = [];
         const groupIds = await this.find({view: view.getId()}).column('classGroup');
