@@ -11,22 +11,23 @@ module.exports = class ClassGroup extends Base {
         return {
             TABLE: 'studio_classGroup',
             ATTRS: [
-                'active',
-                'class',
-                'hint',
                 'name',
                 'label',
-                'loadable',
+                'active',
+                'class',
                 'description',
+                'hidden',
+                'hint',
+                'loadable',
+                'options',
                 'orderNumber',
                 'original',
+                'overriddenState',
                 'parent',
                 'readOnly',
                 'required',
                 'type',
-                'actionBinder',
-                'options',
-                'overriddenState'
+                'actionBinder'
             ],
             RULES: [
                 ['name', 'required'],
@@ -34,7 +35,7 @@ module.exports = class ClassGroup extends Base {
                 ['name', 'unique', {filter: 'class'}],
                 [['hint', 'label', 'description', 'type'], 'string'],
                 ['parent', 'id'],
-                [['active', 'loadable', 'readOnly', 'required'], 'checkbox'],
+                [['active', 'hidden', 'loadable', 'readOnly', 'required'], 'checkbox'],
                 ['orderNumber', 'integer'],
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()
@@ -63,6 +64,7 @@ module.exports = class ClassGroup extends Base {
                     },
                     attrs: [
                         'active',
+                        'hidden',
                         'hint',
                         'label',
                         'loadable',
@@ -88,6 +90,7 @@ module.exports = class ClassGroup extends Base {
                 'viewGroups'
             ],
             UNLINK_ON_DELETE: [
+                'children',
                 'classAttrs',
                 'viewAttrs',
                 'viewGroupParents'
