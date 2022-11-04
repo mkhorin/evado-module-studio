@@ -8,20 +8,23 @@ const DEFAULT_COMMANDS = [
 ];
 const VIEW_TYPES = {
     boolean: 'Boolean',
+    checkboxList: 'Checkbox list',
+    class: 'Metadata class',
+    classes: 'Metadata classes',
     date: 'Date',
     datetime: 'Date and time',
     localDate: 'Local date',
     localDatetime: 'Local date and time',
-    relationSelect: 'Select box',
-    class: 'Metadata class',
-    classes: 'Metadata classes',
     radioList: 'Radio list',
+    relationCheckboxList: 'Checkbox list',
+    relationRadioList: 'Radio list',
+    relationSelect: 'Select box',
     select: 'Select box',
     state: 'State',
     string: 'String',
     text: 'Text',
-    time: 'Time',
-    thumbnail: 'Thumbnail'
+    thumbnail: 'Thumbnail',
+    time: 'Time'
 };
 const Base = require('../component/base/BaseActiveRecord');
 
@@ -82,10 +85,24 @@ module.exports = class ClassAttr extends Base {
                 [['name', 'type'], 'required'],
                 ['refClass', 'required', {when: model => model.isRelation()}],
                 [['class', 'original'], 'id', {on: 'create'}],
-                [['eagerView', 'group', 'linkAttr', 'listView', 'refAttr', 'refClass', 'selectListView'], 'id'],
-                [['label', 'description', 'hint', 'extHint'], 'string'],
-                [['orderNumber', 'eagerDepth', 'searchDepth'], 'integer'],
-                ['name', require('../component/validator/AttrNameValidator')],
+                [[
+                   'eagerView',
+                   'group',
+                   'linkAttr',
+                   'listView',
+                   'refAttr',
+                   'refClass',
+                   'selectListView'], 'id'],
+                [[
+                    'label',
+                    'description',
+                    'hint',
+                    'extHint'], 'string'],
+                [[
+                    'orderNumber',
+                    'eagerDepth',
+                    'searchDepth'], 'integer'],
+                ['name', AttrNameValidator],
                 ['name', 'unique', {filter: 'class'}],
                 ['commands', 'filter', {method: 'split'}],
                 ['commands', 'default', {value: DEFAULT_COMMANDS}],
@@ -98,16 +115,40 @@ module.exports = class ClassAttr extends Base {
                 [['viewType', 'overriddenState'], 'safe'],
                 ['indexing', 'integer'],
                 ['indexing', 'range', {values: [-1, 1]}],
-                [['commonSearchable', 'createOnRead', 'eagerLoading', 'escape', 'hidden', 'hideEmpty', 'history',
-                    'multiple', 'readOnly', 'required', 'selectSearchable', 'sortable', 'sortableRelation', 'signed',
-                    'trim', 'unique'], 'checkbox'],
                 ['name', 'validateSystemAttr'], // after readOnly validation
-                [['defaultValue', 'expression', 'filter', 'header', 'options'], 'json'],
-                [['actionBinder', 'behaviors', 'enums', 'rules', 'via'], 'relation']
+                [[
+                    'commonSearchable',
+                    'createOnRead',
+                    'eagerLoading',
+                    'escape',
+                    'hidden',
+                    'hideEmpty',
+                    'history',
+                    'multiple',
+                    'readOnly',
+                    'required',
+                    'selectSearchable',
+                    'sortable',
+                    'sortableRelation',
+                    'signed',
+                    'trim',
+                    'unique'], 'checkbox'],
+                [[
+                    'defaultValue',
+                    'expression',
+                    'filter',
+                    'header',
+                    'options'], 'json'],
+                [[
+                    'actionBinder',
+                    'behaviors',
+                    'enums',
+                    'rules',
+                    'via'], 'relation']
             ],
             BEHAVIORS: {
                 'ancestor': {
-                    Class: require('../component/behavior/AncestorBehavior'),
+                    Class: AncestorBehavior,
                     relations: [{
                         name: 'descendants',
                         unchangeableAttrs: ['name', 'type']
@@ -116,7 +157,7 @@ module.exports = class ClassAttr extends Base {
                     }]
                 },
                 'clone': {
-                    Class: require('evado/component/behavior/CloneBehavior'),
+                    Class: CloneBehavior,
                     excludedAttrs: ['original'],
                     relations: [
                         'enums',
@@ -125,7 +166,7 @@ module.exports = class ClassAttr extends Base {
                     ]
                 },
                 'overridden': {
-                    Class: require('evado/component/behavior/OverriddenValueBehavior'),
+                    Class: OverriddenValueBehavior,
                     originalValueMethodMap: {
                         'group': this.getGroupOriginalValue.bind(this)
                     },
@@ -168,7 +209,7 @@ module.exports = class ClassAttr extends Base {
                     ]
                 },
                 'sortOrder': {
-                    Class: require('areto/behavior/SortOrderBehavior'),
+                    Class: SortOrderBehavior,
                     filter: 'class',
                     overriddenBehavior: 'overridden'
                 }
@@ -232,7 +273,7 @@ module.exports = class ClassAttr extends Base {
                 items: [
                     ['cascade', 'Cascade'],
                     ['lock', 'Lock']
-                ]
+                ],
             }],
             TYPE_ENUMS: [{
                 condition: {type: 'date'},
@@ -241,33 +282,36 @@ module.exports = class ClassAttr extends Base {
                     ['datetime', VIEW_TYPES.datetime],
                     ['localDate', VIEW_TYPES.localDate],
                     ['localDatetime', VIEW_TYPES.localDatetime],
-                    ['string', VIEW_TYPES.string]
+                    ['string', VIEW_TYPES.string],
                 ]
             }, {
                 condition: {type: ['boolean', 'float', 'id', 'integer', 'string']},
                 items: [
                     ['radioList', VIEW_TYPES.radioList],
                     ['select', VIEW_TYPES.select],
-                    ['string', VIEW_TYPES.string]
+                    ['string', VIEW_TYPES.string],
                 ]
             }, {
                 condition: {type: ['ref', 'backref']},
                 items: [
                     ['relationSelect', VIEW_TYPES.relationSelect],
+                    ['relationRadioList', VIEW_TYPES.relationRadioList],
+                    ['relationCheckboxList', VIEW_TYPES.relationCheckboxList],
                     ['string', VIEW_TYPES.string],
-                    ['thumbnail', VIEW_TYPES.thumbnail]
+                    ['thumbnail', VIEW_TYPES.thumbnail],
                 ]
             }, {
                 condition: {type: 'string'},
                 items: [
+                    ['checkboxList', VIEW_TYPES.checkboxList],
                     ['text', VIEW_TYPES.text],
                     ['state', VIEW_TYPES.state],
-                    ['class', VIEW_TYPES.class]
+                    ['class', VIEW_TYPES.class],
                 ]
             }, {
                 condition: {type: 'integer'},
                 items: [
-                    ['time', VIEW_TYPES.time]
+                    ['time', VIEW_TYPES.time],
                 ]
             }, {
                 condition: {type: 'calc'},
@@ -276,17 +320,18 @@ module.exports = class ClassAttr extends Base {
                     ['date', VIEW_TYPES.date],
                     ['datetime', VIEW_TYPES.datetime],
                     ['localDate', VIEW_TYPES.localDate],
-                    ['localDatetime', VIEW_TYPES.localDatetime]
-                ]
+                    ['localDatetime', VIEW_TYPES.localDatetime],
+                ],
             }, {
                 condition: {type: 'json'},
                 items: [
-                    ['classes', VIEW_TYPES.classes]
+                    ['checkboxList', VIEW_TYPES.checkboxList],
+                    ['classes', VIEW_TYPES.classes],
                 ]
             }, {
                 condition: {type: ['file', 'user']},
                 items: [
-                    ['string', VIEW_TYPES.string]
+                    ['string', VIEW_TYPES.string],
                 ]
             }],
             COMMAND_VALUE_LABELS: {
@@ -294,7 +339,7 @@ module.exports = class ClassAttr extends Base {
                 'remove': 'Remove',
                 'create': 'Create',
                 'edit': 'Edit',
-                'delete': 'Delete'
+                'delete': 'Delete',
             }
         };
     }
@@ -338,8 +383,16 @@ module.exports = class ClassAttr extends Base {
     }
 
     canIndexing () {
-        const type = this.get('type');
-        return !(type === 'backref' || type === 'file' || (type === 'ref' && this.get('multiple')));
+        switch (this.get('type')) {
+            case 'backref':
+            case 'file': {
+                return false;
+            }
+            case 'ref': {
+                return !this.get('multiple');
+            }
+        }
+        return true;
     }
 
     getTitle () {
@@ -376,7 +429,9 @@ module.exports = class ClassAttr extends Base {
     }
 
     getRelinkMap (key, value) {
-        return super.getRelinkMap(this.find({class: key}), this.find({class: value}), 'name');
+        const keyQuery = this.find({class: key});
+        const valueQuery = this.find({class: value});
+        return super.getRelinkMap(keyQuery, valueQuery, 'name');
     }
 
     relinkClassAttrs (data) {
@@ -508,4 +563,11 @@ module.exports = class ClassAttr extends Base {
         return this.hasMany(Class, Class.PK, 'view').via('viewAttrs');
     }
 };
+
+const AncestorBehavior = require('../component/behavior/AncestorBehavior');
+const AttrNameValidator = require('../component/validator/AttrNameValidator');
+const CloneBehavior = require('evado/component/behavior/CloneBehavior');
+const OverriddenValueBehavior = require('evado/component/behavior/OverriddenValueBehavior');
+const SortOrderBehavior = require('areto/behavior/SortOrderBehavior');
+
 module.exports.init(module);
