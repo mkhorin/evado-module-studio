@@ -131,7 +131,9 @@ module.exports = class ClassImport extends Base {
     }
 
     createGroup (data, model) {
-        const constructor = model ? 'InheritedClassGroupImport' : 'ClassGroupImport';
+        const constructor = model
+            ? 'InheritedClassGroupImport'
+            : 'ClassGroupImport';
         const group = this.spawn(`import/${constructor}`, {
             owner: this,
             meta: this.meta,
@@ -274,7 +276,8 @@ module.exports = class ClassImport extends Base {
     setForbiddenView () {
         const view = this.data.forbiddenView;
         if (this.viewImportMap.hasOwnProperty(view)) {
-            this.model.set('forbiddenView', this.viewImportMap[view].model.getId());
+            const id = this.viewImportMap[view].model.getId();
+            this.model.set('forbiddenView', id);
             this.model.forceSave();
         }
     }
@@ -296,9 +299,8 @@ module.exports = class ClassImport extends Base {
 
     async resolveRuleAttrs (data) {
         if (Array.isArray(data.attrs) && data.attrs.length) {
-            data.attrs = {
-                links: await PromiseHelper.map(data.attrs, this.resolveRuleAttr, this)
-            };
+            const links = await PromiseHelper.map(data.attrs, this.resolveRuleAttr, this);
+            data.attrs = {links};
         }
         return PromiseHelper.setImmediate();
     }
@@ -370,9 +372,8 @@ module.exports = class ClassImport extends Base {
         if (!Array.isArray(names)) {
             return false;
         }
-        const links = names
-            .filter(this.filterTransitionStates.bind(this, model))
-            .map(name => this.stateMap[name].getId());
+        names = names.filter(this.filterTransitionStates.bind(this, model));
+        const links = names.map(name => this.stateMap[name].getId());
         model.set('startStates', {links});
     }
 
@@ -380,15 +381,15 @@ module.exports = class ClassImport extends Base {
         if (this.stateMap.hasOwnProperty(name)) {
             return true;
         }
-        this.assignError(`Transition: ${model.get('name')}: Invalid state: ${key}`);
+        this.assignError(`Transition: ${model.get('name')}: Invalid state: ${name}`);
         return false;
     }
 
     setTransitionFinalState (name, model) {
-        if (name) {
-            this.stateMap.hasOwnProperty(name)
-                ? model.set('finalState', this.stateMap[name].getId())
-                : this.assignError(`Transition: ${model.get('name')}: Invalid state: ${name}`);
+        if (this.stateMap.hasOwnProperty(name)) {
+            model.set('finalState', this.stateMap[name].getId());
+        } else if (name) {
+            this.assignError(`Transition: ${model.get('name')}: Invalid state: ${name}`);
         }
     }
 

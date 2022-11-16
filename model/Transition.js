@@ -28,10 +28,10 @@ module.exports = class Transition extends Base {
                 [['name', 'class'], 'required'],
                 [['class', 'finalState'], 'id'],
                 [['label', 'description', 'hint'], 'string'],
-                ['name', require('../component/validator/CodeNameValidator')],
+                ['name', CodeNameValidator],
                 ['name', 'unique', {filter: 'class'}],
                 [['condition', 'options'], 'json'],
-                ['config', 'spawn', {BaseClass: require('evado-meta-base/workflow/Transit')}],
+                ['config', 'spawn', {BaseClass: Transit}],
                 ['orderNumber', 'integer'],
                 ['orderNumber', 'default', {
                     value: (attr, model) => model.getBehavior('sortOrder').getNextNumber()
@@ -42,7 +42,7 @@ module.exports = class Transition extends Base {
             ],
             BEHAVIORS: {
                 'sortOrder': {
-                    Class: require('areto/behavior/SortOrderBehavior'),
+                    Class: SortOrderBehavior,
                     filter: 'class'
                 }
             },
@@ -92,4 +92,9 @@ module.exports = class Transition extends Base {
         return this.hasMany(Class, Class.PK, 'startStates').viaArray();
     }
 };
+
+const CodeNameValidator = require('../component/validator/CodeNameValidator');
+const SortOrderBehavior = require('areto/behavior/SortOrderBehavior');
+const Transit = require('evado-meta-base/workflow/Transit');
+
 module.exports.init(module);

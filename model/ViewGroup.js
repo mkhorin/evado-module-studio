@@ -40,12 +40,12 @@ module.exports = class ViewGroup extends Base {
             ],
             BEHAVIORS: {
                 'sortOrder': {
-                    Class: require('areto/behavior/SortOrderBehavior'),
+                    Class: SortOrderBehavior,
                     filter: 'view',
                     overriddenBehavior: 'overridden'
                 },
                 'overridden': {
-                    Class: require('evado/component/behavior/OverriddenValueBehavior'),
+                    Class: OverriddenValueBehavior,
                     originalAttr: 'classGroup',
                     attrs: [
                         'active',
@@ -91,12 +91,13 @@ module.exports = class ViewGroup extends Base {
     }
 
     async createByGroups (ids, view) {
-        const result = [];
-        const groupIds = await this.find({view: view.getId()}).column('classGroup');
+        const viewId = view.getId();
+        const groupIds = await this.find({view: viewId}).column('classGroup');
         ids = MongoHelper.exclude(groupIds, ids);
+        const result = [];
         for (const id of ids) {
             const model = this.spawnSelf();
-            model.set('view', view.getId());
+            model.set('view', viewId);
             model.set('classGroup', id);
             result.push(model);
             await model.forceSave();
@@ -151,6 +152,9 @@ module.exports = class ViewGroup extends Base {
         return this.hasOne(View, View.PK, 'view');
     }
 };
-module.exports.init(module);
 
 const MongoHelper = require('areto/helper/MongoHelper');
+const OverriddenValueBehavior = require('evado/component/behavior/OverriddenValueBehavior');
+const SortOrderBehavior = require('areto/behavior/SortOrderBehavior');
+
+module.exports.init(module);

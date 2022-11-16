@@ -33,20 +33,30 @@ module.exports = class Class extends Base {
                 ['name', 'required'],
                 [['forbiddenView', 'key', 'parent', 'version'], 'id'],
                 ['name', {
-                    Class: require('../component/validator/CodeNameValidator'),
+                    Class: CodeNameValidator,
                     validFilename: true
                 }],
                 ['name', 'unique'],
                 [['label', 'description', 'templateRoot'], 'string'],
                 [['header', 'order', 'grouping', 'options'], 'json'],
-                ['modelConfig', 'spawn', {BaseClass: require('evado-meta-base/model/Model')}],
+                ['modelConfig', 'spawn', {BaseClass: Model}],
                 [['abstract', 'disableTreeView'], 'checkbox'],
-                [['activeDescendants', 'behaviors', 'indexes', 'rules', 'states', 'transitions', 'treeViewLevels', 'views'], 'relation'],
-                [['groups', 'attrs'], 'relation', {filter: this.filterInheritedChanges.bind(this)}]
+                [[
+                    'activeDescendants',
+                    'behaviors',
+                    'indexes',
+                    'rules',
+                    'states',
+                    'transitions',
+                    'treeViewLevels',
+                    'views'], 'relation'],
+                [[
+                    'groups',
+                    'attrs'], 'relation', {filter: this.filterInheritedChanges.bind(this)}]
             ],
             BEHAVIORS: {
                 'clone': {
-                    Class: require('evado/component/behavior/CloneBehavior'),
+                    Class: CloneBehavior,
                     relations: [
                         'attrs',
                         'behaviors',
@@ -154,7 +164,9 @@ module.exports = class Class extends Base {
 
     relinkForbiddenView (data) {
         const value = this.get('forbiddenView');
-        return value ? this.directUpdate({forbiddenView: data[value]}) : null;
+        return value
+            ? this.directUpdate({forbiddenView: data[value]})
+            : null;
     }
 
     // INHERIT
@@ -162,7 +174,8 @@ module.exports = class Class extends Base {
     async createInheritedItems () {
         await PromiseHelper.setImmediate();
         const parent = this.rel('parent');
-        const [attrs, groups, views] = await parent.resolveRelations(['attrs', 'groups', 'views']);
+        const relations = ['attrs', 'groups', 'views'];
+        const [attrs, groups, views] = await parent.resolveRelations(relations);
         for (const model of groups) {
             await model.inherit(this.getId());
         }
@@ -293,6 +306,10 @@ module.exports = class Class extends Base {
         return this.hasMany(Class, 'class', this.PK);
     }
 };
-module.exports.init(module);
 
+const CloneBehavior = require('evado/component/behavior/CloneBehavior');
+const CodeNameValidator = require('../component/validator/CodeNameValidator');
+const Model = require('evado-meta-base/model/Model');
 const PromiseHelper = require('areto/helper/PromiseHelper');
+
+module.exports.init(module);

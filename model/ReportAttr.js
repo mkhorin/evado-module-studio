@@ -27,7 +27,7 @@ module.exports = class ReportAttr extends Base {
                 ['report', 'id', {on: 'create'}],
                 [['label', 'description'], 'string'],
                 ['orderNumber', 'integer'],
-                ['name', require('../component/validator/AttrNameValidator')],
+                ['name', AttrNameValidator],
                 ['name', 'unique', {filter: 'report'}],
                 ['type', 'default', {value: 'string'}],
                 ['indexing', 'integer'],
@@ -38,11 +38,11 @@ module.exports = class ReportAttr extends Base {
             ],
             BEHAVIORS: {
                 'clone': {
-                    Class: require('evado/component/behavior/CloneBehavior'),
+                    Class: CloneBehavior,
                     relations: []
                 },
                 'sortOrder': {
-                    Class: require('areto/behavior/SortOrderBehavior'),
+                    Class: SortOrderBehavior,
                     filter: 'class'
                 }
             },
@@ -71,8 +71,16 @@ module.exports = class ReportAttr extends Base {
     }
 
     canIndexing () {
-        const type = this.get('type');
-        return !(type === 'backref' || type === 'file' || (type === 'ref' && this.get('multiple')));
+        switch (this.get('type')) {
+            case 'backref':
+            case 'file': {
+                return false;
+            }
+            case 'ref': {
+                return !this.get('multiple');
+            }
+        }
+        return true;
     }
 
     getTitle () {
@@ -99,4 +107,9 @@ module.exports = class ReportAttr extends Base {
         return this.hasOne(Class, Class.PK, 'report');
     }
 };
+
+const AttrNameValidator = require('../component/validator/AttrNameValidator');
+const CloneBehavior = require('evado/component/behavior/CloneBehavior');
+const SortOrderBehavior = require('areto/behavior/SortOrderBehavior');
+
 module.exports.init(module);

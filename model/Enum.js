@@ -11,12 +11,12 @@ module.exports = class Enum extends Base {
         return {
             TABLE: 'studio_enum',
             ATTRS: [
-                'owner',
-                'condition',
                 'attr',
                 'class',
-                'view',
-                'queryFilter'
+                'condition',
+                'owner',
+                'queryFilter',
+                'view'
             ],
             RULES: [
                 [['owner', 'attr', 'class', 'view'], 'id'],

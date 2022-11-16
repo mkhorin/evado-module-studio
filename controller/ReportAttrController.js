@@ -8,9 +8,10 @@ const Base = require('../component/base/CrudController');
 module.exports = class ReportAttrController extends Base {
 
     async actionCreate () {
+        const {pid} = this.getQueryParams();
         const report = await this.getModel({
             Class: this.getClass('model/Report'),
-            id: this.getQueryParam('pid')
+            id: pid
         });
         const model = this.createModel();
         model.set('report', report.getId());
@@ -18,17 +19,20 @@ module.exports = class ReportAttrController extends Base {
     }
 
     actionList () {
-        const query = this.spawn('model/ReportAttr').createQuery().with('class', 'original', 'group');
+        const model = this.spawn('model/ReportAttr');
+        const query = model.createQuery().with('class', 'original', 'group');
         return super.actionList(query);
     }
 
     actionListByReport () {
-        const query = this.spawn('model/ReportAttr').findByReport(this.getQueryParam('pid'));
+        const {pid} = this.getQueryParams();
+        const query = this.spawn('model/ReportAttr').findByReport(pid);
         return super.actionList(query);
     }
 
     actionListSelect () {
-        const query = this.spawn('model/ReportAttr').findByReport(this.getPostParam('pid'));
+        const {pid} = this.getPostParams();
+        const query = this.spawn('model/ReportAttr').findByReport(pid);
         return this.sendSelectList(query);
     }
 };

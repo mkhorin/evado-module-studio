@@ -13,25 +13,28 @@ module.exports = class NodeController extends Base {
 
     actionCreateBySection () {
         const model = this.createModel();
-        model.set('section', model.getDb().normalizeId(this.getQueryParam('id')));
+        const {id} = this.getQueryParams();
+        model.set('section', model.getDb().normalizeId(id));
         return super.actionCreate({model});
     }
 
     async actionCreateByNode () {
         const model = this.createModel();
-        model.set('parent', model.getDb().normalizeId(this.getQueryParam('id')));
+        const {id} = this.getQueryParams();
+        model.set('parent', model.getDb().normalizeId(id));
         await model.setSectionByParent();
         return super.actionCreate({model});
     }
 
     actionList () {
-        return super.actionList(this.createModel().createQuery().with('section', 'parent'));
+        const model = this.createModel();
+        const query = model.createQuery().with('section', 'parent');
+        return super.actionList(query);
     }
 
     getListRelatedWith (relation) {
         switch (relation) {
-            case 'children':
-                return ['class', 'view', 'report'];
+            case 'children': return ['class', 'view', 'report'];
         }
     }
 };

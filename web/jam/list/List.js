@@ -7,8 +7,7 @@ Jam.AttrList = class AttrList extends Jam.AttrList {
 
     getCommandMethod (name) {
         switch (name) {
-            case 'selectAndClone':
-                return this.onSelectAndClone;
+            case 'selectAndClone': return this.onSelectAndClone;
         }
         return super.getCommandMethod(name);
     }
@@ -32,7 +31,8 @@ Jam.AttrList = class AttrList extends Jam.AttrList {
     }
 
     cloneSelected (sample, $target) {
-        this.childFrame.load($target.data('clone'), {sample}).done(() => {
+        const clone = $target.data('clone');
+        this.childFrame.load(clone, {sample}).done(() => {
             this.childFrame.one('afterClose', (event, data) => {
                 if (data?.result) {
                     this.linkObjects(data.result);

@@ -13,7 +13,7 @@ const stringTemplate = _view.get('_part/attr/string');
 
 <%- include(overriddenTemplate, {
     attr: 'commands',
-    template: _view.get('_part/attr/checkList'),
+    template: _view.get('_part/attr/checkboxList'),
     params: {
         items: model.rel('classAttr').COMMAND_VALUE_LABELS
     }

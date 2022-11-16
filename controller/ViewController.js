@@ -71,16 +71,19 @@ module.exports = class ViewController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().createQuery().with('class'));
+        const query = this.createModel().createQuery().with('class');
+        return super.actionList(query);
     }
 
     actionListSelect () {
-        const query = this.createModel().findForSelect(this.getPostParam('pid'));
+        const {pid} = this.getPostParams();
+        const query = this.createModel().findForSelect(pid);
         return this.sendSelectList(query);
     }
 
     async actionListFromParent () {
-        const query = await this.createModel().findParents(this.getQueryParam('id'));
+        const {id} = this.getQueryParams();
+        const query = await this.createModel().findParents(id);
         return this.sendGridList(query.with('class'), {viewModel: 'list'});
     }
 
@@ -103,14 +106,18 @@ module.exports = class ViewController extends Base {
 
     getListRelatedWith (relation) {
         switch (relation) {
-            case 'attrs':
+            case 'attrs': {
                 return ['group', 'classAttr.group'];
-            case 'groups':
+            }
+            case 'groups': {
                 return ['parent', 'classGroup.parent'];
-            case 'rules':
+            }
+            case 'rules': {
                 return 'attrs';
-            case 'treeViewLevels':
+            }
+            case 'treeViewLevels': {
                 return ['refAttr.refClass', 'refAttr.original.refClass'];
+            }
         }
     }
 };

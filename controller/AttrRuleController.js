@@ -24,7 +24,8 @@ module.exports = class AttrRuleController extends Base {
     }
 
     setOwner (model) {
-        model.set('owner', model.getDb().normalizeId(this.getQueryParam('pid')));
+        const {pid} = this.getQueryParams();
+        model.set('owner', model.getDb().normalizeId(pid));
     }
 
     async saveModel (model) {

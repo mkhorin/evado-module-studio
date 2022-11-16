@@ -20,7 +20,7 @@ module.exports = class Report extends Base {
             RULES: [
                 [['name', 'minerConfig'], 'required'],
                 ['name', {
-                    Class: require('../component/validator/CodeNameValidator'),
+                    Class: CodeNameValidator,
                     validFilename: true
                 }],
                 ['name', 'unique'],
@@ -31,7 +31,7 @@ module.exports = class Report extends Base {
             ],
             BEHAVIORS: {
                 'clone': {
-                    Class: require('evado/component/behavior/CloneBehavior'),
+                    Class: CloneBehavior,
                     relations: ['attrs', 'groups']
                 }
             },
@@ -56,12 +56,14 @@ module.exports = class Report extends Base {
 
     static async filterInheritedChanges (changes, model, attr) {
         model = model.getRelation(attr).model;
-        changes.deletes = await model.findById(changes.deletes).and({original: null}).column(model.PK);
+        const query = model.findById(changes.deletes).and({original: null});
+        changes.deletes = await query.column(model.PK);
         return PromiseHelper.setImmediate();
     }
 
     async setAttrMapByName () {
-        this.set('attrMapByName', await this.relAttrs().index('name').all());
+        const attrMap = await this.relAttrs().index('name').all();
+        this.set('attrMapByName', attrMap);
     }
 
     // CLONE
@@ -95,7 +97,9 @@ module.exports = class Report extends Base {
 
     relGroups () {
         const Class = this.getClass('model/ReportGroup');
-        return this.hasMany(Class, 'report', this.PK).order({orderNumber: 1}).with('parent');
+        return this.hasMany(Class, 'report', this.PK)
+            .order({orderNumber: 1})
+            .with('parent');
     }
 
     relIndexes () {
@@ -108,6 +112,9 @@ module.exports = class Report extends Base {
         return this.hasMany(Class, 'report', this.PK);
     }
 };
-module.exports.init(module);
 
+const CloneBehavior = require('evado/component/behavior/CloneBehavior');
+const CodeNameValidator = require('../component/validator/CodeNameValidator');
 const PromiseHelper = require('areto/helper/PromiseHelper');
+
+module.exports.init(module);

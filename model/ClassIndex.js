@@ -13,9 +13,9 @@ module.exports = class ClassIndex extends Base {
             ATTRS: [
                 'class',
                 'name',
-                'unique',
                 'background',
-                'options'
+                'options',
+                'unique'
             ],
             RULES: [
                 ['class', 'required'],

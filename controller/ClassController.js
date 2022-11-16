@@ -32,7 +32,8 @@ module.exports = class ClassController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().createQuery().with('parent'));
+        const query = this.createModel().createQuery().with('parent');
+        return super.actionList(query);
     }
 
     async actionListRealDescendants () {
@@ -45,18 +46,30 @@ module.exports = class ClassController extends Base {
 
     getListRelatedWith (relation) {
         switch (relation) {
-            case 'attrs':
+            case 'attrs': {
                 return 'group';
-            case 'groups':
+            }
+            case 'groups': {
                 return 'parent';
-            case 'indexes':
+            }
+            case 'indexes': {
                 return 'attrs';
-            case 'rules':
+            }
+            case 'rules': {
                 return 'attrs';
-            case 'transitions':
-                return ['startStates', 'finalState'];
-            case 'treeViewLevels':
-                return ['refAttr.refClass', 'refAttr.original.refClass'];
+            }
+            case 'transitions': {
+                return [
+                    'startStates',
+                    'finalState'
+                ];
+            }
+            case 'treeViewLevels': {
+                return [
+                    'refAttr.refClass',
+                    'refAttr.original.refClass'
+                ];
+            }
         }
     }
 };

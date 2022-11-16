@@ -15,7 +15,8 @@ module.exports = class FileParamBehavior extends Base {
     }
 
     join (attr) {
-        const value = this.model.get(attr);
-        this.model.set(attr, Array.isArray(value) ? value.join(', ') : '');
+        let value = this.model.get(attr);
+        value = Array.isArray(value) ? value.join(', ') : '';
+        this.model.set(attr, value);
     }
 };

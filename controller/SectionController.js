@@ -13,8 +13,9 @@ module.exports = class SectionController extends Base {
 
     getListRelatedWith (relation) {
         switch (relation) {
-            case 'nodes':
+            case 'nodes': {
                 return ['class', 'view', 'report'];
+            }
         }
     }
 };

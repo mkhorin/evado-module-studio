@@ -25,9 +25,10 @@ module.exports = class ClassGroupController extends Base {
     }
 
     async actionCreate () {
+        const {pid} = this.getQueryParams();
         const owner = await this.getModel({
             Class: this.getClass('model/Class'),
-            id: this.getQueryParam('pid')
+            id: pid
         });
         const model = this.createModel();
         model.set('class', owner.getId());
@@ -51,13 +52,16 @@ module.exports = class ClassGroupController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().createQuery().with('class', 'parent'));
+        const query = this.createModel().createQuery().with('class', 'parent');
+        return super.actionList(query);
     }
 
     actionListSetSelect () {
         const model = this.createModel();
-        const query = model.findByClass(this.getQueryParam('id'));
-        return this.sendSelectList(query.and(model.constructor.getOnlySetCondition()));
+        const {id} = this.getQueryParams();
+        const condition = model.constructor.getOnlySetCondition();
+        const query = model.findByClass(id).and(condition);
+        return this.sendSelectList(query);
     }
 
     async actionListUnusedByView () {
@@ -71,16 +75,15 @@ module.exports = class ClassGroupController extends Base {
             .column('classGroup');
         const query = this.spawn(ClassGroup)
             .find({class: view.get('class')})
-            .and(['notIn', ClassGroup.PK, ids]);
-        return super.actionList(query.with('parent'));
+            .and(['notIn', ClassGroup.PK, ids])
+            .with('parent');
+        return super.actionList(query);
     }
 
     getListRelatedWith (relation) {
         switch (relation) {
-            case 'viewAttrs':
-                return ['classAttr', 'view'];
-            case 'viewGroups':
-                return ['parent', 'view'];
+            case 'viewAttrs': return ['classAttr', 'view'];
+            case 'viewGroups': return ['parent', 'view'];
         }
     }
 };

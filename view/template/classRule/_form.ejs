@@ -40,7 +40,11 @@ block('tab', 'Validator');
             format: 'label'
         }],
         order: {name: 1},
-        link: ['class-attr/select', {list: encodeURIComponent(_url('class-attr/list-by-class', {pid: model.get('owner')}))}],
+        link: ['class-attr/select', {
+            list: encodeURIComponent(_url('class-attr/list-by-class', {
+                pid: model.get('owner')
+            }))
+        }],
         create: null,
         delete: null
     }

@@ -20,17 +20,20 @@ module.exports = class ViewAttrController extends Base {
         if (this.isGetRequest()) {
             return this.render('createByClassAttrs', {model, viewModel, classModel});
         }
-        const ids = RequestHelper.getNotEmptyArrayParam(this.getPostParam('ids'));
+        let {ids} = this.getPostParams();
+        ids = RequestHelper.getNotEmptyArrayParam(ids);
         if (!ids) {
             throw new BadRequest('Invalid identifiers');
         }
         let models = await model.findById(ids).all();
         models = await this.createModel().createByClassAttrs(models, viewModel);
-        return this.send(models.map(model => model.getId()).join());
+        ids = models.map(model => model.getId());
+        return this.send(ids.join());
     }
 
     actionList () {
-        const query = this.createModel().createQuery().with('classAttr', 'class', 'view');
+        const model = this.createModel();
+        const query = model.createQuery().with('classAttr', 'class', 'view');
         return super.actionList(query);
     }
 };

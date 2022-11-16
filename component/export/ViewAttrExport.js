@@ -18,10 +18,13 @@ module.exports = class ViewAttrExport extends Base {
             'listView',
             'selectListView'
         ]);
+        const actionBinder = this.model.rel('actionBinder');
+        const behaviors = this.model.rel('behaviors');
+        const rules = this.model.rel('rules');
         return this.getData({
-            'actionBinder': await this.getActionBinderData(this.model.rel('actionBinder')),
-            'behaviors': await PromiseHelper.map(this.model.rel('behaviors'), this.getBehaviorData, this),
-            'rules': await PromiseHelper.map(this.model.rel('rules'), this.getRuleData, this)
+            actionBinder: await this.getActionBinderData(actionBinder),
+            behaviors: await PromiseHelper.map(behaviors, this.getBehaviorData, this),
+            rules: await PromiseHelper.map(rules, this.getRuleData, this)
         });
     }
 
@@ -32,9 +35,9 @@ module.exports = class ViewAttrExport extends Base {
             name: model.get('classAttr.name'),
             ...this.getAttrMap()
         };
-        behaviors = behaviors.filter(item => item);
+        behaviors = behaviors.filter(v => v);
         data.behaviors = behaviors.length ? behaviors : undefined;
-        rules = rules.filter(item => item);
+        rules = rules.filter(v => v);
         data.rules = rules.length ? rules : undefined;
         data.group = model.get('group.name') ?? null;
         data.eagerView = model.get('eagerView.name') ?? null;

@@ -4,6 +4,7 @@
 'use strict';
 
 const Base = require('../../component/param/Param');
+const Behavior = require('evado-meta-base/behavior/Behavior');
 
 module.exports = class CustomParam extends Base {
 
@@ -14,9 +15,7 @@ module.exports = class CustomParam extends Base {
             ]),
             RULES: [
                 ['config', 'required'],
-                ['config', 'spawn', {
-                    BaseClass: require('evado-meta-base/behavior/Behavior')
-                }]
+                ['config', 'spawn', {BaseClass: Behavior}]
             ],
             ATTR_LABELS: {
                 config: 'Spawn configuration'

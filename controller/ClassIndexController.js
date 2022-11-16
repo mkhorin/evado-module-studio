@@ -13,12 +13,15 @@ module.exports = class ClassIndexController extends Base {
 
     actionCreate () {
         const model = this.createModel();
-        model.set('class', model.getDb().normalizeId(this.getQueryParam('pid')));
+        const {pid} = this.getQueryParams();
+        model.set('class', model.getDb().normalizeId(pid));
         return super.actionCreate({model});
     }
 
     actionListRelated () {
-        return super.actionListRelated({with: 'attr'});
+        return super.actionListRelated({
+            with: 'attr'
+        });
     }
 };
 module.exports.init(module);

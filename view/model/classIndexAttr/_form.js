@@ -11,7 +11,8 @@ module.exports = class ClassIndexAttrForm extends Base {
         const model = this.data.model;
         const index = await model.resolveRelation('index');
         const classId = index.get('class');
-        let attrs = await this.spawn('model/ClassAttr').findByClass(classId).with('relation').all();
+        const query = this.spawn('model/ClassAttr').findByClass(classId).with('relation');
+        let attrs = await query.all();
         attrs = attrs.filter(attr => attr.canIndexing());
         attrs = SelectHelper.getModelLabelItems(attrs);
         return {index, attrs};

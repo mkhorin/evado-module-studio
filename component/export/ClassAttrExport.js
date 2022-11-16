@@ -13,9 +13,20 @@ module.exports = class ClassAttrExport extends Base {
             ? await this.getInheritedData()
             : await this.getData();
         if (data) {
-            ObjectHelper.deleteProperties([this.model.PK, 'class', 'original', 'overriddenState'], data);
+            ObjectHelper.deleteProperties([
+                this.model.PK, 
+                'class', 
+                'original', 
+                'overriddenState'
+            ], data);
             ObjectHelper.deleteEmptyArrayProperties(data);
-            return ObjectHelper.sortByKeys(['name', 'label', 'type', 'viewType', 'description'], data);
+            return ObjectHelper.sortByKeys([
+                'name',
+                'label',
+                'type',
+                'viewType',
+                'description'
+            ], data);
         }
     }
 
@@ -34,18 +45,22 @@ module.exports = class ClassAttrExport extends Base {
             'rules',
             'selectListView'
         ]);
+        const actionBinder = model.rel('actionBinder');
+        const behaviors = model.rel('behaviors');
+        const enums = model.rel('enums');
+        const rules = model.rel('rules');
         const data = {
             ...this.getAttrMap(),
-            actionBinder: await this.getActionBinderData(model.rel('actionBinder')),
-            behaviors: await PromiseHelper.map(model.rel('behaviors'), this.getBehaviorData, this),
+            actionBinder: await this.getActionBinderData(actionBinder),
+            behaviors: await PromiseHelper.map(behaviors, this.getBehaviorData, this),
             eagerView: model.get('eagerView.name'),
-            enums: await PromiseHelper.map(model.rel('enums'), this.getEnumData, this),
+            enums: await PromiseHelper.map(enums, this.getEnumData, this),
             group: model.get('group.name'),
             linkAttr: model.get('linkAttr.name'),
             listView: model.get('listView.name'),
             refAttr: model.get('refAttr.name'),
             refClass: model.get('refClass.name'),
-            rules: await PromiseHelper.map(model.rel('rules'), this.getRuleData, this),
+            rules: await PromiseHelper.map(rules, this.getRuleData, this),
             selectListView: model.get('selectListView.name'),
             via: await this.getViaData(model),
         };
@@ -110,7 +125,9 @@ module.exports = class ClassAttrExport extends Base {
     getViaData (model) {
         const viaMap = this.viaMap;
         model = this.viaMap.byAttr[model.getId()];
-        return model ? this.spawn(ViaExport, {viaMap, model}).execute() : null;
+        return model
+            ? this.spawn(ViaExport, {viaMap, model}).execute()
+            : null;
     }
 };
 

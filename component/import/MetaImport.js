@@ -18,7 +18,7 @@ module.exports = class MetaImport extends Base {
     async validateSource (attr) {
         this.basePath = this.getSourcePath();
         const stat = await FileHelper.getStat(this.basePath);
-        if (!stat || !stat.isDirectory()) {
+        if (stat && !stat.isDirectory()) {
             this.addError(attr, `Invalid directory: ${this.basePath}`);
         }
     }
@@ -125,7 +125,8 @@ module.exports = class MetaImport extends Base {
 
     async resolveReportMap () {
         if (!this.reportMapByName) {
-            this.reportMapByName = await this.spawn('model/Report').find().with('attrMap').index('name').all();
+            const query = this.spawn('model/Report').find().with('attrMap').index('name');
+            this.reportMapByName = await query.all();
         }
     }
 

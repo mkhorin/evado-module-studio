@@ -20,7 +20,9 @@ module.exports = class ClassRule extends Base {
     }
 
     async relinkClassAttrs (data) {
-        this.set('attrs', this.get('attrs').map(id => data.hasOwnProperty(id) ? data[id] : id));
+        const oldOnes = this.get('attrs');
+        const newOnes = oldOnes.map(id => data.hasOwnProperty(id) ? data[id] : id);
+        this.set('attrs', newOnes);
         this.detachRelationChangeBehavior();
         await this.forceSave();
         await super.relinkClassAttrs(data);

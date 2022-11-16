@@ -13,13 +13,15 @@ module.exports = class ViaController extends Base {
 
     actionCreateByAttr () {
         const model = this.createModel();
-        model.set('attr', model.getDb().normalizeId(this.getQueryParam('id')));
+        const {id} = this.getQueryParams();
+        model.set('attr', model.getDb().normalizeId(id));
         return super.actionCreate({model});
     }
 
     actionCreateByVia () {
         const model = this.createModel();
-        model.set('parent', model.getDb().normalizeId(this.getQueryParam('id')));
+        const {id} = this.getQueryParams();
+        model.set('parent', model.getDb().normalizeId(id));
         return super.actionCreate({model});
     }
 

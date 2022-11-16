@@ -49,7 +49,7 @@ module.exports = class ImportBase extends Base {
         const model = this.spawn('model/ActionBinder', {scenario: 'create'});
         this.Helper.assignAttrs(this.data.actionBinder, model);
         await model.save()
-            ? this.model.set('actionBinder', {links: [model.getId()]})
+            ? this.model.set('actionBinder', model.getId())
             : this.assignError(this.Helper.getError(model, 'ActionBinder'));
     }
 

@@ -18,7 +18,9 @@ module.exports = class TransitionExport extends Base {
         const starts = this.model.get('startStates');
         const final = map[this.model.get('finalState')];
         const data = this.getAttrMap();
-        data.startStates = starts.filter(id => map[id] instanceof State).map(id => map[id].get('name'));
+        data.startStates = starts
+            .filter(id => map[id] instanceof State)
+            .map(id => map[id].get('name'));
         data.finalState = final instanceof State ? final.get('name') : null;
         ObjectHelper.deleteProperties([this.model.PK, 'class'], data);
         ObjectHelper.deleteEmptyProperties(data);

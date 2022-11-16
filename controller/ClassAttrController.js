@@ -15,9 +15,10 @@ module.exports = class ClassAttrController extends Base {
         if (params) { // clone
             return super.actionCreate(params);
         }
+        const {pid} = this.getQueryParams();
         const owner = await this.getModel({
             Class: this.getClass('model/Class'),
-            id: this.getQueryParam('pid')
+            id: pid
         });
         const model = this.createModel();
         model.set('class', owner.getId());
@@ -25,10 +26,9 @@ module.exports = class ClassAttrController extends Base {
     }
 
     async actionCreateByGroup () {
-        const group = await this.getModel({
-            Class: this.getClass('model/ClassGroup'),
-            id: this.getQueryParam('id')
-        });
+        const Class = this.getClass('model/ClassGroup');
+        const {id} = this.getQueryParams();
+        const group = await this.getModel({Class, id});
         const model = this.createModel();
         model.set('class', group.get('class'));
         model.set('group', group.getId());
@@ -46,9 +46,8 @@ module.exports = class ClassAttrController extends Base {
         const classModel = await this.getModel({
             Class: this.getClass('model/Class')
         });
-        const sample = await this.getModelByClassName({
-            id: this.getQueryParam('sample')
-        });
+        const {sample: id} = this.getQueryParams();
+        const sample = await this.getModelByClassName({id});
         const model = this.createModel();
         model.getBehavior('clone').setOriginal(sample);
         model.set('class', classModel.getId());
@@ -86,7 +85,8 @@ module.exports = class ClassAttrController extends Base {
     }
 
     actionListByClass () {
-        const query = this.createModel().findByClass(this.getQueryParam('pid'));
+        const {pid} = this.getQueryParams();
+        const query = this.createModel().findByClass(pid);
         return super.actionList(query);
     }
 
@@ -95,12 +95,14 @@ module.exports = class ClassAttrController extends Base {
             Class: this.getClass('model/View'),
             with: 'attrs'
         });
-        const query = this.createModel().findById(view.get('attrs.classAttr'));
+        const classAttr = view.get('attrs.classAttr');
+        const query = this.createModel().findById(classAttr);
         return super.actionList(query);
     }
 
     actionListSelect () {
-        const query = this.createModel().findByClass(this.getPostParam('pid'));
+        const {pid} = this.getPostParams();
+        const query = this.createModel().findByClass(pid);
         return this.sendSelectList(query);
     }
 
@@ -121,10 +123,12 @@ module.exports = class ClassAttrController extends Base {
 
     getListRelatedWith (relation) {
         switch (relation) {
-            case 'enums':
+            case 'enums': {
                 return ['class', 'items'];
-            case 'via':
+            }
+            case 'via': {
                 return ['linkAttr', 'refClass', 'refAttr'];
+            }
         }
     }
 };

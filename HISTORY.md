@@ -1,3 +1,12 @@
+## 5.5.0
+
+* model/ClassAttr
+    - add checkbox list view
+* model/ClassGroup
+    - add hidden option to group
+* model/ViewGroup
+    - fix view group title
+
 ## 5.4.0
 
 * model/ruleParam/DateParam

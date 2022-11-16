@@ -10,6 +10,7 @@ module.exports = class ViewGroups extends Base {
     prepareModels (models) {
         const ClassGroup = this.getClass('model/ClassGroup');
         const typeMap = ClassGroup.getAttrValueLabels('type');
+        const translate = {translate: ''};
         for (const model of models) {
             model.setRelatedViewAttr('parent');
             const group = model.rel('classGroup');
@@ -18,18 +19,25 @@ module.exports = class ViewGroups extends Base {
             }
             const states = model.getBehavior('overridden').getStates();
             if (states.label !== true) {
-                model.setViewAttr('label', this.format(group.get('label'), 'inherited'));
+                const value = group.get('label');
+                model.setViewAttr('label', this.formatInherited(value));
             }
             if (states.type !== true) {
-                const type = group.getAttrValueLabel('type', typeMap);
-                model.setViewAttr('type', this.format(type, 'inherited', {translate: ''}));
+                const value = group.getAttrValueLabel('type', typeMap);
+                model.setViewAttr('type', this.formatInherited(value, translate));
             }
             if (states.orderNumber !== true) {
-                model.setViewAttr('orderNumber', this.format(group.get('orderNumber'), 'inherited'));
+                const value = group.get('orderNumber');
+                model.setViewAttr('orderNumber', this.formatInherited(value));
             }
             if (states.parent !== true) {
-                model.setViewAttr('parent', this.format(group.getRelatedTitle('parent'), 'inherited'));
+                const value = group.getRelatedTitle('parent');
+                model.setViewAttr('parent', this.formatInherited(value));
             }
         }
+    }
+
+    formatInherited (value, ...params) {
+        return this.format(value, 'inherited', ...params);
     }
 };

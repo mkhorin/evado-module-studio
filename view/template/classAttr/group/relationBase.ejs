@@ -34,7 +34,7 @@ const refTypes = ['ref', 'backref'];
         params: {
             attr: 'refAttr',
             displayValue: model.getRelatedTitle('refAttr'),
-            extHint: 'Key attribute will be used for empty value',
+            extHint: 'If empty, the key attribute will be used',
             items: null,
             select2: {ajax: {url: _url('class-attr/list-select')}},
             depends: [{attr: 'refClass', param: 'pid'}],
@@ -46,7 +46,7 @@ const refTypes = ['ref', 'backref'];
         params: {
             attr: 'linkAttr',
             displayValue: model.getRelatedTitle('linkAttr'),
-            extHint: 'Current attribute is used for empty value',
+            extHint: 'If empty, the current attribute will be used',
             items: null,
             select2: {
                 ajax: {url: _url('class-attr/list-select')},
@@ -57,7 +57,7 @@ const refTypes = ['ref', 'backref'];
     }]
 }) %>
 
-<%- include(_view.get('_part/attr/checkList'), {
+<%- include(_view.get('_part/attr/checkboxList'), {
     attr: 'commands',
     items: model.COMMAND_VALUE_LABELS
 }) %>

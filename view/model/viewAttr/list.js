@@ -18,17 +18,25 @@ module.exports = class ViewAttrList extends Base {
             }
             const states = model.getBehavior('overridden').getStates();
             if (states.header !== true) {
-                model.setViewAttr('header', this.format(attr.get('header'), 'inherited'));
+                const value = attr.get('header');
+                model.setViewAttr('header', this.formatInherited(value));
             }
             if (states.viewType === true) {
                 model.setAttrValueLabel('viewType', viewTypeMap);
             } else {
                 const value = attr.getAttrValueLabel('viewType');
-                model.setViewAttr('viewType', this.format(value, 'inherited', translate));
+                model.setViewAttr('viewType', this.formatInherited(value, translate));
             }
-            states.group === true
-                ? model.setRelatedViewAttr('group')
-                : model.setViewAttr('group', this.format(attr.getRelatedTitle('group'), 'inherited'));
+            if (states.group === true) {
+                model.setRelatedViewAttr('group')
+            } else {
+                const value = attr.getRelatedTitle('group');
+                model.setViewAttr('group', this.formatInherited(value));
+            }
         }
+    }
+
+    formatInherited (value, ...params) {
+        return this.format(value, 'inherited', ...params);
     }
 };

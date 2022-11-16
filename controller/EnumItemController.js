@@ -13,7 +13,7 @@ module.exports = class EnumItemController extends Base {
 
     async actionCreate () {
         const model = this.createModel();
-        const id = this.getQueryParam('pid');
+        const {pid: id} = this.getQueryParams();
         if (id) {
             const Class = this.getClass('model/Enum');
             const owner = await this.getModel({Class, id});

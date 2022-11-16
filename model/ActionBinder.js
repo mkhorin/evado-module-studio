@@ -11,15 +11,15 @@ module.exports = class ActionBinder extends Base {
         return {
             TABLE: 'studio_actionBinder',
             ATTRS: [
-                'show',
-                'require',
+                'description',
                 'enable',
-                'value',
-                'description'
+                'require',
+                'show',
+                'value'
             ],
             RULES: [
-                [['show', 'require', 'enable', 'value'], 'json'],
-                [['description'], 'string']
+                ['description', 'string'],
+                [['enable', 'require', 'show', 'value'], 'json']
             ]
         };
     }

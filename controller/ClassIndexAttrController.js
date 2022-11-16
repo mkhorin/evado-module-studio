@@ -13,7 +13,8 @@ module.exports = class ClassIndexAttrController extends Base {
 
     actionCreate () {
         const model = this.createModel();
-        model.set('index', model.getDb().normalizeId(this.getQueryParam('pid')));
+        const {pid} = this.getQueryParams();
+        model.set('index', model.getDb().normalizeId(pid));
         return super.actionCreate({model});
     }
 };

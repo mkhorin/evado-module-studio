@@ -35,7 +35,6 @@ Object.assign(Jam.I18n.defaults, {
     'Attribute value must be unique': 'Значение атрибута должно быть уникальным',
     'Attribute visibility condition': 'Условие показа атрибута',
     'Attributes': 'Атрибуты',
-    'Auto-generated key is used for empty value': 'При пустом значени используется автогенерируемый ключ',
     'Auto increment': 'Автоматическое приращение',
     'Auto increment parameters': 'Параметры автоматического приращения',
 
@@ -106,7 +105,6 @@ Object.assign(Jam.I18n.defaults, {
     'Create view attribute': 'Создать атирбут представления',
     'Creation timestamp': 'Метка создания',
     'Creation view': 'Представление создания',
-    'Current attribute is used for empty value': 'При пустом значении используется текущий атрибут',
     'Custom behavior': 'Пользовательское поведение',
     'Custom behavior parameters': 'Параметры пользовательского поведения',
     'Custom error message': 'Сообщение об ошибке',
@@ -195,6 +193,9 @@ Object.assign(Jam.I18n.defaults, {
     'Hint is hidden in an icon': 'Подсказка скрыта в иконке',
 
     'Identifier': 'Идентификатор',
+    'If empty, auto-generated key will be used': 'При пустом значени будет использован автогенерируемый ключ',
+    'If empty, the current attribute will be used': 'При пустом значении будет использован текущий атрибут',
+    'If empty, the key attribute will be used': 'При пустом значении будет использован ключевой атрибут',
     'Ignore case': 'Игнорировать регистр',
     'Ignore case when searching for matches': 'Игнорировать регистр при поиске совпадений',
     'Image only': 'Только изображения',
@@ -222,7 +223,6 @@ Object.assign(Jam.I18n.defaults, {
 
     'Keep history of attribute value changes': 'Сохранять историю изменений значения атрибута',
     'Key': 'Ключ',
-    'Key attribute will be used for empty value': 'При пустом значении будет использован ключевой атрибут',
 
     'Length': 'Длина',
     'Limit the loading depth of nested related objects': 'Ограничение глубины загрузки вложенных связанных объектов',

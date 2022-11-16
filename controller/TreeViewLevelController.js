@@ -12,10 +12,9 @@ module.exports = class TreeViewLevelController extends Base {
     }
 
     async actionCreateByClass () {
-        const owner = await this.getModel({
-            Class: this.getClass('model/Class'),
-            id: this.getQueryParam('pid')
-        });
+        const Class = this.getClass('model/Class');
+        const {pid: id} = this.getQueryParams();
+        const owner = await this.getModel({Class, id});
         const model = this.createModel();
         model.set('owner', owner.getId());
         model.populateRelation('owner', owner);
@@ -23,9 +22,10 @@ module.exports = class TreeViewLevelController extends Base {
     }
 
     async actionCreateByView () {
+        const {pid} = this.getQueryParams();
         const owner = await this.getModel({
             Class: this.getClass('model/View'),
-            id: this.getQueryParam('pid'),
+            id: pid,
             with: 'class'
         });
         const model = this.createModel();

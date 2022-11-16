@@ -32,7 +32,7 @@ module.exports = class View extends Base {
                 [['name', 'class'], 'required'],
                 [['class', 'creationView', 'editView', 'original'], 'id'],
                 ['name', {
-                    Class: require('../component/validator/CodeNameValidator'),
+                    Class: CodeNameValidator,
                     validFilename: true
                 }],
                 ['name', 'unique', {filter: 'class'}],
@@ -44,7 +44,7 @@ module.exports = class View extends Base {
             ],
             BEHAVIORS: {
                 'ancestor': {
-                    Class: require('../component/behavior/AncestorBehavior'),
+                    Class: AncestorBehavior,
                     relations: [{
                         name: 'descendants',
                         unchangeableAttrs: ['name', 'label']
@@ -52,11 +52,11 @@ module.exports = class View extends Base {
                     withOriginalOnly: true
                 },
                 'clone': {
-                    Class: require('evado/component/behavior/CloneBehavior'),
+                    Class: CloneBehavior,
                     relations: ['attrs', 'behaviors', 'groups', 'rules']
                 },
                 'overridden': {
-                    Class: require('evado/component/behavior/OverriddenValueBehavior'),
+                    Class: OverriddenValueBehavior,
                     attrs: []
                 }
             },
@@ -108,7 +108,8 @@ module.exports = class View extends Base {
         if (value.Class) {
             const BaseClass = require('evado-meta-base/base/ViewFilter');
             const Class = require('areto/validator/SpawnValidator');
-            return this.module.spawn(Class, {BaseClass}).validateAttr(this, attr);
+            const validator = this.module.spawn(Class, {BaseClass});
+            return validator.validateAttr(this, attr);
         }
     }
 
@@ -126,7 +127,9 @@ module.exports = class View extends Base {
     }
 
     getRelinkMap (key, value) {
-        return super.getRelinkMap(this.find({class: key}), this.find({class: value}), 'name');
+        const keyQuery = this.find({class: key});
+        const valueQuery = this.find({class: value});
+        return super.getRelinkMap(keyQuery, valueQuery, 'name');
     }
 
     getRelinkMapByClass (name, sample) {
@@ -186,7 +189,9 @@ module.exports = class View extends Base {
 
     relAttrs () {
         const Class = this.getClass('model/ViewAttr');
-        return this.hasMany(Class, 'view', this.PK).order({orderNumber: 1}).with('classAttr');
+        return this.hasMany(Class, 'view', this.PK)
+            .order({orderNumber: 1})
+            .with('classAttr');
     }
 
     relBehaviors () {
@@ -256,7 +261,9 @@ module.exports = class View extends Base {
 
     relRules () {
         const Class = this.getClass('model/ViewRule');
-        return this.hasMany(Class, 'owner', this.PK).order({orderNumber: 1}).with('attrs');
+        return this.hasMany(Class, 'owner', this.PK)
+            .order({orderNumber: 1})
+            .with('attrs');
     }
 
     relSelectListViewAttrs () {
@@ -274,6 +281,11 @@ module.exports = class View extends Base {
         return this.hasMany(Class, 'owner', this.PK).with('refAttr', 'view');
     }
 };
-module.exports.init(module);
 
+const AncestorBehavior = require('../component/behavior/AncestorBehavior');
+const CodeNameValidator = require('../component/validator/CodeNameValidator');
 const CommonHelper = require('areto/helper/CommonHelper');
+const CloneBehavior = require('evado/component/behavior/CloneBehavior');
+const OverriddenValueBehavior = require('evado/component/behavior/OverriddenValueBehavior');
+
+module.exports.init(module);

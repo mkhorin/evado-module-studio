@@ -11,7 +11,10 @@ module.exports = class ViewBehavior extends Base {
         return {
             TABLE: 'studio_viewBehavior',
             BEHAVIORS: {
-                'sortOrder': {...super.BEHAVIORS.sortOrder, start: 100}
+                'sortOrder': {
+                    ...super.BEHAVIORS.sortOrder,
+                    start: 100
+                }
             },
             PARAM_MAP: {
                 'custom': require('./behaviorParam/CustomParam'),

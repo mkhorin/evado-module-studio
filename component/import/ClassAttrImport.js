@@ -125,8 +125,14 @@ module.exports = class ClassAttrImport extends Base {
     // VIA
 
     async createVia () {
-        const data = this.data.via;
-        return data ? this.spawn('import/ViaImport', {owner: this, data}).process() : null;
+        if (!this.data.via) {
+            return null;
+        }
+        const viaImport = this.spawn('import/ViaImport', {
+            owner: this,
+            data: this.data.via
+        });
+        return viaImport.process();
     }
 };
 module.exports.init(module);

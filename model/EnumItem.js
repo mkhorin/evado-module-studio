@@ -12,14 +12,14 @@ module.exports = class EnumItem extends Base {
             TABLE: 'studio_enumItem',
             ATTRS: [
                 'enum',
-                'value',
-                'text',
                 'hint',
-                'orderNumber'
+                'orderNumber',
+                'text',
+                'value'
             ],
             RULES: [
-                [['text', 'hint'], 'string'],
-                ['value', require('../component/validator/CodeNameValidator')],
+                [['hint', 'text'], 'string'],
+                ['value', CodeNameValidator],
                 ['value', 'unique', {filter: 'enum'}],
                 ['orderNumber', 'integer'],
                 ['orderNumber', 'default', {
@@ -28,7 +28,7 @@ module.exports = class EnumItem extends Base {
             ],
             BEHAVIORS: {
                 'sortOrder': {
-                    Class: require('areto/behavior/SortOrderBehavior'),
+                    Class: SortOrderBehavior,
                     filter: 'enum'
                 }
             },
@@ -36,7 +36,9 @@ module.exports = class EnumItem extends Base {
     }
 
     getTitle () {
-        return this.get('text') || this.get('value') || this.getId();
+        return this.get('text')
+            || this.get('value')
+            || this.getId();
     }
 
     // CLONE
@@ -55,4 +57,8 @@ module.exports = class EnumItem extends Base {
         return this.hasOne(Class, this.PK, 'enum');
     }
 };
+
+const CodeNameValidator = require('../component/validator/CodeNameValidator');
+const SortOrderBehavior = require('areto/behavior/SortOrderBehavior');
+
 module.exports.init(module);

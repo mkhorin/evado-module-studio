@@ -11,7 +11,9 @@
             name: 'description'
         }],
         order: {name: 1},
-        link: ['select', {list: encodeURIComponent(_url('list-real-descendants', model))}],
+        link: ['select', {
+            list: encodeURIComponent(_url('list-real-descendants', model))
+        }],
         create: null,
         delete: null
     }

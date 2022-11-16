@@ -35,15 +35,16 @@ module.exports = class Via extends Base {
     }
 
     async getMap () {
-        const models = await this.createQuery().with({
-            refClass: query => query.raw(),
-            refAttr: query => query.raw(),
-            linkAttr: query => query.raw()
-        }).all();
-        return {
-            'byParent': IndexHelper.indexModels(models, 'parent'),
-            'byAttr': IndexHelper.indexModels(models, 'attr')
-        };
+        const handler = query => query.raw();
+        const query = this.createQuery().with({
+            refClass: handler,
+            refAttr: handler,
+            linkAttr: handler
+        });
+        const models = await query.all();
+        const byParent = IndexHelper.indexModels(models, 'parent');
+        const byAttr = IndexHelper.indexModels(models, 'attr');
+        return {byParent, byAttr};
     }
 
     // CLONE

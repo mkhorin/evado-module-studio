@@ -19,11 +19,12 @@ module.exports = class ClassGroupExport extends Base {
 
     async getData () {
         await this.model.resolveRelations(['actionBinder', 'parent']);
+        const actionBinder = this.model.rel('actionBinder');
         const data = {
             ...this.getAttrMap(),
             parent: this.model.get('parent.name'),
             active: this.model.get('active') || undefined,
-            actionBinder: await this.getActionBinderData(this.model.rel('actionBinder'))
+            actionBinder: await this.getActionBinderData(actionBinder)
         };
         ObjectHelper.deleteEmptyProperties(data);
         return data;

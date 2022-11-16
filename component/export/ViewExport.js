@@ -10,15 +10,18 @@ module.exports = class ViewExport extends Base {
     async execute () {
         await PromiseHelper.setImmediate();
         await this.model.resolveRelations(['class']);
-        return this.saveJson(this.getViewFile(), await this.getData());
+        const data = await this.getData();
+        return this.saveJson(this.getViewFile(), data);
     }
 
     getViewFile () {
-        return this.getViewPath(`${this.model.get('name')}.json`);
+        const name = this.model.get('name');
+        return this.getViewPath(`${name}.json`);
     }
 
     getViewPath () {
-        return super.getViewPath(this.model.get('class.name'), ...arguments);
+        const name = this.model.get('class.name');
+        return super.getViewPath(name, ...arguments);
     }
 
     async getData () {
@@ -33,17 +36,22 @@ module.exports = class ViewExport extends Base {
             'treeViewLevels'
         ]);
         const data = this.getAttrMap();
-        data.attrs = await PromiseHelper.map(model.rel('attrs'), this.getAttrData, this);
-        data.attrs = data.attrs.filter(item => item);
-        data.behaviors = await PromiseHelper.map(model.rel('behaviors'), this.getBehaviorData, this);
-        data.behaviors = data.behaviors.filter(item => item);
+        const attrs = model.rel('attrs');
+        data.attrs = await PromiseHelper.map(attrs, this.getAttrData, this);
+        data.attrs = data.attrs.filter(v => v);
+        const behaviors = model.rel('behaviors');
+        data.behaviors = await PromiseHelper.map(behaviors, this.getBehaviorData, this);
+        data.behaviors = data.behaviors.filter(v => v);
         data.creationView = model.get('creationView.name');
         data.editView = model.get('editView.name');
-        data.groups = await PromiseHelper.map(model.rel('groups'), this.getGroupData, this);
-        data.groups = data.groups.filter(item => item);
-        data.rules = await PromiseHelper.map(model.rel('rules'), this.getRuleData, this);
-        data.rules = data.rules.filter(item => item);
-        data.treeView = await PromiseHelper.map(model.rel('treeViewLevels'), this.getTreeViewData, this);
+        const groups = model.rel('groups');
+        data.groups = await PromiseHelper.map(groups, this.getGroupData, this);
+        data.groups = data.groups.filter(v => v);
+        const rules = model.rel('rules');
+        data.rules = await PromiseHelper.map(rules, this.getRuleData, this);
+        data.rules = data.rules.filter(v => v);
+        const treeView = model.rel('treeViewLevels');
+        data.treeView = await PromiseHelper.map(treeView, this.getTreeViewData, this);
         ObjectHelper.deleteProperties([model.PK, 'class', 'name'], data);
         ObjectHelper.deleteEmptyProperties(data);
         ObjectHelper.deletePropertiesByValue(false, data, ['disableGroups', 'disableTreeView']);

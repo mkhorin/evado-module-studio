@@ -20,7 +20,7 @@ module.exports = class ReportGroup extends Base {
             ],
             RULES: [
                 ['name', 'required'],
-                ['name', require('../component/validator/CodeNameValidator')],
+                ['name', CodeNameValidator],
                 ['name', 'unique', {filter: 'report'}],
                 ['label', 'string'],
                 ['parent', 'id'],
@@ -30,10 +30,10 @@ module.exports = class ReportGroup extends Base {
             ],
             BEHAVIORS: {
                 'clone': {
-                    Class: require('evado/component/behavior/CloneBehavior')
+                    Class: CloneBehavior
                 },
                 'sortOrder': {
-                    Class: require('areto/behavior/SortOrderBehavior'),
+                    Class: SortOrderBehavior,
                     start: 1000,
                     filter: 'report'
                 }
@@ -57,7 +57,9 @@ module.exports = class ReportGroup extends Base {
     }
 
     getRelinkMap (key, value) {
-        return super.getRelinkMap(this.find({report: key}), this.find({report: value}), 'name');
+        const keyQuery = this.find({report: key});
+        const valueQuery = this.find({report: value});
+        return super.getRelinkMap(keyQuery, valueQuery, 'name');
     }
 
     // CLONE
@@ -77,8 +79,9 @@ module.exports = class ReportGroup extends Base {
     // INHERIT
 
     getParentQuery () {
-        return this.spawn('misc/HierarchySolver', {model: this})
-            .getParentQuery({report: this.get('report')});
+        const solver = this.spawn('misc/HierarchySolver', {model: this});
+        const report = this.get('report');
+        return solver.getParentQuery({report});
     }
 
     // RELATIONS
@@ -103,4 +106,9 @@ module.exports = class ReportGroup extends Base {
         return this.hasMany(Class, 'group', this.PK);
     }
 };
+
+const CloneBehavior = require('evado/component/behavior/CloneBehavior');
+const CodeNameValidator = require('../component/validator/CodeNameValidator');
+const SortOrderBehavior = require('areto/behavior/SortOrderBehavior');
+
 module.exports.init(module);

@@ -9,19 +9,22 @@ module.exports = class ReportExport extends Base {
 
     async execute () {
         await PromiseHelper.setImmediate();
-        return this.saveJson(this.getReportFile(), await this.getData());
+        const data = await this.getData();
+        return this.saveJson(this.getReportFile(), data);
     }
 
     getReportFile () {
-        return this.getReportPath(`${this.model.get('name')}.json`);
+        const name = this.model.get('name');
+        return this.getReportPath(`${name}.json`);
     }
 
     async getData () {
         const model = this.model;
         await model.resolveRelations(['attrs']);
         const data = this.getAttrMap();
-        data.attrs = await PromiseHelper.map(model.rel('attrs'), this.getAttrData, this);
-        data.attrs = data.attrs.filter(item => item);
+        const attrs = model.rel('attrs');
+        data.attrs = await PromiseHelper.map(attrs, this.getAttrData, this);
+        data.attrs = data.attrs.filter(v => v);
         ObjectHelper.deleteProperties([model.PK, 'name'], data);
         ObjectHelper.deleteEmptyProperties(data);
         return data;

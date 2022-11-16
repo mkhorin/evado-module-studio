@@ -18,7 +18,7 @@ module.exports = class Section extends Base {
             RULES: [
                 ['name', 'required'],
                 ['name', {
-                    Class: require('../component/validator/CodeNameValidator'),
+                    Class: CodeNameValidator,
                     validFilename: true
                 }],
                 ['name', 'unique'],
@@ -27,7 +27,7 @@ module.exports = class Section extends Base {
             ],
             BEHAVIORS: {
                 'clone': {
-                    Class: require('evado/component/behavior/CloneBehavior'),
+                    Class: CloneBehavior,
                     relations: ['nodes']
                 }
             },
@@ -56,7 +56,13 @@ module.exports = class Section extends Base {
 
     relNodes () {
         const Class = this.getClass('model/Node');
-        return this.hasMany(Class, 'section', this.PK).and({parent: null}).order({orderNumber: 1});
+        return this.hasMany(Class, 'section', this.PK)
+            .and({parent: null})
+            .order({orderNumber: 1});
     }
 };
+
+const CodeNameValidator = require('../component/validator/CodeNameValidator');
+const CloneBehavior = require('evado/component/behavior/CloneBehavior');
+
 module.exports.init(module);

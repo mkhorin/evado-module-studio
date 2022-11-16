@@ -24,7 +24,7 @@ module.exports = class State extends Base {
                 [['name', 'class'], 'required'],
                 [['class', 'view'], 'id'],
                 [['label', 'description'], 'string'],
-                ['name', require('../component/validator/CodeNameValidator')],
+                ['name', CodeNameValidator],
                 [['name', 'label'], 'unique', {filter: 'class'}],
                 [['defaults', 'readOnly'], 'checkbox'],
                 ['options', 'json'],
@@ -60,7 +60,8 @@ module.exports = class State extends Base {
         const id = this.get('view');
         if (id) {
             const name = await this.relView().scalar('name');
-            model.set('view', await owner.relViews().and({name}).id());
+            const view = await owner.relViews().and({name}).id();
+            model.set('view', view);
         }
         return model.forceSave();
     }
@@ -87,4 +88,7 @@ module.exports = class State extends Base {
         return this.hasOne(Class, Class.PK, 'view');
     }
 };
+
+const CodeNameValidator = require('../component/validator/CodeNameValidator');
+
 module.exports.init(module);

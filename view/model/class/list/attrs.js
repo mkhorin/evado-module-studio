@@ -14,16 +14,18 @@ module.exports = class ClassAttrs extends Base {
             if (model.hasOriginal()) {
                 const states = model.getBehavior('overridden').getStates();
                 if (states.group !== true) {
-                    model.setViewAttr('group', this.format(model.get('group.name'), 'inherited'));
+                    const value = model.get('group.name');
+                    model.setViewAttr('group', this.formatInherited(value));
                 }
                 if (states.viewType !== true) {
-                    const type = viewTypeMap[model.get('viewType')];
-                    model.setViewAttr('viewType', this.format(type, 'inherited', {translate: ''}));
+                    const value = viewTypeMap[model.get('viewType')];
+                    model.setViewAttr('viewType', this.formatInherited(value, {translate: ''}));
                 } else {
                     model.setAttrValueLabel('viewType', viewTypeMap);
                 }
                 if (states.orderNumber !== true) {
-                    model.setViewAttr('orderNumber', this.format(model.get('orderNumber'), 'inherited'));
+                    const value = model.get('orderNumber');
+                    model.setViewAttr('orderNumber', this.formatInherited(value));
                 }
                 model.setViewAttr('inherited', 'Yes');
             } else {
@@ -32,5 +34,9 @@ module.exports = class ClassAttrs extends Base {
                 model.setAttrValueLabel('viewType', viewTypeMap);
             }
         }
+    }
+
+    formatInherited (value, ...params) {
+        return this.format(value, 'inherited', ...params);
     }
 };

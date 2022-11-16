@@ -13,10 +13,8 @@ module.exports = class ReportController extends Base {
 
     getListRelatedWith (relation) {
         switch (relation) {
-            case 'attrs':
-                return 'group';
-            case 'indexes':
-                return 'attrs';
+            case 'attrs': return 'group';
+            case 'indexes': return 'attrs';
         }
     }
 };

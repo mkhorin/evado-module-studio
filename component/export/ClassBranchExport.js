@@ -13,8 +13,9 @@ module.exports = class ClassBranchExport extends Base {
     }
 
     async exportClass (model, viaMap) {
-        let exporter = this.exporter;
-        await this.spawn('export/ClassExport', {exporter, model, viaMap}).execute();
+        const exporter = this.exporter;
+        const classExport = this.spawn('export/ClassExport', {exporter, model, viaMap});
+        await classExport.execute();
         const children = await model.resolveRelation('children');
         for (const child of children) {
             await this.exportClass(child, viaMap);

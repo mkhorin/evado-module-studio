@@ -15,20 +15,27 @@ module.exports = class ClassExport extends Base {
         for (const item of this.model.rel('views')) {
             await this.exportView(item);
         }
-        return this.saveJson(this.getClassFile(), await this.getData(viaMap));
+        const data = await this.getData(viaMap);
+        return this.saveJson(this.getClassFile(), data);
     }
 
     getClassFile () {
-        return this.getClassPath(`${this.model.get('name')}.json`);
+        const name = this.model.get('name');
+        return this.getClassPath(`${name}.json`);
     }
 
     getClassViewPath () {
-        return this.getViewPath(this.model.get('name'), ...arguments);
+        const name = this.model.get('name');
+        return this.getViewPath(name, ...arguments);
     }
 
     exportView (model) {
         if (!model.hasOriginal()) {
-            return this.spawn('export/ViewExport', {exporter: this.exporter, model}).execute();
+            const viewExport = this.spawn('export/ViewExport', {
+                exporter: this.exporter,
+                model
+            });
+            return viewExport.execute();
         }
     }
 
@@ -51,24 +58,32 @@ module.exports = class ClassExport extends Base {
             'version'
         ]);
         const data = this.getAttrMap();
-        data.attrs = await PromiseHelper.map(model.rel('attrs'), this.getAttrData.bind(this, viaMap));
-        data.attrs = data.attrs.filter(item => item);
-        data.behaviors = await PromiseHelper.map(model.rel('behaviors'), this.getBehaviorData, this);
-        data.behaviors = data.behaviors.filter(item => item);
+        const attrs = model.rel('attrs');
+        data.attrs = await PromiseHelper.map(attrs, this.getAttrData.bind(this, viaMap));
+        data.attrs = data.attrs.filter(v => v);
+        const behaviors = model.rel('behaviors');
+        data.behaviors = await PromiseHelper.map(behaviors, this.getBehaviorData, this);
+        data.behaviors = data.behaviors.filter(v => v);
         data.forbiddenView = model.get('forbiddenView.name');
-        data.groups = await PromiseHelper.map(model.rel('groups'), this.getGroupData, this);
-        data.groups = data.groups.filter(item => item);
-        data.indexes = await PromiseHelper.map(model.rel('indexes'), this.getIndexData, this);
-        data.indexes = data.indexes.filter(item => item);
+        const groups = model.rel('groups');
+        data.groups = await PromiseHelper.map(groups, this.getGroupData, this);
+        data.groups = data.groups.filter(v => v);
+        const indexes = model.rel('indexes');
+        data.indexes = await PromiseHelper.map(indexes, this.getIndexData, this);
+        data.indexes = data.indexes.filter(v => v);
         data.key = model.get('key.name');
         data.parent = model.get('parent.name');
-        data.rules = await PromiseHelper.map(model.rel('rules'), this.getRuleData, this);
-        data.rules = data.rules.filter(item => item);
-        data.states = await PromiseHelper.map(model.rel('states'), this.getStateData, this);
-        data.states = data.states.filter(item => item);
-        data.transitions = await PromiseHelper.map(model.rel('transitions'), this.getTransitionData, this);
-        data.transitions = data.transitions.filter(item => item);
-        data.treeView = await PromiseHelper.map(model.rel('treeViewLevels'), this.getTreeViewData, this);
+        const rules = model.rel('rules');
+        data.rules = await PromiseHelper.map(rules, this.getRuleData, this);
+        data.rules = data.rules.filter(v => v);
+        const states = model.rel('states');
+        data.states = await PromiseHelper.map(states, this.getStateData, this);
+        data.states = data.states.filter(v => v);
+        const transitions = model.rel('transitions');
+        data.transitions = await PromiseHelper.map(transitions, this.getTransitionData, this);
+        data.transitions = data.transitions.filter(v => v);
+        const treeView = model.rel('treeViewLevels');
+        data.treeView = await PromiseHelper.map(treeView, this.getTreeViewData, this);
         delete data.activeDescendants; // move to end
         data.activeDescendants = model.rel('activeDescendants').map(model => model.get('name'));
         data.version = model.get('version.name');
@@ -104,7 +119,11 @@ module.exports = class ClassExport extends Base {
     }
 
     getTransitionData (model) {
-        return this.spawn('export/TransitionExport', {class: this.model, model}).execute();
+        const transitionExport = this.spawn('export/TransitionExport', {
+            class: this.model,
+            model
+        });
+        return transitionExport.execute();
     }
 
     getTreeViewData (model) {

@@ -65,11 +65,11 @@ const stringTemplate = _view.get('_part/attr/string');
             extHint: 'Root folder of view templates (relative to the base location)'
         }
     },{
-        template: _view.get(model.rel('parent') ? null : '_part/attr/select'),
+        template: model.rel('parent') ? null : selectTemplate,
         params: {
             attr: 'key',
             displayValue: model.getRelatedTitle('key'),
-            extHint: 'Auto-generated key is used for empty value',
+            extHint: 'If empty, auto-generated key will be used',
             items: null,
             select2: {
                 ajax: {url: _url('class-attr/list-select')},

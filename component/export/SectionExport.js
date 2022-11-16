@@ -9,17 +9,22 @@ module.exports = class SectionExport extends Base {
 
     async execute () {
         await PromiseHelper.setImmediate();
-        this.nodeMap = this.nodeMap || await this.spawn('model/Node').getMap();
+        if (!this.nodeMap) {
+            const node = this.spawn('model/Node');
+            this.nodeMap = await node.getMap();
+        }
         const data = await this.getData();
         return this.saveJson(this.getSectionFile(), data);
     }
 
     getSectionFile () {
-        return this.getNavigationPath(`${this.model.get('name')}.json`);
+        const name = this.model.get('name');
+        return this.getNavigationPath(`${name}.json`);
     }
 
     async getData () {
-        let nodes = this.nodeMap.bySection[this.model.getId()] || [];
+        let id = this.model.getId();
+        let nodes = this.nodeMap.bySection[id] || [];
         nodes = await PromiseHelper.map(nodes, this.getNodeData.bind(this));
         const data = {
             ...this.getAttrMap(),
@@ -31,7 +36,11 @@ module.exports = class SectionExport extends Base {
     }
 
     getNodeData (model) {
-        return this.spawn('export/NodeExport', {nodeMap: this.nodeMap, model}).execute();
+        const nodeExport = this.spawn('export/NodeExport', {
+            nodeMap: this.nodeMap,
+            model
+        });
+        return nodeExport.execute();
     }
 };
 

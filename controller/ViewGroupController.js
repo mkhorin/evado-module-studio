@@ -12,7 +12,8 @@ module.exports = class ViewGroupController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().createQuery().with('classGroup', 'parent', 'view'));
+        const query = this.createModel().createQuery().with('classGroup', 'parent', 'view');
+        return super.actionList(query);
     }
 
     async actionCreateByGroups () {
@@ -24,18 +25,21 @@ module.exports = class ViewGroupController extends Base {
         if (this.isGetRequest()) {
             return this.render('createByGroups', {model, view});
         }
-        let ids = RequestHelper.getNotEmptyArrayParam(this.getPostParam('ids'));
+        let {ids} = this.getPostParams();
+        ids = RequestHelper.getNotEmptyArrayParam(ids);
         if (!ids) {
             throw new BadRequest('Invalid identifiers');
         }
         ids = await model.find(['id', ClassGroup.PK, ids]).column(ClassGroup.PK);
         const models = await this.createModel().createByGroups(ids, view);
-        return this.send(models.map(model => model.getId()).join());
+        ids = models.map(model => model.getId());
+        return this.send(ids.join());
     }
 
     async actionListAttrs () {
+        const {pid} = this.getQueryParams();
         const viewGroup = await this.getModel({
-            id: this.getQueryParam('pid'),
+            id: pid,
             with: 'view'
         });
         const ClassAttr = this.getClass('model/ClassAttr');
@@ -43,10 +47,14 @@ module.exports = class ViewGroupController extends Base {
         const classAttr = this.spawn('model/ClassAttr');
         const viewAttr = this.spawn('model/ViewAttr');
         const groupId = viewGroup.get('classGroup');
-        let ids = await classAttr.findByClassAndGroup(viewGroup.get('view.class'), groupId).column(ClassAttr.PK);
-        const attrs = await viewAttr.findByViewAndGroup(viewGroup.get('view'), groupId, ids).all();
-        ids = ViewAttr.filterInherited(attrs, groupId).map(attr => attr.getId());
-        const query = viewAttr.findById(ids).with('classAttr');
+        const classId = viewGroup.get('view.class');
+        const classAttrQuery = classAttr.findByClassAndGroup(classId, groupId);
+        const classAttrIds = await classAttrQuery.column(ClassAttr.PK);
+        const viewId = viewGroup.get('view');
+        const viewAttrQuery = viewAttr.findByViewAndGroup(viewId, groupId, classAttrIds);
+        const attrs = await viewAttrQuery.all();
+        const viewAttrIds = ViewAttr.filterInherited(attrs, groupId).map(attr => attr.getId());
+        const query = viewAttr.findById(viewAttrIds).with('classAttr');
         return this.sendGridList(query, {viewModel: 'list/attrs'});
     }
 };

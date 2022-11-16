@@ -28,6 +28,10 @@ module.exports = class ImportModel extends Base {
         });
     }
 
+    async isSource () {
+        return (await FileHelper.getStat(this.getSourcePath())).isD;
+    }
+
     getSourcePath () {
         return this.module.app.getPath('metadata/' + this.get('source'));
     }

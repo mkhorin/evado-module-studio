@@ -19,12 +19,13 @@ module.exports = class ExportModel extends Base {
     }
 
     getMetadataDirectory () {
-        return 'metadata/' + this.get('target');
+        return `metadata/${this.get('target')}`;
     }
 
     async validateTarget (attr) {
         try {
-            this.basePath = this.module.app.getPath(this.getMetadataDirectory());
+            const dir = this.getMetadataDirectory();
+            this.basePath = this.module.app.getPath(dir);
             await FileHelper.createDirectory(this.basePath);
         } catch (err) {
             this.addError(attr, err.toString());

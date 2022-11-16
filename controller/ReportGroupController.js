@@ -12,9 +12,10 @@ module.exports = class ReportGroupController extends Base {
     }
 
     async actionCreate () {
+        const {pid} = this.getQueryParams();
         const owner = await this.getModel({
             Class: this.getClass('model/Report'),
-            id: this.getQueryParam('pid')
+            id: pid
         });
         const model = this.createModel();
         model.set('report', owner.getId());
@@ -32,13 +33,13 @@ module.exports = class ReportGroupController extends Base {
     }
 
     actionList () {
-        return super.actionList(this.createModel().createQuery().with('report', 'parent'));
+        const query = this.createModel().createQuery().with('report', 'parent');
+        return super.actionList(query);
     }
 
     getListRelatedWith (relation) {
         switch (relation) {
-            case 'reportAttrs':
-                return 'report';
+            case 'reportAttrs': return 'report';
         }
     }
 };

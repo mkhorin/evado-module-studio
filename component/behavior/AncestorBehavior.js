@@ -79,7 +79,9 @@ module.exports = class AncestorBehavior extends Base {
     async resolveChildren () {
         await PromiseHelper.setImmediate();
         const model = await this.owner.resolveRelation('class');
-        return model ? model.getRelation(this.childrenRelation).ids() : false;
+        return model
+            ? model.getRelation(this.childrenRelation).ids()
+            : false;
     }
 };
 

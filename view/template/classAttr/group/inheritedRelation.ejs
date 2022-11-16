@@ -38,7 +38,7 @@ const selectTemplate = _view.get('_part/attr/select');
     template: selectTemplate,
     params: {
         displayValue: model.getRelatedTitle('refAttr'),
-        extHint: 'Key attribute will be used for empty value',
+        extHint: 'If empty, the key attribute will be used',
         items: null,
         select2: {ajax: {url: _url('class-attr/list-select')}},
         depends: refClassMaster,
@@ -52,7 +52,7 @@ const selectTemplate = _view.get('_part/attr/select');
     template: selectTemplate,
     params: {
         displayValue: model.getRelatedTitle('linkAttr'),
-        extHint: 'Key attribute will be used for empty value',
+        extHint: 'If empty, the key attribute will be used',
         items: null,
         select2: {
             ajax: {url: _url('class-attr/list-select')},
@@ -64,7 +64,7 @@ const selectTemplate = _view.get('_part/attr/select');
 
 <%- include(overriddenTemplate, {
     attr: 'commands',
-    template: _view.get('_part/attr/checkList'),
+    template: _view.get('_part/attr/checkboxList'),
     params: {
         items: model.COMMAND_VALUE_LABELS
     }

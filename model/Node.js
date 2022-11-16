@@ -28,7 +28,7 @@ module.exports = class Node extends Base {
                 ['name', 'required'],
                 [['section', 'parent', 'class', 'view', 'report'], 'id'],
                 [['label', 'description', 'type', 'url'], 'string'],
-                ['name', require('../component/validator/CodeNameValidator')],
+                ['name', CodeNameValidator],
                 ['name', 'unique', {filter: 'section'}],
                 ['orderNumber', 'integer'],
                 ['orderNumber', 'default', {
@@ -40,11 +40,11 @@ module.exports = class Node extends Base {
             ],
             BEHAVIORS: {
                 'clone': {
-                    Class: require('evado/component/behavior/CloneBehavior'),
+                    Class: CloneBehavior,
                     relations: ['children']
                 },
                 'sortOrder': {
-                    Class: require('areto/behavior/SortOrderBehavior'),
+                    Class: SortOrderBehavior,
                     filter: (query, model) => model.setParentFilter(query)
                 }
             },
@@ -55,6 +55,14 @@ module.exports = class Node extends Base {
                 name: 'Code name',
                 parent: 'Parent node',
                 url: 'URL'
+            },
+            ATTR_VALUE_LABELS: {
+                'type': {
+                    '': 'Node',
+                    'container': 'Container',
+                    'divider': 'Divider',
+                    'header': 'Header'
+                }
             }
         };
     }
@@ -65,15 +73,15 @@ module.exports = class Node extends Base {
 
     async getMap () {
         const models = await this.createQuery().with('class', 'view', 'report').all();
-        return {
-            byId: IndexHelper.indexModels(models, this.PK),
-            bySection: IndexHelper.indexModelArrays(models, 'section')
-        };
+        const byId = IndexHelper.indexModels(models, this.PK);
+        const bySection = IndexHelper.indexModelArrays(models, 'section');
+        return {byId, bySection};
     }
 
     getParentQuery () {
-        return this.spawn('misc/HierarchySolver', {model: this})
-            .getParentQuery({section: this.get('section')});
+        const solver = this.spawn('misc/HierarchySolver', {model: this});
+        const section = this.get('section');
+        return solver.getParentQuery({section});
     }
 
     setParentFilter (query) {
@@ -106,7 +114,8 @@ module.exports = class Node extends Base {
 
     async beforeValidate () {
         await super.beforeValidate();
-        this.set('parent', this.getDb().normalizeId(this.get('parent')));
+        const parent = this.get('parent');
+        this.set('parent', this.getDb().normalizeId(parent));
         const model = await this.resolveRelation('parent');
         if (model) {
             this.set('section', model.get('section'));
@@ -145,6 +154,10 @@ module.exports = class Node extends Base {
         return this.hasOne(Class, Class.PK, 'view');
     }
 };
-module.exports.init(module);
 
+const CodeNameValidator = require('../component/validator/CodeNameValidator');
+const CloneBehavior = require('evado/component/behavior/CloneBehavior');
 const IndexHelper = require('areto/helper/IndexHelper');
+const SortOrderBehavior = require('areto/behavior/SortOrderBehavior');
+
+module.exports.init(module);

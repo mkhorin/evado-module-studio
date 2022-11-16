@@ -47,7 +47,9 @@ const pid = model.get('class');
         },{
             name: 'description'
         }],
-        link: ['state/select', {list: encodeURIComponent(_url('state/list', {pid}))}],
+        link: ['state/select', {
+            list: encodeURIComponent(_url('state/list', {pid}))
+        }],
         create: null,
         delete: null
     }

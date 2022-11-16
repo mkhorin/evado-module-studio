@@ -31,7 +31,7 @@ module.exports = class ClassGroup extends Base {
             ],
             RULES: [
                 ['name', 'required'],
-                ['name', require('../component/validator/CodeNameValidator')],
+                ['name', CodeNameValidator],
                 ['name', 'unique', {filter: 'class'}],
                 [['hint', 'label', 'description', 'type'], 'string'],
                 ['parent', 'id'],
@@ -46,7 +46,7 @@ module.exports = class ClassGroup extends Base {
             ],
             BEHAVIORS: {
                 'ancestor': {
-                    Class: require('../component/behavior/AncestorBehavior'),
+                    Class: AncestorBehavior,
                     relations: [{
                         name: 'descendants',
                         unchangeableAttrs: ['name']
@@ -55,10 +55,10 @@ module.exports = class ClassGroup extends Base {
                     }]
                 },
                 'clone': {
-                    Class: require('evado/component/behavior/CloneBehavior')
+                    Class: CloneBehavior
                 },
                 'overridden': {
-                    Class: require('evado/component/behavior/OverriddenValueBehavior'),
+                    Class: OverriddenValueBehavior,
                     originalValueMethodMap: {
                         'parent': this.getParentOriginalValue.bind(this)
                     },
@@ -78,7 +78,7 @@ module.exports = class ClassGroup extends Base {
                     ]
                 },
                 'sortOrder': {
-                    Class: require('areto/behavior/SortOrderBehavior'),
+                    Class: SortOrderBehavior,
                     start: 1000,
                     filter: 'class',
                     overriddenBehavior: 'overridden'
@@ -131,7 +131,9 @@ module.exports = class ClassGroup extends Base {
     }
 
     getRelinkMap (key, value) {
-        return super.getRelinkMap(this.find({class: key}), this.find({class: value}), 'name');
+        const keyQuery = this.find({class: key});
+        const valueQuery = this.find({class: value});
+        return super.getRelinkMap(keyQuery, valueQuery, 'name');
     }
 
     // CLONE
@@ -157,8 +159,12 @@ module.exports = class ClassGroup extends Base {
     }
 
     getParentQuery () {
-        const solver = this.spawn('misc/HierarchySolver', {model: this});
-        return solver.getParentQuery({class: this.get('class')});
+        const solver = this.spawn('misc/HierarchySolver', {
+            model: this
+        });
+        return solver.getParentQuery({
+            class: this.get('class')
+        });
     }
 
     inherit (classId) {
@@ -221,4 +227,11 @@ module.exports = class ClassGroup extends Base {
         return this.hasMany(Class, 'classGroup', this.PK);
     }
 };
+
+const AncestorBehavior = require('../component/behavior/AncestorBehavior');
+const CloneBehavior = require('evado/component/behavior/CloneBehavior');
+const CodeNameValidator = require('../component/validator/CodeNameValidator');
+const OverriddenValueBehavior = require('evado/component/behavior/OverriddenValueBehavior');
+const SortOrderBehavior = require('areto/behavior/SortOrderBehavior');
+
 module.exports.init(module);

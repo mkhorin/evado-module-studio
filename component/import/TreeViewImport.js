@@ -33,7 +33,7 @@ module.exports = class TreeViewImport extends Base {
         const level = this.spawn('model/TreeViewLevel', {scenario: 'create'});
         level.set('owner', this.owner.model.getId());
         level.set('refAttr', attr.getId());
-        level.set('view', view ? view.getId() : null);
+        level.set('view', view?.getId() || null);
         await level.save();
         this.assignError(this.Helper.getError(level, 'treeView'));
         this.sourceClass = refClass;

@@ -13,21 +13,26 @@ module.exports = class TransitionController extends Base {
 
     actionCreate () {
         const model = this.createModel();
-        model.set('class', model.getDb().normalizeId(this.getQueryParam('pid')));
+        const {pid} = this.getQueryParams();
+        model.set('class', model.getDb().normalizeId(pid));
         return super.actionCreate({model});
     }
 
     actionList () {
-        return super.actionList(this.getQueryByClass(this.getQueryParam('pid')));
+        const {pid} = this.getQueryParams();
+        return super.actionList(this.getQueryByClass(pid));
     }
 
     actionListSelect () {
-        return this.sendSelectList(this.getQueryByClass(this.getPostParam('pid')));
+        const {pid} = this.getPostParams();
+        return this.sendSelectList(this.getQueryByClass(pid));
     }
 
     getQueryByClass (pid) {
         const model = this.createModel();
-        return pid ? model.findByClass(pid) : model.find().with('class');
+        return pid
+            ? model.findByClass(pid)
+            : model.find().with('class');
     }
 };
 module.exports.init(module);

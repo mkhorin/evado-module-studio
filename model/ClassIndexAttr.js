@@ -11,9 +11,9 @@ module.exports = class ClassIndexAttr extends Base {
         return {
             TABLE: 'studio_classIndexAttr',
             ATTRS: [
-                'index',
                 'attr',
-                'direction'
+                'direction',
+                'index'
             ],
             RULES: [
                 [['index', 'attr', 'direction'], 'required'],

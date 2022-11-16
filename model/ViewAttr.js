@@ -55,12 +55,12 @@ module.exports = class ViewAttr extends Base {
             ],
             BEHAVIORS: {
                 'sortOrder': {
-                    Class: require('areto/behavior/SortOrderBehavior'),
+                    Class: SortOrderBehavior,
                     filter: 'view',
                     overriddenBehavior: 'overridden'
                 },
                 'overridden': {
-                    Class: require('evado/component/behavior/OverriddenValueBehavior'),
+                    Class: OverriddenValueBehavior,
                     originalAttr: 'classAttr',
                     attrs: [
                         'commands',
@@ -108,7 +108,8 @@ module.exports = class ViewAttr extends Base {
 
     static filterInherited (attrs, groupId) {
         return attrs.filter(attr => {
-            return CommonHelper.isEqual(groupId, attr.getBehavior('overridden').get('classGroup'));
+            const overridden = attr.getBehavior('overridden');
+            return CommonHelper.isEqual(groupId, overridden.get('classGroup'));
         });
     }
 
@@ -220,6 +221,9 @@ module.exports = class ViewAttr extends Base {
         return this.hasOne(Class, Class.PK, 'view');
     }
 };
-module.exports.init(module);
 
 const CommonHelper = require('areto/helper/CommonHelper');
+const OverriddenValueBehavior = require('evado/component/behavior/OverriddenValueBehavior');
+const SortOrderBehavior = require('areto/behavior/SortOrderBehavior');
+
+module.exports.init(module);
