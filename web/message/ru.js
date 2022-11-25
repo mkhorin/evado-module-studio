@@ -155,6 +155,7 @@ Object.assign(Jam.I18n.defaults, {
     'Expression parameters': 'Параметры выражения',
     'Expression or spawn configuration for calculating required value': 'Выражение или конфигурация создания для вычисления требуемого значения',
     'Expression or spawn configuration for calculating a true value': 'Выражение или конфигурация создания для вычисления истинного значения',
+    'Expression or spawn configuration of validation condition': 'Выражение или конфигурация создания условия необходимости валидации',
     'Extended hint': 'Расширенная подсказка',
     'Extensions': 'Расширения',
 
@@ -435,6 +436,7 @@ Object.assign(Jam.I18n.defaults, {
     'View used to edit an object': 'Представление используемое для редакирования объекта',
     'Views': 'Представления',
 
+    'When': 'Когда',
     'When deleting a linked object:\nNull - empty a link value\nCascade - delete current object\nLock - not delete linked object': 'При удалении связанного объекта:\nОбнуление - очистить значение связи\nКаскадное действие - удалить текущий объект\nБлокировать - не удалять связанный объект',
     'When updating a linked object:\nNull - empty a link value\nCascade - update a link value': 'При обновлении связанного объекта:\nОбнуление - очистить значение связи\nКаскадное действие - обновить значение связи',
     'Without borders': 'Без границ',

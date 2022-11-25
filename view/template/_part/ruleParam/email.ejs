@@ -1,5 +1,13 @@
 <!-- studio/_part/ruleParam/email -->
-
-<%- include(_view.get('_part/attr/string'), {
+<%
+const jsonTemplate = _view.get('_part/attr/json');
+const stringTemplate = _view.get('_part/attr/string');
+%>
+<%- include(stringTemplate, {
     attr: 'message'
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'when',
+    extHint: model.ATTR_EXT_HINTS.when
 }) %>

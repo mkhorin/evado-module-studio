@@ -2,12 +2,13 @@
 <%
 const datetimeTemplate = _view.get('_part/attr/datetime');
 const jsonTemplate = _view.get('_part/attr/json');
+const radioList = _view.get('_part/attr/radioList');
 const stringTemplate = _view.get('_part/attr/string');
 const expressionHint = 'Calculate date from today:\n["add", 2, "days"]\n["subtract", 3, "months"]\n[] - today';
 const messageHint = 'Custom error message';
 %>
 
-<%- include(_view.get('_part/attr/radioList'), {
+<%- include(radioList, {
     attr: 'format',
     items: model.FORMAT_VALUE_LABELS
 }) %>
@@ -38,4 +39,9 @@ const messageHint = 'Custom error message';
 <%- include(stringTemplate, {
     attr: 'tooBig',
     extHint: messageHint
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'when',
+    extHint: model.ATTR_EXT_HINTS.when
 }) %>

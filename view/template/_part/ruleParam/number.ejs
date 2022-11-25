@@ -1,17 +1,26 @@
 <!-- studio/_part/ruleParam/number -->
-
-<%- include(_view.get('_part/attr/checkbox'), {
+<%
+const checkboxTemplate = _view.get('_part/attr/checkbox');
+const jsonTemplate = _view.get('_part/attr/json');
+const stringTemplate = _view.get('_part/attr/string');
+%>
+<%- include(checkboxTemplate, {
     attr: 'integerOnly'
 }) %>
 
-<%- include(_view.get('_part/attr/string'), {
+<%- include(stringTemplate, {
     attr: 'min'
 }) %>
 
-<%- include(_view.get('_part/attr/string'), {
+<%- include(stringTemplate, {
     attr: 'max'
 }) %>
 
-<%- include(_view.get('_part/attr/string'), {
+<%- include(stringTemplate, {
     attr: 'message'
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'when',
+    extHint: model.ATTR_EXT_HINTS.when
 }) %>

@@ -54,7 +54,10 @@ module.exports = class ViewExport extends Base {
         data.treeView = await PromiseHelper.map(treeView, this.getTreeViewData, this);
         ObjectHelper.deleteProperties([model.PK, 'class', 'name'], data);
         ObjectHelper.deleteEmptyProperties(data);
-        ObjectHelper.deletePropertiesByValue(false, data, ['disableGroups', 'disableTreeView']);
+        ObjectHelper.deletePropertiesByValue(false, data, [
+            'disableGroups',
+            'disableTreeView'
+        ]);
         ObjectHelper.deleteEmptyArrayProperties(data);
         return data;
     }

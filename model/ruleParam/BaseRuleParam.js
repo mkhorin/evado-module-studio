@@ -10,13 +10,15 @@ module.exports = class BaseRuleParam extends Base {
     static getConstants () {
         return {
             ATTRS: super.ATTRS.concat([
-                'message'
+                'message',
+                'when'
             ]),
             RULES: [
-                ['message', 'string']
+                ['message', 'string'],
+                ['when', 'json']
             ],
-            ATTR_LABELS: {
-                message: 'Error message'
+            ATTR_EXT_HINTS: {
+                when: 'Expression or spawn configuration of validation condition'
             }
         };
     }

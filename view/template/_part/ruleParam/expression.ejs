@@ -1,10 +1,18 @@
 <!-- studio/_part/ruleParam/expression -->
-
-<%- include(_view.get('_part/attr/json'), {
+<%
+const jsonTemplate = _view.get('_part/attr/json');
+const stringTemplate = _view.get('_part/attr/string');
+%>
+<%- include(jsonTemplate, {
     attr: 'expression',
     extHint: 'Expression or spawn configuration for calculating required value'
 }) %>
 
-<%- include(_view.get('_part/attr/string'), {
+<%- include(stringTemplate, {
     attr: 'message'
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'when',
+    extHint: model.ATTR_EXT_HINTS.when
 }) %>

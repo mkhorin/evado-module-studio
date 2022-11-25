@@ -1,5 +1,7 @@
 <!-- studio/_part/ruleParam/custom -->
-
-<%- include(_view.get('_part/attr/json'), {
+<%
+const jsonTemplate = _view.get('_part/attr/json');
+%>
+<%- include(jsonTemplate, {
     attr: 'config'
 }) %>

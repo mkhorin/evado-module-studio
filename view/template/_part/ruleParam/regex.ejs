@@ -1,18 +1,27 @@
 <!-- studio/_part/ruleParam/regex -->
-
-<%- include(_view.get('_part/attr/string'), {
+<%
+const jsonTemplate = _view.get('_part/attr/json');
+const checkboxTemplate = _view.get('_part/attr/checkbox');
+const stringTemplate = _view.get('_part/attr/string');
+%>
+<%- include(stringTemplate, {
     attr: 'pattern'
 }) %>
 
-<%- include(_view.get('_part/attr/string'), {
+<%- include(stringTemplate, {
     attr: 'flags'
 }) %>
 
-<%- include(_view.get('_part/attr/checkbox'), {
+<%- include(checkboxTemplate, {
     attr: 'mismatch',
     label: 'Mismatch (valid if pattern does not match)'
 }) %>
 
-<%- include(_view.get('_part/attr/string'), {
+<%- include(stringTemplate, {
     attr: 'message'
+}) %>
+
+<%- include(jsonTemplate, {
+    attr: 'when',
+    extHint: model.ATTR_EXT_HINTS.when
 }) %>
