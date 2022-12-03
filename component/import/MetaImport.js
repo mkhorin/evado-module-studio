@@ -73,48 +73,54 @@ module.exports = class MetaImport extends Base {
     async resolveClassMap () {
         if (!this.classMap) {
             const model = this.spawn('model/Class');
-            this.classMap = await model.find().with('attrMap', 'viewMap').indexByKey().all();
-            this.classMapByName = IndexHelper.indexModels(Object.values(this.classMap), 'name');
+            const query = model.find().with('attrMap', 'viewMap');
+            this.classMap = await query.indexByKey().all();
+            const models = Object.values(this.classMap);
+            this.classMapByName = IndexHelper.indexModels(models, 'name');
         }
     }
 
     async createClasses () {
         const dir = path.join(this.basePath, 'base/class');
-        let files = await FileHelper.readDirectory(dir);
-        files = FileHelper.filterJsonFiles(files);
-        files = await this.sortClassFiles(files, dir); // sort classes for inheritance
+        let names = await FileHelper.readDirectory(dir);
+        names = FileHelper.filterJsonFiles(names);
+        names = await this.sortClassFiles(names, dir); // sort for inheritance
         this.classImports = [];
-        for (const file of files) {
-            await this.createClass(path.join(dir, file));
+        for (const name of names) {
+            const file = path.join(dir, name);
+            await this.createClass(file);
         }
     }
 
-    async sortClassFiles (files, dir) {
+    async sortClassFiles (names, dir) {
         let items = [];
-        for (const file of files) {
-            items.push(await this.parseClassFile(file, dir));
+        for (const name of names) {
+            items.push(await this.parseClassFile(name, dir));
         }
         items = ArrayHelper.sortHierarchy(items, 'name', 'parent');
         return items.map(item => item._filename);
     }
 
-    async parseClassFile (file, dir) {
+    async parseClassFile (name, dir) {
         try {
-            const data = await FileHelper.readJsonFile(path.join(dir, file));
-            data.name = FileHelper.getBasename(file);
-            data._filename = file;
+            const file = path.join(dir, name);
+            const data = await FileHelper.readJsonFile(file);
+            data.name = FileHelper.getBasename(name);
+            data._filename = name;
             return data;
         } catch (err) {
-            throw new Error(`Invalid class file: ${file}: ${err}`);
+            throw new Error(`Invalid class file: ${name}: ${err}`);
         }
     }
 
     async createClass (file) {
-        const model = this.spawn('import/ClassImport', {meta: this, file});
-        this.classImports.push(model);
-        model.set('source', file);
-        await model.process();
-        this.assignError(this.Helper.getError(model, `Class: ${path.basename(file)}`));
+        const instance = this.spawn('import/ClassImport', {meta: this, file});
+        this.classImports.push(instance);
+        instance.set('source', file);
+        await instance.process();
+        const name = path.basename(file);
+        const error = this.Helper.getError(instance, `Class: ${name}`);
+        this.assignError(error);
     }
 
     // REPORT
@@ -125,47 +131,51 @@ module.exports = class MetaImport extends Base {
 
     async resolveReportMap () {
         if (!this.reportMapByName) {
-            const query = this.spawn('model/Report').find().with('attrMap').index('name');
-            this.reportMapByName = await query.all();
+            const query = this.spawn('model/Report').find().with('attrMap');
+            this.reportMapByName = await query.index('name').all();
         }
     }
 
     async createReports () {
         const dir = path.join(this.basePath, 'report');
-        const files = await FileHelper.readDirectory(dir);
+        const names = await FileHelper.readDirectory(dir);
         this.reportImports = [];
-        for (const file of FileHelper.filterJsonFiles(files)) {
-            await this.createReport(path.join(dir, file));
+        for (const name of FileHelper.filterJsonFiles(names)) {
+            const file = path.join(dir, name);
+            await this.createReport(file);
         }
     }
 
     async createReport (file) {
-        const model = this.spawn('import/ReportImport', {meta: this, file});
-        model.set('source', FileHelper.trimExtension(file));
-        this.reportImports.push(model);
-        model.set('source', file);
-        await model.process();
-        this.assignError(this.Helper.getError(model, `Report: ${path.basename(file)}`));
+        const instance = this.spawn('import/ReportImport', {meta: this, file});
+        instance.set('source', FileHelper.trimExtension(file));
+        this.reportImports.push(instance);
+        instance.set('source', file);
+        await instance.process();
+        const name = path.basename(file);
+        const error = this.Helper.getError(instance, `Report: ${name}`);
+        this.assignError(error);
     }
 
     // NAVIGATION
 
     async createSections () {
         const dir = path.join(this.basePath, 'navigation');
-        const files = await FileHelper.readDirectory(dir);
+        const names = await FileHelper.readDirectory(dir);
         this.sectionImports = [];
-        for (const file of FileHelper.filterJsonFiles(files)) {
-            await this.createSection(path.join(dir, file));
+        for (const name of FileHelper.filterJsonFiles(names)) {
+            const file = path.join(dir, name);
+            await this.createSection(file);
         }
     }
 
     async createSection (file) {
-        const model = this.spawn('import/SectionImport', {meta: this, file});
-        model.set('source', FileHelper.trimExtension(file));
-        this.sectionImports.push(model);
-        model.set('source', file);
-        await model.process();
-        this.assignError(this.Helper.getError(model, `Section: ${file}`));
+        const instance = this.spawn('import/SectionImport', {meta: this, file});
+        instance.set('source', FileHelper.trimExtension(file));
+        this.sectionImports.push(instance);
+        instance.set('source', file);
+        await instance.process();
+        this.assignError(this.Helper.getError(instance, `Section: ${file}`));
     }
 
     // DEFERRED BINDING
@@ -186,7 +196,8 @@ module.exports = class MetaImport extends Base {
         for (const model of models) {
             if (!this.hasError()) {
                 await model.processDeferredBinding();
-                this.assignError(this.Helper.getError(model, `${prefix}: ${model.baseName}`));
+                const error = this.Helper.getError(model, `${prefix}: ${model.baseName}`);
+                this.assignError(error);
             }
         }
     }

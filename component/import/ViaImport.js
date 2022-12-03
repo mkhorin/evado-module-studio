@@ -43,11 +43,11 @@ module.exports = class ViaImport extends Base {
         if (!this.data.via) {
             return false;
         }
-        const model = this.spawn('import/ViaImport', {
+        const instance = this.spawn('import/ViaImport', {
             owner: this.owner,
             parent: this.model,
             data: this.data.via
         });
-        return model.process();
+        return instance.process();
     }
 };

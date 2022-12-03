@@ -38,15 +38,15 @@ module.exports = class ReportImport extends Base {
     }
 
     createAttr (data) {
-        const model = this.spawn('import/ReportAttrImport', {
+        const instance = this.spawn('import/ReportAttrImport', {
             owner: this,
             meta: this.meta,
             reportModel: this.model,
             attrMap: this.attrMap,
             data
         });
-        this.attrImports.push(model);
-        return model.process();
+        this.attrImports.push(instance);
+        return instance.process();
     }
 
     // DEFERRED BINDING

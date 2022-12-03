@@ -10,8 +10,8 @@ module.exports = class ViewImport extends Base {
     static getConstants () {
         return {
             RULES: super.RULES.concat([
-                ['source', 'default', {value: (attr, model) => {
-                    return `app/base/view/${model.classModel.get('name')}/_viewName_`;
+                ['source', 'default', {value: (attr, {classModel}) => {
+                    return `app/base/view/${classModel.get('name')}/_viewName_`;
                 }}]
             ])
         };
@@ -103,7 +103,7 @@ module.exports = class ViewImport extends Base {
     }
 
     createAttr (data) {
-        const attr = this.spawn('import/ViewAttrImport', {
+        const instance = this.spawn('import/ViewAttrImport', {
             owner: this,
             meta: this.meta,
             classModel: this.classModel,
@@ -112,8 +112,8 @@ module.exports = class ViewImport extends Base {
             groupMap: this.classImport.groupMap,
             data
         });
-        this.attrImports.push(attr);
-        return attr.process();
+        this.attrImports.push(instance);
+        return instance.process();
     }
 
     // GROUPS
@@ -130,12 +130,13 @@ module.exports = class ViewImport extends Base {
     }
 
     createGroup (data) {
-        return this.spawn('import/ViewGroupImport', {
+        const instance = this.spawn('import/ViewGroupImport', {
             owner: this,
             groupModel: this.getClassGroupByName(data.name),
             viewModel: this.model,
             data
-        }).process();
+        });
+        return instance.process();
     }
 
     // BEHAVIORS
@@ -163,23 +164,24 @@ module.exports = class ViewImport extends Base {
         if (!Array.isArray(data.attrs)) {
             data.attrs = [];
         }
-        data.attrs = {
-            links: data.attrs.map(name => this.getClassAttrByName(name))
-        };
+        const links = data.attrs.map(name => this.getClassAttrByName(name));
+        data.attrs = {links};
         const model = this.spawn('model/ViewRule', {scenario: 'create'});
         model.populateRelation('owner', this.model);
         await this.Helper.importParamContainer(model, data, this.meta);
-        this.assignError(this.Helper.getError(model, 'rules'));
+        const error = this.Helper.getError(model, 'rules');
+        this.assignError(error);
     }
 
     // TREE VIEW
 
     createTreeView () {
-        return this.spawn('import/TreeViewImport', {
+        const instance = this.spawn('import/TreeViewImport', {
             owner: this,
             data: this.data.treeView,
             sourceClass: this.classModel
-        }).process();
+        });
+        return instance.process();
     }
 };
 module.exports.init(module);

@@ -28,7 +28,8 @@ module.exports = class AncestorBehavior extends Base {
             name: this.owner.get('name')
         });
         this.addNotEmptyOriginal(query);
-        await this.owner.constructor.delete(await query.all());
+        const models = await query.all();
+        await this.owner.constructor.delete(models);
         for (const id of children) {
             await this.owner.inherit(id);
         }
@@ -48,7 +49,8 @@ module.exports = class AncestorBehavior extends Base {
         });
         query.and(['!=', 'original', this.owner.getId()]);
         this.addNotEmptyOriginal(query);
-        await this.owner.constructor.delete(await query.all());
+        const models = await query.all();
+        await this.owner.constructor.delete(models);
     }
 
     addNotEmptyOriginal (query) {
@@ -68,10 +70,12 @@ module.exports = class AncestorBehavior extends Base {
         for (const model of models) {
             if (data.unchangeableAttrs) {
                 for (const name of data.unchangeableAttrs) {
-                    model.set(name, this.owner.get(name));
+                    const value = this.owner.get(name);
+                    model.set(name, value);
                 }
             }
-            await model.getBehavior(this.overriddenBehavior).setInheritedValues(this.owner);
+            const behavior = model.getBehavior(this.overriddenBehavior);
+            await behavior.setInheritedValues(this.owner);
             await model.forceSave();
         }
     }

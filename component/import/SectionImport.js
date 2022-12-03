@@ -41,15 +41,15 @@ module.exports = class SectionImport extends Base {
     }
 
     createNode (data) {
-        const node = this.spawn('import/NodeImport', {
+        const instance = this.spawn('import/NodeImport', {
             owner: this,
             meta: this.meta,
             sectionModel: this.model,
             nodeMap: this.nodeMap,
             data
         });
-        this.nodeImports.push(node);
-        return node.process();
+        this.nodeImports.push(instance);
+        return instance.process();
     }
 
     // DEFERRED BINDING

@@ -1,13 +1,16 @@
 <!-- studio/_part/behaviorParam/assignedValue -->
-
-<%- include(_view.get('_part/attr/json'), {
+<%
+const checkboxTemplate = _view.get('_part/attr/checkbox');
+const jsonTemplate = _view.get('_part/attr/json');
+%>
+<%- include(jsonTemplate, {
     attr: 'expression'
 }) %>
 
-<%- include(_view.get('_part/attr/checkbox'), {
+<%- include(checkboxTemplate, {
     attr: 'onCreate'
 }) %>
 
-<%- include(_view.get('_part/attr/checkbox'), {
+<%- include(checkboxTemplate, {
     attr: 'onUpdate'
 }) %>

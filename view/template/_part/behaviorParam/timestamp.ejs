@@ -1,23 +1,28 @@
 <!-- studio/_part/behaviorParam/timestamp -->
-
-<%- include(_view.get('_part/attr/select'), {
+<%
+const selectTemplate = _view.get('_part/attr/select');
+const select2Params = {
+    ajax: {
+        url: _url('class-attr/list-select')
+    },
+    queryData: {
+        pid: owner.getId()
+    }
+};
+const updateUrl = _url('class-attr/update');
+%>
+<%- include(selectTemplate, {
     attr: 'createdAttr',
     displayValue: model.getRelatedTitle('createdAttr'),
     items: null,
-    select2: {
-        ajax: {url: _url('class-attr/list-select')},
-        queryData: {pid: owner.getId()}
-    },
-    update: _url('class-attr/update')
+    select2: select2Params,
+    update: updateUrl
 }) %>
 
-<%- include(_view.get('_part/attr/select'), {
+<%- include(selectTemplate, {
     attr: 'updatedAttr',
     displayValue: model.getRelatedTitle('updatedAttr'),
     items: null,
-    select2: {
-        ajax: {url: _url('class-attr/list-select')},
-        queryData: {pid: owner.getId()}
-    },
-    update: _url('class-attr/update')
+    select2: select2Params,
+    update: updateUrl
 }) %>

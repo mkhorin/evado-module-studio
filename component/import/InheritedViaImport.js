@@ -18,12 +18,12 @@ module.exports = class InheritedViaImport extends Base {
         if (!this.data.via) {
             return false;
         }
-        const model = this.spawn('import/InheritedViaImport', {
+        const instance = this.spawn('import/InheritedViaImport', {
             owner: this.owner,
             parent: this.model,
             meta: this.owner.meta,
             data: this.data.via
         });
-        return model.process();
+        return instance.process();
     }
 };

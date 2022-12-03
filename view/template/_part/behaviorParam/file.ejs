@@ -1,11 +1,11 @@
 <!-- studio/_part/behaviorParam/file -->
 <%
 const checkboxTemplate = _view.get('_part/attr/checkbox');
+const inlineTemplate = _view.get('_part/group/inline');
 const selectTemplate = _view.get('_part/attr/select');
 const stringTemplate = _view.get('_part/attr/string');
 %>
-
-<%- include(_view.get('_part/group/inline'), {
+<%- include(inlineTemplate, {
     items: [{
         template: checkboxTemplate,
         params: {

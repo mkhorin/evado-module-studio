@@ -27,7 +27,8 @@ module.exports = class Enum extends Base {
                 'items'
             ],
             ATTR_LABELS: {
-                attr: 'Value attribute'
+                attr: 'Value attribute',
+                condition: 'Activation condition'
             }
         };
     }

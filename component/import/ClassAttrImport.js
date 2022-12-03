@@ -98,14 +98,16 @@ module.exports = class ClassAttrImport extends Base {
         const model = this.spawn('model/AttrBehavior');
         data.owner = this.model.getId();
         await this.Helper.importParamContainer(model, data, this.meta);
-        this.assignError(this.Helper.getError(model, model.constructor.name));
+        const error = this.Helper.getError(model, model.constructor.name);
+        this.assignError(error);
     }
 
     // ENUMS
 
     createEnums () {
         return PromiseHelper.each(this.data.enums, data => {
-            return this.spawn('import/EnumImport', {owner: this, data}).process();
+            const instance = this.spawn('import/EnumImport', {owner: this, data});
+            return instance.process();
         }, this);
     }
 
@@ -119,7 +121,8 @@ module.exports = class ClassAttrImport extends Base {
         const model = this.spawn('model/AttrRule', {scenario: 'create'});
         data.owner = this.model.getId();
         await this.Helper.importParamContainer(model, data, this.meta);
-        this.assignError(this.Helper.getError(model, 'Rules'));
+        const error = this.Helper.getError(model, 'Rules');
+        this.assignError(error);
     }
 
     // VIA
@@ -128,11 +131,11 @@ module.exports = class ClassAttrImport extends Base {
         if (!this.data.via) {
             return null;
         }
-        const viaImport = this.spawn('import/ViaImport', {
+        const instance = this.spawn('import/ViaImport', {
             owner: this,
             data: this.data.via
         });
-        return viaImport.process();
+        return instance.process();
     }
 };
 module.exports.init(module);

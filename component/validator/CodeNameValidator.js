@@ -38,10 +38,13 @@ module.exports = class CodeNameValidator extends Base {
         if (!this.pattern.test(value)) {
             return this.getMessage();
         }
-        const filename = RegexValidator.PATTERNS.reservedFilenameChars;
-        const window = RegexValidator.PATTERNS.reservedWindowsFilename;
-        if (this.validFilename && (filename.test(value) || window.test(value))) {
-            return this.getMessage();
+        if (this.validFilename) {
+            if (RegexValidator.PATTERNS.reservedFilenameChars.test(value)) {
+                return this.getMessage();
+            }
+            if (RegexValidator.PATTERNS.reservedWindowsFilename.test(value)) {
+                return this.getMessage();
+            }
         }
     }
 };

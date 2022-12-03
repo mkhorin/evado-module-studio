@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const Base = require('../../component/param/Param');
+const Base = require('./BaseRuleParam');
 const Validator = require('evado-meta-base/validator/Validator');
 
 module.exports = class CustomParam extends Base {
@@ -13,10 +13,11 @@ module.exports = class CustomParam extends Base {
             ATTRS: super.ATTRS.concat([
                 'config'
             ]),
-            RULES: [
+            RULES: super.RULES.concat([
                 ['config', 'required'],
-                ['config', 'spawn', {BaseClass: Validator}]
-            ],
+                ['config', 'spawn', {BaseClass: Validator}],
+
+            ]),
             ATTR_LABELS: {
                 config: 'Spawn configuration'
             }

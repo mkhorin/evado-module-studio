@@ -134,15 +134,15 @@ module.exports = class ClassImport extends Base {
         const constructor = model
             ? 'InheritedClassGroupImport'
             : 'ClassGroupImport';
-        const group = this.spawn(`import/${constructor}`, {
+        const instance = this.spawn(`import/${constructor}`, {
             owner: this,
             meta: this.meta,
             classModel: this.model,
             groupMap: this.groupMap,
             data, model
         });
-        this.groupImports.push(group);
-        return group.process();
+        this.groupImports.push(instance);
+        return instance.process();
     }
 
     // ATTRIBUTES
@@ -181,7 +181,7 @@ module.exports = class ClassImport extends Base {
         const constructor = model
             ? 'InheritedClassAttrImport'
             : 'ClassAttrImport';
-        const attr = this.spawn(`import/${constructor}`, {
+        const instance = this.spawn(`import/${constructor}`, {
             owner: this,
             meta: this.meta,
             classModel: this.model,
@@ -189,8 +189,8 @@ module.exports = class ClassImport extends Base {
             groupMap: this.groupMap,
             data, model
         });
-        this.attrImports.push(attr);
-        return attr.process();
+        this.attrImports.push(instance);
+        return instance.process();
     }
 
     createKey () {
@@ -258,7 +258,7 @@ module.exports = class ClassImport extends Base {
     }
 
     async createView (file) {
-        const model = this.spawn('import/ViewImport', {
+        const instance = this.spawn('import/ViewImport', {
             meta: this.meta,
             classImport: this,
             classModel: this.model,
@@ -266,11 +266,13 @@ module.exports = class ClassImport extends Base {
             groupMap: this.groupMap,
             file
         });
-        model.set('source', file);
-        this.viewImports.push(model);
-        await model.process();
-        this.viewImportMap[model.data.name] = model;
-        this.assignError(this.Helper.getError(model, `View: ${path.basename(file)}`));
+        instance.set('source', file);
+        this.viewImports.push(instance);
+        await instance.process();
+        this.viewImportMap[instance.data.name] = instance;
+        const name = path.basename(file);
+        const error = this.Helper.getError(instance, `View: ${name}`);
+        this.assignError(error);
     }
 
     setForbiddenView () {
@@ -396,11 +398,12 @@ module.exports = class ClassImport extends Base {
     // TREE VIEW
 
     createTreeView () {
-        return this.spawn('import/TreeViewImport', {
+        const instance = this.spawn('import/TreeViewImport', {
             owner: this,
             data: this.data.treeView,
             sourceClass: this.model
-        }).process();
+        });
+        return instance.process();
     }
 
     // ACTIVE DESCENDANTS
@@ -409,7 +412,7 @@ module.exports = class ClassImport extends Base {
         const names = this.data.activeDescendants;
         if (names?.length) {
             const data = this.meta.classMapByName;
-            const activeDescendants = names.map(name => data[name]?.getId?.()).filter(id => id);
+            const activeDescendants = names.map(name => data[name]?.getId?.()).filter(v => v);
             return this.model.directUpdate({activeDescendants});
         }
     }

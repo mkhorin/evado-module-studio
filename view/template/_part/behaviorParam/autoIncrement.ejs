@@ -1,9 +1,11 @@
 <!-- studio/_part/behaviorParam/autoIncrement -->
-
-<%- include(_view.get('_part/attr/string'), {
+<%
+const stringTemplate = _view.get('_part/attr/string');
+%>
+<%- include(stringTemplate, {
     attr: 'start'
 }) %>
 
-<%- include(_view.get('_part/attr/string'), {
+<%- include(stringTemplate, {
     attr: 'step'
 }) %>

@@ -12,6 +12,7 @@ Object.assign(Jam.I18n.defaults, {
     'Actions': 'Действия',
     'Actions with attribute depending on the current object values': 'Действия с атрибутом, зависящие от текущих значений объекта',
     'Activation': 'Активация',
+    'Activation condition': 'Условие активации',
     'Active': 'Активно',
     'Active descendants': 'Активные потомки',
     'Additional attribute functionality': 'Дополнительная функциональность атрибута',
@@ -433,7 +434,7 @@ Object.assign(Jam.I18n.defaults, {
     'View to display objects in selection list': 'Представление для отображения объектов в списке выбора',
     'View type': 'Тип представления',
     'View used to create an object': 'Представление используемое для создания объекта',
-    'View used to edit an object': 'Представление используемое для редакирования объекта',
+    'View used to edit an object': 'Представление используемое для изменения объекта',
     'Views': 'Представления',
 
     'When': 'Когда',

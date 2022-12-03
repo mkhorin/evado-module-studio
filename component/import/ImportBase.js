@@ -24,7 +24,9 @@ module.exports = class ImportBase extends Base {
 
     assignError (message) {
         if (message) {
-            message = this.data.name ? `${this.data.name}: ${message}` : message;
+            if (this.data.name) {
+                message = `${this.data.name}: ${message}`;
+            }
             this.owner.assignError(this.wrapClassMessage(message));
         }
     }
