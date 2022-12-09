@@ -17,7 +17,7 @@ module.exports = class Workflow extends Base {
             ],
             RULES: [
                 ['name', 'required'],
-                ['name', require('../component/validator/CodeNameValidator')],
+                ['name', CodeNameValidator],
                 [['label', 'description'], 'string'],
                 [['name', 'label'], 'unique'],
                 [['states', 'transitions'], 'relation'],
@@ -41,4 +41,7 @@ module.exports = class Workflow extends Base {
         return this.hasMany(Class, 'workflow', this.PK).order({orderNumber: 1});
     }
 };
+
+const CodeNameValidator = require('../component/validator/CodeNameValidator');
+
 module.exports.init(module);

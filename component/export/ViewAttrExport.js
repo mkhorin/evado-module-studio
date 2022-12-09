@@ -44,7 +44,8 @@ module.exports = class ViewAttrExport extends Base {
         data.listView = model.get('listView.name') ?? null;
         data.selectListView = model.get('selectListView.name') ?? null;
         data.actionBinder = actionBinder;
-        ObjectHelper.deleteProperties(overridden.getInheritedAttrNames(), data);
+        const names = overridden.getInheritedAttrNames();
+        ObjectHelper.deleteProperties(names, data);
         ObjectHelper.deleteProperties([model.PK, 'view', 'classAttr', 'overriddenState'], data);
         return data;
     }

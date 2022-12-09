@@ -150,12 +150,16 @@ module.exports = class View extends Base {
 
     relinkClassAttrs (data) {
         const items = ['attrs', 'behaviors', 'rules'];
-        return this.handleEachRelatedModel(items, model => model.relinkClassAttrs(data));
+        return this.handleEachRelatedModel(items, model => {
+            return model.relinkClassAttrs(data);
+        });
     }
 
     relinkClassGroups (data) {
         const items = ['attrs', 'groups'];
-        return this.handleEachRelatedModel(items, model => model.relinkClassGroups(data));
+        return this.handleEachRelatedModel(items, model => {
+            return model.relinkClassGroups(data);
+        });
     }
 
     async relinkClass (sampleClass, targetClass) {

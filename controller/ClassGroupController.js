@@ -37,7 +37,9 @@ module.exports = class ClassGroupController extends Base {
 
     actionUpdate () {
         return super.actionUpdate({
-            getParamsByModel: model => ({template: model.hasOriginal() ? 'inherited' : 'update'})
+            getParamsByModel: model => ({
+                template: model.hasOriginal() ? 'inherited' : 'update'
+            })
         });
     }
 
@@ -52,7 +54,8 @@ module.exports = class ClassGroupController extends Base {
     }
 
     actionList () {
-        const query = this.createModel().createQuery().with('class', 'parent');
+        const model = this.createModel();
+        const query = model.createQuery().with('class', 'parent');
         return super.actionList(query);
     }
 
@@ -69,13 +72,13 @@ module.exports = class ClassGroupController extends Base {
             Class: this.getClass('model/View'),
             with: 'class'
         });
-        const ClassGroup = this.getClass('model/ClassGroup');
-        const ids = await this.spawn('model/ViewGroup')
-            .find({view: view.getId()})
-            .column('classGroup');
-        const query = this.spawn(ClassGroup)
+        const viewGroupQuery = this.spawn('model/ViewGroup')
+            .find({view: view.getId()});
+        const ids = await viewGroupQuery.column('classGroup');
+        const Class = this.getModelClass();
+        const query = this.spawn(Class)
             .find({class: view.get('class')})
-            .and(['notIn', ClassGroup.PK, ids])
+            .and(['notIn', Class.PK, ids])
             .with('parent');
         return super.actionList(query);
     }

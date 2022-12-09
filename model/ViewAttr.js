@@ -109,7 +109,8 @@ module.exports = class ViewAttr extends Base {
     static filterInherited (attrs, groupId) {
         return attrs.filter(attr => {
             const overridden = attr.getBehavior('overridden');
-            return CommonHelper.isEqual(groupId, overridden.get('classGroup'));
+            const classGroupId = overridden.get('classGroup');
+            return CommonHelper.isEqual(groupId, classGroupId);
         });
     }
 
@@ -124,11 +125,13 @@ module.exports = class ViewAttr extends Base {
     }
 
     async createByClassAttrs (attrs, view) {
-        const usedMap = await this.find({view: view.getId()}).raw().index('classAttr').all();
+        const query = this.find({view: view.getId()}).raw().index('classAttr');
+        const usedMap = await query.all();
         const models = [];
         for (const attr of attrs) {
             if (!usedMap[attr.getId()]) {
-                models.push(await this.createByClassAttr(attr, view));
+                const model = await this.createByClassAttr(attr, view);
+                models.push(model);
             }
         }
         return models;
@@ -145,7 +148,9 @@ module.exports = class ViewAttr extends Base {
     }
 
     findByViewAndGroup (view, classGroup, classAttr) {
-        return this.find({view}).and(['or', {classGroup}, {classAttr}]).with('classAttr');
+        return this.find({view})
+            .and(['or', {classGroup}, {classAttr}])
+            .with('classAttr');
     }
 
     // CLONE

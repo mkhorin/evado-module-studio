@@ -87,8 +87,10 @@ module.exports = class ClassAttrExport extends Base {
         const actionBinder = model.rel('actionBinder');
         const rules = await PromiseHelper.map(model.rel('rules'), this.getRuleData, this);
         const overridden = model.getBehavior('overridden');
-        if (!overridden.hasUpdatedAttrs() && !rules.length && !actionBinder) {
-            return null;
+        if (!actionBinder && !rules.length) {
+            if (!overridden.hasUpdatedAttrs()) {
+                return null;
+            }
         }
         const data = {
             ...this.getAttrMap(),
@@ -105,7 +107,8 @@ module.exports = class ClassAttrExport extends Base {
         if (!model.isRelation()) {
             delete data.commands;
         }
-        ObjectHelper.deleteProperties(overridden.getInheritedAttrNames(), data);
+        const names = overridden.getInheritedAttrNames();
+        ObjectHelper.deleteProperties(names, data);
         ObjectHelper.deleteProperties(['type', 'expression', 'history'], data);
         return data;
     }
@@ -125,9 +128,11 @@ module.exports = class ClassAttrExport extends Base {
     getViaData (model) {
         const viaMap = this.viaMap;
         model = this.viaMap.byAttr[model.getId()];
-        return model
-            ? this.spawn(ViaExport, {viaMap, model}).execute()
-            : null;
+        if (!model) {
+            return null;
+        }
+        const instance = this.spawn(ViaExport, {viaMap, model});
+        return instance.execute();
     }
 };
 

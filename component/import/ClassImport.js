@@ -412,7 +412,9 @@ module.exports = class ClassImport extends Base {
         const names = this.data.activeDescendants;
         if (names?.length) {
             const data = this.meta.classMapByName;
-            const activeDescendants = names.map(name => data[name]?.getId?.()).filter(v => v);
+            const activeDescendants = names
+                .map(name => data[name]?.getId?.())
+                .filter(v => v);
             return this.model.directUpdate({activeDescendants});
         }
     }

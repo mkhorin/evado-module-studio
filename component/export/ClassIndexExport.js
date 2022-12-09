@@ -8,7 +8,8 @@ const Base = require('./BaseExport');
 module.exports = class ClassIndexExport extends Base {
 
     async execute () {
-        return this.getData(await this.model.resolveRelation('attrs'));
+        const attrs = await this.model.resolveRelation('attrs');
+        return this.getData(attrs);
     }
 
     getData (attrs) {

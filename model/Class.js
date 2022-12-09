@@ -102,7 +102,7 @@ module.exports = class Class extends Base {
     }
 
     static filterInheritedChanges (changes) {
-        changes.deletes = changes.deletes.filter(item => !item.hasOriginal());
+        changes.deletes = changes.deletes.filter(model => !model.hasOriginal());
     }
 
     hasParent () {
@@ -115,15 +115,18 @@ module.exports = class Class extends Base {
 
     async getAncestors (classId) {
         const model = await this.findById(classId).one();
-        return this.spawn('misc/HierarchySolver', {model}).getAncestors(model);
+        const solver = this.spawn('misc/HierarchySolver', {model});
+        return solver.getAncestors(model);
     }
 
     async getViewMapByName () {
-        this.set('viewMapByName', await this.relViews().index('name').all());
+        const viewMap = await this.relViews().index('name').all();
+        this.set('viewMapByName', viewMap);
     }
 
     async setAttrMapByName () {
-        this.set('attrMapByName', await this.relAttrs().index('name').all());
+        const attrMap = await this.relAttrs().index('name').all();
+        this.set('attrMapByName', attrMap);
     }
 
     async findDescendants () {
@@ -142,15 +145,25 @@ module.exports = class Class extends Base {
     async relinkAttrs (sample) {
         const attr = this.spawn('model/ClassAttr');
         const data = await attr.getRelinkMap(sample.getId(), this.getId());
-        const names = ['attrs', 'behaviors', 'indexes', 'rules', 'views'];
-        await this.handleEachRelatedModel(names, model => model.relinkClassAttrs(data));
+        const names = [
+            'attrs',
+            'behaviors',
+            'indexes',
+            'rules',
+            'views'
+        ];
+        await this.handleEachRelatedModel(names, model => {
+            return model.relinkClassAttrs(data);
+        });
     }
 
     async relinkGroups (sample) {
         const group = this.spawn('model/ClassGroup');
         const data = await group.getRelinkMap(sample.getId(), this.getId());
         const names = ['attrs', 'groups', 'views'];
-        await this.handleEachRelatedModel(names, model => model.relinkClassGroups(data));
+        await this.handleEachRelatedModel(names, model => {
+            return model.relinkClassGroups(data);
+        });
     }
 
     async relinkViews (sample) {

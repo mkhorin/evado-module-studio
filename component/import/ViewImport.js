@@ -164,7 +164,7 @@ module.exports = class ViewImport extends Base {
         if (!Array.isArray(data.attrs)) {
             data.attrs = [];
         }
-        const links = data.attrs.map(name => this.getClassAttrByName(name));
+        const links = data.attrs.map(this.getClassAttrByName, this);
         data.attrs = {links};
         const model = this.spawn('model/ViewRule', {scenario: 'create'});
         model.populateRelation('owner', this.model);

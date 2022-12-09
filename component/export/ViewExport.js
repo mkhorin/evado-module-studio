@@ -36,22 +36,29 @@ module.exports = class ViewExport extends Base {
             'treeViewLevels'
         ]);
         const data = this.getAttrMap();
+
         const attrs = model.rel('attrs');
         data.attrs = await PromiseHelper.map(attrs, this.getAttrData, this);
         data.attrs = data.attrs.filter(v => v);
+
         const behaviors = model.rel('behaviors');
         data.behaviors = await PromiseHelper.map(behaviors, this.getBehaviorData, this);
         data.behaviors = data.behaviors.filter(v => v);
+
         data.creationView = model.get('creationView.name');
         data.editView = model.get('editView.name');
+
         const groups = model.rel('groups');
         data.groups = await PromiseHelper.map(groups, this.getGroupData, this);
         data.groups = data.groups.filter(v => v);
+
         const rules = model.rel('rules');
         data.rules = await PromiseHelper.map(rules, this.getRuleData, this);
         data.rules = data.rules.filter(v => v);
+
         const treeView = model.rel('treeViewLevels');
         data.treeView = await PromiseHelper.map(treeView, this.getTreeViewData, this);
+
         ObjectHelper.deleteProperties([model.PK, 'class', 'name'], data);
         ObjectHelper.deleteEmptyProperties(data);
         ObjectHelper.deletePropertiesByValue(false, data, [

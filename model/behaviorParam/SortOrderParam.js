@@ -32,7 +32,8 @@ module.exports = class SortOrderParam extends Base {
     async validateAttr () {
         const attr = await this.paramContainer.resolveRelation('owner');
         if (!attr) {
-            return this.addError('attribute', `${this.get('owner')} not found`);
+            const owner = this.get('owner');
+            return this.addError('attribute', `${owner} not found`);
         }
         if (!attr.get('sortable')) {
             this.addError('attribute', `Is not sortable`);

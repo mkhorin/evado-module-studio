@@ -10,7 +10,8 @@ module.exports = class ClassAttrParams extends Base {
     async prepareModels (models) {
         for (const model of models) {
             await model.resolveRelation('param');
-            model.setViewAttr('param', model.getParamModel().stringify());
+            const param = model.getParamModel().stringify();
+            model.setViewAttr('param', param);
         }
     }
 };

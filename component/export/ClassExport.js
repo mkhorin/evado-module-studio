@@ -58,35 +58,47 @@ module.exports = class ClassExport extends Base {
             'version'
         ]);
         const data = this.getAttrMap();
+
         const attrs = model.rel('attrs');
         data.attrs = await PromiseHelper.map(attrs, this.getAttrData.bind(this, viaMap));
         data.attrs = data.attrs.filter(v => v);
+
         const behaviors = model.rel('behaviors');
         data.behaviors = await PromiseHelper.map(behaviors, this.getBehaviorData, this);
         data.behaviors = data.behaviors.filter(v => v);
+
         data.forbiddenView = model.get('forbiddenView.name');
+
         const groups = model.rel('groups');
         data.groups = await PromiseHelper.map(groups, this.getGroupData, this);
         data.groups = data.groups.filter(v => v);
+
         const indexes = model.rel('indexes');
         data.indexes = await PromiseHelper.map(indexes, this.getIndexData, this);
         data.indexes = data.indexes.filter(v => v);
+
         data.key = model.get('key.name');
         data.parent = model.get('parent.name');
+
         const rules = model.rel('rules');
         data.rules = await PromiseHelper.map(rules, this.getRuleData, this);
         data.rules = data.rules.filter(v => v);
+
         const states = model.rel('states');
         data.states = await PromiseHelper.map(states, this.getStateData, this);
         data.states = data.states.filter(v => v);
+
         const transitions = model.rel('transitions');
         data.transitions = await PromiseHelper.map(transitions, this.getTransitionData, this);
         data.transitions = data.transitions.filter(v => v);
+
         const treeView = model.rel('treeViewLevels');
         data.treeView = await PromiseHelper.map(treeView, this.getTreeViewData, this);
+
         delete data.activeDescendants; // move to end
         data.activeDescendants = model.rel('activeDescendants').map(model => model.get('name'));
         data.version = model.get('version.name');
+
         ObjectHelper.deleteProperties([model.PK, 'name'], data);
         ObjectHelper.deleteEmptyProperties(data);
         ObjectHelper.deleteEmptyArrayProperties(data);

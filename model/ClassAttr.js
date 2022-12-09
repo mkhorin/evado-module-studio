@@ -351,7 +351,8 @@ module.exports = class ClassAttr extends Base {
         const query = original.relGroup();
         const name = await query.scalar('name');
         const id = behavior.owner.get('class');
-        return query.model.find({name}).and({class: id}).id();
+        const groupQuery = query.model.find({name}).and({class: id});
+        return groupQuery.id();
     }
 
     isCalc () {
@@ -415,7 +416,9 @@ module.exports = class ClassAttr extends Base {
     }
 
     findForSelectByClassKeys (id) {
-        return this.findForSelect(id).and({type: ['string', 'integer']});
+        return this.findForSelect(id).and({
+            type: ['string', 'integer']
+        });
     }
 
     // CLONE
@@ -435,13 +438,15 @@ module.exports = class ClassAttr extends Base {
     }
 
     relinkClassAttrs (data) {
-        this.set('linkAttr', data[this.get('linkAttr')]);
+        const key = this.get('linkAttr');
+        this.set('linkAttr', data[key]);
         this.detachBehavior('ancestor');
         return this.forceSave();
     }
 
     relinkClassGroups (data) {
-        this.set('group', data[this.get('group')]);
+        const key = this.get('group');
+        this.set('group', data[key]);
         this.detachBehavior('ancestor');
         return this.forceSave();
     }

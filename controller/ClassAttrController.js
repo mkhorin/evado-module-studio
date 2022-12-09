@@ -60,7 +60,9 @@ module.exports = class ClassAttrController extends Base {
 
     actionUpdate () {
         return super.actionUpdate({
-            getParamsByModel: model => ({template: model.hasOriginal() ? 'inherited' : 'update'})
+            getParamsByModel: model => ({
+                template: model.hasOriginal() ? 'inherited' : 'update'
+            })
         });
     }
 
@@ -80,7 +82,8 @@ module.exports = class ClassAttrController extends Base {
     }
 
     actionList () {
-        const query = this.createModel().createQuery().with('class', 'original', 'group');
+        const model = this.createModel();
+        const query = model.createQuery().with('class', 'original', 'group');
         return super.actionList(query);
     }
 
@@ -107,7 +110,8 @@ module.exports = class ClassAttrController extends Base {
     }
 
     actionListSelectAll () {
-        return this.sendSelectList(this.createModel().createQuery());
+        const query = this.createModel().createQuery();
+        return this.sendSelectList(query);
     }
 
     async actionListUnusedByView () {
@@ -117,7 +121,8 @@ module.exports = class ClassAttrController extends Base {
         });
         const usedClassAttrs = await view.relAttrs().column('classAttr');
         const ClassAttr = this.getModelClass();
-        const query = view.rel('class').relAttrs().withOnly().andNotIn(ClassAttr.PK, usedClassAttrs);
+        const query = view.rel('class').relAttrs();
+        query.withOnly().andNotIn(ClassAttr.PK, usedClassAttrs);
         return super.actionList(query);
     }
 

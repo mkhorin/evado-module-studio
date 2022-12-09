@@ -34,7 +34,7 @@ module.exports = class ClassGroupExport extends Base {
         await this.model.resolveRelations(['actionBinder', 'parent']);
         const actionBinder = this.model.rel('actionBinder');
         const overridden = this.model.getBehavior('overridden');
-        if (!overridden.hasUpdatedAttrs() && !actionBinder) {
+        if (!actionBinder && !overridden.hasUpdatedAttrs()) {
             return null;
         }
         const data = {
@@ -42,7 +42,8 @@ module.exports = class ClassGroupExport extends Base {
             parent: this.model.get('parent.name'),
             actionBinder: await this.getActionBinderData(actionBinder)
         };
-        ObjectHelper.deleteProperties(overridden.getInheritedAttrNames(), data);
+        const names = overridden.getInheritedAttrNames();
+        ObjectHelper.deleteProperties(names, data);
         return data;
     }
 };

@@ -33,7 +33,8 @@ module.exports = class ReportGroupController extends Base {
     }
 
     actionList () {
-        const query = this.createModel().createQuery().with('report', 'parent');
+        const model = this.createModel();
+        const query = model.createQuery().with('report', 'parent');
         return super.actionList(query);
     }
 

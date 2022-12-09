@@ -28,17 +28,14 @@ module.exports = class ImportModel extends Base {
         });
     }
 
-    async isSource () {
-        return (await FileHelper.getStat(this.getSourcePath())).isD;
-    }
-
     getSourcePath () {
         return this.module.app.getPath('metadata/' + this.get('source'));
     }
 
     assignError (message) {
         if (message) {
-            this.addError(this.Helper.trimConstructorName(this), `${this.data.name}: ${message}`);
+            const attr = this.Helper.trimConstructorName(this);
+            this.addError(attr, `${this.data.name}: ${message}`);
         }
     }
 

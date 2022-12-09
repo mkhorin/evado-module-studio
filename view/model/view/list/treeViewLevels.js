@@ -20,8 +20,12 @@ module.exports = class ViewTreeViewLevels extends Base {
     getRefClassValue (attr) {
         const refClass = attr.rel('refClass') || attr.rel('original.refClass');
         if (refClass) {
-            const url = this.controller.createUrl(['class/update', {id: refClass.getId()}]);
-            return this.controller.format(url, 'frameLink', {text: refClass.getTitle()});
+            const url = this.controller.createUrl(['class/update', {
+                id: refClass.getId()
+            }]);
+            return this.controller.format(url, 'frameLink', {
+                text: refClass.getTitle()
+            });
         }
     }
 };

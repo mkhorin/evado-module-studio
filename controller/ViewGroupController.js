@@ -12,7 +12,8 @@ module.exports = class ViewGroupController extends Base {
     }
 
     actionList () {
-        const query = this.createModel().createQuery().with('classGroup', 'parent', 'view');
+        const model = this.createModel();
+        const query = model.createQuery().with('classGroup', 'parent', 'view');
         return super.actionList(query);
     }
 
@@ -30,7 +31,8 @@ module.exports = class ViewGroupController extends Base {
         if (!ids) {
             throw new BadRequest('Invalid identifiers');
         }
-        ids = await model.find(['id', ClassGroup.PK, ids]).column(ClassGroup.PK);
+        const query = model.find(['id', ClassGroup.PK, ids]);
+        ids = await query.column(ClassGroup.PK);
         const models = await this.createModel().createByGroups(ids, view);
         ids = models.map(model => model.getId());
         return this.send(ids.join());

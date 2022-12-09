@@ -20,7 +20,7 @@ module.exports = class ClassIndex extends Base {
             RULES: [
                 ['class', 'required'],
                 ['class', 'id'],
-                ['name', require('../component/validator/CodeNameValidator')],
+                ['name', CodeNameValidator],
                 ['name', 'unique', {filter: 'class'}],
                 [['unique', 'background'], 'checkbox'],
                 ['options', 'json'],
@@ -67,4 +67,7 @@ module.exports = class ClassIndex extends Base {
         return this.hasOne(Class, Class.PK, 'class').with('attrs');
     }
 };
+
+const CodeNameValidator = require('../component/validator/CodeNameValidator');
+
 module.exports.init(module);

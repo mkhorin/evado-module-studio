@@ -9,7 +9,8 @@ module.exports = class ClassIndexes extends Base {
 
     prepareModels (models) {
         for (const model of models) {
-            model.setViewAttr('attrs', model.get('attrs.attr.name').join('<br>'));
+            const names = model.get('attrs.attr.name');
+            model.setViewAttr('attrs', names.join('<br>'));
         }
     }
 };

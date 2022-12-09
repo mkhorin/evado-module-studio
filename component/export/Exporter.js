@@ -46,7 +46,14 @@ module.exports = class Exporter extends Base {
     }
 
     getHandler (model, config, params) {
-        return () => this.spawn(config, {exporter: this, model, ...params}).execute();
+        return () => {
+            const instance = this.spawn(config, {
+                exporter: this,
+                model,
+                ...params
+            });
+            return instance.execute();
+        };
     }
 
     async exportMeta () {

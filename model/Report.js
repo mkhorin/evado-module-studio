@@ -75,7 +75,9 @@ module.exports = class Report extends Base {
     async relinkAttrs (original) {
         const attr = this.spawn('model/ReportAttr');
         const data = await attr.getRelinkMap(original.getId(), this.getId());
-        return this.handleEachRelatedModel([], model => model.relinkReportAttrs(data));
+        return this.handleEachRelatedModel([], model => {
+            return model.relinkReportAttrs(data);
+        });
     }
 
     // RELATIONS

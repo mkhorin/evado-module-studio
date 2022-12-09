@@ -23,7 +23,8 @@ module.exports = class ViewGroupExport extends Base {
         data.parent = model.get('parent.name');
         data.actionBinder = result.actionBinder;
         const overridden = model.getBehavior('overridden');
-        ObjectHelper.deleteProperties(overridden.getInheritedAttrNames(), data);
+        const names = overridden.getInheritedAttrNames();
+        ObjectHelper.deleteProperties(names, data);
         ObjectHelper.deleteProperties([model.PK, 'view', 'classGroup', 'overriddenState'], data);
         return data;
     }

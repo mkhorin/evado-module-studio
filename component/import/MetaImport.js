@@ -95,7 +95,8 @@ module.exports = class MetaImport extends Base {
     async sortClassFiles (names, dir) {
         let items = [];
         for (const name of names) {
-            items.push(await this.parseClassFile(name, dir));
+            const item = await this.parseClassFile(name, dir);
+            items.push(item);
         }
         items = ArrayHelper.sortHierarchy(items, 'name', 'parent');
         return items.map(item => item._filename);

@@ -8,15 +8,15 @@ const Base = require('evado/component/base/BaseActiveRecord');
 module.exports = class BaseActiveRecord extends Base {
 
     /**
-     * Map to replace one ID to another linked by linkAttr: {key: value}
+     * Map to replace one ID to another linked by attr: {key: value}
      */
-    async getRelinkMap (keyQuery, valueQuery, linkAttr) {
-        const keys = await keyQuery.select(linkAttr).raw().all();
-        const values = await valueQuery.select(linkAttr).raw().index(linkAttr).all();
+    async getRelinkMap (keyQuery, valueQuery, attr) {
+        const keys = await keyQuery.select(attr).raw().all();
+        const valueMap = await valueQuery.select(attr).raw().index(attr).all();
         const map = {};
         for (const key of keys) {
-            if (values.hasOwnProperty(key[linkAttr])) {
-                map[key[this.PK]] = values[key[linkAttr]][this.PK];
+            if (valueMap.hasOwnProperty(key[attr])) {
+                map[key[this.PK]] = valueMap[key[attr]][this.PK];
             }
         }
         return map;

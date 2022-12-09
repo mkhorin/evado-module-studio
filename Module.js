@@ -60,7 +60,8 @@ module.exports = class StudioModule extends Base {
             'model/ViewRule'
         ];
         for (const key of classes) {
-            await this.getDb().drop(this.getClass(key).TABLE);
+            const name = this.getClass(key).TABLE;
+            await this.getDb().drop(name);
         }
     }
 

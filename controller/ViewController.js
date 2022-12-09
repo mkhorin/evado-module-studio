@@ -66,7 +66,9 @@ module.exports = class ViewController extends Base {
 
     actionUpdate () {
         return super.actionUpdate({
-            getParamsByModel: model => ({template: model.hasOriginal() ? 'inherited' : 'update'})
+            getParamsByModel: model => ({
+                template: model.hasOriginal() ? 'inherited' : 'update'
+            })
         });
     }
 
