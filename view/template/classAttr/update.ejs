@@ -6,47 +6,47 @@ block('titleTranslation', 'none');
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/attr/static'), {
-    attr: 'class',
-    displayValue: model.getRelatedTitle('class'),
-    url: ['class/update', {id: model.get('class')}]
+  attr: 'class',
+  displayValue: model.getRelatedTitle('class'),
+  url: ['class/update', {id: model.get('class')}]
 }) %>
 
 <%- include(_view.get('_part/group/tabs'), {
-    items: [{
-        id: 'main',
-        label: 'Main',
-        active: true,
-        content: _view.getInternalTemplate('group/main'),
-        loadable: true
-    },{
-        id: 'relation',
-        label: 'Relation',
-        content: _view.getInternalTemplate('group/relation'),
-        loadable: true
-    },{
-        id: 'search',
-        label: 'Search',
-        content: _view.getInternalTemplate('group/search'),
-        loadable: true
-    }, {
-        id: 'validators',
-        label: 'Validators',
-        content: _view.getInternalTemplate('group/validators'),
-        loadable: true
-    },{
-        id: 'enums',
-        label: 'Enums',
-        content: _view.getInternalTemplate('group/enums'),
-        loadable: true
-    },{
-        id: 'behaviors',
-        label: 'Behaviors',
-        content: _view.getInternalTemplate('group/behaviors'),
-        loadable: true
-    },{
-        id: 'actionBinders',
-        label: 'Action binders',
-        content: _view.getInternalTemplate('group/actionBinders'),
-        loadable: true
-    }]
+  items: [{
+    id: 'main',
+    label: 'Main',
+    active: true,
+    content: _view.getInternalTemplate('group/main'),
+    loadable: true
+  },{
+    id: 'relation',
+    label: 'Relation',
+    content: _view.getInternalTemplate('group/relation'),
+    loadable: true
+  },{
+    id: 'search',
+    label: 'Search',
+    content: _view.getInternalTemplate('group/search'),
+    loadable: true
+  }, {
+    id: 'validators',
+    label: 'Validators',
+    content: _view.getInternalTemplate('group/validators'),
+    loadable: true
+  },{
+    id: 'enums',
+    label: 'Enums',
+    content: _view.getInternalTemplate('group/enums'),
+    loadable: true
+  },{
+    id: 'behaviors',
+    label: 'Behaviors',
+    content: _view.getInternalTemplate('group/behaviors'),
+    loadable: true
+  },{
+    id: 'actionBinders',
+    label: 'Action binders',
+    content: _view.getInternalTemplate('group/actionBinders'),
+    loadable: true
+  }]
 }) %>

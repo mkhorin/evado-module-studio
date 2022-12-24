@@ -1,42 +1,41 @@
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'children',
-    css: 'no-label',
-    data: {
-        columns: [{
-            name: 'name',
-            searchable: true,
-            sortable: true
-        }, {
-            name: 'label',
-            searchable: true,
-            sortable: true
-        }, {
-            name: 'type',
-            sortable: true,
-            format: 'label'
-        }, {
-            name: 'class',
-            format: {
-                name: 'relation',
-                url: _url('class/update')
-            }
-        }, {
-            name: 'report',
-            format: {
-                name: 'relation',
-                url: _url('report/updatet')
-            },
-            hidden: true
-        }, {
-            name: 'orderNumber',
-            sortable: true
-        }],
-        order: {orderNumber: 1},
-        link: null,
-        unlink: null,
-        create: ['create-by-node', model],
-        modalSort: true,
-        showTop: true
-    }
+  attr: 'children',
+  css: 'no-label',
+  data: {
+    columns: [{
+      name: 'name',
+      searchable: true,
+      sortable: true
+    }, {
+      name: 'label',
+      searchable: true,
+      sortable: true
+    }, {
+      name: 'type',
+      sortable: true,
+      format: 'label'
+    }, {
+      name: 'class',
+      format: {
+        name: 'relation',
+        url: _url('class/update')
+      }
+    }, {
+      name: 'report',
+      format: {
+        name: 'relation',
+        url: _url('report/updatet')
+      },
+      hidden: true
+    }, {
+      name: 'orderNumber',
+      sortable: true
+    }],
+    order: {orderNumber: 1},
+    link: null,
+    unlink: null,
+    create: ['create-by-node', model],
+    modalSort: true,
+    showTop: true
+  }
 }) %>
-

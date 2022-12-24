@@ -9,39 +9,39 @@ const stringTemplate = _view.get('_part/attr/string');
 %>
 
 <%- include(_view.get('_part/attr/static'), {
-    attr: 'classGroup',
-    displayValue: model.getRelatedTitle('classGroup'),
-    url: ['class-group/update', model.rel('classGroup')]
+  attr: 'classGroup',
+  displayValue: model.getRelatedTitle('classGroup'),
+  url: ['class-group/update', model.rel('classGroup')]
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'label',
-    template: stringTemplate
+  attr: 'label',
+  template: stringTemplate
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: overriddenTemplate,
-        params: {
-            attr: 'type',
-            template: selectTemplate,
-            params: {
-                items: 'labels'
-            }
-        }
-    },{
-        template: overriddenTemplate,
-        params: {
-            attr: 'orderNumber',
-            template: stringTemplate
-        }
-    }]
+  items: [{
+    template: overriddenTemplate,
+    params: {
+      attr: 'type',
+      template: selectTemplate,
+      params: {
+        items: 'labels'
+      }
+    }
+  },{
+    template: overriddenTemplate,
+    params: {
+      attr: 'orderNumber',
+      template: stringTemplate
+    }
+  }]
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'parent',
-    template: selectTemplate,
-    params: {
-        items: validParents
-    }
+  attr: 'parent',
+  template: selectTemplate,
+  params: {
+    items: validParents
+  }
 }) %>

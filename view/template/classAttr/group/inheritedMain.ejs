@@ -8,97 +8,97 @@ const textTemplate = _view.get('_part/attr/text');
 %>
 
 <%- include(overriddenTemplate, {
-    attr: 'description',
-    template: textTemplate
+  attr: 'description',
+  template: textTemplate
 }) %>
 
 <%- include(columnTemplate, {
+  items: [{
     items: [{
-        items: [{
-            template: overriddenTemplate,
-            params: {
-                attr: 'required',
-                template: checkboxTemplate
-            }
-        }, {
-            template: overriddenTemplate,
-            params: {
-                attr: 'readOnly',
-                template: checkboxTemplate
-            }
-        }, {
-            template: overriddenTemplate,
-            params: {
-                attr: 'hidden',
-                template: checkboxTemplate
-            }
-        }, {
-            template: overriddenTemplate,
-            params: {
-                attr: 'escape',
-                template: checkboxTemplate
-            }
-        }]
+      template: overriddenTemplate,
+      params: {
+        attr: 'required',
+        template: checkboxTemplate
+      }
     }, {
-        items: [{
-            template: overriddenTemplate,
-            params: {
-                attr: 'unique',
-                template: checkboxTemplate
-            }
-        }, {
-            template: overriddenTemplate,
-            params: {
-                attr: 'sortable',
-                template: checkboxTemplate
-            }
-        }, {
-            template: overriddenTemplate,
-            params: {
-                attr: 'hideEmpty',
-                template: checkboxTemplate
-            }
-        }]
+      template: overriddenTemplate,
+      params: {
+        attr: 'readOnly',
+        template: checkboxTemplate
+      }
+    }, {
+      template: overriddenTemplate,
+      params: {
+        attr: 'hidden',
+        template: checkboxTemplate
+      }
+    }, {
+      template: overriddenTemplate,
+      params: {
+        attr: 'escape',
+        template: checkboxTemplate
+      }
     }]
+  }, {
+    items: [{
+      template: overriddenTemplate,
+      params: {
+        attr: 'unique',
+        template: checkboxTemplate
+      }
+    }, {
+      template: overriddenTemplate,
+      params: {
+        attr: 'sortable',
+        template: checkboxTemplate
+      }
+    }, {
+      template: overriddenTemplate,
+      params: {
+        attr: 'hideEmpty',
+        template: checkboxTemplate
+      }
+    }]
+  }]
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'defaultValue',
-    template: jsonTemplate
+  attr: 'defaultValue',
+  template: jsonTemplate
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'group',
-    template: _view.get('_part/attr/select'),
-    params: {
-        items: null,
-        select2: {ajax: {url: _url('class-group/list-set-select', model.rel('class'))}},
-        displayValue: model.getRelatedTitle('group'),
-        update: _url('class-group/update')
-    }
+  attr: 'group',
+  template: _view.get('_part/attr/select'),
+  params: {
+    items: null,
+    select2: {ajax: {url: _url('class-group/list-set-select', model.rel('class'))}},
+    displayValue: model.getRelatedTitle('group'),
+    update: _url('class-group/update')
+  }
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'header',
-    template: jsonTemplate
+  attr: 'header',
+  template: jsonTemplate
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'orderNumber',
-    template: stringTemplate
+  attr: 'orderNumber',
+  template: stringTemplate
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'hint',
-    template: stringTemplate
+  attr: 'hint',
+  template: stringTemplate
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'extHint',
-    template: textTemplate
+  attr: 'extHint',
+  template: textTemplate
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'options',
-    template: jsonTemplate
+  attr: 'options',
+  template: jsonTemplate
 }) %>

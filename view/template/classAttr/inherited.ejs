@@ -7,68 +7,68 @@ const overriddenTemplate = _view.get('_part/attr/overridden');
 const staticTemplate = _view.get('_part/attr/static');
 
 const tabs = [{
-    id: 'main',
-    label: 'Main',
-    content: _view.getInternalTemplate('group/inheritedMain'),
-    loadable: true
+  id: 'main',
+  label: 'Main',
+  content: _view.getInternalTemplate('group/inheritedMain'),
+  loadable: true
 }];
 if (model.isRelation() || model.isUser()) {
-    tabs.push({
-        id: 'relation',
-        label: 'Relation',
-        content: _view.getInternalTemplate('group/inheritedRelation')
-    });
+  tabs.push({
+    id: 'relation',
+    label: 'Relation',
+    content: _view.getInternalTemplate('group/inheritedRelation')
+  });
 }
 tabs.push({
-    id: 'validators',
-    label: 'Validators',
-    content: _view.getInternalTemplate('group/validators'),
-    loadable: true
+  id: 'validators',
+  label: 'Validators',
+  content: _view.getInternalTemplate('group/validators'),
+  loadable: true
 }, {
-    id: 'actionBinders',
-    label: 'Action binders',
-    content: _view.getInternalTemplate('group/actionBinders'),
-    loadable: true
+  id: 'actionBinders',
+  label: 'Action binders',
+  content: _view.getInternalTemplate('group/actionBinders'),
+  loadable: true
 });
 %>
 
 <%- include(staticTemplate, {
-    attr: 'original',
-    displayValue: model.getRelatedTitle('original'),
-    url: ['update', model.rel('original')]
+  attr: 'original',
+  displayValue: model.getRelatedTitle('original'),
+  url: ['update', model.rel('original')]
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'label',
-    template: _view.get('_part/attr/string')
+  attr: 'label',
+  template: _view.get('_part/attr/string')
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: staticTemplate,
-        params: {
-            attr: 'type',
-            displayValue: model.getAttrValueLabel('type'),
-            translateValue: ''
-        }
-    }, {
-        template: overriddenTemplate,
-        params: {
-            attr: 'viewType',
-            template: _view.get('_part/attr/enum'),
-            params: {
-                sets: model.TYPE_ENUMS
-            }
-        }
-    }]
+  items: [{
+    template: staticTemplate,
+    params: {
+      attr: 'type',
+      displayValue: model.getAttrValueLabel('type'),
+      translateValue: ''
+    }
+  }, {
+    template: overriddenTemplate,
+    params: {
+      attr: 'viewType',
+      template: _view.get('_part/attr/enum'),
+      params: {
+        sets: model.TYPE_ENUMS
+      }
+    }
+  }]
 }) %>
 
 <%- include(staticTemplate, {
-    attr: 'class',
-    displayValue: model.getRelatedTitle('class'),
-    url: ['class/update', {id: model.get('class')}]
+  attr: 'class',
+  displayValue: model.getRelatedTitle('class'),
+  url: ['class/update', {id: model.get('class')}]
 }) %>
 
 <%- include(_view.get('_part/group/tabs'), {
-    items: tabs
+  items: tabs
 }) %>

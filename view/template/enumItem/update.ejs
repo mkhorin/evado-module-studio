@@ -6,8 +6,8 @@ block('titleTranslation', 'none');
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/attr/static'), {
-    attr: 'enum',
-    displayValue: model.getRelatedTitle('enum'),
-    url: ['enum/update', {id: model.get('enum')}],
-    escape: false
+  attr: 'enum',
+  displayValue: model.getRelatedTitle('enum'),
+  url: ['enum/update', {id: model.get('enum')}],
+  escape: false
 }) %>

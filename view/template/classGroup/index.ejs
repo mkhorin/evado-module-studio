@@ -4,33 +4,33 @@ block('title', 'Class groups');
 %>
 
 <%- include(_view.get('_part/list/grid'), {
-    data: {
-        columns: [{
-            name: 'name',
-            sortable: true,
-            searchable: true
-        },{
-            name: 'label',
-            sortable: true,
-            searchable: true
-        },{
-            name: 'description'
-        },{
-            name: 'parent',
-            format: {
-                name: 'relation',
-                url: _url('class-group/update')
-            },
-            sortable: true
-        },{
-            name: 'class',
-            format: {
-                name: 'relation',
-                url: _url('class/update')
-            },
-            sortable: true
-        }],
-        create: null,
-        filter: {}
-    }
+  data: {
+    columns: [{
+      name: 'name',
+      sortable: true,
+      searchable: true
+    },{
+      name: 'label',
+      sortable: true,
+      searchable: true
+    },{
+      name: 'description'
+    },{
+      name: 'parent',
+      format: {
+        name: 'relation',
+        url: _url('class-group/update')
+      },
+      sortable: true
+    },{
+      name: 'class',
+      format: {
+        name: 'relation',
+        url: _url('class/update')
+      },
+      sortable: true
+    }],
+    create: null,
+    filter: {}
+  }
 }) %>

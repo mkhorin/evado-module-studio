@@ -6,32 +6,32 @@ const selectTemplate = _view.get('_part/attr/select');
 %>
 
 <%- include(_view.get('_part/attr/static'), {
-    attr: 'sourceClass',
-    displayValue: sourceClass ? sourceClass.getTitle() : null,
-    value: sourceClass ? sourceClass.getId() : null,
-    url: ['class/update', sourceClass]
+  attr: 'sourceClass',
+  displayValue: sourceClass ? sourceClass.getTitle() : null,
+  value: sourceClass ? sourceClass.getId() : null,
+  url: ['class/update', sourceClass]
 }) %>
 
 <%- include(selectTemplate, {
-    attr: 'refAttr',
-    items: refAttrs,
-    update: _url('class-attr/update')
+  attr: 'refAttr',
+  items: refAttrs,
+  update: _url('class-attr/update')
 }) %>
 
 <%- include(selectTemplate, {
-    attr: 'view',
-    items: null,
-    displayValue: model.getRelatedTitle('view'),
-    select2: {ajax: {url: _url('list-select-view')}},
-    update: _url('view/update'),
-    depends: [{attr: 'refAttr', param: 'id'}],
-    actionBinder: {enable: ['notEmpty', 'refAttr']}
+  attr: 'view',
+  items: null,
+  displayValue: model.getRelatedTitle('view'),
+  select2: {ajax: {url: _url('list-select-view')}},
+  update: _url('view/update'),
+  depends: [{attr: 'refAttr', param: 'id'}],
+  actionBinder: {enable: ['notEmpty', 'refAttr']}
 }) %>
 
 <%- include(_view.get('_part/attr/checkbox'), {
-    attr: 'recursive'
+  attr: 'recursive'
 }) %>
 
 <%- include(_view.get('_part/attr/json'), {
-    attr: 'options'
+  attr: 'options'
 }) %>

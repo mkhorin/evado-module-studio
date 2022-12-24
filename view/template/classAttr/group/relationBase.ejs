@@ -10,73 +10,73 @@ const refTypes = ['ref', 'backref'];
 %>
 
 <%- include(_view.get('_part/attr/checkbox'), {
-    attr: 'multiple',
-    extHint: 'Many related objects possible',
-    actionBinder: {value: [[true, backrefTypeTrigger], [false, refTypeTrigger]]}
+  attr: 'multiple',
+  extHint: 'Many related objects possible',
+  actionBinder: {value: [[true, backrefTypeTrigger], [false, refTypeTrigger]]}
 }) %>
 
 <%- include(selectTemplate, {
-    attr: 'refClass',
-    extHint: 'Class of related objects',
-    items: null,
-    displayValue: model.getRelatedTitle('refClass'),
-    select2: {ajax: {url: _url('class/list-select')}},
-    update: _url('class/update'),
-    actionBinder: {
-        require: {type: refTypes},
-        value: ['null', ['notIn', 'type', refTypes]]
-    }
+  attr: 'refClass',
+  extHint: 'Class of related objects',
+  items: null,
+  displayValue: model.getRelatedTitle('refClass'),
+  select2: {ajax: {url: _url('class/list-select')}},
+  update: _url('class/update'),
+  actionBinder: {
+    require: {type: refTypes},
+    value: ['null', ['notIn', 'type', refTypes]]
+  }
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: selectTemplate,
-        params: {
-            attr: 'refAttr',
-            displayValue: model.getRelatedTitle('refAttr'),
-            extHint: 'If empty, the key attribute will be used',
-            items: null,
-            select2: {ajax: {url: _url('class-attr/list-select')}},
-            depends: [{attr: 'refClass', param: 'pid'}],
-            update: attrUpdate,
-            actionBinder: {enable: ['notEmpty', 'refClass']}
-        }
-    },{
-        template: selectTemplate,
-        params: {
-            attr: 'linkAttr',
-            displayValue: model.getRelatedTitle('linkAttr'),
-            extHint: 'If empty, the current attribute will be used',
-            items: null,
-            select2: {
-                ajax: {url: _url('class-attr/list-select')},
-                queryData: {pid: model.get('class')}
-            },
-            update: attrUpdate
-        }
-    }]
+  items: [{
+    template: selectTemplate,
+    params: {
+      attr: 'refAttr',
+      displayValue: model.getRelatedTitle('refAttr'),
+      extHint: 'If empty, the key attribute will be used',
+      items: null,
+      select2: {ajax: {url: _url('class-attr/list-select')}},
+      depends: [{attr: 'refClass', param: 'pid'}],
+      update: attrUpdate,
+      actionBinder: {enable: ['notEmpty', 'refClass']}
+    }
+  },{
+    template: selectTemplate,
+    params: {
+      attr: 'linkAttr',
+      displayValue: model.getRelatedTitle('linkAttr'),
+      extHint: 'If empty, the current attribute will be used',
+      items: null,
+      select2: {
+        ajax: {url: _url('class-attr/list-select')},
+        queryData: {pid: model.get('class')}
+      },
+      update: attrUpdate
+    }
+  }]
 }) %>
 
 <%- include(_view.get('_part/attr/checkboxList'), {
-    attr: 'commands',
-    items: model.COMMAND_VALUE_LABELS
+  attr: 'commands',
+  items: model.COMMAND_VALUE_LABELS
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: enumTemplate,
-        params: {
-            attr: 'onDelete',
-            extHint: 'When deleting a linked object:\nNull - empty a link value\nCascade - delete current object\nLock - not delete linked object',
-            sets: model.RELATION_ACTION_ENUMS,
-            actionBinder: {value: [['null', refTypeTrigger], ['', backrefTypeTrigger]]}
-        }
-    }, {
-        template: enumTemplate,
-        params: {
-            attr: 'onUpdate',
-            extHint: 'When updating a linked object:\nNull - empty a link value\nCascade - update a link value',
-            sets: model.RELATION_ACTION_ENUMS
-        }
-    }]
+  items: [{
+    template: enumTemplate,
+    params: {
+      attr: 'onDelete',
+      extHint: 'When deleting a linked object:\nNull - empty a link value\nCascade - delete current object\nLock - not delete linked object',
+      sets: model.RELATION_ACTION_ENUMS,
+      actionBinder: {value: [['null', refTypeTrigger], ['', backrefTypeTrigger]]}
+    }
+  }, {
+    template: enumTemplate,
+    params: {
+      attr: 'onUpdate',
+      extHint: 'When updating a linked object:\nNull - empty a link value\nCascade - update a link value',
+      sets: model.RELATION_ACTION_ENUMS
+    }
+  }]
 }) %>

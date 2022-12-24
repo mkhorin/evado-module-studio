@@ -1,42 +1,42 @@
 <%
 const columns = [{
-    name: 'name',
-    searchable: true,
-    sortable: true
+  name: 'name',
+  searchable: true,
+  sortable: true
 },{
-    name: 'label',
-    searchable: true,
-    sortable: true
+  name: 'label',
+  searchable: true,
+  sortable: true
 },{
-    name: 'parent',
-    format: {
-        name: 'relation',
-        url: _url('class-group/update')
-    }
+  name: 'parent',
+  format: {
+    name: 'relation',
+    url: _url('class-group/update')
+  }
 },{
-    name: 'type',
-    format: 'label'
+  name: 'type',
+  format: 'label'
 },{
-    name: 'orderNumber',
-    sortable: true,
-    escape: false
+  name: 'orderNumber',
+  sortable: true,
+  escape: false
 }];
 if (model.hasParent()) {
-    columns.push({
-        name: 'inherited',
-        translateData: ''
-    });
+  columns.push({
+    name: 'inherited',
+    translateData: ''
+  });
 }
 %>
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'groups',
-    css: 'no-label',
-    data: {
-        columns,
-        order: {orderNumber: 1},
-        link: null,
-        unlink: null,
-        modalSort: true,
-        showTop: true
-    }
+  attr: 'groups',
+  css: 'no-label',
+  data: {
+    columns,
+    order: {orderNumber: 1},
+    link: null,
+    unlink: null,
+    modalSort: true,
+    showTop: true
+  }
 }) %>

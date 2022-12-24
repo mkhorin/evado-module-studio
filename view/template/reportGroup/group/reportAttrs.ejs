@@ -1,24 +1,22 @@
-
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'reportAttrs',
-    css: 'no-label',
-    data: {
-        columns: [{
-            name: 'report',
-            format: 'relation'
-        },{
-            name: 'name'
-        },{
-            name: 'label'
-        },{
-            name: 'orderNumber'
-        }],
-        order: {orderNumber: 1},
-        link: null,
-        unlink: null,
-        create: null,
-        delete: null,
-        modalSort: true
-    }
+  attr: 'reportAttrs',
+  css: 'no-label',
+  data: {
+    columns: [{
+      name: 'report',
+      format: 'relation'
+    },{
+      name: 'name'
+    },{
+      name: 'label'
+    },{
+      name: 'orderNumber'
+    }],
+    order: {orderNumber: 1},
+    link: null,
+    unlink: null,
+    create: null,
+    delete: null,
+    modalSort: true
+  }
 }) %>
-

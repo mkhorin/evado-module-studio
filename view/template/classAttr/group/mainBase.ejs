@@ -3,67 +3,67 @@ const checkboxTemplate = _view.get('_part/attr/checkbox');
 %>
 
 <%- include(_view.get('_part/attr/text'), {
-    attr: 'description'
+  attr: 'description'
 }) %>
 
 <%- include(_view.get('_part/group/inline'), {
-    items: [{
-        template: checkboxTemplate,
-        params: {
-            attr: 'required'
-        }
-    },{
-        template: checkboxTemplate,
-        params: {
-            attr: 'readOnly'
-        }
-    },{
-        template: checkboxTemplate,
-        params: {
-            attr: 'unique',
-            extHint: 'Attribute value must be unique'
-        }
-    },{
-        template: checkboxTemplate,
-        params: {
-            attr: 'escape',
-            extHint: 'Escape HTML data output'
-        }
-    },{
-        template: checkboxTemplate,
-        params: {
-            attr: 'hidden',
-            extHint: 'Hidden attribute view'
-        }
-    },{
-        template: checkboxTemplate,
-        params: {
-            attr: 'sortable',
-            extHint: 'Allow sorting objects by this attribute'
-        }
-    },{
-        template: checkboxTemplate,
-        params: {
-            attr: 'trim',
-            extHint: 'Remove spaces from both ends of input value'
-        }
-    },{
-        template: checkboxTemplate,
-        params: {
-            attr: 'history',
-            extHint: 'Keep history of attribute value changes'
-        }
-    },{
-        template: checkboxTemplate,
-        params: {
-            attr: 'hideEmpty',
-            extHint: 'Hide attribute with empty value'
-        }
-    },{
-        template: checkboxTemplate,
-        params: {
-            attr: 'signed',
-            extHint: 'Attribute contains data for digital signing'
-        }
-    }]
+  items: [{
+    template: checkboxTemplate,
+    params: {
+      attr: 'required'
+    }
+  },{
+    template: checkboxTemplate,
+    params: {
+      attr: 'readOnly'
+    }
+  },{
+    template: checkboxTemplate,
+    params: {
+      attr: 'unique',
+      extHint: 'Attribute value must be unique'
+    }
+  },{
+    template: checkboxTemplate,
+    params: {
+      attr: 'escape',
+      extHint: 'Escape HTML data output'
+    }
+  },{
+    template: checkboxTemplate,
+    params: {
+      attr: 'hidden',
+      extHint: 'Hidden attribute view'
+    }
+  },{
+    template: checkboxTemplate,
+    params: {
+      attr: 'sortable',
+      extHint: 'Allow sorting objects by this attribute'
+    }
+  },{
+    template: checkboxTemplate,
+    params: {
+      attr: 'trim',
+      extHint: 'Remove spaces from both ends of input value'
+    }
+  },{
+    template: checkboxTemplate,
+    params: {
+      attr: 'history',
+      extHint: 'Keep history of attribute value changes'
+    }
+  },{
+    template: checkboxTemplate,
+    params: {
+      attr: 'hideEmpty',
+      extHint: 'Hide attribute with empty value'
+    }
+  },{
+    template: checkboxTemplate,
+    params: {
+      attr: 'signed',
+      extHint: 'Attribute contains data for digital signing'
+    }
+  }]
 }) %>

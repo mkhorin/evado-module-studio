@@ -2,24 +2,23 @@
 block('title', model.getTitle());
 block('titleTranslation', 'none');
 %>
-
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
-    items: [{
-        id: 'main',
-        label: 'Main',
-        content: _view.getInternalTemplate('group/main'),
-        loadable: true
-    },{
-        id: 'attrs',
-        label: 'Attributes',
-        content: _view.getInternalTemplate('group/attrs'),
-        loadable: true
-    }, {
-        id: 'actionBinders',
-        label: 'Action binders',
-        content: _view.getInternalTemplate('group/actionBinders'),
-        loadable: true
-    }]
+  items: [{
+    id: 'main',
+    label: 'Main',
+    content: _view.getInternalTemplate('group/main'),
+    loadable: true
+  },{
+    id: 'attrs',
+    label: 'Attributes',
+    content: _view.getInternalTemplate('group/attrs'),
+    loadable: true
+  }, {
+    id: 'actionBinders',
+    label: 'Action binders',
+    content: _view.getInternalTemplate('group/actionBinders'),
+    loadable: true
+  }]
 }) %>

@@ -1,27 +1,27 @@
 <%- include(_view.get('_part/list/filter'), {
-    data: {
-        columns: [{
-            name: 'class',
-            type: 'selector',
-            url: _url('class/list-select')
-        },{
-            name: 'description'
-        },{
-            name: 'label'
-        },{
-            name: 'name'
-        },{
-            name: 'hint'
-        },{
-            name: 'orderNumber',
-            type: 'number'
-        },{
-            name: 'finalState',
-            type: 'selector',
-            url: _url('state/list-select')
-        },{
-            name: 'nullStartState',
-            type: 'boolean'
-        }]
-    }
+  data: {
+    columns: [{
+      name: 'class',
+      type: 'selector',
+      url: _url('class/list-select')
+    },{
+      name: 'description'
+    },{
+      name: 'label'
+    },{
+      name: 'name'
+    },{
+      name: 'hint'
+    },{
+      name: 'orderNumber',
+      type: 'number'
+    },{
+      name: 'finalState',
+      type: 'selector',
+      url: _url('state/list-select')
+    },{
+      name: 'nullStartState',
+      type: 'boolean'
+    }]
+  }
 }) %>

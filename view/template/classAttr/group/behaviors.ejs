@@ -1,20 +1,18 @@
-
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'behaviors',
-    css: 'no-label',
-    data: {
-        columns: [{
-            name: 'type',
-            format: 'label'
-        }, {
-            name: 'description'
-        }, {
-            name: 'orderNumber'
-        }],
-        order: {orderNumber: 1},
-        link: null,
-        unlink: null,
-        modalSort: true
-    }
+  attr: 'behaviors',
+  css: 'no-label',
+  data: {
+    columns: [{
+      name: 'type',
+      format: 'label'
+    }, {
+      name: 'description'
+    }, {
+      name: 'orderNumber'
+    }],
+    order: {orderNumber: 1},
+    link: null,
+    unlink: null,
+    modalSort: true
+  }
 }) %>
-

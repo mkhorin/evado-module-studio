@@ -1,39 +1,39 @@
 <% layout(_view.get(_layout)) %>
 
 <%- include(_view.get('_part/group/columns'), {
+  items: [{
     items: [{
-        items: [{
-            template: _view.get('_part/attr/string'),
-            params: {
-                attr: 'name'
-            }
-        }, {
-            template: _view.get('_part/attr/string'),
-            params: {
-                attr: 'label'
-            }
-        }]
+      template: _view.get('_part/attr/string'),
+      params: {
+        attr: 'name'
+      }
     }, {
-        items: [{
-            template: _view.get('_part/attr/static'),
-            params: {
-                attr: 'section',
-                displayValue: model.getRelatedTitle('section'),
-                url: ['section/update', model.rel('section')]
-            }
-        }, {
-            template: _view.get('_part/attr/select'),
-            params: {
-                attr: 'parent',
-                items: validParents,
-                update: _url('update')
-            }
-        }]
-    }, {
-        template: _view.get('_part/attr/radioList'),
-        params: {
-            attr: 'type',
-            items: 'labels'
-        }
+      template: _view.get('_part/attr/string'),
+      params: {
+        attr: 'label'
+      }
     }]
+  }, {
+    items: [{
+      template: _view.get('_part/attr/static'),
+      params: {
+        attr: 'section',
+        displayValue: model.getRelatedTitle('section'),
+        url: ['section/update', model.rel('section')]
+      }
+    }, {
+      template: _view.get('_part/attr/select'),
+      params: {
+        attr: 'parent',
+        items: validParents,
+        update: _url('update')
+      }
+    }]
+  }, {
+    template: _view.get('_part/attr/radioList'),
+    params: {
+      attr: 'type',
+      items: 'labels'
+    }
+  }]
 }) %>

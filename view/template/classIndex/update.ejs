@@ -6,18 +6,18 @@ block('titleTranslation', 'none');
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'attrs',
-    data: {
-        columns: [{
-            name: 'attr',
-            format: {
-                name: 'relation',
-                url: _url('class-attr/update')
-            }
-        },{
-            name: 'direction'
-        }],
-        link: null,
-        unlink: null
-    }
+  attr: 'attrs',
+  data: {
+    columns: [{
+      name: 'attr',
+      format: {
+        name: 'relation',
+        url: _url('class-attr/update')
+      }
+    },{
+      name: 'direction'
+    }],
+    link: null,
+    unlink: null
+  }
 }) %>

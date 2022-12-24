@@ -1,19 +1,19 @@
 <%
 const setTemplate = _view.get('_part/group/set');
 for (const type of Object.keys(paramModelMap)) {
-    if (paramModelMap[type].hasExtendedAttrs()) {
-        const title = model.constructor.getAttrValueLabel('type', type);
+  if (paramModelMap[type].hasExtendedAttrs()) {
+    const title = model.constructor.getAttrValueLabel('type', type);
 %>
 <%- include(setTemplate, {
-    id: type,
-    title: `${title} parameters`,
-    active: true,
-    actionBinder: {show: {type}},
-    items: [{
-        template: _view.get(`_part/ruleParam/${type}`),
-        params: {
-            model: paramModelMap[type]
-        }
-    }]
+  id: type,
+  title: `${title} parameters`,
+  active: true,
+  actionBinder: {show: {type}},
+  items: [{
+    template: _view.get(`_part/ruleParam/${type}`),
+    params: {
+      model: paramModelMap[type]
+    }
+  }]
 }) %>
 <% }} %>

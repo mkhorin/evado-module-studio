@@ -6,36 +6,36 @@ block('titleTranslation', 'none');
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
-    items: [{
-        id: 'main',
-        label: 'Main',
-        active: true,
-        content: _view.getInternalTemplate('group/main'),
-        loadable: true
-    },{
-        id: 'children',
-        label: 'Child groups',
-        content: _view.getInternalTemplate('group/children'),
-        loadable: true
-    },{
-        id: 'classAttrs',
-        label: 'Attributes',
-        content: _view.getInternalTemplate('group/classAttrs'),
-        loadable: true
-    },{
-        id: 'actionBinders',
-        label: 'Action binders',
-        content: _view.getInternalTemplate('group/actionBinders'),
-        loadable: true
-    },{
-        id: 'viewAttrs',
-        label: 'View attributes',
-        content: _view.getInternalTemplate('group/viewAttrs'),
-        loadable: true
-    },{
-        id: 'viewGroups',
-        label: 'View groups',
-        content: _view.getInternalTemplate('group/viewGroups'),
-        loadable: true
-    }]
+  items: [{
+    id: 'main',
+    label: 'Main',
+    active: true,
+    content: _view.getInternalTemplate('group/main'),
+    loadable: true
+  },{
+    id: 'children',
+    label: 'Child groups',
+    content: _view.getInternalTemplate('group/children'),
+    loadable: true
+  },{
+    id: 'classAttrs',
+    label: 'Attributes',
+    content: _view.getInternalTemplate('group/classAttrs'),
+    loadable: true
+  },{
+    id: 'actionBinders',
+    label: 'Action binders',
+    content: _view.getInternalTemplate('group/actionBinders'),
+    loadable: true
+  },{
+    id: 'viewAttrs',
+    label: 'View attributes',
+    content: _view.getInternalTemplate('group/viewAttrs'),
+    loadable: true
+  },{
+    id: 'viewGroups',
+    label: 'View groups',
+    content: _view.getInternalTemplate('group/viewGroups'),
+    loadable: true
+  }]
 }) %>

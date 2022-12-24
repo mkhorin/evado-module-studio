@@ -5,23 +5,23 @@ const checkboxTemplate = _view.get('_part/attr/checkbox');
 const stringTemplate = _view.get('_part/attr/string');
 %>
 <%- include(stringTemplate, {
-    attr: 'pattern'
+  attr: 'pattern'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'flags'
+  attr: 'flags'
 }) %>
 
 <%- include(checkboxTemplate, {
-    attr: 'mismatch',
-    label: 'Mismatch (valid if pattern does not match)'
+  attr: 'mismatch',
+  label: 'Mismatch (valid if pattern does not match)'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'message'
+  attr: 'message'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'when',
-    extHint: model.ATTR_EXT_HINTS.when
+  attr: 'when',
+  extHint: model.ATTR_EXT_HINTS.when
 }) %>

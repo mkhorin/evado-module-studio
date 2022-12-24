@@ -1,7 +1,7 @@
 <%
 const viewSelect2 = {
-    ajax: {url: _url('view/list-select')},
-    queryData: {pid: model.get('classAttr.refClass')}
+  ajax: {url: _url('view/list-select')},
+  queryData: {pid: model.get('classAttr.refClass')}
 };
 const viewUpdate = _url('view/update');
 const checkboxTemplate = _view.get('_part/attr/checkbox');
@@ -12,75 +12,75 @@ const stringTemplate = _view.get('_part/attr/string');
 %>
 
 <%- include(overriddenTemplate, {
-    attr: 'commands',
-    template: _view.get('_part/attr/checkboxList'),
+  attr: 'commands',
+  template: _view.get('_part/attr/checkboxList'),
+  params: {
+    items: model.rel('classAttr').COMMAND_VALUE_LABELS
+  }
+}) %>
+
+<%- include(columnTemplate, {
+  items: [{
+    template: overriddenTemplate,
     params: {
-        items: model.rel('classAttr').COMMAND_VALUE_LABELS
+      attr: 'listView',
+      template: selectTemplate,
+      params: {
+        displayValue: model.getRelatedTitle('listView'),
+        items: null,
+        select2: viewSelect2,
+        update: viewUpdate
+      }
     }
+  },{
+    template: overriddenTemplate,
+    params: {
+      attr: 'selectListView',
+      template: selectTemplate,
+      params: {
+        displayValue: model.getRelatedTitle('selectListView'),
+        items: null,
+        select2: viewSelect2,
+        update: viewUpdate
+      }
+    }
+  }]
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: overriddenTemplate,
-        params: {
-            attr: 'listView',
-            template: selectTemplate,
-            params: {
-                displayValue: model.getRelatedTitle('listView'),
-                items: null,
-                select2: viewSelect2,
-                update: viewUpdate
-            }
-        }
-    },{
-        template: overriddenTemplate,
-        params: {
-            attr: 'selectListView',
-            template: selectTemplate,
-            params: {
-                displayValue: model.getRelatedTitle('selectListView'),
-                items: null,
-                select2: viewSelect2,
-                update: viewUpdate
-            }
-        }
-    }]
+  items: [{
+    template: overriddenTemplate,
+    params: {
+      attr: 'eagerLoading',
+      template: checkboxTemplate
+    }
+  },{
+    template: overriddenTemplate,
+    params: {
+      attr: 'createOnRead',
+      template: checkboxTemplate
+    }
+  }]
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: overriddenTemplate,
-        params: {
-            attr: 'eagerLoading',
-            template: checkboxTemplate
-        }
-    },{
-        template: overriddenTemplate,
-        params: {
-            attr: 'createOnRead',
-            template: checkboxTemplate
-        }
-    }]
-}) %>
-
-<%- include(columnTemplate, {
-    items: [{
-        template: overriddenTemplate,
-        params: {
-            attr: 'eagerView',
-            template: selectTemplate,
-            params: {
-                displayValue: model.getRelatedTitle('eagerView'),
-                items: null,
-                select2: viewSelect2,
-                update: viewUpdate
-            }
-        }
-    },{
-        template: overriddenTemplate,
-        params: {
-            attr: 'eagerDepth',
-            template: stringTemplate
-        }
-    }]
+  items: [{
+    template: overriddenTemplate,
+    params: {
+      attr: 'eagerView',
+      template: selectTemplate,
+      params: {
+        displayValue: model.getRelatedTitle('eagerView'),
+        items: null,
+        select2: viewSelect2,
+        update: viewUpdate
+      }
+    }
+  },{
+    template: overriddenTemplate,
+    params: {
+      attr: 'eagerDepth',
+      template: stringTemplate
+    }
+  }]
 }) %>

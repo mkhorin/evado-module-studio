@@ -5,22 +5,22 @@ const jsonTemplate = _view.get('_part/attr/json');
 const stringTemplate = _view.get('_part/attr/string');
 %>
 <%- include(checkboxTemplate, {
-    attr: 'integerOnly'
+  attr: 'integerOnly'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'min'
+  attr: 'min'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'max'
+  attr: 'max'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'message'
+  attr: 'message'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'when',
-    extHint: model.ATTR_EXT_HINTS.when
+  attr: 'when',
+  extHint: model.ATTR_EXT_HINTS.when
 }) %>

@@ -4,22 +4,22 @@ block('title', 'Workflows');
 %>
 
 <%- include(_view.get('_part/list/grid'), {
-    data: {
-        columns: [{
-            name: 'name',
-            searchable: true,
-            sortable: true
-        },{
-            name: 'label',
-            searchable: true,
-            sortable: true
-        }],
-        order: {name: 1},
-        filter: {}
-    },
-    tools: [{
-        template: _view.get('_part/tool/import'),
-        url: 'import/workflow',
-        hint: 'Import workflow'
-    }]
+  data: {
+    columns: [{
+      name: 'name',
+      searchable: true,
+      sortable: true
+    },{
+      name: 'label',
+      searchable: true,
+      sortable: true
+    }],
+    order: {name: 1},
+    filter: {}
+  },
+  tools: [{
+    template: _view.get('_part/tool/import'),
+    url: 'import/workflow',
+    hint: 'Import workflow'
+  }]
 }) %>

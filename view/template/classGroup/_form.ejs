@@ -8,36 +8,36 @@ const stringTemplate = _view.get('_part/attr/string');
 %>
 
 <%- include(stringTemplate, {
-    attr: 'name'
+  attr: 'name'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'label'
+  attr: 'label'
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: selectTemplate,
-        params: {
-            attr: 'type',
-            items: 'labels'
-        }
-    }, {
-        template: stringTemplate,
-        params: {
-            attr: 'orderNumber'
-        }
-    }]
+  items: [{
+    template: selectTemplate,
+    params: {
+      attr: 'type',
+      items: 'labels'
+    }
+  }, {
+    template: stringTemplate,
+    params: {
+      attr: 'orderNumber'
+    }
+  }]
 }) %>
 
 <%- include(selectTemplate, {
-    attr: 'parent',
-    items: validParents,
-    update: _url('update')
+  attr: 'parent',
+  items: validParents,
+  update: _url('update')
 }) %>
 
 <%- include(_view.get('_part/attr/static'), {
-    attr: 'class',
-    displayValue: model.getRelatedTitle('class'),
-    url: ['class/update', model.rel('class')]
+  attr: 'class',
+  displayValue: model.getRelatedTitle('class'),
+  url: ['class/update', model.rel('class')]
 }) %>

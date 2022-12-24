@@ -1,48 +1,48 @@
 <%
 const tools = [];
 const columns = [{
-    name: 'name',
-    searchable: true,
-    sortable: true
+  name: 'name',
+  searchable: true,
+  sortable: true
 }, {
-    name: 'label',
-    searchable: true,
-    sortable: true
+  name: 'label',
+  searchable: true,
+  sortable: true
 }, {
-    name: 'description'
+  name: 'description'
 }];
 if (model.hasParent()) {
-    columns.push({
-        name: 'inherited',
-        translateData: ''
-    });
-    tools.push({
-        template: _view.get('_part/tool/selectAndClone'),
-        select: ['view/select-from-parent', model],
-        clone: ['view/clone-from-parent', model],
-        icon: 'fa fa-copy',
-        title: 'Clone from parent classes'
-    }, {
-        template: _view.get('_part/tool/selectAndClone'),
-        select: ['view/select-from-parent', model],
-        clone: ['view/link-to-parent', model],
-        icon: 'fa fa-link',
-        title: 'Link view from parent class'
-    });
+  columns.push({
+    name: 'inherited',
+    translateData: ''
+  });
+  tools.push({
+    template: _view.get('_part/tool/selectAndClone'),
+    select: ['view/select-from-parent', model],
+    clone: ['view/clone-from-parent', model],
+    icon: 'fa fa-copy',
+    title: 'Clone from parent classes'
+  }, {
+    template: _view.get('_part/tool/selectAndClone'),
+    select: ['view/select-from-parent', model],
+    clone: ['view/link-to-parent', model],
+    icon: 'fa fa-link',
+    title: 'Link view from parent class'
+  });
 }
 %>
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'views',
-    css: 'no-label',
-    data: {
-        columns,
-        order: {name: 1},
-        link: null,
-        unlink: null,
-        create: ['view/create-by-class', model],
-        clone: true,
-        showTop: false
-    },
-    tools
+  attr: 'views',
+  css: 'no-label',
+  data: {
+    columns,
+    order: {name: 1},
+    link: null,
+    unlink: null,
+    create: ['view/create-by-class', model],
+    clone: true,
+    showTop: false
+  },
+  tools
 }) %>
 

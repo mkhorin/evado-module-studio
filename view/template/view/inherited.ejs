@@ -8,13 +8,13 @@ const staticTemplate = _view.get('_part/attr/static');
 %>
 
 <%- include(staticTemplate, {
-    attr: 'original',
-    displayValue: model.getRelatedTitle('original'),
-    url: ['view/update', model.rel('original')]
+  attr: 'original',
+  displayValue: model.getRelatedTitle('original'),
+  url: ['view/update', model.rel('original')]
 }) %>
 
 <%- include(staticTemplate, {
-    attr: 'class',
-    displayValue: model.getRelatedTitle('class'),
-    url: ['class/update', model.rel('class')]
+  attr: 'class',
+  displayValue: model.getRelatedTitle('class'),
+  url: ['class/update', model.rel('class')]
 }) %>

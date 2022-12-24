@@ -4,15 +4,15 @@ const jsonTemplate = _view.get('_part/attr/json');
 const stringTemplate = _view.get('_part/attr/string');
 %>
 <%- include(jsonTemplate, {
-    attr: 'condition',
-    extHint: 'Expression or spawn configuration for calculating a true value'
+  attr: 'condition',
+  extHint: 'Expression or spawn configuration for calculating a true value'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'message'
+  attr: 'message'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'when',
-    extHint: model.ATTR_EXT_HINTS.when
+  attr: 'when',
+  extHint: model.ATTR_EXT_HINTS.when
 }) %>

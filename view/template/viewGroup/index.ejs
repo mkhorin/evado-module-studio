@@ -2,37 +2,36 @@
 layout(_view.get('_layout/list'));
 block('title', 'View groups');
 %>
-
 <%- include(_view.get('_part/list/grid'), {
-    data: {
-        columns: [{
-            name: 'classGroup',
-            format: {
-                name: 'relation',
-                url: _url('class-group/update')
-            },
-            sortable: true
-        },{
-            name: 'label',
-            sortable: true,
-            searchable: true
-        },{
-            name: 'description'
-        },{
-            name: 'parent',
-            format: {
-                name: 'relation',
-                url: _url('class-group/update')
-            }
-        },{
-            name: 'view',
-            format: {
-                name: 'relation',
-                url: _url('view/update')
-            },
-            sortable: true
-        }],
-        create: null,
-        filter: {}
-    }
+  data: {
+    columns: [{
+      name: 'classGroup',
+      format: {
+        name: 'relation',
+        url: _url('class-group/update')
+      },
+      sortable: true
+    },{
+      name: 'label',
+      sortable: true,
+      searchable: true
+    },{
+      name: 'description'
+    },{
+      name: 'parent',
+      format: {
+        name: 'relation',
+        url: _url('class-group/update')
+      }
+    },{
+      name: 'view',
+      format: {
+        name: 'relation',
+        url: _url('view/update')
+      },
+      sortable: true
+    }],
+    create: null,
+    filter: {}
+  }
 }) %>

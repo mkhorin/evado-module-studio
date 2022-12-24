@@ -1,7 +1,7 @@
 <%
 block('commands', {
-    template: _view.get('_part/tool/modelExport'),
-    url: _url('export/workflow', model)
+  template: _view.get('_part/tool/modelExport'),
+  url: _url('export/workflow', model)
 });
 block('title', model.getTitle());
 block('titleTranslation', 'none');

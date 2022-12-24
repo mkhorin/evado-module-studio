@@ -5,17 +5,17 @@
 <%- include(_view.getInternalTemplate('group/mainBase')) %>
 
 <%- include(_view.get('_part/attr/select'), {
-    attr: 'group',
-    displayValue: model.getRelatedTitle('group'),
-    items: null,
-    select2: {ajax: {url: _url('class-group/list-set-select', model.rel('class'))}},
-    update: _url('class-group/update')
+  attr: 'group',
+  displayValue: model.getRelatedTitle('group'),
+  items: null,
+  select2: {ajax: {url: _url('class-group/list-set-select', model.rel('class'))}},
+  update: _url('class-group/update')
 }) %>
 
 <%- include(_view.get('_part/attr/number'), {
-    attr: 'orderNumber'
+  attr: 'orderNumber'
 }) %>
 
 <div class="form-group" data-action-binder='{"show":{"type":["backref","ref"]}}'>
-    <%- include(_view.getInternalTemplate('group/relationBase')) %>
+  <%- include(_view.getInternalTemplate('group/relationBase')) %>
 </div>

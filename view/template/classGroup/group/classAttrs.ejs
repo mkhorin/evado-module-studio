@@ -1,31 +1,29 @@
-
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'classAttrs',
-    css: 'no-label',
-    data: {
-        columns: [{
-            name: 'name',
-            searchable: true
-        },{
-            name: 'label',
-            searchable: true
-        },{
-            name: 'type',
-            format: 'label'
-        },{
-            name: 'orderNumber',
-            sortable: true
-        }],
-        order: {orderNumber: 1},
-        link: ['class-attr/select', {
-            list: encodeURIComponent(_url('class-attr/list-by-class', {
-                pid: model.get('class')
-            }))
-        }],
-        create: ['class-attr/create-by-group', model],
-        delete: null,
-        showTop: true,
-        modalSort: true
-    }
+  attr: 'classAttrs',
+  css: 'no-label',
+  data: {
+    columns: [{
+      name: 'name',
+      searchable: true
+    },{
+      name: 'label',
+      searchable: true
+    },{
+      name: 'type',
+      format: 'label'
+    },{
+      name: 'orderNumber',
+      sortable: true
+    }],
+    order: {orderNumber: 1},
+    link: ['class-attr/select', {
+      list: encodeURIComponent(_url('class-attr/list-by-class', {
+        pid: model.get('class')
+      }))
+    }],
+    create: ['class-attr/create-by-group', model],
+    delete: null,
+    showTop: true,
+    modalSort: true
+  }
 }) %>
-

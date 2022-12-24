@@ -1,9 +1,9 @@
 <%
 block('commands').append({
-    template: _view.get('_part/tool/modelExport'),
-    url: _url('export/report', model)
+  template: _view.get('_part/tool/modelExport'),
+  url: _url('export/report', model)
 }, {
-    template: _view.get('_part/tool/updateReportIndexes')
+  template: _view.get('_part/tool/updateReportIndexes')
 });
 block('title', model.getTitle());
 block('titleTranslation', 'none');
@@ -11,16 +11,16 @@ block('titleTranslation', 'none');
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
-    items: [{
-        id: 'attrs',
-        label: 'Attributes',
-        active: true,
-        content: _view.getInternalTemplate('group/attrs'),
-        loadable: true
-    },{
-        id: 'groups',
-        label: 'Groups',
-        content: _view.getInternalTemplate('group/groups'),
-        loadable: true
-    }]
+  items: [{
+    id: 'attrs',
+    label: 'Attributes',
+    active: true,
+    content: _view.getInternalTemplate('group/attrs'),
+    loadable: true
+  },{
+    id: 'groups',
+    label: 'Groups',
+    content: _view.getInternalTemplate('group/groups'),
+    loadable: true
+  }]
 }) %>

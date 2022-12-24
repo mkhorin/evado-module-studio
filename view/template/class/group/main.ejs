@@ -6,80 +6,80 @@ const stringTemplate = _view.get('_part/attr/string');
 %>
 
 <%- include(_view.get('_part/attr/text'), {
-    attr: 'description'
+  attr: 'description'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'header',
-    extHint: 'String view template of object'
+  attr: 'header',
+  extHint: 'String view template of object'
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: jsonTemplate,
-        params: {
-            attr: 'order',
-            extHint: 'Object list order (e.g. {attrName: 1})'
-        }
-    },{
-        template: jsonTemplate,
-        params: {
-            attr: 'grouping',
-            extHint: 'Object list grouping (e.g. {attrName: 1})'
-        }
-    }]
+  items: [{
+    template: jsonTemplate,
+    params: {
+      attr: 'order',
+      extHint: 'Object list order (e.g. {attrName: 1})'
+    }
+  },{
+    template: jsonTemplate,
+    params: {
+      attr: 'grouping',
+      extHint: 'Object list grouping (e.g. {attrName: 1})'
+    }
+  }]
 }) %>
 
 <%- include(_view.get('_part/attr/checkbox'), {
-    attr: 'abstract',
-    extHint: 'Abstract class cannot be instantiated'
+  attr: 'abstract',
+  extHint: 'Abstract class cannot be instantiated'
 }) %>
 
 <%- include(selectTemplate, {
-    attr: 'version',
-    extHint: 'New version replaces the current class when creating objects and uses shared storage',
-    items: null,
-    displayValue: model.getRelatedTitle('version'),
-    select2: {ajax: {url: _url('class/list-select')}},
-    update: _url('class/update')
+  attr: 'version',
+  extHint: 'New version replaces the current class when creating objects and uses shared storage',
+  items: null,
+  displayValue: model.getRelatedTitle('version'),
+  select2: {ajax: {url: _url('class/list-select')}},
+  update: _url('class/update')
 }) %>
 
 <%- include(selectTemplate, {
-    attr: 'forbiddenView',
-    extHint: 'Used when class instance updating is forbidden by security',
-    items: null,
-    displayValue: model.getRelatedTitle('forbiddenView'),
-    select2: {ajax: {url: _url('view/list-select')}, queryData: {pid: model.getId()}},
-    update: _url('view/update')
+  attr: 'forbiddenView',
+  extHint: 'Used when class instance updating is forbidden by security',
+  items: null,
+  displayValue: model.getRelatedTitle('forbiddenView'),
+  select2: {ajax: {url: _url('view/list-select')}, queryData: {pid: model.getId()}},
+  update: _url('view/update')
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'modelConfig'
+  attr: 'modelConfig'
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: stringTemplate,
-        params: {
-            attr: 'templateRoot',
-            extHint: 'Root folder of view templates (relative to the base location)'
-        }
-    },{
-        template: model.rel('parent') ? null : selectTemplate,
-        params: {
-            attr: 'key',
-            displayValue: model.getRelatedTitle('key'),
-            extHint: 'If empty, auto-generated key will be used',
-            items: null,
-            select2: {
-                ajax: {url: _url('class-attr/list-select')},
-                queryData: {pid: model.getId()}
-            },
-            update: _url('class-attr/update')
-        }
-    }]
+  items: [{
+    template: stringTemplate,
+    params: {
+      attr: 'templateRoot',
+      extHint: 'Root folder of view templates (relative to the base location)'
+    }
+  },{
+    template: model.rel('parent') ? null : selectTemplate,
+    params: {
+      attr: 'key',
+      displayValue: model.getRelatedTitle('key'),
+      extHint: 'If empty, auto-generated key will be used',
+      items: null,
+      select2: {
+        ajax: {url: _url('class-attr/list-select')},
+        queryData: {pid: model.getId()}
+      },
+      update: _url('class-attr/update')
+    }
+  }]
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'options'
+  attr: 'options'
 }) %>

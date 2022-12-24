@@ -4,36 +4,36 @@ block('title', 'Class attributes');
 %>
 
 <%- include(_view.get('_part/list/grid'), {
-    data: {
-        columns: [{
-            name: 'name',
-            sortable: true,
-            searchable: true
-        },{
-            name: 'label',
-            sortable: true,
-            searchable: true
-        },{
-            name: 'type',
-            format: 'label'
-        },{
-            name: 'viewType',
-            format: 'label'
-        },{
-            name: 'class',
-            format: {
-                name: 'relation',
-                url: _url('class/update')
-            }
-        },{
-            name: 'header',
-            type: 'json'
-        },{
-            name: 'orderNumber',
-            type: 'integer',
-            sortable: true
-        }],
-        create: null,
-        filter: {}
-    }
+  data: {
+    columns: [{
+      name: 'name',
+      sortable: true,
+      searchable: true
+    },{
+      name: 'label',
+      sortable: true,
+      searchable: true
+    },{
+      name: 'type',
+      format: 'label'
+    },{
+      name: 'viewType',
+      format: 'label'
+    },{
+      name: 'class',
+      format: {
+        name: 'relation',
+        url: _url('class/update')
+      }
+    },{
+      name: 'header',
+      type: 'json'
+    },{
+      name: 'orderNumber',
+      type: 'integer',
+      sortable: true
+    }],
+    create: null,
+    filter: {}
+  }
 }) %>

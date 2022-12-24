@@ -1,23 +1,21 @@
-
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'attrs',
-    css: 'no-label',
-    data: {
-        columns: [{
-            name: 'classAttr'
-        }, {
-            name: 'label'
-        }, {
-            name: 'viewType'
-        }, {
-            name: 'orderNumber'
-        }],
-        order: {orderNumber: 1},
-        list: 'list-attrs',
-        link: null,
-        unlink: null,
-        create: null,
-        modalSort: true
-    }
+  attr: 'attrs',
+  css: 'no-label',
+  data: {
+    columns: [{
+      name: 'classAttr'
+    }, {
+      name: 'label'
+    }, {
+      name: 'viewType'
+    }, {
+      name: 'orderNumber'
+    }],
+    order: {orderNumber: 1},
+    list: 'list-attrs',
+    link: null,
+    unlink: null,
+    create: null,
+    modalSort: true
+  }
 }) %>
-

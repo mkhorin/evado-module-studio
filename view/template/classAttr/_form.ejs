@@ -7,30 +7,30 @@ const stringTemplate = _view.get('_part/attr/string');
 %>
 
 <%- include(stringTemplate, {
-    attr: 'name'
+  attr: 'name'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'label'
+  attr: 'label'
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: _view.get('_part/attr/select'),
-        params: {
-            attr: 'type',
-            items: 'labels'
-        }
-    }, {
-        template: _view.get('_part/attr/enum'),
-        params: {
-            attr: 'viewType',
-            sets: model.TYPE_ENUMS
-        }
-    }]
+  items: [{
+    template: _view.get('_part/attr/select'),
+    params: {
+      attr: 'type',
+      items: 'labels'
+    }
+  }, {
+    template: _view.get('_part/attr/enum'),
+    params: {
+      attr: 'viewType',
+      sets: model.TYPE_ENUMS
+    }
+  }]
 }) %>
 
 <%- include(_view.get('_part/attr/json'), {
-    attr: 'expression',
-    actionBinder: {show: {type: 'calc'}}
+  attr: 'expression',
+  actionBinder: {show: {type: 'calc'}}
 }) %>

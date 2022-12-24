@@ -3,36 +3,36 @@ block('title', model.getTitle());
 block('titleTranslation', 'none');
 
 const items = [{
-    id: 'main',
-    label: 'Main',
-    active: true,
-    content: _view.getInternalTemplate('group/main')
+  id: 'main',
+  label: 'Main',
+  active: true,
+  content: _view.getInternalTemplate('group/main')
 }];
 
 const classAttr = model.rel('classAttr');
 if (classAttr.isRelation() || classAttr.isUser()) {
-    items.push({
-        id: 'relation',
-        label: 'Relation',
-        content: _view.getInternalTemplate('group/relation'),
-        loadable: true
-    });
+  items.push({
+    id: 'relation',
+    label: 'Relation',
+    content: _view.getInternalTemplate('group/relation'),
+    loadable: true
+  });
 }
 items.push({
-    id: 'validators',
-    label: 'Validators',
-    content: _view.getInternalTemplate('group/validators'),
-    loadable: true
+  id: 'validators',
+  label: 'Validators',
+  content: _view.getInternalTemplate('group/validators'),
+  loadable: true
 },{
-    id: 'behaviors',
-    label: 'Behaviors',
-    content: _view.getInternalTemplate('group/behaviors'),
-    loadable: true
+  id: 'behaviors',
+  label: 'Behaviors',
+  content: _view.getInternalTemplate('group/behaviors'),
+  loadable: true
 },{
-    id: 'actionBinders',
-    label: 'Action binders',
-    content: _view.getInternalTemplate('group/actionBinders'),
-    loadable: true
+  id: 'actionBinders',
+  label: 'Action binders',
+  content: _view.getInternalTemplate('group/actionBinders'),
+  loadable: true
 });
 %>
 <%- include(_view.getInternalTemplate('_form')) %>

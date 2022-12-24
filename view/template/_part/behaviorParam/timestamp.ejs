@@ -2,27 +2,27 @@
 <%
 const selectTemplate = _view.get('_part/attr/select');
 const select2Params = {
-    ajax: {
-        url: _url('class-attr/list-select')
-    },
-    queryData: {
-        pid: owner.getId()
-    }
+  ajax: {
+    url: _url('class-attr/list-select')
+  },
+  queryData: {
+    pid: owner.getId()
+  }
 };
 const updateUrl = _url('class-attr/update');
 %>
 <%- include(selectTemplate, {
-    attr: 'createdAttr',
-    displayValue: model.getRelatedTitle('createdAttr'),
-    items: null,
-    select2: select2Params,
-    update: updateUrl
+  attr: 'createdAttr',
+  displayValue: model.getRelatedTitle('createdAttr'),
+  items: null,
+  select2: select2Params,
+  update: updateUrl
 }) %>
 
 <%- include(selectTemplate, {
-    attr: 'updatedAttr',
-    displayValue: model.getRelatedTitle('updatedAttr'),
-    items: null,
-    select2: select2Params,
-    update: updateUrl
+  attr: 'updatedAttr',
+  displayValue: model.getRelatedTitle('updatedAttr'),
+  items: null,
+  select2: select2Params,
+  update: updateUrl
 }) %>

@@ -1,7 +1,7 @@
 <%
 block('commands', {
-    template: _view.get('_part/tool/modelExport'),
-    url: _url('export/class', model)
+  template: _view.get('_part/tool/modelExport'),
+  url: _url('export/class', model)
 });
 block('title', model.getTitle());
 block('titleTranslation', 'none');
@@ -10,61 +10,61 @@ block('titleTranslation', 'none');
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
-    items: [{
-        id: 'main',
-        label: 'Main',
-        active: true,
-        content: _view.getInternalTemplate('group/main'),
-        loadable: true
-    },{
-        id: 'attrs',
-        label: 'Attributes',
-        content: _view.getInternalTemplate('group/attrs'),
-        loadable: true
-    },{
-        id: 'views',
-        label: 'Views',
-        content: _view.getInternalTemplate('group/views'),
-        loadable: true
-    },{
-        id: 'groups',
-        label: 'Groups',
-        content: _view.getInternalTemplate('group/groups'),
-        loadable: true
-    }, {
-        id: 'validators',
-        label: 'Validators',
-        content: _view.getInternalTemplate('group/validators'),
-        loadable: true
-    },{
-        id: 'behaviors',
-        label: 'Behaviors',
-        content: _view.getInternalTemplate('group/behaviors'),
-        loadable: true
-    },{
-        id: 'states',
-        label: 'States',
-        content: _view.getInternalTemplate('group/states'),
-        loadable: true
-    },{
-        id: 'transitions',
-        label: 'Transitions',
-        content: _view.getInternalTemplate('group/transitions'),
-        loadable: true
-    },{
-        id: 'indexes',
-        label: 'Indexes',
-        content: _view.getInternalTemplate('group/indexes'),
-        loadable: true
-    },{
-        id: 'treeView',
-        label: 'Tree view',
-        content: _view.getInternalTemplate('group/treeView'),
-        loadable: true
-    },{
-        id: 'hierarchy',
-        label: 'Hierarchy',
-        content: _view.getInternalTemplate('group/hierarchy'),
-        loadable: true
-    }]
+  items: [{
+    id: 'main',
+    label: 'Main',
+    active: true,
+    content: _view.getInternalTemplate('group/main'),
+    loadable: true
+  },{
+    id: 'attrs',
+    label: 'Attributes',
+    content: _view.getInternalTemplate('group/attrs'),
+    loadable: true
+  },{
+    id: 'views',
+    label: 'Views',
+    content: _view.getInternalTemplate('group/views'),
+    loadable: true
+  },{
+    id: 'groups',
+    label: 'Groups',
+    content: _view.getInternalTemplate('group/groups'),
+    loadable: true
+  }, {
+    id: 'validators',
+    label: 'Validators',
+    content: _view.getInternalTemplate('group/validators'),
+    loadable: true
+  },{
+    id: 'behaviors',
+    label: 'Behaviors',
+    content: _view.getInternalTemplate('group/behaviors'),
+    loadable: true
+  },{
+    id: 'states',
+    label: 'States',
+    content: _view.getInternalTemplate('group/states'),
+    loadable: true
+  },{
+    id: 'transitions',
+    label: 'Transitions',
+    content: _view.getInternalTemplate('group/transitions'),
+    loadable: true
+  },{
+    id: 'indexes',
+    label: 'Indexes',
+    content: _view.getInternalTemplate('group/indexes'),
+    loadable: true
+  },{
+    id: 'treeView',
+    label: 'Tree view',
+    content: _view.getInternalTemplate('group/treeView'),
+    loadable: true
+  },{
+    id: 'hierarchy',
+    label: 'Hierarchy',
+    content: _view.getInternalTemplate('group/hierarchy'),
+    loadable: true
+  }]
 }) %>

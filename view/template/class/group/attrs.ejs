@@ -1,50 +1,50 @@
 <%
 const columns = [{
-    name: 'name',
-    searchable: true,
-    sortable: true
+  name: 'name',
+  searchable: true,
+  sortable: true
 }, {
-    name: 'label',
-    searchable: true
+  name: 'label',
+  searchable: true
 }, {
-    name: 'type',
-    format: 'label'
+  name: 'type',
+  format: 'label'
 }, {
-    name: 'group',
-    format: {
-        name: 'relation',
-        url: _url('class-group/update')
-    }
+  name: 'group',
+  format: {
+    name: 'relation',
+    url: _url('class-group/update')
+  }
 }, {
-    name: 'orderNumber',
-    sortable: true,
-    escape: false
+  name: 'orderNumber',
+  sortable: true,
+  escape: false
 }];
 if (model.hasParent()) {
-    columns.push({
-        name: 'inherited',
-        translateData: ''
-    });
+  columns.push({
+    name: 'inherited',
+    translateData: ''
+  });
 }
 %>
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'attrs',
-    css: 'no-label',
-    data: {
-        columns,
-        order: {orderNumber: 1},
-        link: null,
-        unlink: null,
-        clone: true,
-        modalSort: true,
-        showTop: true,
-        filter: {}
-    },
-    tools: [{
-        template: _view.get('_part/tool/selectAndClone'),
-        select: ['class-attr/select-with-class', model],
-        clone: ['class-attr/clone-from-class', model],
-        icon: 'fa fa-copy',
-        title: 'Clone from other classes'
-    }]
+  attr: 'attrs',
+  css: 'no-label',
+  data: {
+    columns,
+    order: {orderNumber: 1},
+    link: null,
+    unlink: null,
+    clone: true,
+    modalSort: true,
+    showTop: true,
+    filter: {}
+  },
+  tools: [{
+    template: _view.get('_part/tool/selectAndClone'),
+    select: ['class-attr/select-with-class', model],
+    clone: ['class-attr/clone-from-class', model],
+    icon: 'fa fa-copy',
+    title: 'Clone from other classes'
+  }]
 }) %>

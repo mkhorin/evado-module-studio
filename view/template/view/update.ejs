@@ -1,45 +1,44 @@
 <%
 block('commands', {
-    template: _view.get('_part/tool/modelExport'),
-    url: _url('export/view', model)
+  template: _view.get('_part/tool/modelExport'),
+  url: _url('export/view', model)
 });
 block('title', model.getTitle());
 block('titleTranslation', 'none');
 %>
-
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
-    items: [{
-        id: 'main',
-        label: 'Main',
-        active: true,
-        content: _view.getInternalTemplate('group/main'),
-        loadable: true
-    },{
-        id: 'attrs',
-        label: 'Attributes',
-        content: _view.getInternalTemplate('group/attrs'),
-        loadable: true
-    },{
-        id: 'groups',
-        label: 'Groups',
-        content: _view.getInternalTemplate('group/groups'),
-        loadable: true
-    },{
-        id: 'validators',
-        label: 'Validators',
-        content: _view.getInternalTemplate('group/validators'),
-        loadable: true
-    },{
-        id: 'behaviors',
-        label: 'Behaviors',
-        content: _view.getInternalTemplate('group/behaviors'),
-        loadable: true
-    },{
-        id: 'treeView',
-        label: 'Tree view',
-        content: _view.getInternalTemplate('group/treeView'),
-        loadable: true
-    }]
+  items: [{
+    id: 'main',
+    label: 'Main',
+    active: true,
+    content: _view.getInternalTemplate('group/main'),
+    loadable: true
+  },{
+    id: 'attrs',
+    label: 'Attributes',
+    content: _view.getInternalTemplate('group/attrs'),
+    loadable: true
+  },{
+    id: 'groups',
+    label: 'Groups',
+    content: _view.getInternalTemplate('group/groups'),
+    loadable: true
+  },{
+    id: 'validators',
+    label: 'Validators',
+    content: _view.getInternalTemplate('group/validators'),
+    loadable: true
+  },{
+    id: 'behaviors',
+    label: 'Behaviors',
+    content: _view.getInternalTemplate('group/behaviors'),
+    loadable: true
+  },{
+    id: 'treeView',
+    label: 'Tree view',
+    content: _view.getInternalTemplate('group/treeView'),
+    loadable: true
+  }]
 }) %>

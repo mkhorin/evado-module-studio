@@ -5,27 +5,26 @@ block('tab', 'Action binder');
 const jsonTemplate = _view.get('_part/attr/json');
 const textTemplate = _view.get('_part/attr/text');
 %>
-
 <%- include(jsonTemplate, {
-    attr: 'show',
-    extHint: 'Attribute visibility condition'
+  attr: 'show',
+  extHint: 'Attribute visibility condition'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'require',
-    extHint: 'Attribute requirement condition'
+  attr: 'require',
+  extHint: 'Attribute requirement condition'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'enable',
-    extHint: 'Attribute availability condition'
+  attr: 'enable',
+  extHint: 'Attribute availability condition'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'value',
-    extHint: 'Condition of setting a specific value to attribute'
+  attr: 'value',
+  extHint: 'Condition of setting a specific value to attribute'
 }) %>
 
 <%- include(textTemplate, {
-    attr: 'description'
+  attr: 'description'
 }) %>

@@ -1,31 +1,28 @@
-
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'treeViewLevels',
-    css: 'no-label',
-    data: {
-        columns: [{
-            name: 'refAttr',
-            format: {
-                name: 'relation',
-                url: _url('class-attr/update')
-            }
-        },{
-            name: 'refClass',
-            escape: false
-        },{
-            name: 'recursive',
-            format: 'boolean'
-        }],
-        order: {[model.PK]: 1},
-        create: 'tree-view-level/create-by-view',
-        link: null,
-        unlink: null
-    }
+  attr: 'treeViewLevels',
+  css: 'no-label',
+  data: {
+    columns: [{
+      name: 'refAttr',
+      format: {
+        name: 'relation',
+        url: _url('class-attr/update')
+      }
+    },{
+      name: 'refClass',
+      escape: false
+    },{
+      name: 'recursive',
+      format: 'boolean'
+    }],
+    order: {[model.PK]: 1},
+    create: 'tree-view-level/create-by-view',
+    link: null,
+    unlink: null
+  }
 }) %>
 
 <%- include(_view.get('_part/attr/checkbox'), {
-    attr: 'disableTreeView',
-    css: 'no-label'
+  attr: 'disableTreeView',
+  css: 'no-label'
 }) %>
-
-

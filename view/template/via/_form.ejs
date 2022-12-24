@@ -6,29 +6,29 @@ const selectTemplate = _view.get('_part/attr/select');
 %>
 
 <%- include(selectTemplate, {
-    attr: 'refClass',
-    items: null,
-    displayValue: model.getRelatedTitle('refClass'),
-    select2: {ajax: {url: _url('class/list-select')}},
-    update: _url('class/update')
+  attr: 'refClass',
+  items: null,
+  displayValue: model.getRelatedTitle('refClass'),
+  select2: {ajax: {url: _url('class/list-select')}},
+  update: _url('class/update')
 }) %>
 
 <%- include(selectTemplate, {
-    attr: 'refAttr',
-    items: null,
-    displayValue: model.getRelatedTitle('refAttr'),
-    select2: {ajax: {url: _url('class-attr/list-select')}},
-    depends: [{attr: 'refClass', param: 'pid'}],
-    actionBinder: {enable: ['notEmpty', 'refClass']},
-    update: _url('class-attr/update')
+  attr: 'refAttr',
+  items: null,
+  displayValue: model.getRelatedTitle('refAttr'),
+  select2: {ajax: {url: _url('class-attr/list-select')}},
+  depends: [{attr: 'refClass', param: 'pid'}],
+  actionBinder: {enable: ['notEmpty', 'refClass']},
+  update: _url('class-attr/update')
 }) %>
 
 <%- include(selectTemplate, {
-    attr: 'linkAttr',
-    items: null,
-    displayValue: model.getRelatedTitle('linkAttr'),
-    select2: {ajax: {url: _url('class-attr/list-select')}},
-    depends: [{attr: 'refClass', param: 'pid'}],
-    actionBinder: {enable: ['notEmpty', 'refClass']},
-    update: _url('class-attr/update')
+  attr: 'linkAttr',
+  items: null,
+  displayValue: model.getRelatedTitle('linkAttr'),
+  select2: {ajax: {url: _url('class-attr/list-select')}},
+  depends: [{attr: 'refClass', param: 'pid'}],
+  actionBinder: {enable: ['notEmpty', 'refClass']},
+  update: _url('class-attr/update')
 }) %>

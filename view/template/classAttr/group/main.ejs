@@ -7,55 +7,55 @@ const stringTemplate = _view.get('_part/attr/string');
 <%- include(_view.getInternalTemplate('group/mainBase')) %>
 
 <%- include(jsonTemplate, {
-    attr: 'defaultValue'
+  attr: 'defaultValue'
 }) %>
 
 <%- include(_view.get('_part/attr/select'), {
-    attr: 'group',
-    displayValue: model.getRelatedTitle('group'),
-    items: null,
-    select2: {ajax: {url: _url('class-group/list-set-select', {id: model.get('class')})}},
-    update: _url('class-group/update')
+  attr: 'group',
+  displayValue: model.getRelatedTitle('group'),
+  items: null,
+  select2: {ajax: {url: _url('class-group/list-set-select', {id: model.get('class')})}},
+  update: _url('class-group/update')
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'header',
-    extHint: 'String view template'
+  attr: 'header',
+  extHint: 'String view template'
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: stringTemplate,
-        params: {
-            attr: 'orderNumber'
-        }
-    },{
-        template: _view.get('_part/attr/radioList'),
-        params: {
-            attr: 'indexing',
-            items: [{
-                value: '',
-                text: 'None'
-            }, {
-                value: '1',
-                text: 'Ascending'
-            }, {
-                value: '-1',
-                text: 'Descending'
-            }]
-        }
-    }]
+  items: [{
+    template: stringTemplate,
+    params: {
+      attr: 'orderNumber'
+    }
+  },{
+    template: _view.get('_part/attr/radioList'),
+    params: {
+      attr: 'indexing',
+      items: [{
+        value: '',
+        text: 'None'
+      }, {
+        value: '1',
+        text: 'Ascending'
+      }, {
+        value: '-1',
+        text: 'Descending'
+      }]
+    }
+  }]
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'hint'
+  attr: 'hint'
 }) %>
 
 <%- include(_view.get('_part/attr/text'), {
-    attr: 'extHint',
-    extHint: 'Hint is hidden in an icon'
+  attr: 'extHint',
+  extHint: 'Hint is hidden in an icon'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'options'
+  attr: 'options'
 }) %>

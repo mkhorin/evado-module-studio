@@ -1,47 +1,46 @@
-
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'groups',
-    css: 'no-label',
-    data: {
-        columns: [{
-            name: 'classGroup',
-            format: {
-                name: 'relation',
-                url: _url('class-group/update')
-            },
-            searchable: true,
-            type: 'title',
-            relation: true
-        }, {
-            name: 'label',
-            escape: false,
-            searchable: true
-        }, {
-            name: 'parent',
-            escape: false
-        }, {
-            name: 'type',
-            escape: false,
-            translateData: ''
-        }, {
-            name: 'orderNumber',
-            sortable: true,
-            escape: false
-        }],
-        link: null,
-        unlink: null,
-        create: null,
-        showTop: true,
-        confirmDeletion: false
-    },
-    tools: {
-        template: _view.get('_part/tool/createByUrl'),
-        url: ['view-group/create-by-groups', model],
-        title: 'Create by class groups'
-    }
+  attr: 'groups',
+  css: 'no-label',
+  data: {
+    columns: [{
+      name: 'classGroup',
+      format: {
+        name: 'relation',
+        url: _url('class-group/update')
+      },
+      searchable: true,
+      type: 'title',
+      relation: true
+    }, {
+      name: 'label',
+      escape: false,
+      searchable: true
+    }, {
+      name: 'parent',
+      escape: false
+    }, {
+      name: 'type',
+      escape: false,
+      translateData: ''
+    }, {
+      name: 'orderNumber',
+      sortable: true,
+      escape: false
+    }],
+    link: null,
+    unlink: null,
+    create: null,
+    showTop: true,
+    confirmDeletion: false
+  },
+  tools: {
+    template: _view.get('_part/tool/createByUrl'),
+    url: ['view-group/create-by-groups', model],
+    title: 'Create by class groups'
+  }
 }) %>
 
 <%- include(_view.get('_part/attr/checkbox'), {
-    attr: 'disableGroups',
-    css: 'no-label'
+  attr: 'disableGroups',
+  css: 'no-label'
 }) %>

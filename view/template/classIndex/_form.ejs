@@ -6,22 +6,22 @@ const checkboxTemplate = _view.get('_part/attr/checkbox');
 %>
 
 <%- include(_view.get('_part/attr/hidden'), {
-    attr: 'class'
+  attr: 'class'
 }) %>
 
 <%- include(_view.get('_part/attr/string'), {
-    attr: 'name'
+  attr: 'name'
 }) %>
 
 <%- include(checkboxTemplate, {
-    attr: 'unique'
+  attr: 'unique'
 }) %>
 
 <%- include(checkboxTemplate, {
-    attr: 'background',
-    extHint: 'Build the index without blocking other database activity'
+  attr: 'background',
+  extHint: 'Build the index without blocking other database activity'
 }) %>
 
 <%- include(_view.get('_part/attr/json'), {
-    attr: 'options'
+  attr: 'options'
 }) %>

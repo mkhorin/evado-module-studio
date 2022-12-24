@@ -7,41 +7,40 @@ const stringTemplate = _view.get('_part/attr/string');
 const expressionHint = 'Calculate date from today:\n["add", 2, "days"]\n["subtract", 3, "months"]\n[] - today';
 const messageHint = 'Custom error message';
 %>
-
 <%- include(radioList, {
-    attr: 'format',
-    items: model.FORMAT_VALUE_LABELS
+  attr: 'format',
+  items: model.FORMAT_VALUE_LABELS
 }) %>
 
 <%- include(datetimeTemplate, {
-    attr: 'min'
+  attr: 'min'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'minExpression',
-    extHint: expressionHint
+  attr: 'minExpression',
+  extHint: expressionHint
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'tooSmall',
-    extHint: messageHint
+  attr: 'tooSmall',
+  extHint: messageHint
 }) %>
 
 <%- include(datetimeTemplate, {
-    attr: 'max'
+  attr: 'max'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'maxExpression',
-    extHint: expressionHint
+  attr: 'maxExpression',
+  extHint: expressionHint
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'tooBig',
-    extHint: messageHint
+  attr: 'tooBig',
+  extHint: messageHint
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'when',
-    extHint: model.ATTR_EXT_HINTS.when
+  attr: 'when',
+  extHint: model.ATTR_EXT_HINTS.when
 }) %>

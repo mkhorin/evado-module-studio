@@ -2,24 +2,23 @@
 block('title', model.getTitle());
 block('titleTranslation', 'none');
 %>
-
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
-    items: [{
-        id: 'main',
-        label: 'Main',
-        active: true,
-        content: _view.getInternalTemplate('group/main')
-    }, {
-        id: 'startingTransitions',
-        label: 'Starting transitions',
-        content: _view.getInternalTemplate('group/startingTransitions'),
-        loadable: true
-    }, {
-        id: 'finishingTransitions',
-        label: 'Finishing transitions',
-        content: _view.getInternalTemplate('group/finishingTransitions'),
-        loadable: true
-    }]
+  items: [{
+    id: 'main',
+    label: 'Main',
+    active: true,
+    content: _view.getInternalTemplate('group/main')
+  }, {
+    id: 'startingTransitions',
+    label: 'Starting transitions',
+    content: _view.getInternalTemplate('group/startingTransitions'),
+    loadable: true
+  }, {
+    id: 'finishingTransitions',
+    label: 'Finishing transitions',
+    content: _view.getInternalTemplate('group/finishingTransitions'),
+    loadable: true
+  }]
 }); %>

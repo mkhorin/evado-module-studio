@@ -3,22 +3,22 @@ layout(_view.get('_layout/list'));
 block('title', 'Report attributes');
 %>
 <%- include(_view.get('_part/list/grid'), {
-    data: {
-        columns: [{
-            name: 'name',
-            sortable: true,
-            searchable: true
-        },{
-            name: 'report',
-            format: 'relation'
-        },{
-            name: 'label',
-            sortable: true,
-            searchable: true
-        },{
-            name: 'orderNumber',
-            type: 'integer'
-        }],
-        create: null
-    }
+  data: {
+    columns: [{
+      name: 'name',
+      sortable: true,
+      searchable: true
+    },{
+      name: 'report',
+      format: 'relation'
+    },{
+      name: 'label',
+      sortable: true,
+      searchable: true
+    },{
+      name: 'orderNumber',
+      type: 'integer'
+    }],
+    create: null
+  }
 }) %>

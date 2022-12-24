@@ -7,60 +7,60 @@ const stringTemplate = _view.get('_part/attr/string');
 %>
 
 <%- include(_view.get('_part/group/columns'), {
-    items: [{
-        template: stringTemplate,
-        params: {
-            attr: 'name'
-        }
-    }, {
-        template: stringTemplate,
-        params: {
-            attr: 'label'
-        }
-    }]
+  items: [{
+    template: stringTemplate,
+    params: {
+      attr: 'name'
+    }
+  }, {
+    template: stringTemplate,
+    params: {
+      attr: 'label'
+    }
+  }]
 }) %>
 
 <%- include(_view.get('_part/attr/text'), {
-    attr: 'description'
+  attr: 'description'
 }) %>
 
 <%- include(relationTemplate, {
-    attr: 'states',
-    data: {
-        columns: [{
-            name: 'name',
-            sortable: true
-        },{
-            name: 'label',
-            sortable: true
-        },{
-            name: 'view'
-        }],
-        order: {name: 1},
-        link: null,
-        unlink: null
-    }
+  attr: 'states',
+  data: {
+    columns: [{
+      name: 'name',
+      sortable: true
+    },{
+      name: 'label',
+      sortable: true
+    },{
+      name: 'view'
+    }],
+    order: {name: 1},
+    link: null,
+    unlink: null
+  }
 }) %>
 
 <%- include(relationTemplate, {
-    attr: 'transitions',
-    data: {
-        columns: [{
-            name: 'name',
-            sortable: true
-        },{
-            name: 'label',
-            sortable: true
-        },{
-            name: 'startStates'
-        },{
-            name: 'finalState'
-        },{
-            name: 'orderNumber',
-            sortable: true
-        }],
-        order: {orderNumber: 1},
-        link: null,
-        unlink: null
-    }
+  attr: 'transitions',
+  data: {
+    columns: [{
+      name: 'name',
+      sortable: true
+    },{
+      name: 'label',
+      sortable: true
+    },{
+      name: 'startStates'
+    },{
+      name: 'finalState'
+    },{
+      name: 'orderNumber',
+      sortable: true
+    }],
+    order: {orderNumber: 1},
+    link: null,
+    unlink: null
+  }
 }) %>

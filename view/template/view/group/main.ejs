@@ -3,82 +3,82 @@ const columnTemplate = _view.get('_part/group/columns');
 const jsonTemplate = _view.get('_part/attr/json');
 const selectTemplate = _view.get('_part/attr/select');
 const viewSelect2 = {
-    ajax: {url: _url('view/list-select')},
-    queryData: {pid: model.get('class')}
+  ajax: {url: _url('view/list-select')},
+  queryData: {pid: model.get('class')}
 };
 const viewUpdate = _url('view/update');
 %>
 
 <%- include(_view.get('_part/attr/text'), {
-    attr: 'description'
+  attr: 'description'
 }) %>
 
 <%- include(_view.get('_part/attr/checkbox'), {
-    attr: 'readOnly',
-    extHint: 'Object in this view is read-only'
+  attr: 'readOnly',
+  extHint: 'Object in this view is read-only'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'filter',
-    extHint: 'Object selection condition'
+  attr: 'filter',
+  extHint: 'Object selection condition'
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: jsonTemplate,
-        params: {
-            attr: 'order',
-            extHint: 'Object list order (e.g. {attrName: 1})'
-        }
-    },{
-        template: jsonTemplate,
-        params: {
-            attr: 'grouping',
-            extHint: 'Object list grouping (e.g. {attrName: 1})'
-        }
-    }]
+  items: [{
+    template: jsonTemplate,
+    params: {
+      attr: 'order',
+      extHint: 'Object list order (e.g. {attrName: 1})'
+    }
+  },{
+    template: jsonTemplate,
+    params: {
+      attr: 'grouping',
+      extHint: 'Object list grouping (e.g. {attrName: 1})'
+    }
+  }]
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: jsonTemplate,
-        params: {
-            attr: 'header',
-            extHint: 'String view template of object'
-        }
-    }, {
-        template: _view.get('_part/attr/string'),
-        params: {
-            attr: 'templateRoot',
-            extHint: 'Root folder of view templates (relative to the base location)'
-        }
-    }]
+  items: [{
+    template: jsonTemplate,
+    params: {
+      attr: 'header',
+      extHint: 'String view template of object'
+    }
+  }, {
+    template: _view.get('_part/attr/string'),
+    params: {
+      attr: 'templateRoot',
+      extHint: 'Root folder of view templates (relative to the base location)'
+    }
+  }]
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: selectTemplate,
-        params: {
-            attr: 'editView',
-            extHint: 'View used to edit an object',
-            items: null,
-            displayValue: model.getRelatedTitle('editView'),
-            select2: viewSelect2,
-            update: viewUpdate
-        }
-    }, {
-        template: selectTemplate,
-        params: {
-            attr: 'creationView',
-            extHint: 'View used to create an object',
-            items: null,
-            displayValue: model.getRelatedTitle('creationView'),
-            select2: viewSelect2,
-            update: viewUpdate
-        }
-    }]
+  items: [{
+    template: selectTemplate,
+    params: {
+      attr: 'editView',
+      extHint: 'View used to edit an object',
+      items: null,
+      displayValue: model.getRelatedTitle('editView'),
+      select2: viewSelect2,
+      update: viewUpdate
+    }
+  }, {
+    template: selectTemplate,
+    params: {
+      attr: 'creationView',
+      extHint: 'View used to create an object',
+      items: null,
+      displayValue: model.getRelatedTitle('creationView'),
+      select2: viewSelect2,
+      update: viewUpdate
+    }
+  }]
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'options'
+  attr: 'options'
 }) %>

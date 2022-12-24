@@ -6,60 +6,60 @@ const selectTemplate = _view.get('_part/attr/select');
 const stringTemplate = _view.get('_part/attr/string');
 %>
 <%- include(inlineTemplate, {
-    items: [{
-        template: checkboxTemplate,
-        params: {
-            attr: 'imageOnly'
-        }
-    }, {
-        template: checkboxTemplate,
-        params: {
-            attr: 'hashing',
-            label: 'Store file hash'
-        }
-    }]
+  items: [{
+    template: checkboxTemplate,
+    params: {
+      attr: 'imageOnly'
+    }
+  }, {
+    template: checkboxTemplate,
+    params: {
+      attr: 'hashing',
+      label: 'Store file hash'
+    }
+  }]
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'minSize',
-    hint: 'In bytes'
+  attr: 'minSize',
+  hint: 'In bytes'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'maxSize',
-    hint: 'In bytes'
+  attr: 'maxSize',
+  hint: 'In bytes'
 }) %>
 
 <%- include(selectTemplate, {
-    attr: 'nameAttr',
-    displayValue: model.getRelatedTitle('nameAttr'),
-    items: null,
-    select2: {
-        ajax: {url: _url('class-attr/list-select')},
-        queryData: {pid: owner.getId()}
-    },
-    update: _url('class-attr/update'),
-    extHint: 'Attribute that gets filename on upload'
+  attr: 'nameAttr',
+  displayValue: model.getRelatedTitle('nameAttr'),
+  items: null,
+  select2: {
+    ajax: {url: _url('class-attr/list-select')},
+    queryData: {pid: owner.getId()}
+  },
+  update: _url('class-attr/update'),
+  extHint: 'Attribute that gets filename on upload'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'extensions',
-    hint: 'Separate with comma',
-    extHint: 'Valid file extensions (e.g. png)'
+  attr: 'extensions',
+  hint: 'Separate with comma',
+  extHint: 'Valid file extensions (e.g. png)'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'types',
-    hint: 'Separate with comma',
-    extHint: 'Valid media types (e.g. image/png)'
+  attr: 'types',
+  hint: 'Separate with comma',
+  extHint: 'Valid media types (e.g. image/png)'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'accept',
-    extHint: 'Filter selected files by type (e.g. image/jpeg)'
+  attr: 'accept',
+  extHint: 'Filter selected files by type (e.g. image/jpeg)'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'rawClass',
-    placeholder: 'model/RawFile'
+  attr: 'rawClass',
+  placeholder: 'model/RawFile'
 }) %>

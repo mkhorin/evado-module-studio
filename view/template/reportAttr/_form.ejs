@@ -8,82 +8,82 @@ const stringTemplate = _view.get('_part/attr/string');
 %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: _view.get('_part/attr/static'),
-        params: {
-            attr: 'report',
-            displayValue: model.getRelatedTitle('report'),
-            url: ['report/update', model.rel('report')]
-        }
-    }]
+  items: [{
+    template: _view.get('_part/attr/static'),
+    params: {
+      attr: 'report',
+      displayValue: model.getRelatedTitle('report'),
+      url: ['report/update', model.rel('report')]
+    }
+  }]
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: stringTemplate,
-        params: {
-            attr: 'name'
-        }
-    }, {
-        template: stringTemplate,
-        params: {
-            attr: 'label'
-        }
-    }]
+  items: [{
+    template: stringTemplate,
+    params: {
+      attr: 'name'
+    }
+  }, {
+    template: stringTemplate,
+    params: {
+      attr: 'label'
+    }
+  }]
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: selectTemplate,
-        params: {
-            attr: 'type',
-            items: 'labels'
-        }
-    },{
-        template: selectTemplate,
-        params: {
-            attr: 'viewType',
-            items: 'labels'
-        }
-    }]
+  items: [{
+    template: selectTemplate,
+    params: {
+      attr: 'type',
+      items: 'labels'
+    }
+  },{
+    template: selectTemplate,
+    params: {
+      attr: 'viewType',
+      items: 'labels'
+    }
+  }]
 }) %>
 
 <%- include(_view.get('_part/attr/text'), {
-    attr: 'description'
+  attr: 'description'
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: stringTemplate,
-        params: {
-            attr: 'orderNumber'
-        }
-    }]
+  items: [{
+    template: stringTemplate,
+    params: {
+      attr: 'orderNumber'
+    }
+  }]
 }) %>
 
 <%- include(_view.get('_part/group/inline'), {
-    items: [{
-        template: _view.get('_part/attr/checkbox'),
-        params: {
-            attr: 'sortable'
-        }
-    }]
+  items: [{
+    template: _view.get('_part/attr/checkbox'),
+    params: {
+      attr: 'sortable'
+    }
+  }]
 }) %>
 
 <%- include(_view.get('_part/attr/radioList'), {
-    attr: 'indexing',
-    items: [{
-        value: '',
-        text: 'None'
-    },{
-        value: '1',
-        text: 'Ascending'
-    },{
-        value: '-1',
-        text: 'Descending'
-    }]
+  attr: 'indexing',
+  items: [{
+    value: '',
+    text: 'None'
+  },{
+    value: '1',
+    text: 'Ascending'
+  },{
+    value: '-1',
+    text: 'Descending'
+  }]
 }) %>
 
 <%- include(_view.get('_part/attr/json'), {
-    attr: 'options'
+  attr: 'options'
 }) %>

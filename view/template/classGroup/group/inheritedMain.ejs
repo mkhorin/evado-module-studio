@@ -6,50 +6,50 @@ const textTemplate = _view.get('_part/attr/text');
 %>
 
 <%- include(overriddenTemplate, {
-    attr: 'description',
-    template: textTemplate
+  attr: 'description',
+  template: textTemplate
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: overriddenTemplate,
-        params: {
-            attr: 'active',
-            template: checkboxTemplate
-        }
-    }, {
-        template: overriddenTemplate,
-        params: {
-            attr: 'loadable',
-            template: checkboxTemplate
-        }
-    }, {
-        template: overriddenTemplate,
-        params: {
-            attr: 'hidden',
-            template: checkboxTemplate
-        }
-    }, {
-        template: overriddenTemplate,
-        params: {
-            attr: 'readOnly',
-            template: checkboxTemplate
-        }
-    }, {
-        template: overriddenTemplate,
-        params: {
-            attr: 'required',
-            template: checkboxTemplate
-        }
-    }]
+  items: [{
+    template: overriddenTemplate,
+    params: {
+      attr: 'active',
+      template: checkboxTemplate
+    }
+  }, {
+    template: overriddenTemplate,
+    params: {
+      attr: 'loadable',
+      template: checkboxTemplate
+    }
+  }, {
+    template: overriddenTemplate,
+    params: {
+      attr: 'hidden',
+      template: checkboxTemplate
+    }
+  }, {
+    template: overriddenTemplate,
+    params: {
+      attr: 'readOnly',
+      template: checkboxTemplate
+    }
+  }, {
+    template: overriddenTemplate,
+    params: {
+      attr: 'required',
+      template: checkboxTemplate
+    }
+  }]
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'hint',
-    template: textTemplate
+  attr: 'hint',
+  template: textTemplate
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'options',
-    template: _view.get('_part/attr/json')
+  attr: 'options',
+  template: _view.get('_part/attr/json')
 }) %>

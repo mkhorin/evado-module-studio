@@ -2,19 +2,18 @@
 layout(_view.get('_layout/frame/select'));
 block('title', 'Report group');
 %>
-
 <%- include(_view.get('_part/list/select'), {
-    data: {
-        columns: [{
-            name: 'name',
-            sortable: true,
-            searchable: true
-        },{
-            name: 'label',
-            sortable: true,
-            searchable: true
-        }],
-        order: {name: 1},
-        create: null
-    }
+  data: {
+    columns: [{
+      name: 'name',
+      sortable: true,
+      searchable: true
+    },{
+      name: 'label',
+      sortable: true,
+      searchable: true
+    }],
+    order: {name: 1},
+    create: null
+  }
 }) %>

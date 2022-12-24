@@ -1,23 +1,21 @@
-
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'children',
-    css: 'no-label',
-    data: {
-        columns: [{
-            name: 'name'
-        }, {
-            name: 'label'
-        }, {
-            name: 'type',
-            format: 'label'
-        }, {
-            name: 'orderNumber'
-        }],
-        order: {orderNumber: 1},
-        link: null,
-        unlink: null,
-        create: ['create-by-group', model],
-        modalSort: true
-    }
+  attr: 'children',
+  css: 'no-label',
+  data: {
+    columns: [{
+      name: 'name'
+    }, {
+      name: 'label'
+    }, {
+      name: 'type',
+      format: 'label'
+    }, {
+      name: 'orderNumber'
+    }],
+    order: {orderNumber: 1},
+    link: null,
+    unlink: null,
+    create: ['create-by-group', model],
+    modalSort: true
+  }
 }) %>
-

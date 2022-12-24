@@ -1,7 +1,7 @@
 <%
 block('commands', {
-    template: _view.get('_part/tool/modelExport'),
-    url: _url('export/section', model)
+  template: _view.get('_part/tool/modelExport'),
+  url: _url('export/section', model)
 });
 block('title', model.getTitle());
 block('titleTranslation', 'none');
@@ -10,13 +10,13 @@ block('titleTranslation', 'none');
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/group/tabs'), {
-    items: [{
-        id: 'main',
-        label: 'Main',
-        content: _view.getInternalTemplate('group/main')
-    }, {
-        id: 'nodes',
-        label: 'Nodes',
-        content: _view.getInternalTemplate('group/nodes')
-    }]
+  items: [{
+    id: 'main',
+    label: 'Main',
+    content: _view.getInternalTemplate('group/main')
+  }, {
+    id: 'nodes',
+    label: 'Nodes',
+    content: _view.getInternalTemplate('group/nodes')
+  }]
 }) %>

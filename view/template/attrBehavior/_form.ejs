@@ -2,24 +2,23 @@
 layout(_view.get(_layout));
 block('tab', 'Behavior');
 %>
-
 <%- include(_view.get('_part/group/columns'), {
-    items: [{
-        template: _view.get('_part/attr/select'),
-        params: {
-            attr: 'type',
-            items: 'labels'
-        }
-    },{
-        template: _view.get('_part/attr/number'),
-        params: {
-            attr: 'orderNumber'
-        }
-    }]
+  items: [{
+    template: _view.get('_part/attr/select'),
+    params: {
+      attr: 'type',
+      items: 'labels'
+    }
+  },{
+    template: _view.get('_part/attr/number'),
+    params: {
+      attr: 'orderNumber'
+    }
+  }]
 }) %>
 
 <%- include(_view.get('_part/attr/text'), {
-    attr: 'description'
+  attr: 'description'
 }) %>
 
 <%- include(_view.get('_part/behaviorParam/index')) %>

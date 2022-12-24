@@ -6,7 +6,7 @@ block('titleTranslation', 'none');
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/attr/static'), {
-    attr: 'owner',
-    displayValue: model.getRelatedTitle('owner'),
-    url: ['class-attr/update', {id: model.get('owner')}]
+  attr: 'owner',
+  displayValue: model.getRelatedTitle('owner'),
+  url: ['class-attr/update', {id: model.get('owner')}]
 }) %>

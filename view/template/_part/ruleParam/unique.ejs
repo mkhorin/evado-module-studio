@@ -5,20 +5,20 @@ const jsonTemplate = _view.get('_part/attr/json');
 const stringTemplate = _view.get('_part/attr/string');
 %>
 <%- include(jsonTemplate, {
-    attr: 'filter',
-    extHint: 'Filter condition to search for unique values.\nInput attribute name to create a filter by value of this attribute'
+  attr: 'filter',
+  extHint: 'Filter condition to search for unique values.\nInput attribute name to create a filter by value of this attribute'
 }) %>
 
 <%- include(checkboxTemplate, {
-    attr: 'ignoreCase',
-    label: 'Ignore case when searching for matches'
+  attr: 'ignoreCase',
+  label: 'Ignore case when searching for matches'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'message'
+  attr: 'message'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'when',
-    extHint: model.ATTR_EXT_HINTS.when
+  attr: 'when',
+  extHint: model.ATTR_EXT_HINTS.when
 }) %>

@@ -6,15 +6,15 @@ const stringTemplate = _view.get('_part/attr/string');
 %>
 
 <%- include(stringTemplate, {
-    attr: 'name'
+  attr: 'name'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'label'
+  attr: 'label'
 }) %>
 
 <%- include(_view.get('_part/attr/static'), {
-    attr: 'class',
-    displayValue: model.getRelatedTitle('class'),
-    url: ['class/update', model.rel('class')]
+  attr: 'class',
+  displayValue: model.getRelatedTitle('class'),
+  url: ['class/update', model.rel('class')]
 }) %>

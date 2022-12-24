@@ -7,29 +7,29 @@ const updateUrl = _url('class-attr/update');
 <%- include(_view.getInternalTemplate('_form')) %>
 
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'via',
-    data: {
-        columns: [{
-            name: 'refClass',
-            format: {
-                name: 'relation',
-                url: updateUrl
-            }
-        },{
-            name: 'refAttr',
-            format: {
-                name: 'relation',
-                url: updateUrl
-            }
-        },{
-            name: 'linkAttr',
-            format: {
-                name: 'relation',
-                url: updateUrl
-            }
-        }],
-        link: null,
-        unlink: null,
-        create: ['create-by-via', model]
-    }
+  attr: 'via',
+  data: {
+    columns: [{
+      name: 'refClass',
+      format: {
+        name: 'relation',
+        url: updateUrl
+      }
+    },{
+      name: 'refAttr',
+      format: {
+        name: 'relation',
+        url: updateUrl
+      }
+    },{
+      name: 'linkAttr',
+      format: {
+        name: 'relation',
+        url: updateUrl
+      }
+    }],
+    link: null,
+    unlink: null,
+    create: ['create-by-via', model]
+  }
 }) %>

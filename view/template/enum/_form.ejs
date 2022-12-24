@@ -7,59 +7,59 @@ const selectTemplate = _view.get('_part/attr/select');
 %>
 
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'items',
-    data: {
-        columns: [{
-            name: 'value'
-        }, {
-            name: 'text'
-        }, {
-            name: 'hint'
-        }, {
-            name: 'orderNumber'
-        }],
-        link: null,
-        unlink: null,
-        order: {orderNumber: 1},
-        modalSort: !model.isNew()
-    }
+  attr: 'items',
+  data: {
+    columns: [{
+      name: 'value'
+    }, {
+      name: 'text'
+    }, {
+      name: 'hint'
+    }, {
+      name: 'orderNumber'
+    }],
+    link: null,
+    unlink: null,
+    order: {orderNumber: 1},
+    modalSort: !model.isNew()
+  }
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'condition',
-    extHint: 'Form values condition activating this enumeration'
+  attr: 'condition',
+  extHint: 'Form values condition activating this enumeration'
 }) %>
 
 <%- include(selectTemplate, {
-    attr: 'class',
-    extHint: 'Enumeration source',
-    items: null,
-    displayValue: model.getRelatedTitle('class'),
-    select2: {ajax: {url: _url('class/list-select')}},
-    update: _url('class/update')
+  attr: 'class',
+  extHint: 'Enumeration source',
+  items: null,
+  displayValue: model.getRelatedTitle('class'),
+  select2: {ajax: {url: _url('class/list-select')}},
+  update: _url('class/update')
 }) %>
 
 <%- include(selectTemplate, {
-    attr: 'view',
-    items: null,
-    displayValue: model.getRelatedTitle('view'),
-    select2: {ajax: {url: _url('view/list-select')}},
-    depends: [{attr: 'class', param: 'pid'}],
-    actionBinder: {enable: ['notEmpty', 'class']},
-    update: _url('view/update')
+  attr: 'view',
+  items: null,
+  displayValue: model.getRelatedTitle('view'),
+  select2: {ajax: {url: _url('view/list-select')}},
+  depends: [{attr: 'class', param: 'pid'}],
+  actionBinder: {enable: ['notEmpty', 'class']},
+  update: _url('view/update')
 }) %>
 
 <%- include(selectTemplate, {
-    attr: 'attr',
-    extHint: 'Enumeration source',
-    items: null,
-    displayValue: model.getRelatedTitle('attr'),
-    select2: {ajax: {url: _url('class-attr/list-select')}},
-    depends: [{attr: 'class', param: 'pid'}],
-    actionBinder: {enable: ['notEmpty', 'class']},
-    update: _url('class-attr/update')
+  attr: 'attr',
+  extHint: 'Enumeration source',
+  items: null,
+  displayValue: model.getRelatedTitle('attr'),
+  select2: {ajax: {url: _url('class-attr/list-select')}},
+  depends: [{attr: 'class', param: 'pid'}],
+  actionBinder: {enable: ['notEmpty', 'class']},
+  update: _url('class-attr/update')
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'queryFilter'
+  attr: 'queryFilter'
 }) %>

@@ -4,23 +4,23 @@ block('title', 'Class attributes');
 %>
 
 <%- include(_view.get('_part/list/select'), {
-    data: {
-        columns: [{
-            name: 'name',
-            sortable: true,
-            searchable: true
-        },{
-            name: 'label',
-            sortable: true,
-            searchable: true
-        },{
-            name: 'type',
-            format: 'label'
-        },{
-            name: 'description'
-        }],
-        order: {name: 1},
-        create: null,
-        filter: {}
-    }
+  data: {
+    columns: [{
+      name: 'name',
+      sortable: true,
+      searchable: true
+    },{
+      name: 'label',
+      sortable: true,
+      searchable: true
+    },{
+      name: 'type',
+      format: 'label'
+    },{
+      name: 'description'
+    }],
+    order: {name: 1},
+    create: null,
+    filter: {}
+  }
 }) %>

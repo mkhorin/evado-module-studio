@@ -3,37 +3,36 @@ const checkboxTemplate = _view.get('_part/attr/checkbox');
 %>
 
 <%- include(_view.get('_part/attr/text'), {
-    attr: 'description'
+  attr: 'description'
 }) %>
 
 <%- include(_view.get('_part/group/inline'), {
-    items: [{
-        template: checkboxTemplate,
-        params: {
-            attr: 'defaults',
-            extHint: 'The state will be automatically set for new objects'
-        }
-    }, {
-        template: checkboxTemplate,
-        params: {
-            attr: 'readOnly',
-            extHint: 'Object in this state is read-only'
-        }
-    }]
+  items: [{
+    template: checkboxTemplate,
+    params: {
+      attr: 'defaults',
+      extHint: 'The state will be automatically set for new objects'
+    }
+  }, {
+    template: checkboxTemplate,
+    params: {
+      attr: 'readOnly',
+      extHint: 'Object in this state is read-only'
+    }
+  }]
 }) %>
 
 <%- include(_view.get('_part/attr/select'), {
-    attr: 'view',
-    displayValue: model.getRelatedTitle('view'),
-    items: null,
-    select2: {
-        ajax: {url: _url('view/list-select')},
-        queryData: {pid: model.get('class')}
-    },
-    update: _url('view/update')
+  attr: 'view',
+  displayValue: model.getRelatedTitle('view'),
+  items: null,
+  select2: {
+    ajax: {url: _url('view/list-select')},
+    queryData: {pid: model.get('class')}
+  },
+  update: _url('view/update')
 }) %>
 
-
 <%- include(_view.get('_part/attr/json'), {
-    attr: 'options'
+  attr: 'options'
 }) %>

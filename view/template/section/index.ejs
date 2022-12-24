@@ -3,22 +3,22 @@ layout(_view.get('_layout/list'));
 block('title', 'Navigation sections');
 %>
 <%- include(_view.get('_part/list/grid'), {
-    data: {
-        columns: [{
-            name: 'name',
-            searchable: true,
-            sortable: true
-        },{
-            name: 'label',
-            searchable: true,
-            sortable: true
-        },{
-            name: 'description'
-        }]
-    },
-    tools: [{
-        template: _view.get('_part/tool/import'),
-        url: 'import/section',
-        hint: 'Import section'
+  data: {
+    columns: [{
+      name: 'name',
+      searchable: true,
+      sortable: true
+    },{
+      name: 'label',
+      searchable: true,
+      sortable: true
+    },{
+      name: 'description'
     }]
+  },
+  tools: [{
+    template: _view.get('_part/tool/import'),
+    url: 'import/section',
+    hint: 'Import section'
+  }]
 }) %>

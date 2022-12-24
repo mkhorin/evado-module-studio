@@ -2,31 +2,30 @@
 layout(_view.get('_layout/list'));
 block('title', 'States');
 %>
-
 <%- include(_view.get('_part/list/grid'), {
-    data: {
-        columns: [{
-            name: 'class',
-            format: {
-                name: 'relation',
-                url: _url('class/update')
-            },
-            sortable: true
-        },{
-            name: 'name',
-            sortable: true,
-            searchable: true
-        },{
-            name: 'label',
-            sortable: true,
-            searchable: true
-        },{
-            name: 'description'
-        },{
-            name: 'defaults',
-            format: 'boolean'
-        }],
-        create: null,
-        filter: {}
-    }
+  data: {
+    columns: [{
+      name: 'class',
+      format: {
+        name: 'relation',
+        url: _url('class/update')
+      },
+      sortable: true
+    },{
+      name: 'name',
+      sortable: true,
+      searchable: true
+    },{
+      name: 'label',
+      sortable: true,
+      searchable: true
+    },{
+      name: 'description'
+    },{
+      name: 'defaults',
+      format: 'boolean'
+    }],
+    create: null,
+    filter: {}
+  }
 }) %>

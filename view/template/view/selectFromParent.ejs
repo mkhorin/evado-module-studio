@@ -2,28 +2,27 @@
 layout(_view.get('_layout/frame/select'));
 block('title', 'Parent class views');
 %>
-
 <%- include(_view.get('_part/list/select'), {
-    data: {
-        columns: [{
-            name: 'class',
-            format: {
-                name: 'relation',
-                url: _url('class/update')
-            }
-        },{
-            name: 'name',
-            sortable: true,
-            searchable: true
-        },{
-            name: 'label',
-            sortable: true,
-            searchable: true
-        }],
-        multiple: false,
-        list: ['list-from-parent', classModel],
-        order: {name: 1},
-        create: null,
-        delete: null
-    }
+  data: {
+    columns: [{
+      name: 'class',
+      format: {
+        name: 'relation',
+        url: _url('class/update')
+      }
+    },{
+      name: 'name',
+      sortable: true,
+      searchable: true
+    },{
+      name: 'label',
+      sortable: true,
+      searchable: true
+    }],
+    multiple: false,
+    list: ['list-from-parent', classModel],
+    order: {name: 1},
+    create: null,
+    delete: null
+  }
 }) %>

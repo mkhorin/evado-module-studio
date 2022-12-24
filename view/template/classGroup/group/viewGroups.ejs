@@ -1,29 +1,27 @@
-
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'viewGroups',
-    css: 'no-label',
-    data: {
-        columns: [{
-            name: 'label'
-        },{
-            name: 'parent',
-            format: 'relation'
-        },{
-            name: 'type'
-        },{
-            name: 'view',
-            format: {
-                name: 'relation',
-                url: _url('view/update')
-            }
-        },{
-            name: 'orderNumber'
-        }],
-        order: {orderNumber: 1},
-        link: null,
-        unlink: null,
-        create: null,
-        delete: null
-    }
+  attr: 'viewGroups',
+  css: 'no-label',
+  data: {
+    columns: [{
+      name: 'label'
+    },{
+      name: 'parent',
+      format: 'relation'
+    },{
+      name: 'type'
+    },{
+      name: 'view',
+      format: {
+        name: 'relation',
+        url: _url('view/update')
+      }
+    },{
+      name: 'orderNumber'
+    }],
+    order: {orderNumber: 1},
+    link: null,
+    unlink: null,
+    create: null,
+    delete: null
+  }
 }) %>
-

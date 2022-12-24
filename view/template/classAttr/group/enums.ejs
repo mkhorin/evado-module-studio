@@ -1,24 +1,22 @@
-
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'enums',
-    css: 'no-label',
-    data: {
-        columns: [{
-            name: 'items',
-            format: 'relation'
-        }, {
-            name: 'condition'
-        }, {
-            name: 'class',
-            format: {
-                name: 'relation',
-                url: _url('class/update')
-            }
-        }],
-        link: null,
-        unlink: null,
-        create: {c: model.get('class')},
-        update: {c: model.get('class')}
-    }
+  attr: 'enums',
+  css: 'no-label',
+  data: {
+    columns: [{
+      name: 'items',
+      format: 'relation'
+    }, {
+      name: 'condition'
+    }, {
+      name: 'class',
+      format: {
+        name: 'relation',
+        url: _url('class/update')
+      }
+    }],
+    link: null,
+    unlink: null,
+    create: {c: model.get('class')},
+    update: {c: model.get('class')}
+  }
 }) %>
-

@@ -4,58 +4,58 @@ const selectTemplate = _view.get('_part/attr/select');
 %>
 
 <%- include(_view.get('_part/attr/text'), {
-    attr: 'description'
+  attr: 'description'
 }) %>
 
 <%- include(columnTemplate, {
+  items: [{
     items: [{
-        items: [{
-            template: selectTemplate,
-            params: {
-                attr: 'class',
-                items: null,
-                select2: {ajax: {url: _url('class/list-select')}},
-                update: _url('class/update'),
-                displayValue: model.getRelatedTitle('class')
-            }
-        }, {
-            template: selectTemplate,
-            params: {
-                attr: 'view',
-                items: null,
-                select2: {ajax: {url: _url('view/list-select')}},
-                update: _url('view/update'),
-                displayValue: model.getRelatedTitle('view'),
-                depends: [{
-                    attr: 'class',
-                    param: 'pid'
-                }],
-                actionBinder: {enable: ['notEmpty', 'class']}
-            }
-        }]
+      template: selectTemplate,
+      params: {
+        attr: 'class',
+        items: null,
+        select2: {ajax: {url: _url('class/list-select')}},
+        update: _url('class/update'),
+        displayValue: model.getRelatedTitle('class')
+      }
     }, {
-        items: [{
-            template: selectTemplate,
-            params: {
-                attr: 'report',
-                items: null,
-                select2: {ajax: {url: _url('report/list-select')}},
-                update: _url('report/update'),
-                displayValue: model.getRelatedTitle('report')
-            }
-        }, {
-            template: _view.get('_part/attr/number'),
-            params: {
-                attr: 'orderNumber'
-            }
-        }]
+      template: selectTemplate,
+      params: {
+        attr: 'view',
+        items: null,
+        select2: {ajax: {url: _url('view/list-select')}},
+        update: _url('view/update'),
+        displayValue: model.getRelatedTitle('view'),
+        depends: [{
+          attr: 'class',
+          param: 'pid'
+        }],
+        actionBinder: {enable: ['notEmpty', 'class']}
+      }
     }]
+  }, {
+    items: [{
+      template: selectTemplate,
+      params: {
+        attr: 'report',
+        items: null,
+        select2: {ajax: {url: _url('report/list-select')}},
+        update: _url('report/update'),
+        displayValue: model.getRelatedTitle('report')
+      }
+    }, {
+      template: _view.get('_part/attr/number'),
+      params: {
+        attr: 'orderNumber'
+      }
+    }]
+  }]
 }) %>
 
 <%- include(_view.get('_part/attr/string'), {
-    attr: 'url'
+  attr: 'url'
 }) %>
 
 <%- include(_view.get('_part/attr/json'), {
-    attr: 'options'
+  attr: 'options'
 }) %>

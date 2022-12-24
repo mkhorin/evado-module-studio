@@ -4,46 +4,46 @@ const textTemplate = _view.get('_part/attr/text');
 %>
 
 <%- include(textTemplate, {
-    attr: 'description'
+  attr: 'description'
 }) %>
 
 <%- include(_view.get('_part/group/inline'), {
-    items: [{
-        template: checkboxTemplate,
-        params: {
-            attr: 'active',
-            extHint: 'Expanded group or active tab'
-        }
-    }, {
-        template: checkboxTemplate,
-        params: {
-            attr: 'loadable',
-            extHint: 'Group content is loaded when activated'
-        }
-    }, {
-        template: checkboxTemplate,
-        params: {
-            attr: 'hidden'
-        }
-    }, {
-        template: checkboxTemplate,
-        params: {
-            attr: 'readOnly',
-            extHint: 'All attributes in this group are read-only'
-        }
-    }, {
-        template: checkboxTemplate,
-        params: {
-            attr: 'required',
-            extHint: 'All attributes in this group are required'
-        }
-    }]
+  items: [{
+    template: checkboxTemplate,
+    params: {
+      attr: 'active',
+      extHint: 'Expanded group or active tab'
+    }
+  }, {
+    template: checkboxTemplate,
+    params: {
+      attr: 'loadable',
+      extHint: 'Group content is loaded when activated'
+    }
+  }, {
+    template: checkboxTemplate,
+    params: {
+      attr: 'hidden'
+    }
+  }, {
+    template: checkboxTemplate,
+    params: {
+      attr: 'readOnly',
+      extHint: 'All attributes in this group are read-only'
+    }
+  }, {
+    template: checkboxTemplate,
+    params: {
+      attr: 'required',
+      extHint: 'All attributes in this group are required'
+    }
+  }]
 }) %>
 
 <%- include(textTemplate, {
-    attr: 'hint'
+  attr: 'hint'
 }) %>
 
 <%- include(_view.get('_part/attr/json'), {
-    attr: 'options'
+  attr: 'options'
 }) %>

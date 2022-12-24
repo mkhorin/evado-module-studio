@@ -7,35 +7,35 @@ const stringTemplate = _view.get('_part/attr/string');
 %>
 
 <%- include(_view.get('_part/attr/static'), {
-    attr: 'report',
-    displayValue: model.getRelatedTitle('report'),
-    url: ['report/update', model.rel('report')]
+  attr: 'report',
+  displayValue: model.getRelatedTitle('report'),
+  url: ['report/update', model.rel('report')]
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: stringTemplate,
-        params: {
-            attr: 'name'
-        }
-    }, {
-        template: stringTemplate,
-        params: {
-            attr: 'label'
-        }
-    }]
+  items: [{
+    template: stringTemplate,
+    params: {
+      attr: 'name'
+    }
+  }, {
+    template: stringTemplate,
+    params: {
+      attr: 'label'
+    }
+  }]
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: _view.get('_part/attr/select'),
-        params: {
-            attr: 'parent',
-            items: validParents
-        }
-    }]
+  items: [{
+    template: _view.get('_part/attr/select'),
+    params: {
+      attr: 'parent',
+      items: validParents
+    }
+  }]
 }) %>
 
 <%- include(_view.get('_part/attr/json'), {
-    attr: 'options'
+  attr: 'options'
 }) %>

@@ -3,27 +3,27 @@ const checkboxTemplate = _view.get('_part/attr/checkbox');
 %>
 
 <%- include(_view.get('_part/group/inline'), {
-    items: [{
-        template: checkboxTemplate,
-        params: {
-            attr: 'commonSearchable',
-            extHint: 'List search'
-        }
-    },{
-        template: checkboxTemplate,
-        params: {
-            attr: 'selectSearchable',
-            extHint: 'Dropdown selector search'
-        }
-    }]
+  items: [{
+    template: checkboxTemplate,
+    params: {
+      attr: 'commonSearchable',
+      extHint: 'List search'
+    }
+  },{
+    template: checkboxTemplate,
+    params: {
+      attr: 'selectSearchable',
+      extHint: 'Dropdown selector search'
+    }
+  }]
 }) %>
 
 <%- include(_view.get('_part/group/columns'), {
-    items: [{
-        template: _view.get('_part/attr/string'),
-        params: {
-            attr: 'searchDepth',
-            extHint: 'Maximum number of nested levels of related search filter objects'
-        }
-    }]
+  items: [{
+    template: _view.get('_part/attr/string'),
+    params: {
+      attr: 'searchDepth',
+      extHint: 'Maximum number of nested levels of related search filter objects'
+    }
+  }]
 }) %>

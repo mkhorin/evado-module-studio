@@ -10,80 +10,80 @@ const stringTemplate = _view.get('_part/attr/string');
 %>
 
 <%- include(staticTemplate, {
-    attr: 'original',
-    displayValue: model.getRelatedTitle('original'),
-    url: ['update', model.rel('original')]
+  attr: 'original',
+  displayValue: model.getRelatedTitle('original'),
+  url: ['update', model.rel('original')]
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'label',
-    template: stringTemplate
+  attr: 'label',
+  template: stringTemplate
 }) %>
 
 <%- include(columnTemplate, {
-    items: [{
-        template: overriddenTemplate,
-        params: {
-            attr: 'type',
-            template: selectTemplate,
-            params: {
-                items: 'labels'
-            }
-        }
-    }, {
-        template: overriddenTemplate,
-        params: {
-            attr: 'orderNumber',
-            template: stringTemplate
-        }
-    }]
+  items: [{
+    template: overriddenTemplate,
+    params: {
+      attr: 'type',
+      template: selectTemplate,
+      params: {
+        items: 'labels'
+      }
+    }
+  }, {
+    template: overriddenTemplate,
+    params: {
+      attr: 'orderNumber',
+      template: stringTemplate
+    }
+  }]
 }) %>
 
 <%- include(overriddenTemplate, {
-    attr: 'parent',
-    template: selectTemplate,
-    params: {
-        items: validParents,
-        update: _url('class-group/update')
-    }
+  attr: 'parent',
+  template: selectTemplate,
+  params: {
+    items: validParents,
+    update: _url('class-group/update')
+  }
 }) %>
 
 <%- include(staticTemplate, {
-    attr: 'class',
-    displayValue: model.getRelatedTitle('class'),
-    url: ['class/update', model.rel('class')]
+  attr: 'class',
+  displayValue: model.getRelatedTitle('class'),
+  url: ['class/update', model.rel('class')]
 }) %>
 
 <%- include(_view.get('_part/group/tabs'), {
-    items: [{
-        id: 'main',
-        label: 'Main',
-        active: true,
-        content: _view.getInternalTemplate('group/inheritedMain')
-    }, {
-        id: 'actionBinders',
-        label: 'Action binders',
-        content: _view.getInternalTemplate('group/actionBinders'),
-        loadable: true
-    },{
-        id: 'children',
-        label: 'Children',
-        content: _view.getInternalTemplate('group/children'),
-        loadable: true
-    },{
-        id: 'classAttrs',
-        label: 'Class attributes',
-        content: _view.getInternalTemplate('group/inheritedClassAttrs'),
-        loadable: true
-    },{
-        id: 'viewAttrs',
-        label: 'View attributes',
-        content: _view.getInternalTemplate('group/viewAttrs'),
-        loadable: true
-    },{
-        id: 'viewGroups',
-        label: 'View groups',
-        content: _view.getInternalTemplate('group/viewGroups'),
-        loadable: true
-    }]
+  items: [{
+    id: 'main',
+    label: 'Main',
+    active: true,
+    content: _view.getInternalTemplate('group/inheritedMain')
+  }, {
+    id: 'actionBinders',
+    label: 'Action binders',
+    content: _view.getInternalTemplate('group/actionBinders'),
+    loadable: true
+  },{
+    id: 'children',
+    label: 'Children',
+    content: _view.getInternalTemplate('group/children'),
+    loadable: true
+  },{
+    id: 'classAttrs',
+    label: 'Class attributes',
+    content: _view.getInternalTemplate('group/inheritedClassAttrs'),
+    loadable: true
+  },{
+    id: 'viewAttrs',
+    label: 'View attributes',
+    content: _view.getInternalTemplate('group/viewAttrs'),
+    loadable: true
+  },{
+    id: 'viewGroups',
+    label: 'View groups',
+    content: _view.getInternalTemplate('group/viewGroups'),
+    loadable: true
+  }]
 }) %>

@@ -8,76 +8,76 @@ const pid = model.get('class');
 %>
 
 <%- include(stringTemplate, {
-    attr: 'name'
+  attr: 'name'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'label'
+  attr: 'label'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'hint'
+  attr: 'hint'
 }) %>
 
 <%- include(_view.get('_part/attr/static'), {
-    attr: 'class',
-    displayValue: model.getRelatedTitle('class'),
-    url: ['class/update', model.rel('class')]
+  attr: 'class',
+  displayValue: model.getRelatedTitle('class'),
+  url: ['class/update', model.rel('class')]
 }) %>
 
 <%- include(_view.get('_part/attr/text'), {
-    attr: 'description'
+  attr: 'description'
 }) %>
 
 <%- include(stringTemplate, {
-    attr: 'orderNumber'
+  attr: 'orderNumber'
 }) %>
 
 <%- include(_view.get('_part/attr/checkbox'), {
-    attr: 'nullStartState'
+  attr: 'nullStartState'
 }) %>
 
 <%- include(_view.get('_part/attr/relation'), {
-    attr: 'startStates',
-    data: {
-        columns: [{
-            name: 'name'
-        },{
-            name: 'label'
-        },{
-            name: 'description'
-        }],
-        link: ['state/select', {
-            list: encodeURIComponent(_url('state/list', {pid}))
-        }],
-        create: null,
-        delete: null
-    }
+  attr: 'startStates',
+  data: {
+    columns: [{
+      name: 'name'
+    },{
+      name: 'label'
+    },{
+      name: 'description'
+    }],
+    link: ['state/select', {
+      list: encodeURIComponent(_url('state/list', {pid}))
+    }],
+    create: null,
+    delete: null
+  }
 }) %>
 
 <%- include(_view.get('_part/attr/select'), {
-    attr: 'finalState',
-    displayValue: model.getRelatedTitle('finalState'),
-    items: null,
-    select2: {
-        ajax: {url: _url('state/list-select')},
-        queryData: {pid},
-        placeholder: 'Null state',
-        translate: ''
-    },
-    update: _url('state/update')
+  attr: 'finalState',
+  displayValue: model.getRelatedTitle('finalState'),
+  items: null,
+  select2: {
+    ajax: {url: _url('state/list-select')},
+    queryData: {pid},
+    placeholder: 'Null state',
+    translate: ''
+  },
+  update: _url('state/update')
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'condition',
-    extHint: 'Transition is available if this condition is true'
+  attr: 'condition',
+  extHint: 'Transition is available if this condition is true'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'config',
-    extHint: 'Transit instantiation configuration'
+  attr: 'config',
+  extHint: 'Transit instantiation configuration'
 }) %>
 
 <%- include(jsonTemplate, {
-    attr: 'options'
+  attr: 'options'
 }) %>
