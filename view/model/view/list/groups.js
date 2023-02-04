@@ -13,25 +13,26 @@ module.exports = class ViewGroups extends Base {
         const translate = {translate: ''};
         for (const model of models) {
             model.setRelatedViewAttr('parent');
-            const group = model.rel('classGroup');
-            if (!group) {
+            const classGroup = model.rel('classGroup');
+            if (!classGroup) {
                 continue;
             }
+            model.setViewAttr('classGroup', classGroup.get('name'));
             const states = model.getBehavior('overridden').getStates();
             if (states.label !== true) {
-                const value = group.get('label');
+                const value = classGroup.get('label');
                 model.setViewAttr('label', this.formatInherited(value));
             }
             if (states.type !== true) {
-                const value = group.getAttrValueLabel('type', typeMap);
+                const value = classGroup.getAttrValueLabel('type', typeMap);
                 model.setViewAttr('type', this.formatInherited(value, translate));
             }
             if (states.orderNumber !== true) {
-                const value = group.get('orderNumber');
+                const value = classGroup.get('orderNumber');
                 model.setViewAttr('orderNumber', this.formatInherited(value));
             }
             if (states.parent !== true) {
-                const value = group.getRelatedTitle('parent');
+                const value = classGroup.getRelatedTitle('parent');
                 model.setViewAttr('parent', this.formatInherited(value));
             }
         }
