@@ -15,8 +15,7 @@ module.exports = class ViewAttrRelationGroup extends Base {
             'listView',
             'selectListView'
         ]);
-        return {
-            overridden: await model.getBehavior('overridden').getAttrMap()
-        };
+        const overridden = await model.getBehavior('overridden').getAttrMap();
+        return {overridden};
     }
 };

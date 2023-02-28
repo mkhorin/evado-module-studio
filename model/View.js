@@ -98,8 +98,8 @@ module.exports = class View extends Base {
     async findParents (classId) {
         const models = await this.spawn('model/Class').getAncestors(classId);
         return this.find({
-            'class': models.map(model => model.getId()),
-            'original': null
+            class: models.map(model => model.getId()),
+            original: null
         });
     }
 

@@ -44,13 +44,15 @@ module.exports = class ClassIndex extends Base {
         model.setAttrs(this, this.PK);
         model.set('class', owner.getId());
         await model.forceSave();
-        for (const attr of await this.resolveRelation('attrs')) {
+        const attrs = await this.resolveRelation('attrs');
+        for (const attr of attrs) {
             await attr.cloneFor(model);
         }
     }
 
     async relinkClassAttrs (data) {
-        for (const model of await this.resolveRelation('attrs')) {
+        const models = await this.resolveRelation('attrs');
+        for (const model of models) {
             await model.relinkClassAttrs(data);
         }
     }

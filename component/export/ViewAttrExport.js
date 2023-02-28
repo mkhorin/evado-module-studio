@@ -21,11 +21,12 @@ module.exports = class ViewAttrExport extends Base {
         const actionBinder = this.model.rel('actionBinder');
         const behaviors = this.model.rel('behaviors');
         const rules = this.model.rel('rules');
-        return this.getData({
+        const data = {
             actionBinder: await this.getActionBinderData(actionBinder),
             behaviors: await PromiseHelper.map(behaviors, this.getBehaviorData, this),
             rules: await PromiseHelper.map(rules, this.getRuleData, this)
-        });
+        };
+        return this.getData(data);
     }
 
     getData ({actionBinder, behaviors, rules}) {

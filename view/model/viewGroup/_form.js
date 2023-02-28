@@ -9,12 +9,11 @@ module.exports = class ViewGroupForm extends Base {
 
     async resolveTemplateData () {
         const model = this.data.model;
-        return {
-            view: await model.resolveRelation('view'),
-            classGroup: await model.resolveRelation('classGroup'),
-            validParents: await this.getValidParents(),
-            overridden: await model.getBehavior('overridden').getAttrMap()
-        };
+        const view = await model.resolveRelation('view');
+        const classGroup = await model.resolveRelation('classGroup');
+        const validParents = await this.getValidParents();
+        const overridden = await model.getBehavior('overridden').getAttrMap();
+        return {view, classGroup, validParents, overridden};
     }
 
     getValidParents () {

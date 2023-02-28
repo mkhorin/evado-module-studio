@@ -9,11 +9,10 @@ module.exports = class ReportGroupForm extends Base {
 
     async resolveTemplateData () {
         const model = this.data.model;
-        return {
-            report: await model.resolveRelation('report'),
-            parent: await model.resolveRelation('parent'),
-            validParents: await SelectHelper.handleQueryLabelItems(model.getParentQuery.bind(model))
-        };
+        const report = await model.resolveRelation('report');
+        const parent = await model.resolveRelation('parent');
+        const validParents = await SelectHelper.handleQueryLabelItems(model.getParentQuery.bind(model));
+        return {report, parent, validParents};
     }
 };
 

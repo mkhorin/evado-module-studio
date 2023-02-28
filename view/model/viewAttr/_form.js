@@ -17,8 +17,7 @@ module.exports = class ViewAttrForm extends Base {
             'listView',
             'selectListView'
         ]);
-        return {
-            overridden: await model.getBehavior('overridden').getAttrMap()
-        };
+        const overridden = await model.getBehavior('overridden').getAttrMap();
+        return {overridden};
     }
 };

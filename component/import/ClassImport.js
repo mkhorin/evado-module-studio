@@ -57,7 +57,8 @@ module.exports = class ClassImport extends Base {
 
     async setParentClass () {
         const name = this.data.parent;
-        this.parent = await this.spawn('model/Class').find({name}).one();
+        const query = this.spawn('model/Class').find({name});
+        this.parent = await query.one();
         if (!this.parent) {
             return this.assignError(`Invalid parent: ${name}`);
         }
@@ -113,7 +114,8 @@ module.exports = class ClassImport extends Base {
 
     async createGroups () {
         if (Array.isArray(this.data.groups)) {
-            for (const item of this.Helper.orderItemHierarchy(this.data.groups)) {
+            const items = this.Helper.orderItemHierarchy(this.data.groups);
+            for (const item of items) {
                 await this.createGroup(item);
             }
         }
@@ -121,11 +123,13 @@ module.exports = class ClassImport extends Base {
 
     async extendGroups () {
         const group = this.spawn('model/ClassGroup');
+        const query = group.find({class: this.model.getId()}).index('name');
+        this.groupMap = await query.all();
         this.groupImports = [];
-        this.groupMap = await group.find({class: this.model.getId()}).index('name').all();
         if (Array.isArray(this.data.groups)) {
             for (const item of this.data.groups) {
-                await this.createGroup(item, this.getGroupByName(item.name));
+                const model = this.getGroupByName(item.name);
+                await this.createGroup(item, model);
             }
         }
     }
@@ -172,7 +176,8 @@ module.exports = class ClassImport extends Base {
         this.attrImports = [];
         if (Array.isArray(this.data.attrs)) {
             for (const item of this.data.attrs) {
-                await this.createAttr(item, this.getAttrByName(item.name));
+                const model = this.getAttrByName(item.name);
+                await this.createAttr(item, model);
             }
         }
     }
@@ -250,9 +255,10 @@ module.exports = class ClassImport extends Base {
     async createViews () {
         const dir = path.join(this.file, `../../view`, this.baseName);
         const files = await FileHelper.readDirectory(dir);
+        const jsonFiles = FileHelper.filterJsonFiles(files);
         this.viewImports = [];
         this.viewImportMap = {};
-        for (const file of FileHelper.filterJsonFiles(files)) {
+        for (const file of jsonFiles) {
             await this.createView(path.join(dir, file));
         }
     }
@@ -277,7 +283,7 @@ module.exports = class ClassImport extends Base {
 
     setForbiddenView () {
         const view = this.data.forbiddenView;
-        if (this.viewImportMap.hasOwnProperty(view)) {
+        if (Object.prototype.hasOwnProperty.call(this.viewImportMap, view)) {
             const id = this.viewImportMap[view].model.getId();
             this.model.set('forbiddenView', id);
             this.model.forceSave();
@@ -308,7 +314,8 @@ module.exports = class ClassImport extends Base {
     }
 
     async resolveRuleAttr (name) {
-        const attr = await this.model.relAttrs().and({name}).one();
+        const query = this.model.relAttrs().and({name});
+        const attr = await query.one();
         if (attr) {
             return attr.getId();
         }
@@ -342,7 +349,7 @@ module.exports = class ClassImport extends Base {
         this.Helper.assignAttrs(data, model);
         model.set('class', this.model.getId());
         if (data.view) {
-            if (!this.viewImportMap.hasOwnProperty(data.view)) {
+            if (!Object.prototype.hasOwnProperty.call(this.viewImportMap, data.view)) {
                 return this.assignError(`State: ${data.name}: Invalid view: ${data.view}`);
             }
             model.set('view', this.viewImportMap[data.view].model.getId());
@@ -380,7 +387,7 @@ module.exports = class ClassImport extends Base {
     }
 
     filterTransitionStates (model, name) {
-        if (this.stateMap.hasOwnProperty(name)) {
+        if (Object.prototype.hasOwnProperty.call(this.stateMap, name)) {
             return true;
         }
         this.assignError(`Transition: ${model.get('name')}: Invalid state: ${name}`);
@@ -388,7 +395,7 @@ module.exports = class ClassImport extends Base {
     }
 
     setTransitionFinalState (name, model) {
-        if (this.stateMap.hasOwnProperty(name)) {
+        if (Object.prototype.hasOwnProperty.call(this.stateMap, name)) {
             model.set('finalState', this.stateMap[name].getId());
         } else if (name) {
             this.assignError(`Transition: ${model.get('name')}: Invalid state: ${name}`);

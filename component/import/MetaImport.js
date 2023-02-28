@@ -139,9 +139,10 @@ module.exports = class MetaImport extends Base {
 
     async createReports () {
         const dir = path.join(this.basePath, 'report');
-        const names = await FileHelper.readDirectory(dir);
+        const files = await FileHelper.readDirectory(dir);
+        const jsonFiles = FileHelper.filterJsonFiles(files);
         this.reportImports = [];
-        for (const name of FileHelper.filterJsonFiles(names)) {
+        for (const name of jsonFiles) {
             const file = path.join(dir, name);
             await this.createReport(file);
         }
@@ -162,9 +163,10 @@ module.exports = class MetaImport extends Base {
 
     async createSections () {
         const dir = path.join(this.basePath, 'navigation');
-        const names = await FileHelper.readDirectory(dir);
+        const files = await FileHelper.readDirectory(dir);
+        const jsonFiles = FileHelper.filterJsonFiles(files);
         this.sectionImports = [];
-        for (const name of FileHelper.filterJsonFiles(names)) {
+        for (const name of jsonFiles) {
             const file = path.join(dir, name);
             await this.createSection(file);
         }

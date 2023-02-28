@@ -9,16 +9,15 @@ module.exports = class AttrBehaviorForm extends Base {
 
     async resolveTemplateData () {
         const model = this.data.model;
-        return {
-            owner: await model.resolveRelation('owner'),
-            paramModel: await model.resolveRelation('param'),
-            paramModelMap: model.getParamModelMap()
-        };
+        const owner = await model.resolveRelation('owner');
+        const paramModel = await model.resolveRelation('param');
+        const paramModelMap = model.getParamModelMap();
+        return {owner, paramModel, paramModelMap};
     }
 
     async resolveModelRelations (models, data) {
         for (const key of Object.keys(data)) {
-            if (models.hasOwnProperty(key)) {
+            if (Object.prototype.hasOwnProperty.call(models, key)) {
                 for (const name of data[key]) {
                     await this.resolveModelRelation(name, models[key]);
                 }
@@ -28,6 +27,7 @@ module.exports = class AttrBehaviorForm extends Base {
 
     async resolveModelRelation (name, model) {
         const query = model.getRelation(name).addSelect('label').raw(false);
-        model.populateRelation(name, await query.one());
+        const data = await query.one();
+        model.populateRelation(name, data);
     }
 };

@@ -29,7 +29,8 @@ module.exports = class BaseParam extends Base {
         }
         const paramContainer = this.model.rel('owner'); // behavior
         const classModel = paramContainer.rel('owner'); // class model
-        const attr = await classModel.relAttrs().and({name: attrName}).one();
+        const query = classModel.relAttrs().and({name: attrName});
+        const attr = await query.one();
         attr ? this.model.set(name, attr.getId())
              : this.model.addError(name, `Attribute not found: ${attrName}`);
     }

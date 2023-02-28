@@ -9,9 +9,8 @@ module.exports = class ViewIndex extends Base {
 
     async resolveTemplateData () {
         const classQuery = this.spawn('model/Class').findForSelect();
-        return {
-            classes: await SelectHelper.queryItems(classQuery)
-        };
+        const classes = await SelectHelper.queryItems(classQuery);
+        return {classes};
     }
 };
 

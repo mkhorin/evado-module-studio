@@ -28,7 +28,9 @@ module.exports = class ViewImport extends Base {
     }
 
     async validateView () {
-        this.model = this.spawn('model/View', {scenario: 'create'});
+        this.model = this.spawn('model/View', {
+            scenario: 'create'
+        });
         this.data.name = this.baseName;
         this.Helper.assignAttrs(this.data, this.model);
         this.model.set('class', this.classModel.getId());
@@ -78,13 +80,14 @@ module.exports = class ViewImport extends Base {
     }
 
     bindView (attr) {
-        const classModel = this.meta.classMap[this.model.get('class')];
+        const classId = this.model.get('class');
+        const classModel = this.meta.classMap[classId];
         const viewMap = classModel.rel('viewMap');
         const name = this.data[attr];
         if (!name) {
             return null;
         }
-        if (!viewMap.hasOwnProperty(name)) {
+        if (!Object.prototype.hasOwnProperty.call(viewMap, name)) {
             return this.assignError(`${attr}: Not found: ${name}`);
         }
         this.model.set(attr, viewMap[name].getId());

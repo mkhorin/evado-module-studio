@@ -9,8 +9,7 @@ module.exports = class ReportAttrForm extends Base {
 
     async resolveTemplateData () {
         const model = this.data.model;
-        return {
-            report: await model.resolveRelation('report')
-        };
+        const report = await model.resolveRelation('report');
+        return {report};
     }
 };

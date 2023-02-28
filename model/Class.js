@@ -169,7 +169,8 @@ module.exports = class Class extends Base {
     async relinkViews (sample) {
         const view = this.spawn('model/View');
         const data = await view.getRelinkMap(sample.getId(), this.getId());
-        for (const model of await this.resolveRelation('views')) {
+        const models = await this.resolveRelation('views');
+        for (const model of models) {
             await model.relinkViews(data);
         }
         await this.relinkForbiddenView(data);

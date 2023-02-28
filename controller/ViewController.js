@@ -44,17 +44,19 @@ module.exports = class ViewController extends Base {
     }
 
     async actionCloneFromParent () {
+        const model = await this.createClonedModel();
         return this.actionCreate({
             scenario: 'clone',
-            model: await this.createClonedModel()
+            model
         });
     }
 
     async actionLinkToParent () {
+        const model = await this.createClonedModel(true);
         return this.actionCreate({
             scenario: 'clone',
-            model: await this.createClonedModel(true),
-            template: 'link'
+            template: 'link',
+            model
         });
     }
 
@@ -118,7 +120,10 @@ module.exports = class ViewController extends Base {
                 return 'attrs';
             }
             case 'treeViewLevels': {
-                return ['refAttr.refClass', 'refAttr.original.refClass'];
+                return [
+                    'refAttr.refClass',
+                    'refAttr.original.refClass'
+                ];
             }
         }
     }

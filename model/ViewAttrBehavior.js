@@ -11,7 +11,10 @@ module.exports = class ViewAttrBehavior extends Base {
         return {
             TABLE: 'studio_viewAttrBehavior',
             BEHAVIORS: {
-                'sortOrder': {...super.BEHAVIORS.sortOrder, start: 100}
+                'sortOrder': {
+                    ...super.BEHAVIORS.sortOrder,
+                    start: 100
+                }
             }
         };
     }

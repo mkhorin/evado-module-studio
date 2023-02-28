@@ -18,7 +18,8 @@ module.exports = class TreeViewImport extends Base {
         const source = this.sourceClass;
         const errorPrefix = `Tree view source class: ${source.get('name')}`;
         const name = data.refAttr;
-        const attr = await source.relAttrs().and({name}).one();
+        const attrQuery = source.relAttrs().and({name});
+        const attr = await attrQuery.one();
         if (!attr) {
             return this.assignError(`${errorPrefix}: Unknown attribute: ${name}`);
         }
@@ -26,7 +27,8 @@ module.exports = class TreeViewImport extends Base {
         if (!refClass) {
             return this.assignError(`${errorPrefix}: Invalid refClass`);
         }
-        const view = await refClass.relViews().and({name: data.view}).one();
+        const viewQuery = refClass.relViews().and({name: data.view});
+        const view = await viewQuery.one();
         if (data.view && !view) {
             return this.assignError(`${errorPrefix}: Invalid view: ${data.view}`);
         }

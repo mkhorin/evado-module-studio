@@ -71,7 +71,8 @@ module.exports = class ReportAttr extends Base {
     }
 
     canIndexing () {
-        switch (this.get('type')) {
+        const type = this.get('type');
+        switch (type) {
             case 'backref':
             case 'file': {
                 return false;

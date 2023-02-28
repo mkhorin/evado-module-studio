@@ -32,9 +32,9 @@ module.exports = class DateParam extends Base {
                 tooSmall: 'Too small message'
             },
             FORMAT_VALUE_LABELS: {
-                'date': 'Date',
-                'datetime': 'Date and time',
-                'timestamp': 'Timestamp'
+                date: 'Date',
+                datetime: 'Date and time',
+                timestamp: 'Timestamp'
             }
         };
     }

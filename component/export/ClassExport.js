@@ -12,7 +12,8 @@ module.exports = class ClassExport extends Base {
         await this.model.resolveRelation('views');
         const viaMap = this.viaMap || await this.getViaMap();
         await FileHelper.delete(this.getClassViewPath());
-        for (const item of this.model.rel('views')) {
+        const items = this.model.rel('views');
+        for (const item of items) {
             await this.exportView(item);
         }
         const data = await this.getData(viaMap);

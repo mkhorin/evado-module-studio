@@ -9,9 +9,8 @@ module.exports = class ReportAttrIndex extends Base {
 
     async resolveTemplateData () {
         const reportQuery = this.spawn('model/Report').findForSelect();
-        return {
-            reports: await SelectHelper.queryItems(reportQuery)
-        };
+        const reports = await SelectHelper.queryItems(reportQuery);
+        return {reports};
     }
 };
 

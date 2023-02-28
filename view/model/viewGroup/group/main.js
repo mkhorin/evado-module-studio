@@ -9,10 +9,9 @@ module.exports = class ViewGroupMainGroup extends Base {
 
     async resolveTemplateData () {
         const model = this.data.model;
-        return {
-            view: await model.resolveRelation('view'),
-            classGroup: await model.resolveRelation('classGroup'),
-            overridden: await model.getBehavior('overridden').getAttrMap()
-        };
+        const view = await model.resolveRelation('view');
+        const classGroup = await model.resolveRelation('classGroup');
+        const overridden = await model.getBehavior('overridden').getAttrMap();
+        return {view, classGroup, overridden};
     }
 };

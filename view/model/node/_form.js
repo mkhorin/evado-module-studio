@@ -10,11 +10,10 @@ module.exports = class NodeForm extends Base {
     async resolveTemplateData () {
         const model = this.data.model;
         await model.resolveRelations(['class', 'view', 'report']);
-        return {
-            parent: await model.resolveRelation('parent'),
-            section: await  model.resolveRelation('section'),
-            validParents: await SelectHelper.handleQueryLabelItems(model.getParentQuery.bind(model))
-        };
+        const parent = await model.resolveRelation('parent');
+        const section = await  model.resolveRelation('section');
+        const validParents = await SelectHelper.handleQueryLabelItems(model.getParentQuery.bind(model));
+        return {parent, section, validParents};
     }
 };
 

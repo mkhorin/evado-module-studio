@@ -34,8 +34,10 @@ module.exports = class ClassGroupExport extends Base {
         await this.model.resolveRelations(['actionBinder', 'parent']);
         const actionBinder = this.model.rel('actionBinder');
         const overridden = this.model.getBehavior('overridden');
-        if (!actionBinder && !overridden.hasUpdatedAttrs()) {
-            return null;
+        if (!actionBinder) {
+            if (!overridden.hasUpdatedAttrs()) {
+                return null;
+            }
         }
         const data = {
             ...this.getAttrMap(),

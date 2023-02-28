@@ -9,8 +9,10 @@ module.exports = class ViewGroupExport extends Base {
 
     async execute () {
         await this.model.resolveRelations(['actionBinder', 'classGroup', 'parent']);
+        const actionBinder = this.model.rel('actionBinder');
+        const actionBinderData = await this.getActionBinderData(actionBinder);
         return this.getData({
-            actionBinder: await this.getActionBinderData(this.model.rel('actionBinder'))
+            actionBinder: actionBinderData
         });
     }
 

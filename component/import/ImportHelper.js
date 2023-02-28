@@ -68,7 +68,8 @@ module.exports = class ImportHelper {
         this.assignAttrs(data, paramModel);
         await this.resolveRelations(paramModel, model, meta);
         if (!await paramModel.save()) {
-            model.addError(model.constructor.name, `params: ${paramModel.getFirstError()}`);
+            const error = paramModel.getFirstError();
+            model.addError(model.constructor.name, `params: ${error}`);
         }
     }
 
@@ -85,8 +86,11 @@ module.exports = class ImportHelper {
             SignatureParamViewBehavior: SignatureParamBehavior
         };
         const name = this.getParamImportName(model, owner);
-        const cls = customs.hasOwnProperty(name) ? customs[name] : BaseParam;
-        return owner.spawn(cls, {model, owner, meta}).execute();
+        const constructor = Object.prototype.hasOwnProperty.call(customs, name)
+            ? customs[name]
+            : BaseParam;
+        const instance = owner.spawn(constructor, {model, owner, meta});
+        return instance.execute();
     }
 
     // HIERARCHY
@@ -98,10 +102,11 @@ module.exports = class ImportHelper {
         }
         for (const item of items) {
             if (map[item.parent]) {
-                if (map[item.parent].children) {
-                    map[item.parent].children.push(item);
+                const parent = map[item.parent];
+                if (parent.children) {
+                    parent.children.push(item);
                 } else {
-                    map[item.parent].children = [item];
+                    parent.children = [item];
                 }
             } else {
                 roots.push(item);
@@ -114,8 +119,9 @@ module.exports = class ImportHelper {
     static fillHierarchyOrder (items, list, map) {
         for (const item of items) {
             list.push(item);
-            if (Array.isArray(map[item.name].children)) {
-                this.fillHierarchyOrder(map[item.name].children, list, map);
+            const children = map[item.name].children;
+            if (Array.isArray(children)) {
+                this.fillHierarchyOrder(children, list, map);
             }
         }
     }
