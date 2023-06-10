@@ -19,7 +19,7 @@ module.exports = class ImportHelper {
         ];
         for (const {attrs} of validators) {
             for (const attr of attrs) {
-                if (Object.prototype.hasOwnProperty.call(data, attr)) {
+                if (Object.hasOwn(data, attr)) {
                     const value = data[attr];
                     if (value !== '' && value !== null) {
                         data[attr] = JSON.stringify(value);
@@ -86,7 +86,7 @@ module.exports = class ImportHelper {
             SignatureParamViewBehavior: SignatureParamBehavior
         };
         const name = this.getParamImportName(model, owner);
-        const constructor = Object.prototype.hasOwnProperty.call(customs, name)
+        const constructor = Object.hasOwn(customs, name)
             ? customs[name]
             : BaseParam;
         const instance = owner.spawn(constructor, {model, owner, meta});

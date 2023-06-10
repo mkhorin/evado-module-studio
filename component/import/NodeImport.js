@@ -38,7 +38,7 @@ module.exports = class NodeImport extends Base {
     }
 
     bindParent (name) {
-        if (!Object.prototype.hasOwnProperty.call(this.nodeMap, name)) {
+        if (!Object.hasOwn(this.nodeMap, name)) {
             return this.assignError(`Parent not found: ${name}`);
         }
         this.model.set('parent', this.nodeMap[name].getId());
@@ -57,7 +57,7 @@ module.exports = class NodeImport extends Base {
             return this.assignError('Class not found');
         }
         const viewMap = this.classModel.rel('viewMap');
-        if (!viewMap || !Object.prototype.hasOwnProperty.call(viewMap, name)) {
+        if (!viewMap || !Object.hasOwn(viewMap, name)) {
             return this.assignError(`Class view not found: ${name}`);
         }
         this.model.set('view', viewMap[name].getId());

@@ -17,7 +17,7 @@ module.exports = class AttrBehaviorForm extends Base {
 
     async resolveModelRelations (models, data) {
         for (const key of Object.keys(data)) {
-            if (Object.prototype.hasOwnProperty.call(models, key)) {
+            if (Object.hasOwn(models, key)) {
                 for (const name of data[key]) {
                     await this.resolveModelRelation(name, models[key]);
                 }

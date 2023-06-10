@@ -28,7 +28,7 @@ module.exports = class BaseActiveRecord extends Base {
 
     relinkAttr (name, data) {
         const key = this.get(name);
-        if (Object.prototype.hasOwnProperty.call(data, key)) {
+        if (Object.hasOwn(data, key)) {
             this.set(name, data[key]);
             return true;
         }

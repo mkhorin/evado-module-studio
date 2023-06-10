@@ -283,7 +283,7 @@ module.exports = class ClassImport extends Base {
 
     setForbiddenView () {
         const view = this.data.forbiddenView;
-        if (Object.prototype.hasOwnProperty.call(this.viewImportMap, view)) {
+        if (Object.hasOwn(this.viewImportMap, view)) {
             const id = this.viewImportMap[view].model.getId();
             this.model.set('forbiddenView', id);
             this.model.forceSave();
@@ -349,7 +349,7 @@ module.exports = class ClassImport extends Base {
         this.Helper.assignAttrs(data, model);
         model.set('class', this.model.getId());
         if (data.view) {
-            if (!Object.prototype.hasOwnProperty.call(this.viewImportMap, data.view)) {
+            if (!Object.hasOwn(this.viewImportMap, data.view)) {
                 return this.assignError(`State: ${data.name}: Invalid view: ${data.view}`);
             }
             model.set('view', this.viewImportMap[data.view].model.getId());
@@ -387,7 +387,7 @@ module.exports = class ClassImport extends Base {
     }
 
     filterTransitionStates (model, name) {
-        if (Object.prototype.hasOwnProperty.call(this.stateMap, name)) {
+        if (Object.hasOwn(this.stateMap, name)) {
             return true;
         }
         this.assignError(`Transition: ${model.get('name')}: Invalid state: ${name}`);
@@ -395,7 +395,7 @@ module.exports = class ClassImport extends Base {
     }
 
     setTransitionFinalState (name, model) {
-        if (Object.prototype.hasOwnProperty.call(this.stateMap, name)) {
+        if (Object.hasOwn(this.stateMap, name)) {
             model.set('finalState', this.stateMap[name].getId());
         } else if (name) {
             this.assignError(`Transition: ${model.get('name')}: Invalid state: ${name}`);

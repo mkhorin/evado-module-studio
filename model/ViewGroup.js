@@ -120,7 +120,7 @@ module.exports = class ViewGroup extends Base {
 
     relinkClassGroups (data) {
         const id = this.get('classGroup');
-        if (Object.prototype.hasOwnProperty.call(data, id)) {
+        if (Object.hasOwn(data, id)) {
             this.set('classGroup', data[id]);
             return this.forceSave();
         }

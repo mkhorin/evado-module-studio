@@ -43,7 +43,7 @@ module.exports = class ParamContainer extends Base {
     }
 
     hasParam (key) {
-        return Object.prototype.hasOwnProperty.call(this.PARAM_MAP, key);
+        return Object.hasOwn(this.PARAM_MAP, key);
     }
 
     getParamModel () {

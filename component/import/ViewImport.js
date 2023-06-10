@@ -87,7 +87,7 @@ module.exports = class ViewImport extends Base {
         if (!name) {
             return null;
         }
-        if (!Object.prototype.hasOwnProperty.call(viewMap, name)) {
+        if (!Object.hasOwn(viewMap, name)) {
             return this.assignError(`${attr}: Not found: ${name}`);
         }
         this.model.set(attr, viewMap[name].getId());

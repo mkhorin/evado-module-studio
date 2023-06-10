@@ -22,7 +22,7 @@ module.exports = class ClassRule extends Base {
     async relinkClassAttrs (data) {
         const oldOnes = this.get('attrs');
         const newOnes = oldOnes.map(id => {
-            return Object.prototype.hasOwnProperty.call(data, id) ? data[id] : id;
+            return Object.hasOwn(data, id) ? data[id] : id;
         });
         this.set('attrs', newOnes);
         this.detachRelationChangeBehavior();
