@@ -9,14 +9,16 @@ module.exports = class StringParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'length',
                 'max',
                 'min'
-            ]),
-            RULES: super.RULES.concat([
+            ],
+            RULES: [
+                ...super.RULES,
                 [['length', 'max', 'min'], 'integer', {min: 1}]
-            ]),
+            ],
             ATTR_LABELS: {
                 max: 'Maximum length',
                 min: 'Minimum length'

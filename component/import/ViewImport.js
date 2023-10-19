@@ -9,11 +9,12 @@ module.exports = class ViewImport extends Base {
 
     static getConstants () {
         return {
-            RULES: super.RULES.concat([
+            RULES: [
+                ...super.RULES,
                 ['source', 'default', {value: (attr, {classModel}) => {
                     return `app/base/view/${classModel.get('name')}/_viewName_`;
                 }}]
-            ])
+            ]
         };
     }
 

@@ -9,16 +9,18 @@ module.exports = class RegexParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'pattern',
                 'flags',
                 'mismatch'
-            ]),
-            RULES: super.RULES.concat([
+            ],
+            RULES: [
+                ...super.RULES,
                 ['pattern', 'required'],
                 [['pattern', 'flags', 'message'], 'string'],
                 ['mismatch', 'checkbox']
-            ])
+            ]
         };
     }
 };

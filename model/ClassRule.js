@@ -10,12 +10,14 @@ module.exports = class ClassRule extends Base {
     static getConstants () {
         return {
             TABLE: 'studio_classRule',
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'attrs'
-            ]),
-            RULES: super.RULES.concat([
+            ],
+            RULES: [
+                ...super.RULES,
                 ['attrs', 'relation']
-            ])
+            ]
         };
     }
 

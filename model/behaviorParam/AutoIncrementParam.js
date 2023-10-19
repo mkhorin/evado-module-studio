@@ -9,11 +9,12 @@ module.exports = class AutoIncrementParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'start',
                 'step',
                 'method'
-            ]),
+            ],
             RULES: [
                 [['start', 'step'], 'integer'],
                 [['start', 'step'], 'default', {value: 1}]

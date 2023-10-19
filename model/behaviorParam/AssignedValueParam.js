@@ -9,11 +9,12 @@ module.exports = class AssignedValueParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'expression',
                 'onCreate',
                 'onUpdate'
-            ]),
+            ],
             RULES: [
                 ['expression', 'required'],
                 ['expression', 'json'],

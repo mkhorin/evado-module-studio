@@ -9,9 +9,10 @@ module.exports = class MetaImport extends Base {
 
     static getConstants () {
         return {
-            RULES: super.RULES.concat([
+            RULES: [
+                ...super.RULES,
                 ['source', 'default', {value: 'app'}]
-            ])
+            ]
         };
     }
 

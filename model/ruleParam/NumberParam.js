@@ -9,15 +9,17 @@ module.exports = class NumberParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'integerOnly',
                 'max',
                 'min'
-            ]),
-            RULES: super.RULES.concat([
+            ],
+            RULES: [
+                ...super.RULES,
                 ['integerOnly', 'checkbox'],
                 [['max', 'min'], 'number']
-            ]),
+            ],
             ATTR_LABELS: {
                 max: 'Maximum value',
                 min: 'Minimum value'

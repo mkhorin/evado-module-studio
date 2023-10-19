@@ -9,10 +9,11 @@ module.exports = class BaseRuleParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'message',
                 'when'
-            ]),
+            ],
             RULES: [
                 ['message', 'string'],
                 ['when', 'json']

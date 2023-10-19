@@ -9,9 +9,10 @@ module.exports = class SectionImport extends Base {
 
     static getConstants () {
         return {
-            RULES: super.RULES.concat([
+            RULES: [
+                ...super.RULES,
                 ['source', 'default', {value: 'app/navigation/_sectionName_'}]
-            ])
+            ]
         };
     }
 

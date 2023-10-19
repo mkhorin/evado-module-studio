@@ -10,14 +10,16 @@ module.exports = class CustomParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'config'
-            ]),
-            RULES: super.RULES.concat([
+            ],
+            RULES: [
+                ...super.RULES,
                 ['config', 'required'],
                 ['config', 'spawn', {BaseClass: Validator}],
 
-            ]),
+            ],
             ATTR_LABELS: {
                 config: 'Spawn configuration'
             }

@@ -9,12 +9,14 @@ module.exports = class ExpressionParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'expression'
-            ]),
-            RULES: super.RULES.concat([
+            ],
+            RULES: [
+                ...super.RULES,
                 ['expression', 'json']
-            ])
+            ]
         };
     }
 };

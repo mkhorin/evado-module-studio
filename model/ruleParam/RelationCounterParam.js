@@ -9,13 +9,15 @@ module.exports = class RelationCounterParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'max',
                 'min'
-            ]),
-            RULES: super.RULES.concat([
+            ],
+            RULES: [
+                ...super.RULES,
                 [['max', 'min'], 'integer', {min: 1}]
-            ]),
+            ],
             ATTR_LABELS: {
                 max: 'Maximum objects',
                 min: 'Minimum objects'

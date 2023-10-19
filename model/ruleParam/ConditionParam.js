@@ -9,12 +9,14 @@ module.exports = class ConditionParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'condition'
-            ]),
-            RULES: super.RULES.concat([
+            ],
+            RULES: [
+                ...super.RULES,
                 ['condition', 'json']
-            ])
+            ]
         };
     }
 };

@@ -9,10 +9,11 @@ module.exports = class TimestampParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'createdAttr',
                 'updatedAttr'
-            ]),
+            ],
             RULES: [
                 [['createdAttr', 'updatedAttr'], 'id']
             ],

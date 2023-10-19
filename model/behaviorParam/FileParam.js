@@ -9,7 +9,8 @@ module.exports = class FileParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'imageOnly',
                 'minSize',
                 'maxSize',
@@ -19,7 +20,7 @@ module.exports = class FileParam extends Base {
                 'accept',
                 'hashing',
                 'rawClass'
-            ]),
+            ],
             RULES: [
                 ['nameAttr', 'id'],
                 [['hashing', 'imageOnly'], 'checkbox'],

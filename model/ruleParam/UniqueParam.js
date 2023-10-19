@@ -9,14 +9,16 @@ module.exports = class UniqueParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'filter',
                 'ignoreCase'
-            ]),
-            RULES: super.RULES.concat([
+            ],
+            RULES: [
+                ...super.RULES,
                 ['filter', 'json'],
                 ['ignoreCase', 'checkbox']
-            ])
+            ]
         };
     }
 };

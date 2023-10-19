@@ -9,10 +9,11 @@ module.exports = class SortOrderParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'start',
                 'step'
-            ]),
+            ],
             RULES: [
                 [['start', 'step'], 'integer'],
                 [['start', 'step'], 'default', {value: 10}]

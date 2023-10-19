@@ -10,9 +10,10 @@ module.exports = class CustomParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'config'
-            ]),
+            ],
             RULES: [
                 ['config', 'required'],
                 ['config', 'spawn', {BaseClass: Behavior}]

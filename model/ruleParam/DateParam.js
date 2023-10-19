@@ -9,7 +9,8 @@ module.exports = class DateParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'max',
                 'maxExpression',
                 'min',
@@ -17,12 +18,13 @@ module.exports = class DateParam extends Base {
                 'tooBig',
                 'tooSmall',
                 'format'
-            ]),
-            RULES: super.RULES.concat([
+            ],
+            RULES: [
+                ...super.RULES,
                 [['max', 'min', 'tooBig', 'tooSmall'], 'string'],
                 [['maxExpression', 'minExpression'], 'json'],
                 ['format', 'default', {value: 'date'}]
-            ]),
+            ],
             ATTR_LABELS: {
                 max: 'Maximum date',
                 maxExpression: 'Maximum date expression',

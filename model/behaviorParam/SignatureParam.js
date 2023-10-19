@@ -9,10 +9,11 @@ module.exports = class SignatureParam extends Base {
 
     static getConstants () {
         return {
-            ATTRS: super.ATTRS.concat([
+            ATTRS: [
+                ...super.ATTRS,
                 'signature',
                 'params'
-            ]),
+            ],
             RULES: [
                 ['signature', 'required'],
                 ['signature', 'id'],

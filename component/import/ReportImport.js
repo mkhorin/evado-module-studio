@@ -9,9 +9,10 @@ module.exports = class ReportImport extends Base {
 
     static getConstants () {
         return {
-            RULES: super.RULES.concat([
+            RULES: [
+                ...super.RULES,
                 ['source', 'default', {value: 'app/report/_reportName_'}]
-            ])
+            ]
         };
     }
 
