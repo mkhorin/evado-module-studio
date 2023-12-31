@@ -19,7 +19,7 @@ module.exports = class ReportExport extends Base {
     }
 
     async getData () {
-        const model = this.model;
+        const {model} = this;
         await model.resolveRelations(['attrs']);
         const data = this.getAttrMap();
         const attrs = model.rel('attrs');

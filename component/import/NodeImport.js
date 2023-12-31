@@ -20,7 +20,7 @@ module.exports = class NodeImport extends Base {
     // DEFERRED BINDING
 
     async processDeferredBinding () {
-        const data = this.data;
+        const {data} = this;
         if (!this.hasError() && data.parent) {
             this.bindParent(data.parent);
         }

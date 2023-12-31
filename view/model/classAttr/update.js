@@ -8,7 +8,7 @@ const Base = require('./_form');
 module.exports = class UpdateClassAttrForm extends Base {
 
     async resolveTemplateData () {
-        const model = this.data.model;
+        const {model} = this.data;
         await model.resolveRelations([
             'class',
             'eagerView',

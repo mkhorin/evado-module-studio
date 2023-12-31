@@ -8,7 +8,7 @@ const Base = require('areto/view/ViewModel');
 module.exports = class ClassAttrForm extends Base {
 
     async resolveTemplateData () {
-        const model = this.data.model;
+        const {model} = this.data;
         await model.resolveRelation('class');
     }
 };

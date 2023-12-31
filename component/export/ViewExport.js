@@ -25,7 +25,7 @@ module.exports = class ViewExport extends Base {
     }
 
     async getData () {
-        const model = this.model;
+        const {model} = this;
         await model.resolveRelations([
             'attrs',
             'behaviors',

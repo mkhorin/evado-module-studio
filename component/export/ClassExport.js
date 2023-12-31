@@ -41,7 +41,7 @@ module.exports = class ClassExport extends Base {
     }
 
     async getData (viaMap) {
-        const model = this.model;
+        const {model} = this;
         await model.resolveRelations([
             'activeDescendants',
             'attrs',

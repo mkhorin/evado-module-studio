@@ -54,8 +54,8 @@ module.exports = class Report extends Base {
         return this.getFullTitle();
     }
 
-    static async filterInheritedChanges (changes, model, attr) {
-        model = model.getRelation(attr).model;
+    static async filterInheritedChanges (changes, sourceModel, attr) {
+        const {model} = sourceModel.getRelation(attr);
         const query = model.findById(changes.deletes).and({original: null});
         changes.deletes = await query.column(model.PK);
         return PromiseHelper.setImmediate();

@@ -30,7 +30,7 @@ module.exports = class ViewAttrExport extends Base {
     }
 
     getData ({actionBinder, behaviors, rules}) {
-        const model = this.model;
+        const {model} = this;
         const overridden = model.getBehavior('overridden');
         const data = {
             name: model.get('classAttr.name'),

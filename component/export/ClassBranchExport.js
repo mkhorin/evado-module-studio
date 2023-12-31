@@ -13,7 +13,7 @@ module.exports = class ClassBranchExport extends Base {
     }
 
     async exportClass (model, viaMap) {
-        const exporter = this.exporter;
+        const {exporter} = this;
         const classExport = this.spawn('export/ClassExport', {exporter, model, viaMap});
         await classExport.execute();
         const children = await model.resolveRelation('children');

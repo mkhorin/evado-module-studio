@@ -8,7 +8,7 @@ const Base = require('areto/view/ViewModel');
 module.exports = class AttrBehaviorForm extends Base {
 
     async resolveTemplateData () {
-        const model = this.data.model;
+        const {model} = this.data;
         const owner = await model.resolveRelation('owner');
         const paramModel = await model.resolveRelation('param');
         const paramModelMap = model.getParamModelMap();

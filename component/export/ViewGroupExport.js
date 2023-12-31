@@ -17,7 +17,7 @@ module.exports = class ViewGroupExport extends Base {
     }
 
     getData (result) {
-        const model = this.model;
+        const {model} = this;
         const data = {
             name: model.get('classGroup.name'),
             ...this.getAttrMap()

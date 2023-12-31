@@ -8,7 +8,7 @@ const Base = require('areto/view/ViewModel');
 module.exports = class ClassIndexAttrForm extends Base {
 
     async resolveTemplateData () {
-        const model = this.data.model;
+        const {model} = this.data;
         const index = await model.resolveRelation('index');
         const classId = index.get('class');
         const query = this.spawn('model/ClassAttr').findByClass(classId).with('relation');

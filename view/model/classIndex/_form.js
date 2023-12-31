@@ -8,7 +8,7 @@ const Base = require('areto/view/ViewModel');
 module.exports = class ClassIndexForm extends Base {
 
     async resolveTemplateData () {
-        const model = this.data.model;
+        const {model} = this.data;
         return {
             class: await model.resolveRelation('class')
         };

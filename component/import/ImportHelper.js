@@ -30,7 +30,7 @@ module.exports = class ImportHelper {
     }
 
     static trimConstructorName (model) {
-        const name = model.constructor.name;
+        const {name} = model.constructor;
         const index = name.lastIndexOf('Import');
         return index > 0 ? name.substring(0, index) :  name;
     }

@@ -20,10 +20,10 @@ module.exports = class ViaExport extends Base {
     }
 
     getViaData (model) {
-        const viaMap = this.viaMap;
         if (!model) {
             return null;
         }
+        const {viaMap} = this;
         const instance = this.spawn(this.constructor, {viaMap, model});
         return instance.execute();
     }

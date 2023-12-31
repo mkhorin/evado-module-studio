@@ -39,18 +39,21 @@ module.exports = class MetaExport extends Base {
     }
 
     exportClass (model, viaMap) {
-        const exporter = this.exporter;
-        return this.spawn('export/ClassExport', {exporter, model, viaMap}).execute();
+        const {exporter} = this;
+        const instance = this.spawn('export/ClassExport', {exporter, model, viaMap});
+        return instance.execute();
     }
 
     exportReport (model) {
-        const exporter = this.exporter;
-        return this.spawn('export/ReportExport', {exporter, model}).execute();
+        const {exporter} = this;
+        const instance = this.spawn('export/ReportExport', {exporter, model});
+        return instance.execute();
     }
 
     exportSection (model, nodeMap) {
-        const exporter = this.exporter;
-        return this.spawn('export/SectionExport', {exporter, model, nodeMap}).execute();
+        const {exporter} = this;
+        const instance = this.spawn('export/SectionExport', {exporter, model, nodeMap});
+        return instance.execute();
     }
 };
 

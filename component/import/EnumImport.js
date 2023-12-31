@@ -8,7 +8,7 @@ const Base = require('./ImportBase');
 module.exports = class EnumImport extends Base {
 
     async process () {
-        const data = this.data;
+        const {data} = this;
         if (!data) {
             return false;
         }

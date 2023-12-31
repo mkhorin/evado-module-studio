@@ -8,7 +8,7 @@ const Base = require('./ViaImport');
 module.exports = class InheritedViaImport extends Base {
 
     async process () {
-        const data = this.data;
+        const {data} = this;
         if (!data) {
             return false;
         }

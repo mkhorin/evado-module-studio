@@ -14,7 +14,7 @@ module.exports = class ClassAttrImport extends Base {
     }
 
     async processAfter () {
-        const model = this.model;
+        const {model} = this;
         this.Helper.assignAttrs(this.data, model);
         model.set('class', this.classModel.getId());
         model.isRelation() && model.get('refClass')

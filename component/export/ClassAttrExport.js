@@ -31,7 +31,7 @@ module.exports = class ClassAttrExport extends Base {
     }
 
     async getData () {
-        const model = this.model;
+        const {model} = this;
         await model.resolveRelations([
             'actionBinder',
             'behaviors',
@@ -72,7 +72,7 @@ module.exports = class ClassAttrExport extends Base {
     }
 
     async getInheritedData () {
-        const model = this.model;
+        const {model} = this;
         await model.resolveRelations([
             'actionBinder',
             'eagerView',
@@ -126,8 +126,8 @@ module.exports = class ClassAttrExport extends Base {
     }
 
     getViaData (model) {
-        const viaMap = this.viaMap;
-        model = this.viaMap.byAttr[model.getId()];
+        const {viaMap} = this;
+        model = viaMap.byAttr[model.getId()];
         if (!model) {
             return null;
         }

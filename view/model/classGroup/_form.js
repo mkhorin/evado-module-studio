@@ -8,7 +8,7 @@ const Base = require('areto/view/ViewModel');
 module.exports = class ClassGroupForm extends Base {
 
     async resolveTemplateData () {
-        const model = this.data.model;
+        const {model} = this.data;
         await model.resolveRelations(['class', 'parent']);
         const validParents = await SelectHelper.handleQueryLabelItems(model.getParentQuery.bind(model));
         return {validParents};

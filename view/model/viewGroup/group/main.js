@@ -8,7 +8,7 @@ const Base = require('areto/view/ViewModel');
 module.exports = class ViewGroupMainGroup extends Base {
 
     async resolveTemplateData () {
-        const model = this.data.model;
+        const {model} = this.data;
         const view = await model.resolveRelation('view');
         const classGroup = await model.resolveRelation('classGroup');
         const overridden = await model.getBehavior('overridden').getAttrMap();

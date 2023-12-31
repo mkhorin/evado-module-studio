@@ -8,7 +8,7 @@ const Base = require('./ImportBase');
 module.exports = class ViaImport extends Base {
 
     async process () {
-        const data = this.data;
+        const {data} = this;
         this.model = this.spawn('model/Via', {scenario: 'create'});
         if (this.parent) {
             this.model.set('attr', null);
